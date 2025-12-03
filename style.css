@@ -20,7 +20,7 @@ body {
 }
 
 h1, h2, h3 {
-    color: #76ff03; /* Verde Neon */
+    color: #76ff03;
     font-weight: bold;
     margin-top: 0;
 }
@@ -46,7 +46,7 @@ h1, h2, h3 {
     font-size: 0.9em;
 }
 
-.conexao-ok { color: #00e676; } /* Verde para Conexão OK */
+.conexao-ok { color: #00e676; }
 
 /* MENU DE MODOS */
 #menu-modos {
@@ -96,16 +96,24 @@ h1, h2, h3 {
     font-weight: bold;
 }
 
-/* MAPA E WIDGETS */
+/* MAPA DE RISCO E CORES (CONTROLADO PELO JS) */
 #mapa-risco {
     padding: 30px 15px; 
     border-radius: 6px;
     text-align: center;
     margin-bottom: 15px;
-    background-color: #8b4513; /* Marrom padrão (Alerta) */
     color: white;
+    transition: background-color 0.4s;
 }
 
+/* Cores de Risco */
+.risco-verde { background-color: #4CAF50; } /* Estável */
+.risco-amarelo { background-color: #FFC107; color: #121212; } /* Atenção */
+.risco-marrom { background-color: #8b4513; } /* Alerta Médio */
+.risco-vermelho { background-color: #FF0000; } /* Emergência */
+
+
+/* WIDGETS */
 .widgets-area {
     display: flex; 
     flex-wrap: wrap;
@@ -118,7 +126,7 @@ h1, h2, h3 {
     background-color: #282828;
     padding: 15px;
     border-radius: 4px;
-    border-left: 4px solid #4CAF50; /* Borda padrão: OK */
+    border-left: 4px solid #4CAF50; 
     min-width: 200px;
 }
 
@@ -132,14 +140,13 @@ h1, h2, h3 {
 .widget-card.status-critical { border-left-color: #FF0000; }
 .status-critical .kpi-value { color: #FF0000; } 
 
-/* ALERTA DE INTERNET (URGENTE) */
 .widget-card.status-critical-internet {
-    border-left-color: #FF8C00; /* Laranja Escuro */
+    border-left-color: #FF8C00;
     background-color: #3b2a00;
 }
 .status-critical-internet .kpi-value { 
-    color: #FFA500; /* Laranja Vívido */
-    animation: flash-orange 1.5s infinite alternate; /* Efeito de pisca */
+    color: #FFA500;
+    animation: flash-orange 1.5s infinite alternate;
 }
 
 @keyframes flash-orange {
@@ -163,7 +170,7 @@ h1, h2, h3 {
     font-size: 0.9em;
 }
 
-/* COMANDO DE VOZ FLUTUANTE */
+/* COMANDO DE VOZ FLUTUANTE (Voz Ativa) */
 #icone-voz {
     position: fixed;
     bottom: 20px;
@@ -175,4 +182,14 @@ h1, h2, h3 {
     padding: 10px;
     border-radius: 50%;
     z-index: 9999;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
+
+/* NOVA CLASSE PARA FEEDBACK VISUAL DO JS */
+#icone-voz.voz-ativa {
+    background-color: #ffc107; 
+    box-shadow: 0 0 15px #ffc107; 
+}
+
+/* CLASSES AUXILIARES DE MODO (Para JS) */
+.modo-painel { display: none; }
