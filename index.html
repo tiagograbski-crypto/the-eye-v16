@@ -3,175 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Geopolítico - V20 (Final)</title>
+    <title>Gate Rubi | Restricted Access</title>
     
-    <style>
-        /* GERAIS E ESTRUTURA */
-        body {
-            background-color: #0d0d0d; 
-            color: #e0e0e0;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        #painel-controle {
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 15px;
-            background-color: #1a1a1a;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        }
-        .titulo-painel { color: #76ff03; text-align: center; }
-
-        /* BOTÕES E NAVEGAÇÃO */
-        #menu-modos { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
-        .btn-modo { background: #333; color: white; padding: 10px; border: 1px solid #555; cursor: pointer; }
-        .btn-modo.ativo { background: #76ff03; color: black; font-weight: bold; }
-
-        /* MAPA DE RISCO E CORES */
-        #mapa-risco {
-            padding: 50px 15px; 
-            text-align: center;
-            border-radius: 6px;
-            margin-bottom: 15px;
-            font-size: 1.2em;
-            color: white;
-        }
-        .risco-marrom { background-color: #8b4513; }
-        .risco-vermelho { background-color: #FF0000; }
-
-        /* ALERTA PRIORITÁRIO */
-        .aba-prioridade { background: #660000; border: 2px solid #FF0000; padding: 15px; text-align: center; margin-bottom: 20px; }
-        .btn-fechar-alerta { background: #FF0000; color: white; padding: 8px 15px; border: none; cursor: pointer; margin-top: 10px; }
-
-        /* WIDGETS */
-        .widgets-area { display: flex; flex-wrap: wrap; gap: 10px; }
-        .widget-card {
-            flex: 1 1 150px;
-            padding: 15px;
-            border-left: 4px solid #76ff03;
-            background: #282828;
-            color: white;
-        }
-        .widget-card.status-critical { border-left-color: #FF0000; }
-        .status-critical-internet { border-left-color: #FFA500; }
-        .status-critical-internet h3 { color: #FFA500; }
-
-        /* CONTROLE DE EXIBIÇÃO JS */
-        .modo-painel { /* Nada aqui */ }
-        .modo-painel.ativo { display: block; }
-        
-        /* [REMOCAO DE VOZ: Estilos relacionados ao #icone-voz foram excluídos] */
-    </style>
+    <meta name="robots" content="noindex, nofollow">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div id="painel-controle">
+    <div id="gate-lock" class="gate-container">
+        <div class="logo-rubi">GATE RUBI</div>
+        <div class="sub-rubi">Restricted Access Protocol</div>
         
-        <header id="painel-header">
-            <h1 class="titulo-painel">GEOPOLITICAL MASTER CONTROL</h1>
-            <nav id="menu-modos">
-                <button class="btn-modo" data-modo="geopolitico" class="ativo">GEOPOLÍTICO</button>
-                <button class="btn-modo" data-modo="crise">GESTÃO DE CRISE</button>
-            </nav>
-        </header>
+        <div class="input-wrapper">
+            <input type="password" id="access-key" class="rubi-input" placeholder="ENTER ACCESS CODE">
+        </div>
         
-        <section id="alerta-prioridade">
-            <div class="aba-prioridade">
-                <h3>🚨 AÇÃO PRIORITÁRIA 🚨</h3>
-                <p>Alerta de Risco de Energia.</p>
-                <button class="btn-fechar-alerta" onclick="fecharAlertaPrioritario()">FECHAR</button>
-            </div>
-        </section>
+        <button id="btn-auth" class="rubi-btn">AUTHENTICATE</button>
+        <p id="error-msg" class="error-hidden">// ACCESS DENIED</p>
+    </div>
 
-        <main id="conteudo-dinamico">
+    <div id="system-core" class="main-dashboard hidden">
+        
+        <aside class="sidebar">
+            <div class="logo-rubi small">RUBI CORE</div>
             
-            <div id="modo-geopolitico" class="modo-painel ativo" style="display: block;"> 
-                <div id="mapa-risco" class="risco-marrom">
-                    <p class="titulo-mapa">MAPA DE RISCO REGIONAL</p>
+            <div class="menu-section">
+                <div class="menu-title">> MONITORING</div>
+                <div class="menu-item active">Live Feed Active</div>
+            </div>
+            
+            <div class="menu-section opacity-low">
+                <div class="menu-title">> AGENTS</div>
+                <div class="menu-title">> SECURITY</div>
+                <div class="menu-title">> LOGS</div>
+            </div>
+            
+            <div class="logout-area">
+                <button id="btn-logout" class="btn-text">[ LOGOUT ]</button>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="top-bar">
+                <div>
+                    <h2>SYSTEM OVERVIEW</h2>
+                    <small>SERVER: RUBI-01 // LOCATION: BR-SC</small>
+                </div>
+                <div class="rubi-tag">● SECURE CONNECTION</div>
+            </header>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>ACTIVE AGENTS</h3>
+                    <div class="big-number">3</div>
+                    <div class="status-text rubi-color">All Systems Nominal</div>
                 </div>
                 
-                <div class="widgets-area">
-                    <div class="widget-card status-critical"><h3>ENERGIA</h3></div>
-                    <div class="widget-card status-critical-internet"><h3>INTERNET</h3></div>
+                <div class="stat-card">
+                    <h3>THREAT LEVEL</h3>
+                    <div class="big-number green-color">0%</div>
+                    <div class="status-text green-color">No Intrusions Detected</div>
                 </div>
             </div>
 
-            <div id="modo-crise" class="modo-painel">
-                <h2>GESTÃO DE CRISE</h2>
-                <p>CHECKLISTS E PROTOCOLOS.</p>
+            <div class="stat-card wide">
+                <h3>GATE RUBI LOGS</h3>
+                <div class="terminal-logs">
+                    > [19:00:01] Initializing Ruby Protocol...<br>
+                    > [19:00:05] Firewall: Active<br>
+                    > [19:00:10] User Authenticated via Gate Rubi.<br>
+                    > [19:00:12] Scanning for Bots... <span class="green-color">CLEAN</span>
+                </div>
             </div>
         </main>
-        
     </div>
-    
-    <script>
-        /* [REMOCAO DE VOZ: Variável vozAtiva e função toggleComandoVoz foram excluídas] */
-        
-        const NIVEIS_RISCO = { ALERTA: 'marrom', EMERGENCIA: 'vermelho', ESTAVEL: 'verde' };
-        let statusAmeaca = NIVEIS_RISCO.ALERTA; 
-        let modoAtual = 'geopolitico'; 
 
-
-        function monitorarAmeacas() {
-            const mapaRisco = document.getElementById('mapa-risco');
-            
-            if (statusAmeaca === NIVEIS_RISCO.EMERGENCIA) {
-                if (modoAtual !== 'crise') trocarModo('crise');
-            } else if (statusAmeaca !== NIVEIS_RISCO.EMERGENCIA && modoAtual === 'crise') {
-                trocarModo('geopolitico');
-            }
-
-            mapaRisco.className = 'risco-' + statusAmeaca;
-        }
-
-        function trocarModo(modoNovo) {
-            if (modoAtual === modoNovo) return;
-            
-            // Oculta todos
-            document.querySelectorAll('.modo-painel').forEach(panel => {
-                panel.classList.remove('ativo'); 
-                panel.style.display = 'none'; 
-            });
-            document.querySelectorAll('.btn-modo').forEach(button => {
-                button.classList.remove('ativo');
-            });
-
-            // Exibe o selecionado
-            const painelSelecionado = document.getElementById('modo-' + modoNovo);
-            if (painelSelecionado) {
-                painelSelecionado.classList.add('ativo');
-                painelSelecionado.style.display = 'block'; 
-            }
-
-            // Marca o botão
-            const botaoSelecionado = document.querySelector('.btn-modo[data-modo="' + modoNovo + '"]');
-            if (botaoSelecionado) {
-                botaoSelecionado.classList.add('ativo');
-            }
-            modoAtual = modoNovo;
-        }
-
-        function fecharAlertaPrioritario() {
-            document.getElementById('alerta-prioridade').style.display = 'none';
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.btn-modo').forEach(button => {
-                button.addEventListener('click', function() {
-                    trocarModo(this.getAttribute('data-modo'));
-                });
-            });
-            
-            // [REMOCAO DE VOZ: O listener do microfone foi excluído]
-
-            document.querySelector('.btn-modo[data-modo="geopolitico"]').classList.add('ativo');
-
-            // Inicia a monitoração de ameaças
-            setInterval(monitorarAmeacas, 5000); 
-            monitorarAmeacas();
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
