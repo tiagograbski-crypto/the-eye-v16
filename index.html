@@ -3,332 +3,324 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GATE RUBI | Nexus Control</title>
+    <title>Master Control V22 - High Performance</title>
     
-    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-
     <style>
-        /* =========================================
-           CORE SYSTEM: RUBI AESTHETICS ENGINE
-           ========================================= */
-        :root {
-            --rubi-primary: #ff003c;       /* Vermelho Neon Principal */
-            --rubi-dark: #4a0013;          /* Vermelho Sangue (Fundo) */
-            --rubi-glow: rgba(255, 0, 60, 0.6);
-            
-            --bg-void: #030001;            /* Preto Absoluto */
-            --glass-panel: rgba(15, 5, 8, 0.7);
-            --glass-border: rgba(255, 0, 60, 0.3);
-            
-            --text-main: #e0e0e0;
-            --text-dim: #888888;
-            --success: #00ff9d;            /* Verde Matrix */
+        /* RESET E ESTRUTURA BASE */
+        * { box-sizing: border-box; }
+        body {
+            background-color: #0d0d0d; 
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Arial, sans-serif; /* Fonte moderna */
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+            min-height: 100vh;
         }
 
-        /* --- RESET & ESTRUTURA --- */
-        * { box-sizing: border-box; outline: none; user-select: none; }
+        /* CONTAINER PRINCIPAL */
+        #painel-controle {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #1a1a1a;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+            border: 1px solid #333;
+        }
+
+        /* TIPOGRAFIA E CORES */
+        h1, h2, h3 { color: #76ff03; font-weight: 700; margin-top: 0; }
+        .titulo-painel { text-align: center; font-size: 2.2rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px;}
         
-        body, html {
-            margin: 0; padding: 0;
-            width: 100%; height: 100%;
-            background-color: var(--bg-void);
-            font-family: 'Rajdhani', sans-serif;
-            color: var(--text-main);
-            overflow: hidden; /* Impede rolagem indesejada */
-            display: flex; justify-content: center; align-items: center;
-        }
+        /* HEADER E STATUS */
+        #painel-header { border-bottom: 2px solid #333; padding-bottom: 20px; margin-bottom: 20px; }
+        .controles-topo { display: flex; justify-content: space-between; align-items: center; background: #222; padding: 10px; border-radius: 6px; margin-bottom: 15px;}
+        .status-link { font-size: 0.9rem; color: #888; }
+        .conexao-ok { color: #00e676; font-weight: bold; }
+        
+        select { background: #333; color: white; border: 1px solid #555; padding: 5px; border-radius: 4px; }
 
-        /* Efeito de Fundo (Grid Cyberpunk) */
-        body::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 200%; height: 200%;
-            background-image: 
-                linear-gradient(var(--bg-void) 2px, transparent 2px),
-                linear-gradient(90deg, var(--bg-void) 2px, transparent 2px),
-                linear-gradient(rgba(255,0,60,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,0,60,0.03) 1px, transparent 1px);
-            background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
-            animation: gridMove 60s linear infinite;
-            z-index: -1;
-        }
-        @keyframes gridMove { 0% { transform: translate(0,0); } 100% { transform: translate(-50px, -50px); } }
-
-        /* =========================================
-           MÓDULO 1: GATE DE SEGURANÇA (LOGIN)
-           ========================================= */
-        .layer-gate {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            background: radial-gradient(circle at center, rgba(20,0,5,0.9), var(--bg-void));
-            z-index: 999;
-            transition: all 0.8s cubic-bezier(0.7, 0, 0.3, 1);
-        }
-
-        .login-frame {
-            width: 380px; padding: 40px;
-            background: var(--glass-panel);
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 0 50px rgba(255, 0, 60, 0.15);
-            backdrop-filter: blur(15px);
+        /* NAVEGAÇÃO (BOTÕES DE MODO) */
+        #menu-modos { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; }
+        .btn-modo {
+            background-color: #2a2a2a;
+            color: #ccc;
+            border: 1px solid #444;
+            padding: 10px 18px;
             border-radius: 4px;
-            position: relative;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
         }
-        /* Detalhes cantos do frame */
-        .login-frame::after { content: ""; position: absolute; top: -1px; left: -1px; width: 20px; height: 20px; border-top: 2px solid var(--rubi-primary); border-left: 2px solid var(--rubi-primary); }
-        .login-frame::before { content: ""; position: absolute; bottom: -1px; right: -1px; width: 20px; height: 20px; border-bottom: 2px solid var(--rubi-primary); border-right: 2px solid var(--rubi-primary); }
-
-        .brand-title {
-            font-family: 'Orbitron', sans-serif; font-size: 2.5rem; font-weight: 900;
-            text-align: center; margin: 0; letter-spacing: 4px;
-            color: white; text-shadow: 0 0 20px var(--rubi-primary);
-        }
-        
-        .brand-sub {
-            text-align: center; font-family: 'Share Tech Mono', monospace; color: var(--rubi-primary);
-            font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 30px; opacity: 0.8;
+        .btn-modo:hover { background-color: #444; }
+        .btn-modo.ativo {
+            background-color: #76ff03;
+            color: #000;
+            box-shadow: 0 0 10px rgba(118, 255, 3, 0.4);
+            border-color: #76ff03;
         }
 
-        .input-group { position: relative; margin-bottom: 20px; }
-        
-        .rubi-field {
-            width: 100%; padding: 15px; background: rgba(0,0,0,0.6);
-            border: 1px solid #333; color: white; font-family: 'Orbitron'; letter-spacing: 2px;
-            font-size: 1.2rem; text-align: center; transition: 0.3s;
+        /* ALERTA DE PRIORIDADE */
+        #alerta-prioridade { margin-bottom: 25px; animation: fadeIn 0.5s; }
+        .aba-prioridade {
+            background-color: #3d0000;
+            border: 2px solid #ff0000;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
         }
-        .rubi-field:focus { border-color: var(--rubi-primary); box-shadow: 0 0 15px rgba(255,0,60,0.3); }
+        .btn-fechar-alerta {
+            background-color: #ff0000; color: white; border: none;
+            padding: 8px 20px; border-radius: 4px; font-weight: bold;
+            cursor: pointer; margin-top: 10px; text-transform: uppercase;
+        }
+        .btn-fechar-alerta:hover { background-color: #cc0000; }
 
-        .btn-access {
-            width: 100%; padding: 15px; cursor: pointer;
-            background: linear-gradient(90deg, #2b000a, var(--rubi-dark));
-            border: 1px solid var(--rubi-primary);
-            color: var(--rubi-primary); font-family: 'Orbitron'; font-weight: bold; letter-spacing: 2px;
-            text-transform: uppercase; transition: 0.3s;
-        }
-        .btn-access:hover { background: var(--rubi-primary); color: white; box-shadow: 0 0 30px var(--rubi-primary); }
+        /* PAINÉIS E VISIBILIDADE */
+        .modo-painel { display: none; animation: slideIn 0.3s ease-out; }
+        .modo-painel.ativo { display: block; }
 
-        .error-log {
-            color: var(--rubi-primary); font-family: 'Share Tech Mono'; font-size: 0.8rem;
-            text-align: center; margin-top: 15px; min-height: 20px; opacity: 0; transition: 0.3s;
+        /* MAPA DE RISCO */
+        #mapa-risco {
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+            font-size: 1.2rem;
+            transition: background-color 0.5s ease;
+            border: 1px solid rgba(255,255,255,0.1);
         }
+        /* Cores Dinâmicas */
+        .risco-verde { background-color: #2e7d32; }
+        .risco-amarelo { background-color: #f9a825; color: black !important; }
+        .risco-marrom { background-color: #5d4037; }
+        .risco-vermelho { background-color: #c62828; }
 
-        /* =========================================
-           MÓDULO 2: DASHBOARD (PAINEL INTERNO)
-           ========================================= */
-        .layer-dashboard {
-            width: 95%; height: 90%; max-width: 1400px;
-            display: grid; grid-template-columns: 260px 1fr; gap: 20px;
-            opacity: 0; transform: scale(0.95); pointer-events: none; /* Escondido inicialmente */
-            transition: opacity 1s ease, transform 1s ease;
+        /* WIDGETS (CARDS) */
+        .widgets-area { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .widget-card {
+            background-color: #252525;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #444;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
         }
-        
-        /* Sidebar */
-        .sidebar {
-            background: var(--glass-panel); border: 1px solid var(--glass-border);
-            display: flex; flex-direction: column; padding: 25px;
-        }
-        .nav-item {
-            padding: 12px; margin-bottom: 8px; color: var(--text-dim);
-            font-size: 0.9rem; border-left: 2px solid transparent; cursor: pointer; transition: 0.3s;
-        }
-        .nav-item:hover, .nav-item.active {
-            color: white; border-left-color: var(--rubi-primary);
-            background: linear-gradient(90deg, rgba(255,0,60,0.1), transparent);
-        }
-        .section-label {
-            font-family: 'Orbitron'; color: var(--rubi-primary); font-size: 0.7rem; margin: 20px 0 10px 0; opacity: 0.7;
-        }
+        .widget-card h3 { font-size: 0.9rem; color: #aaa; margin-bottom: 5px; }
+        .kpi-value { font-size: 1.4rem; font-weight: bold; color: white; }
+        .detalhe-kpi { font-size: 0.8rem; color: #777; margin-top: 5px; }
 
-        /* Conteúdo Principal */
-        .main-stage {
-            display: grid; grid-template-rows: auto 1fr auto; gap: 20px;
-        }
+        /* STATUS ESPECÍFICOS */
+        .status-normal { border-left-color: #76ff03; }
+        .status-normal .kpi-value { color: #76ff03; }
 
-        /* Header do Painel */
-        .hud-header {
-            display: flex; justify-content: space-between; align-items: center;
-            background: var(--glass-panel); padding: 15px 25px; border: 1px solid rgba(255,255,255,0.1);
-        }
-        .status-badge {
-            background: rgba(0, 255, 157, 0.1); color: var(--success); border: 1px solid var(--success);
-            padding: 5px 15px; font-size: 0.8rem; font-weight: bold; font-family: 'Share Tech Mono';
-        }
+        .status-critical { border-left-color: #ff0000; background: #2a0a0a; }
+        .status-critical .kpi-value { color: #ff0000; }
 
-        /* Grid de Cards */
-        .cards-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-        }
-        .data-card {
-            background: linear-gradient(160deg, rgba(20,20,20,0.8), rgba(40,10,15,0.8));
-            border: 1px solid rgba(255,255,255,0.05); padding: 25px; position: relative; overflow: hidden;
-        }
-        .data-card::before {
-            content: ""; position: absolute; top:0; left:0; width: 100%; height: 3px;
-            background: linear-gradient(90deg, var(--rubi-primary), transparent);
-        }
-        .card-value { font-family: 'Orbitron'; font-size: 3rem; color: white; margin: 10px 0; }
-        .card-label { color: var(--text-dim); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        .status-marketing { border-left-color: #00e5ff; }
+        .status-marketing .kpi-value { color: #00e5ff; }
 
-        /* Terminal Log */
-        .terminal-box {
-            background: black; border: 1px solid #333; padding: 15px;
-            font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; color: #aaa;
-            height: 150px; overflow-y: auto;
-        }
-        .log-line { margin-bottom: 5px; border-bottom: 1px solid #111; padding-bottom: 2px; }
-        .cmd-prefix { color: var(--rubi-primary); margin-right: 10px; }
-
-        /* Responsividade */
-        @media (max-width: 900px) {
-            .layer-dashboard { grid-template-columns: 1fr; }
-            .sidebar { display: none; } /* Oculta sidebar em telas pequenas */
-            .cards-grid { grid-template-columns: 1fr; }
+        /* ALERTA INTERNET (PISCANTE) */
+        .status-critical-internet { border-left-color: #ff9100; background: #2a1b00; }
+        .status-critical-internet .kpi-value { 
+            color: #ff9100; 
+            animation: flashWarning 1.5s infinite alternate; 
         }
 
-        /* Animações de Estado */
-        .unlocked .layer-gate { opacity: 0; pointer-events: none; transform: scale(1.1); }
-        .unlocked .layer-dashboard { opacity: 1; pointer-events: all; transform: scale(1); }
+        /* FOOTER */
+        #painel-footer { 
+            border-top: 1px solid #333; margin-top: 30px; padding-top: 20px; 
+            display: flex; justify-content: space-between; font-size: 0.85rem; color: #666;
+        }
+
+        /* ANIMAÇÕES */
+        @keyframes flashWarning { 0% { opacity: 1; } 100% { opacity: 0.5; } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideIn { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
     </style>
 </head>
 <body>
 
-    <div id="gate-screen" class="layer-gate">
-        <div class="login-frame">
-            <h1 class="brand-title">GATE RUBI</h1>
-            <div class="brand-sub">SECURE PROTOCOL v4.0</div>
-
-            <div class="input-group">
-                <input type="password" id="pass-input" class="rubi-field" placeholder="••••••••">
-            </div>
-
-            <button onclick="executarLogin()" class="btn-access">INICIAR SESSÃO</button>
-            <div id="msg-erro" class="error-log">[ ! ] CREDENCIAIS INVÁLIDAS</div>
-        </div>
-    </div>
-
-    <div id="dash-screen" class="layer-dashboard">
+    <div id="painel-controle">
         
-        <aside class="sidebar">
-            <div style="font-family:'Orbitron'; font-size:1.5rem; color:white; margin-bottom:30px;">NEXUS<span style="color:var(--rubi-primary)">AI</span></div>
+        <header id="painel-header">
+            <h1 class="titulo-painel">MASTER CONTROL V22</h1>
             
-            <div class="section-label">MONITORAMENTO</div>
-            <div class="nav-item active">Visão Geral</div>
-            <div class="nav-item">Status da Rede</div>
-            
-            <div class="section-label">AGENTES</div>
-            <div class="nav-item">Hunter (Vendas)</div>
-            <div class="nav-item">SAC (Suporte)</div>
-            <div class="nav-item">Manager (Projetos)</div>
-            
-            <div style="margin-top:auto">
-                <div class="nav-item" onclick="fazerLogout()" style="color:var(--rubi-primary); border:1px solid var(--rubi-dark); text-align:center;">ENCERRAR</div>
+            <div class="controles-topo">
+                <div id="status-conexao">
+                    <span class="status-link">NEURAL LINK: <span class="conexao-ok">ATIVO</span></span>
+                </div>
+                <select id="seletor-localizacao">
+                    <option value="global">GLOBAL</option>
+                    <option value="chapeco" selected>CHAPECÓ - SC</option>
+                </select>
             </div>
-        </aside>
-
-        <main class="main-stage">
             
-            <div class="hud-header">
-                <div>
-                    <h2 style="margin:0; font-family:'Orbitron'">PAINEL DE COMANDO</h2>
-                    <span style="color:var(--text-dim); font-size:0.8rem;">SERVIDOR: BR-SC-01 // CRIPTOGRAFIA: AES-256</span>
+            <nav id="menu-modos">
+                <button class="btn-modo" onclick="trocarModo('geopolitico')" id="btn-geopolitico">GEOPOLÍTICO</button>
+                <button class="btn-modo" onclick="trocarModo('crise')" id="btn-crise">CRISE</button>
+                <button class="btn-modo" onclick="trocarModo('sanitaria')" id="btn-sanitaria">SANITÁRIO</button>
+                <button class="btn-modo" onclick="trocarModo('natural')" id="btn-natural">NATURAL</button>
+                <button class="btn-modo" onclick="trocarModo('ciber')" id="btn-ciber">CIBERSEGURANÇA</button>
+                <button class="btn-modo" onclick="trocarModo('marketing')" id="btn-marketing">MARKETING</button>
+            </nav>
+        </header>
+        
+        <section id="alerta-prioridade">
+            <div class="aba-prioridade">
+                <h3>🚨 AÇÃO PRIORITÁRIA REQUERIDA 🚨</h3>
+                <p>RISCO DE QUEDA DE ENERGIA REGIONAL EM 72H. REVISAR GERADORES.</p>
+                <button class="btn-fechar-alerta" onclick="fecharAlerta()">FECHAR E CONFIRMAR</button>
+            </div>
+        </section>
+
+        <main id="conteudo-dinamico">
+            
+            <div id="modo-geopolitico" class="modo-painel" style="display: block;"> 
+                <div id="mapa-risco" class="risco-marrom">
+                    <h2>MAPA DE RISCO REGIONAL</h2>
+                    <p>Status Atual: ALERTA (NÍVEL MÉDIO)</p>
                 </div>
-                <div class="status-badge">● SISTEMA SEGURO</div>
+                
+                <div class="widgets-area">
+                    <div class="widget-card status-critical">
+                        <h3>ENERGIA</h3>
+                        <p class="kpi-value">CRÍTICO</p>
+                        <p class="detalhe-kpi">Risco de Apagão</p>
+                    </div>
+
+                    <div class="widget-card status-critical-internet">
+                        <h3>INTERNET (CABOS)</h3>
+                        <p class="kpi-value">ALERTA SATÉLITE</p>
+                        <p class="detalhe-kpi">Avaliar Starlink Urgente</p>
+                    </div>
+
+                    <div class="widget-card status-normal">
+                        <h3>ALIMENTAÇÃO</h3>
+                        <p class="kpi-value">ESTÁVEL</p>
+                        <p class="detalhe-kpi">Reservas: 100%</p>
+                    </div>
+
+                    <div class="widget-card status-normal">
+                        <h3>ASTEROIDES</h3>
+                        <p class="kpi-value">0% RISCO</p>
+                        <p class="detalhe-kpi">Sem ameaças próximas</p>
+                    </div>
+                </div>
             </div>
 
-            <div class="cards-grid">
-                <div class="data-card">
-                    <div class="card-label">Agentes Ativos</div>
-                    <div class="card-value">3</div>
-                    <div style="color:var(--success); font-size:0.8rem;">● Hunter, SAC, Manager Online</div>
-                </div>
-                <div class="data-card">
-                    <div class="card-label">Ameaças Bloqueadas</div>
-                    <div class="card-value" style="color:var(--rubi-primary)">142</div>
-                    <div style="color:var(--text-dim); font-size:0.8rem;">WAF Ativo (Firewall)</div>
-                </div>
-                <div class="data-card">
-                    <div class="card-label">Uptime</div>
-                    <div class="card-value" style="color:#00a8ff">99.9%</div>
-                    <div style="color:var(--text-dim); font-size:0.8rem;">Sem interrupções</div>
+            <div id="modo-marketing" class="modo-painel">
+                <div class="widgets-area">
+                    <div class="widget-card status-marketing">
+                        <h3>TRENDING TOPICS</h3>
+                        <p class="kpi-value">#AlisamentoVegano</p>
+                        <p class="detalhe-kpi">+45% de buscas em SC</p>
+                    </div>
+                    <div class="widget-card status-marketing">
+                        <h3>ANÁLISE DE SENTIMENTO (IA)</h3>
+                        <p class="kpi-value">98% POSITIVO</p>
+                        <p class="detalhe-kpi">Feedback Redes Sociais</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="terminal-box" id="terminal-log">
-                <div class="log-line"><span class="cmd-prefix">></span> Inicializando protocolo Rubi...</div>
-                <div class="log-line"><span class="cmd-prefix">></span> Verificando integridade dos Agentes... OK</div>
-                <div class="log-line"><span class="cmd-prefix">></span> Aguardando autenticação de usuário...</div>
+            <div id="modo-crise" class="modo-painel">
+                <div class="widget-card status-critical">
+                    <h2>GESTÃO DE CRISE ATIVA</h2>
+                    <p>PROTOCOLOS DE EMERGÊNCIA CARREGADOS.</p>
+                </div>
+            </div>
+
+            <div id="modo-sanitaria" class="modo-painel">
+                <div class="widget-card status-normal"><h2>MONITORAMENTO SANITÁRIO</h2><p>Nenhum surto detectado.</p></div>
+            </div>
+            <div id="modo-natural" class="modo-painel">
+                <div class="widget-card status-normal"><h2>MONITORAMENTO CLIMÁTICO</h2><p>Previsão de chuvas normais.</p></div>
+            </div>
+            <div id="modo-ciber" class="modo-painel">
+                <div class="widget-card status-marketing"><h2>CIBERSEGURANÇA</h2><p>Firewall: Ativo. Nenhuma intrusão.</p></div>
             </div>
 
         </main>
+        
+        <footer id="painel-footer">
+            <div id="historico">Última atualização: Agora mesmo</div>
+            <div id="especialistas">Time: UX, Dados, Geopolítica, IA</div>
+        </footer>
     </div>
 
     <script>
-        // CONFIGURAÇÃO DE SEGURANÇA
-        // ATENÇÃO: Altere sua senha aqui antes de publicar
-        const SENHA_MESTRA = "RUBI2025"; 
+        // CONFIGURAÇÃO INICIAL
+        const NIVEIS = { VERDE: 'risco-verde', AMARELO: 'risco-amarelo', MARROM: 'risco-marrom', VERMELHO: 'risco-vermelho' };
+        let modoAtual = 'geopolitico';
+        
+        // Inicialização ao carregar a página
+        window.onload = function() {
+            // Marca o botão geopolítico como ativo inicialmente
+            document.getElementById('btn-geopolitico').classList.add('ativo');
+            
+            // Inicia simulação de monitoramento
+            setInterval(monitorarRisco, 5000);
+        };
 
-        // Elementos
-        const gate = document.body;
-        const input = document.getElementById('pass-input');
-        const erro = document.getElementById('msg-erro');
-        const terminal = document.getElementById('terminal-log');
+        // FUNÇÃO: Trocar Abas (Modos)
+        function trocarModo(novoModo) {
+            if (modoAtual === novoModo) return;
 
-        function executarLogin() {
-            if(input.value === SENHA_MESTRA) {
-                // Sucesso
-                erro.style.opacity = '0';
-                gate.classList.add('unlocked');
-                
-                // Salvar Sessão
-                sessionStorage.setItem('rubi_auth', 'true');
+            // 1. Esconde todos os painéis
+            const paineis = document.getElementsByClassName('modo-painel');
+            for (let i = 0; i < paineis.length; i++) {
+                paineis[i].style.display = 'none'; // Força via JS inline style
+                paineis[i].classList.remove('ativo');
+            }
 
-                // Simular logs no terminal
-                adicionarLog("Usuário autenticado com sucesso.");
-                setTimeout(() => adicionarLog("Carregando módulos de IA..."), 800);
-                setTimeout(() => adicionarLog("Conexão estabelecida com Banco de Dados."), 1500);
-            } else {
-                // Erro
-                erro.style.opacity = '1';
-                erro.innerText = "[ ! ] ACESSO NEGADO";
-                input.value = '';
-                input.focus();
-                
-                // Shake effect
-                document.querySelector('.login-frame').animate([
-                    { transform: 'translateX(0)' },
-                    { transform: 'translateX(-10px)' },
-                    { transform: 'translateX(10px)' },
-                    { transform: 'translateX(0)' }
-                ], { duration: 300 });
+            // 2. Remove classe ativa de todos os botões
+            const botoes = document.getElementsByClassName('btn-modo');
+            for (let i = 0; i < botoes.length; i++) {
+                botoes[i].classList.remove('ativo');
+            }
+
+            // 3. Mostra o painel desejado
+            const painelAlvo = document.getElementById('modo-' + novoModo);
+            if (painelAlvo) {
+                painelAlvo.style.display = 'block'; // Força display block
+                setTimeout(() => painelAlvo.classList.add('ativo'), 10); // Pequeno delay para animação CSS
+            }
+
+            // 4. Ativa o botão correspondente
+            const botaoAlvo = document.getElementById('btn-' + novoModo);
+            if (botaoAlvo) {
+                botaoAlvo.classList.add('ativo');
+            }
+
+            modoAtual = novoModo;
+            console.log("Modo alterado para:", novoModo);
+        }
+
+        // FUNÇÃO: Fechar Alerta
+        function fecharAlerta() {
+            const alerta = document.getElementById('alerta-prioridade');
+            if(confirm("Confirmar leitura da prioridade?")) {
+                alerta.style.display = 'none';
             }
         }
 
-        function fazerLogout() {
-            sessionStorage.removeItem('rubi_auth');
-            location.reload();
-        }
-
-        function adicionarLog(texto) {
-            const linha = document.createElement('div');
-            linha.className = 'log-line';
-            linha.innerHTML = `<span class="cmd-prefix">></span> ${texto} <span style="color:#00ff9d">[OK]</span>`;
-            terminal.appendChild(linha);
-            terminal.scrollTop = terminal.scrollHeight;
-        }
-
-        // Tecla Enter para logar
-        input.addEventListener('keypress', (e) => {
-            if(e.key === 'Enter') executarLogin();
-        });
-
-        // Verificar se já estava logado
-        window.addEventListener('load', () => {
-            if(sessionStorage.getItem('rubi_auth') === 'true') {
-                gate.classList.add('unlocked');
+        // FUNÇÃO: Simulação de Monitoramento (Heatmap)
+        function monitorarRisco() {
+            // Lógica simulada: alterna cores do mapa para mostrar que o sistema está vivo
+            const mapa = document.getElementById('mapa-risco');
+            // Nota: Em produção real, isso viria de uma API. 
+            // Aqui mantemos em Marrom (Alerta) conforme solicitado, mas garantimos que a classe exista.
+            if (!mapa.classList.contains('risco-marrom')) {
+                mapa.className = 'risco-marrom';
             }
-        });
+        }
     </script>
 </body>
 </html>
