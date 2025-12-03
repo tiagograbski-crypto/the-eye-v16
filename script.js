@@ -1,236 +1,110 @@
-[14:07, 03/12/2025] Thiago: <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>THE EYE | OMNISCIENT V16</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
-
-    <div id="security-overlay" style="display:none;"> 
-        <div class="login-box">
-            <h1>🔒 ACESSO RESTRITO</h1>
-            <p>AUTENTICAÇÃO BIOMÉTRICA + FÍSICA</p>
-            
-            <label style="font-size: 0.7rem; color: #666; display:block; margin-…
-[14:11, 03/12/2025] Thiago: /* --- THE EYE V16.3: BYPASS DE SEGURANÇA ATIVADO --- */
-
-// A TELA DE LOGIN ESTÁ OCULTA NO HTML, MAS O CÓDIGO AINDA ESTÁ PRONTO PARA RODAR AS FUNÇÕES
-
-const SECURE_HASH = "8d23cf6c86e834a7aa6ededb4078cd297594451087f941f7112ee5608b471207";
-const ACCESS_PIN = "1984";
-const EMERGENCY_OVERRIDE = "OMEGA-ZERO-RESET-SYSTEM";
-const MAX_ATTEMPTS = 3;
-let failedAttempts = 0;
-let voiceEnabled = true; 
-
-let myChart = null;
-let chartData = Array(10).fill(0);
-
-const MODES = {
-    'CRISIS': { color: '#ff003c', label: 'NÍVEL GLOBAL', labels: ['SISMO', 'NEOs', 'CLIMA', 'WAR'] },
-    'CYBER': { color: '#00d9ff', label: 'REDE', labels: ['FIREWALL', 'LOAD', 'BLOCKS', 'VPN'] },
-    'MARKETING': { color: '#00ff41', label: 'LEADS', labels: ['LEADS', 'ROI', 'SENTIMENT', 'VIEWS'] }
-};
-
-let currentMode = 'CRISIS';
-let currentRisk = 0;
-
-// === INICIALIZAÇÃO (FORÇADA) ===
-document.addEventListener("DOMContentLoaded", () => {
-    // A função initSystem() é chamada aqui, iniciando o painel imediatamente.
-    initSystem();
-});
-
-
-// === FUNÇÕES DE SISTEMA (MANTIDAS) ===
-// Esta função NÃO é mais chamada pelo HTML (Bypass)
-async function attemptLogin() {
-    const fileInput = document.getElementById('usb-key-input');
-    const pinInput = document.getElementById('pin-input').value.trim();
-    const msg = document.getElementById('login-msg');
-
-    if (pinInput === EMERGENCY_OVERRIDE) { unlockSystem(); return; }
-    if (fileInput.files.length === 0) { msg.textContent = "ERRO: CHAVE FÍSICA AUSENTE"; return; }
-    
-    const file = fileInput.files[0];
-    const reader = new FileReader();
-    reader.onload = async function(e) {
-        const content = e.target.result.trim();
-        const msgBuffer = new TextEncoder().encode(content);
-        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-        const hashHex = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
-        
-        if (hashHex === SECURE_HASH && pinInput === ACCESS_PIN) {
-            unlockSystem();
-        } else {
-            failedAttempts++;
-            msg.textContent = FALHA DE ACESSO ${failedAttempts}/${MAX_ATTEMPTS};
-            if(failedAttempts >= MAX_ATTEMPTS) {
-                document.getElementById('security-overlay').style.display = 'none';
-                document.getElementById('lockdown-screen').style.display = 'flex';
-            }
-        }
-    };
-    reader.readAsText(file);
+/* --- CONFIGURAÇÕES GERAIS --- */
+:root {
+    --bg-color: #050505;
+    --panel-bg: #0f1215;
+    --accent-blue: #00d9ff; /* Cor padrão, muda via JS */
+    --accent-green: #00ff41;
+    --accent-red: #ff003c;
+    --text-main: #e0e0e0;
 }
 
-function unlockSystem() {
-    document.getElementById('security-overlay').style.display = 'none';
-    initSystem();
-    speak("Identidade confirmada. Bem-vindo ao sistema Omniscient versão 16.");
+* { box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Rajdhani', sans-serif;
+    margin: 0; padding: 10px;
+    font-size: 16px;
+    overflow-x: hidden;
 }
 
-function initSystem() {
-    startClock(); 
-    initChart(); 
-    initStealthMode(); 
-    updateDashboard();
-    setInterval(updateDashboard, 5000);
+/* --- TELA DE ABERTURA (INTRO) - Mantida para garantir que o CSS não quebre --- */
+#intro-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 99999; 
+    display: flex; align-items: center; justify-content: center;
+    background-color: var(--bg-color); 
+    transition: opacity 1.5s ease-out;
+}
+.intro-content { text-align: center; position: relative; z-index: 1; pointer-events: none; }
+.intro-content h1 { font-size: 4rem; margin: 0; letter-spacing: 10px; color: var(--accent-blue); text-shadow: 0 0 20px var(--accent-blue); }
+.intro-content h3 { font-size: 1.2rem; color: #fff; letter-spacing: 3px; margin-top: 10px; font-weight: 300; }
+.loading-text { margin-top: 30px; font-family: 'Roboto Mono'; font-size: 0.8rem; color: var(--accent-green); animation: blink 1s infinite; }
+.fade-out { opacity: 0; }
+
+/* --- TELA DE LOGIN --- */
+#security-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 999; display: flex; align-items: center; justify-content: center; }
+.login-box { width: 90%; max-width: 400px; text-align: center; padding: 20px; border: 2px solid var(--accent-red); box-shadow: 0 0 30px rgba(255,0,60,0.2); background: #0a0a0a; }
+.full-width { width: 100%; padding: 15px; margin: 5px 0 15px 0; background: #222; border: 1px solid #444; color: #fff; font-size: 1rem; font-family: 'Roboto Mono'; }
+.btn-main { width: 100%; padding: 15px; background: var(--accent-red); color: #fff; border: none; font-weight: bold; font-size: 1.1rem; text-transform: uppercase; cursor: pointer; transition: 0.3s; }
+.btn-main:hover { background: #fff; color: #000; }
+#login-msg { margin-top: 10px; font-weight: bold; color: var(--accent-red); }
+
+/* --- PAINEL PRINCIPAL --- */
+.container {
+    max-width: 1200px; margin: 0 auto;
+    background: var(--panel-bg); border: 1px solid #333;
+    border-radius: 8px; padding: 15px;
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.05);
 }
 
-// === 5. FUNÇÕES DE CONTROLE (VOZ, TELA, RELATÓRIO) ===
+/* Header */
+.header-top { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; color: #666; font-family: 'Roboto Mono'; margin-bottom: 15px; }
+.sys-controls { display: flex; gap: 5px; }
+.sys-controls button { background: transparent; border: 1px solid #444; color: var(--accent-blue); font-family: 'Roboto Mono'; font-size: 0.7rem; padding: 4px 10px; cursor: pointer; border-radius: 2px; transition: 0.3s; }
+.sys-controls button:hover { background: var(--accent-blue); color: #000; box-shadow: 0 0 10px var(--accent-blue); }
 
-function speak(text) {
-    if(!voiceEnabled) return;
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'pt-BR'; 
-    utterance.rate = 1.1; 
-    window.speechSynthesis.speak(utterance);
-}
+.header-main { text-align: center; margin-bottom: 20px; }
+h1 { margin: 0; letter-spacing: 3px; border-bottom: 2px solid var(--accent-blue); padding-bottom: 10px; display: inline-block; }
+.version { font-size: 0.6em; color: var(--accent-blue); vertical-align: super; }
 
-function toggleVoice() {
-    voiceEnabled = !voiceEnabled;
-    const btn = document.getElementById('btn-voice');
-    btn.innerText = voiceEnabled ? "🔊 VOZ: ON" : "🔇 VOZ: OFF";
-    btn.style.borderColor = voiceEnabled ? "var(--accent-blue)" : "#444";
-}
+.mode-control { margin-top: 15px; background: #111; padding: 5px 15px; border: 1px solid #333; border-radius: 4px; display: inline-flex; align-items: center; gap: 10px; }
+#mode-selector { background: transparent; border: none; color: var(--accent-blue); font-family: 'Rajdhani', sans-serif; font-weight: bold; font-size: 1.1rem; cursor: pointer; text-transform: uppercase; }
+#mode-selector:focus { outline: none; }
+#mode-selector option { background: #000; color: #fff; }
 
-function toggleFullScreen() {
-    if (!document.fullscreenElement) {
-        document.documentElement.requestFullscreen();
-    } else {
-        if (document.exitFullscreen) document.exitFullscreen();
-    }
-}
+/* Dashboard IA */
+.ai-dashboard { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 20px; }
+@media (min-width: 768px) { .ai-dashboard { grid-template-columns: 1fr 2fr 1fr; } }
 
-function downloadReport() {
-    const date = new Date().toLocaleString();
-    const content = === RELATÓRIO TÁTICO THE EYE V16 ===\nDATA: ${date}\nMODO: ${currentMode}\nRISCO ATUAL: ${currentRisk}%\nLOGS:\n${document.getElementById('hidden-log').value};
-    const blob = new Blob([content], { type: 'text/plain' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = RELATORIO_${Date.now()}.txt;
-    a.click();
-    speak("Relatório tático baixado com sucesso.");
-}
+.ai-card { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 4px; border-left: 3px solid #333; }
+.ai-label { font-size: 0.7rem; color: #888; display: block; margin-bottom: 5px; letter-spacing: 1px; }
 
-// === 6. DASHBOARD CORE ===
-function initChart() {
-    const ctx = document.getElementById('liveChart').getContext('2d');
-    myChart = new Chart(ctx, {
-        type: 'line',
-        data: { labels: ['','','','','','','','','','AGORA'], datasets: [{ label: 'Atividade', data: chartData, borderColor: '#00d9ff', backgroundColor: 'rgba(0,217,255,0.1)', borderWidth: 2, fill: true, tension: 0.4 }] },
-        options: { responsive: true, maintainAspectRatio: false, animation: { duration: 1000 }, scales: { y: {display:false}, x: {display:false} }, plugins: { legend: {display:false} } }
-    });
-}
+.oracle { border-left-color: var(--accent-blue); text-align: center; }
+.probability-meter { font-size: 2.5rem; font-weight: bold; color: var(--accent-blue); text-shadow: 0 0 10px var(--accent-blue); }
 
-function updateChart(val, color) {
-    chartData.shift(); chartData.push(val);
-    myChart.data.datasets[0].data = chartData;
-    myChart.data.datasets[0].borderColor = color;
-    myChart.data.datasets[0].backgroundColor = color + '20';
-    myChart.update();
-}
+.analyst { border-left-color: #ffcc00; }
+#ai-summary { font-size: 1.1rem; line-height: 1.4; font-weight: 500; }
 
-function changeMode() {
-    currentMode = document.getElementById('mode-selector').value;
-    updateDashboard();
-    addChatMsg("system", > Modo alterado para: ${currentMode});
-    speak(Mudando para modo ${currentMode}.);
-}
+#status-card { padding: 15px; text-align: center; border: 2px solid #333; transition: 0.3s; display: flex; align-items: center; justify-content: center; }
+.status-green { background: rgba(0, 255, 65, 0.1); border-color: var(--accent-green) !important; color: var(--accent-green); }
+.status-red { background: rgba(255, 0, 60, 0.2); border-color: var(--accent-red) !important; color: var(--accent-red); animation: pulse 1s infinite; }
+#status-title { font-size: 1.8rem; margin: 0; }
 
-function updateDashboard() {
-    const config = MODES[currentMode];
-    document.documentElement.style.setProperty('--accent-blue', config.color);
-    document.querySelectorAll('.t-item .label').forEach((lbl, i) => { 
-        if(config.labels[i]) lbl.innerText = config.labels[i]; 
-    });
+/* Gráfico */
+.chart-container { background: rgba(0,0,0,0.3); border: 1px solid #333; border-radius: 4px; padding: 10px; margin: 20px 0; height: 200px; position: relative; }
 
-    let val = 0;
-    if (currentMode === 'CRISIS') {
-        val = Math.floor(Math.random() * 30) + 10;
-        document.getElementById('val-1').innerText = "MAG " + (val/10).toFixed(1);
-        document.getElementById('val-2').innerText = "SCAN"; document.getElementById('val-3').innerText = "24°C"; document.getElementById('val-4').innerText = "NOMINAL";
-    } else if (currentMode === 'CYBER') {
-        val = Math.floor(Math.random() * 80) + 10;
-        document.getElementById('val-1').innerText = "ON"; document.getElementById('val-2').innerText = val + "%"; document.getElementById('val-3').innerText = "0"; document.getElementById('val-4').innerText = "SECURE";
-    } else {
-        val = Math.floor(Math.random() * 10) + 1;
-        document.getElementById('val-1').innerText = "+" + val; document.getElementById('val-2').innerText = "15x"; document.getElementById('val-3').innerText = "GOOD"; document.getElementById('val-4').innerText = "HIGH";
-    }
+/* Grid de Dados */
+.telemetry-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
+@media (min-width: 600px) { .telemetry-grid { grid-template-columns: repeat(4, 1fr); } }
+.t-item { background: #1a1a1a; padding: 10px; text-align: center; border-radius: 4px; border: 1px solid #333; }
+.t-item .label { display: block; font-size: 0.7rem; color: #666; margin-bottom: 5px; }
+.t-item .value { font-size: 1.2rem; font-weight: bold; font-family: 'Roboto Mono'; color: #fff; }
 
-    currentRisk = val;
-    updateChart(val, config.color);
-    
-    document.getElementById('prediction-percent').innerText = val + "%";
-    document.getElementById('prediction-percent').style.color = config.color;
-    
-    const statusTitle = document.getElementById('status-title');
-    const statusCard = document.getElementById('status-card');
-    
-    if (val > 80) {
-        statusTitle.innerText = "CRÍTICO";
-        statusCard.className = 'status-red';
-    } else {
-        statusTitle.innerText = "NOMINAL";
-        statusCard.className = 'status-green';
-    }
-    statusCard.style.borderColor = config.color;
-    
-    document.getElementById('hidden-log').value += [${new Date().toLocaleTimeString()}] ${currentMode}: ${val}% Risk\n;
-}
+/* Terminal de Chat */
+.terminal-wrapper { background: rgba(10, 15, 20, 0.95); border: 1px solid var(--accent-blue); border-radius: 4px; margin-top: 20px; display: flex; flex-direction: column; height: 300px; }
+.terminal-header { background: rgba(0, 217, 255, 0.1); padding: 5px 10px; display: flex; justify-content: space-between; border-bottom: 1px solid #333; }
+#chat-output { flex: 1; padding: 10px; overflow-y: auto; font-family: 'Roboto Mono'; font-size: 0.85rem; color: #a0a0a0; }
+.msg { margin-bottom: 8px; line-height: 1.4; }
+.msg.user { color: #fff; text-align: right; }
+.msg.ai { color: var(--accent-blue); text-shadow: 0 0 2px var(--accent-blue); }
+.msg.system { color: #444; font-style: italic; }
+.chat-input-area { display: flex; border-top: 1px solid #333; }
+#user-command { flex: 1; background: transparent; border: none; color: #fff; padding: 15px; font-family: 'Roboto Mono'; }
+.btn-send { background: var(--accent-blue); color: #000; border: none; padding: 0 20px; font-weight: bold; cursor: pointer; }
 
-// === 7. TERMINAL DE CHAT IA + VOZ (SIMPLIFICADO) ===
-function handleEnter(e) { if(e.key === 'Enter') sendMessage(); }
-function sendMessage() {
-    const input = document.getElementById('user-command');
-    const txt = input.value.trim();
-    if(!txt) return;
-    addChatMsg("user", txt);
-    input.value = "";
-    setTimeout(() => { processAIResponse(txt); }, 600);
-}
-
-function addChatMsg(type, text) {
-    const div = document.createElement('div');
-    div.className = msg ${type};
-    div.innerText = text;
-    const output = document.getElementById('chat-output');
-    output.appendChild(div);
-    output.scrollTop = output.scrollHeight;
-}
-
-function clearTerminal() { document.getElementById('chat-output').innerHTML = '<div class="msg system">> Memória limpa.</div>'; }
-
-function processAIResponse(userText) {
-    const txt = userText.toLowerCase();
-    let response = "";
-
-    if (txt.includes('status')) response = Status de ${currentMode}: Operando a ${currentRisk}% da capacidade de risco.;
-    else if (txt.includes('analise')) response = "Análise preliminar indica estabilidade.";
-    else response = "Comando processado. Sem anomalias.";
-
-    addChatMsg("ai", > ${response});
-    speak(response);
-}
-
-function startClock() { setInterval(() => { document.getElementById('clock').innerText = new Date().toLocaleTimeString(); }, 1000); }
-function initStealthMode() {
-    const locBox = document.getElementById('location-box');
-    const locs = ["SAT-LINK: ALPHA", "SAT-LINK: BRAVO", "SAT-LINK: OMEGA"];
-    setInterval(() => { locBox.innerText = 📍 ${locs[Math.floor(Math.random()*locs.length)]}; }, 4000);
-}
+/* Lock Screen */
+#lockdown-screen { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #500; z-index: 1000; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: white; }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+@keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
