@@ -1,12 +1,14 @@
 /* --- THE EYE V16.2: MODO SEGURO (SEM INTRO) --- */
 
+// === 1. CONFIGURAÇÕES DE SEGURANÇA ===
 const SECURE_HASH = "8d23cf6c86e834a7aa6ededb4078cd297594451087f941f7112ee5608b471207";
 const ACCESS_PIN = "1984";
-const EMERGENCY_OVERRIDE = "OMEGA-ZERO-RESET-SYSTEM";
+const EMERGENCY_OVERRIDE = "OMEGA-ZERO-RESET-SYSTEM"; // CHAVE DE EMERGÊNCIA
 const MAX_ATTEMPTS = 3;
 let failedAttempts = 0;
 let voiceEnabled = true; 
 
+// === 2. CONFIGURAÇÕES DE DADOS E MODOS ===
 let myChart = null;
 let chartData = Array(10).fill(0);
 
@@ -19,29 +21,43 @@ const MODES = {
 let currentMode = 'CRISIS';
 let currentRisk = 0;
 
-// === INICIALIZAÇÃO (FORÇADA) ===
+// === 3. INICIALIZAÇÃO (BOOT) ===
 document.addEventListener("DOMContentLoaded", () => {
-    // Não tem mais o timer. A tela de login aparece imediatamente.
+    // A tela de login (overlay) aparece imediatamente no DOMContentLoaded
+    // Não temos mais a lógica do Globo 3D, garantindo que o sistema não trave.
 });
 
 
-// === FUNÇÕES DE SISTEMA (MANTIDAS) ===
+// === 4. SISTEMA DE LOGIN (PEN DRIVE + PIN + EMERGÊNCIA) ===
 async function attemptLogin() {
     const fileInput = document.getElementById('usb-key-input');
+    // .trim() garante que espaços extras não quebrem a senha
     const pinInput = document.getElementById('pin-input').value.trim();
     const msg = document.getElementById('login-msg');
 
-    if (pinInput === EMERGENCY_OVERRIDE) { unlockSystem(); return; }
-    if (fileInput.files.length === 0) { msg.textContent = "ERRO: CHAVE FÍSICA AUSENTE"; return; }
+    // 🚨 CHECK DE EMERGÊNCIA (A CHAVE QUE ESTAVA FALHANDO)
+    if (pinInput === EMERGENCY_OVERRIDE) { 
+        unlockSystem(); 
+        return; 
+    }
+
+    // CHECK DE CHAVE FÍSICA E ERROS
+    if (fileInput.files.length === 0) { 
+        msg.textContent = "ERRO: CHAVE FÍSICA AUSENTE"; 
+        return; 
+    }
     
+    // Leitura e Criptografia (SHA-256)
     const file = fileInput.files[0];
     const reader = new FileReader();
     reader.onload = async function(e) {
         const content = e.target.result.trim();
         const msgBuffer = new TextEncoder().encode(content);
         const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-        const hashHex = Array.from(new Uint8array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+        // Conversão do Hash
+        const hashHex = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
         
+        // CHECK FINAL (Hash Válido E PIN normal)
         if (hashHex === SECURE_HASH && pinInput === ACCESS_PIN) {
             unlockSystem();
         } else {
@@ -69,6 +85,8 @@ function initSystem() {
     updateDashboard();
     setInterval(updateDashboard, 5000);
 }
+
+// === 5. FUNÇÕES DE CONTROLE (VOZ, TELA, RELATÓRIO) ===
 
 function speak(text) {
     if(!voiceEnabled) return;
@@ -104,6 +122,7 @@ function downloadReport() {
     speak("Relatório tático baixado com sucesso.");
 }
 
+// === 6. DASHBOARD CORE ===
 function initChart() {
     const ctx = document.getElementById('liveChart').getContext('2d');
     myChart = new Chart(ctx, {
@@ -115,7 +134,6 @@ function initChart() {
 
 function updateChart(val, color) {
     chartData.shift(); chartData.push(val);
-    myChart.data.datasets[0].data = chartData;
     myChart.data.datasets[0].borderColor = color;
     myChart.data.datasets[0].backgroundColor = color + '20';
     myChart.update();
@@ -167,6 +185,7 @@ function updateDashboard() {
     document.getElementById('hidden-log').value += [${new Date().toLocaleTimeString()}] ${currentMode}: ${val}% Risk\n;
 }
 
+// === 7. TERMINAL DE CHAT IA + VOZ (SIMPLIFICADO) ===
 function handleEnter(e) { if(e.key === 'Enter') sendMessage(); }
 function sendMessage() {
     const input = document.getElementById('user-command');
@@ -206,10 +225,3 @@ function initStealthMode() {
     const locs = ["SAT-LINK: ALPHA", "SAT-LINK: BRAVO", "SAT-LINK: OMEGA"];
     setInterval(() => { locBox.innerText = 📍 ${locs[Math.floor(Math.random()*locs.length)]}; }, 4000);
 }
-
-// Inicialização: Chama a função que deve rodar no início.
-// O site agora carrega e mostra o login imediatamente.
-window.onload = function() {
-    // Não precisa de intro, então o sistema de segurança aparece imediatamente.
-    // Nada a fazer aqui além de esperar a autenticação.
-};
