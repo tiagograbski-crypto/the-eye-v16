@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Geopolítico - V19 (Diagnóstico Final)</title>
+    <title>Painel Geopolítico - V20 (Final)</title>
     
     <style>
         /* GERAIS E ESTRUTURA */
@@ -58,15 +58,14 @@
         .status-critical-internet { border-left-color: #FFA500; }
         .status-critical-internet h3 { color: #FFA500; }
 
-        /* COMANDO DE VOZ E EXIBIÇÃO JS */
-        #icone-voz { position: fixed; bottom: 20px; right: 20px; font-size: 2em; cursor: pointer; color: #76ff03;}
-        #icone-voz.voz-ativa { background-color: #ffc107; box-shadow: 0 0 15px #ffc107; }
+        /* CONTROLE DE EXIBIÇÃO JS */
+        .modo-painel { /* Nada aqui */ }
         .modo-painel.ativo { display: block; }
+        
+        /* [REMOCAO DE VOZ: Estilos relacionados ao #icone-voz foram excluídos] */
     </style>
 </head>
 <body>
-
-    <div id="icone-voz">🎙️</div>
 
     <div id="painel-controle">
         
@@ -108,10 +107,11 @@
     </div>
     
     <script>
+        /* [REMOCAO DE VOZ: Variável vozAtiva e função toggleComandoVoz foram excluídas] */
+        
         const NIVEIS_RISCO = { ALERTA: 'marrom', EMERGENCIA: 'vermelho', ESTAVEL: 'verde' };
         let statusAmeaca = NIVEIS_RISCO.ALERTA; 
         let modoAtual = 'geopolitico'; 
-        let vozAtiva = false; 
 
 
         function monitorarAmeacas() {
@@ -153,17 +153,6 @@
             modoAtual = modoNovo;
         }
 
-        function toggleComandoVoz() {
-            const iconeVoz = document.getElementById('icone-voz');
-            if (vozAtiva) {
-                vozAtiva = false;
-                iconeVoz.classList.remove('voz-ativa');
-            } else {
-                vozAtiva = true;
-                iconeVoz.classList.add('voz-ativa');
-            }
-        }
-
         function fecharAlertaPrioritario() {
             document.getElementById('alerta-prioridade').style.display = 'none';
         }
@@ -175,11 +164,8 @@
                 });
             });
             
-            document.getElementById('icone-voz').addEventListener('click', toggleComandoVoz);
+            // [REMOCAO DE VOZ: O listener do microfone foi excluído]
 
-            // Inicialização: Trocar modo não é mais necessário aqui, apenas iniciar a monitoração
-            // Pois o HTML já forçou o display do modo geopolitico.
-            
             document.querySelector('.btn-modo[data-modo="geopolitico"]').classList.add('ativo');
 
             // Inicia a monitoração de ameaças
