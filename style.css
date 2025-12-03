@@ -114,7 +114,7 @@ h1, h2, h3 {
 }
 
 .widget-card {
-    flex: 1 1 200px; /* Layout responsivo */
+    flex: 1 1 200px; 
     background-color: #282828;
     padding: 15px;
     border-radius: 4px;
@@ -128,15 +128,30 @@ h1, h2, h3 {
     color: #76ff03;
 }
 
-/* CORES DOS WIDGETS (Risco) */
+/* CORES DOS WIDGETS (EXISTENTES) */
 .widget-card.status-critical { border-left-color: #FF0000; }
-.status-critical .kpi-value { color: #FF0000; } /* Vermelho para Crítico */
+.status-critical .kpi-value { color: #FF0000; } 
+
+/* ALERTA DE INTERNET (URGENTE) */
+.widget-card.status-critical-internet {
+    border-left-color: #FF8C00; /* Laranja Escuro */
+    background-color: #3b2a00;
+}
+.status-critical-internet .kpi-value { 
+    color: #FFA500; /* Laranja Vívido */
+    animation: flash-orange 1.5s infinite alternate; /* Efeito de pisca */
+}
+
+@keyframes flash-orange {
+    from { color: #FFA500; }
+    to { color: #FFD700; }
+}
 
 .widget-card.status-alert { border-left-color: #FFC107; }
-.status-alert .kpi-value { color: #FFC107; } /* Amarelo para Alerta */
+.status-alert .kpi-value { color: #FFC107; }
 
 .widget-card.status-marketing { border-left-color: #00bcd4; }
-.status-marketing .kpi-value { color: #00bcd4; } /* Ciano para Marketing */
+.status-marketing .kpi-value { color: #00bcd4; }
 
 /* FOOTER */
 #painel-footer {
