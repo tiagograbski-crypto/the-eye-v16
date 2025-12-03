@@ -2,9 +2,261 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Painel de Gestão - Master Control</title>
+    <title>Painel de Gestão - Master Control v2.0</title>
     <style>
-        /* CSS completo será inserido na Seção 2 abaixo */
+        /* === INÍCIO DO CSS OTIMIZADO === */
+
+        /* RESET E ESTILOS GERAIS (COMPACTADO) */
+        body {
+            background-color: #121212; /* Fundo escuro */
+            color: #e0e0e0; /* Texto claro */
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.5; /* Linhas mais justas */
+        }
+
+        #painel-controle {
+            max-width: 1300px; /* Levemente menor */
+            margin: 15px auto; /* Margem reduzida */
+            padding: 15px;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        h1, h2, h3 {
+            color: #4CAF50; /* Verde de destaque */
+            margin-top: 0;
+        }
+        
+        /* HEADER E MENU DE MODOS (AJUSTADO) */
+        #painel-header {
+            border-bottom: 1px solid #333; /* Borda mais fina */
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .titulo-painel {
+            text-align: center;
+            color: #76ff03; /* Verde neon */
+            font-size: 2.2em; /* Fonte levemente menor */
+            margin-bottom: 5px;
+        }
+
+        .controles-topo {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+            margin-bottom: 10px;
+        }
+
+        #status-conexao {
+            font-size: 0.9em;
+            font-weight: bold;
+            color: #bdbdbd;
+        }
+
+        .conexao-ok {
+            color: #00e676; /* Verde vibrante para 'Estabelecida' */
+        }
+
+        #seletor-localizacao {
+            padding: 5px;
+            border-radius: 4px;
+            background-color: #333;
+            color: white;
+            border: 1px solid #4CAF50;
+        }
+
+        #menu-modos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+            gap: 8px; /* Espaçamento reduzido */
+        }
+
+        .btn-modo {
+            background-color: #333;
+            color: #e0e0e0;
+            border: 1px solid #4CAF50;
+            padding: 6px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.85em; /* Fonte menor para caber mais */
+        }
+
+        .btn-modo:hover {
+            background-color: #4CAF50;
+            color: #1e1e1e;
+        }
+
+        .btn-modo.ativo {
+            background-color: #76ff03;
+            color: #121212;
+            font-weight: bold;
+            box-shadow: 0 0 8px #76ff03;
+        }
+
+        /* ABA DE PRIORIDADES */
+        #alerta-prioridade {
+            margin: 15px 0;
+        }
+
+        .aba-prioridade {
+            background-color: #420000; /* Fundo de Alerta Crítico */
+            border: 3px solid #FF0000;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            color: white;
+        }
+
+        .btn-fechar-alerta {
+            background-color: #FF0000;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-top: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* MAPA DE RISCO E CORES (COMPACTADO) */
+        #mapa-risco {
+            padding: 25px 20px; /* Altura reduzida significativamente */
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1.1em; /* Fonte menor */
+            margin-bottom: 15px; /* Margem reduzida */
+            /* Este é o placeholder, você deve inserir o embed do mapa dinâmico aqui */
+        }
+
+        /* Cores do Mapa */
+        .risco-verde { background-color: #28a745; color: white; } 
+        .risco-amarelo { background-color: #ffc107; color: #121212; }
+        .risco-marrom { background-color: #8b4513; color: white; } /* Crise Média */
+        .risco-vermelho { background-color: #dc3545; color: white; }
+
+        .indice-atividade { font-style: italic; display: block; margin-top: 5px; font-weight: normal; }
+
+        /* COLUNAS DE INFORMAÇÃO (COMPACTADO) */
+        .colunas-informacao {
+            display: flex;
+            gap: 15px; /* Espaçamento reduzido entre colunas */
+            margin-top: 15px;
+        }
+
+        .coluna {
+            flex: 1;
+            background-color: #282828;
+            padding: 12px; /* Padding reduzido */
+            border-radius: 6px;
+        }
+
+        .coluna ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .coluna li {
+            padding: 3px 0; /* Espaçamento reduzido nas listas */
+            border-bottom: 1px dotted #444;
+            font-size: 0.9em; /* Texto levemente menor */
+        }
+        
+        .coluna h3 {
+             font-size: 1.1em;
+        }
+
+        .status-ok { color: #76ff03; font-weight: bold; }
+        .status-alerta { color: #ffc107; font-weight: bold; }
+
+        /* Asteroides */
+        .alerta-asteroide {
+            padding: 8px;
+            border-radius: 4px;
+            margin-top: 8px;
+        }
+        .alerta-asteroide.sem-perigo {
+            background-color: #0e3f14;
+            border: 1px solid #76ff03;
+        }
+
+        /* Marketing Mode */
+        .grafico-placeholder {
+            height: 120px; /* Altura reduzida */
+            background-color: #333;
+            border: 1px dashed #4CAF50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            font-size: 0.8em;
+        }
+
+        /* FOOTER */
+        #painel-footer {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #333;
+            padding-top: 15px;
+            margin-top: 20px;
+        }
+
+        #historico-missoes, #time-especialistas {
+            width: 48%;
+            background-color: #282828;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        #historico-missoes h3 {
+            cursor: pointer;
+            color: #4CAF50;
+            font-size: 1em;
+        }
+
+        .previa-historico {
+            font-style: italic;
+            color: #bbb;
+            font-size: 0.85em;
+        }
+        
+        /* COMANDO DE VOZ FLUTUANTE */
+        #icone-voz {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            font-size: 28px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            padding: 12px; /* Tamanho reduzido */
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+            z-index: 9999; 
+            transition: transform 0.3s;
+        }
+
+        #icone-voz:hover {
+            transform: scale(1.1);
+            background-color: #0056b3;
+        }
+        
+        /* CLASSES AUXILIARES DE MODO */
+        .modo-painel {
+            display: none; /* Todos ocultos por padrão, exceto o ativo via JS */
+        }
+        
+        .modo-painel.ativo {
+            display: block;
+        }
+
+        /* === FIM DO CSS OTIMIZADO === */
     </style>
 </head>
 <body>
@@ -18,26 +270,29 @@
         <header id="painel-header">
             <h1 class="titulo-painel">MASTER CONTROL</h1>
             <div class="controles-topo">
+                 <div id="status-conexao">
+                    <span class="status-link">NEURAL LINK: <span class="conexao-ok">Conexão Estabelecida</span></span>
+                </div>
                 <select id="seletor-localizacao">
                     <option value="global">GLOBAL</option>
                     <option value="chapeco" selected>CHAPECÓ - SC</option>
                 </select>
-
-                <nav id="menu-modos">
-                    <button class="btn-modo ativo" data-modo="geopolitico">GEOPOLÍTICO</button>
-                    <button class="btn-modo" data-modo="crise">GESTÃO DE CRISE</button>
-                    <button class="btn-modo" data-modo="sanitaria">EMERGÊNCIA SANITÁRIA</button>
-                    <button class="btn-modo" data-modo="natural">DESASTRES NATURAIS</button>
-                    <button class="btn-modo" data-modo="ciber">CIBERSEGURANÇA</button>
-                    <button class="btn-modo" data-modo="marketing">MARKETING</button>
-                </nav>
             </div>
+            
+            <nav id="menu-modos">
+                <button class="btn-modo ativo" data-modo="geopolitico">GEOPOLÍTICO</button>
+                <button class="btn-modo" data-modo="crise">GESTÃO DE CRISE</button>
+                <button class="btn-modo" data-modo="sanitaria">EMERGÊNCIA SANITÁRIA</button>
+                <button class="btn-modo" data-modo="natural">DESASTRES NATURAIS</button>
+                <button class="btn-modo" data-modo="ciber">CIBERSEGURANÇA</button>
+                <button class="btn-modo" data-modo="marketing">MARKETING</button>
+            </nav>
         </header>
         
         <section id="alerta-prioridade">
             <div class="aba-prioridade">
                 <h3>🚨 AÇÃO PRIORITÁRIA (SOMENTE EU POSSO FECHAR) 🚨</h3>
-                <p id="texto-alerta-prioritario">Nenhuma Ação Crítica Requerida no Momento.</p>
+                <p id="texto-alerta-prioritario">Avaliar Protocolo de Energia Alternativa. Risco de interrupção em 72h.</p>
                 <button class="btn-fechar-alerta" onclick="fecharAlertaPrioritario()">FECHAR E CONFIRMAR</button>
             </div>
         </section>
@@ -66,19 +321,19 @@
                         <h3>VIGILÂNCIA ESPACIAL (ASTEROIDES)</h3>
                         <div class="alerta-asteroide sem-perigo">
                             <p>Status: Sem Perigo</p>
-                            <p>Próximo Objeto (NEO): Distância Segura.</p>
+                            <p>Perigo Mínimo: 0.0001% chance de impacto.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div id="modo-marketing" class="modo-painel" style="display: none;">
+            <div id="modo-marketing" class="modo-painel">
                 <h2>📊 ANÁLISE DE MERCADO: ESTÉTICA CAPILAR</h2>
                 <div class="colunas-informacao">
                     <div class="coluna">
-                        <h3>PALAVRAS-CHAVE EM ALTA</h3>
+                        <h3>PALAVRAS-CHAVE E GRÁFICOS</h3>
                         <div class="grafico-placeholder">
-                            <p>GRÁFICO: Tendência de Busca por "Alisamento Orgânico"</p>
+                            <p>GRÁFICO: Tendência de Busca por "Alisamento"</p>
                         </div>
                         <ul>
                             <li>#AlisamentoVegano: +20% (Global)</li>
@@ -88,45 +343,49 @@
                     <div class="coluna">
                         <h3>ANÁLISE DE REDES (IA)</h3>
                         <div class="grafico-placeholder">
-                            <p>GRÁFICO: Sentimento em Tempo Real das Menções (Positivo/Negativo)</p>
+                            <p>GRÁFICO: Sentimento em Tempo Real (Positivo/Negativo)</p>
                         </div>
                         <p>IA Analisando: 3000 menções/h</p>
                     </div>
                 </div>
             </div>
 
-            <div id="modo-crise" class="modo-painel" style="display: none;">
-                <h2>GESTÃO DE CRISE - Protocolos Ativos</h2>
-                </div>
+            <div id="modo-crise" class="modo-painel">
+                <h2>GESTÃO DE CRISE - PROTOCOLOS ATIVOS</h2>
+                <p>Em caso de ativação, esta tela exibirá os checklists e contatos de emergência definidos para a crise atual.</p>
+            </div>
             
-            </main>
+            <div id="modo-sanitaria" class="modo-painel">
+                <h2>EMERGÊNCIA SANITÁRIA - MONITORAÇÃO</h2>
+                <p>Monitores de surtos regionais, qualidade do ar e água, e recomendações de saúde pública.</p>
+            </div>
+            
+            <div id="modo-natural" class="modo-painel">
+                <h2>DESASTRES NATURAIS - ALERTA IMEDIATO</h2>
+                <p>Avisos de inundações, tempestades e zonas de evacuação. Status da localização atual.</p>
+            </div>
+            
+            <div id="modo-ciber" class="modo-painel">
+                <h2>CIBERSEGURANÇA - STATUS DA REDE</h2>
+                <p>Status do Firewall, detecção de intrusão e listas de bloqueio. Monitoramento de ameaças.</p>
+            </div>
+
+        </main>
         
         <footer id="painel-footer">
             <div id="historico-missoes">
                 <h3 onclick="toggleHistorico()">HISTÓRICO DE MISSÕES (Clique para Abrir)</h3>
                 <p class="previa-historico">Última: Avaliação de Risco Geopolítico (2025-12-03)</p>
                 <div id="detalhes-historico" style="display: none;">
-                    </div>
+                    <p>Detalhes da Missão mais recente aqui...</p>
+                </div>
             </div>
             <div id="time-especialistas">
                 <h3>TIME DE ESPECIALISTAS ATIVO</h3>
-                <p>Geopolítica Regional, Análise de Dados Críticos, IA de Marketing.</p>
+                <p>Geopolítica Regional, Análise de Dados Críticos (Energia/Alimentos), IA de Marketing, Ciberdefesa.</p>
             </div>
         </footer>
     </div>
 
 </body>
 </html>
-<header id="painel-header">
-    <h1 class="titulo-painel">MASTER CONTROL</h1>
-    <div class="controles-topo">
-        <div id="status-conexao">
-            <span class="status-link">NEURAL LINK: <span class="conexao-ok">Conexão Estabelecida</span></span>
-        </div>
-        <select id="seletor-localizacao">
-            <option value="global">GLOBAL</option>
-            <option value="chapeco" selected>CHAPECÓ - SC</option>
-        </select>
-
-        </div>
-    </header>
