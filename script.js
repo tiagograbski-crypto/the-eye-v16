@@ -1,14 +1,12 @@
-/* --- THE EYE V16.1: CORREÇÃO DE INICIALIZAÇÃO --- */
+/* --- THE EYE V16.2: MODO SEGURO (SEM INTRO) --- */
 
-// === 1. CONFIGURAÇÕES DE SEGURANÇA ===
 const SECURE_HASH = "8d23cf6c86e834a7aa6ededb4078cd297594451087f941f7112ee5608b471207";
 const ACCESS_PIN = "1984";
 const EMERGENCY_OVERRIDE = "OMEGA-ZERO-RESET-SYSTEM";
 const MAX_ATTEMPTS = 3;
 let failedAttempts = 0;
-let voiceEnabled = true;
+let voiceEnabled = true; 
 
-// === 2. CONFIGURAÇÕES DE DADOS E MODOS ===
 let myChart = null;
 let chartData = Array(10).fill(0);
 
@@ -21,29 +19,13 @@ const MODES = {
 let currentMode = 'CRISIS';
 let currentRisk = 0;
 
-// === 3. INICIALIZAÇÃO (BOOT) ===
+// === INICIALIZAÇÃO (FORÇADA) ===
 document.addEventListener("DOMContentLoaded", () => {
-    // TENTA INICIAR O GLOBO 3D (Se falhar, a função continua)
-    if(window.VANTA) {
-        VANTA.GLOBE({
-            el: "#intro-overlay",
-            mouseControls: false, touchControls: false, gyroControls: false,
-            minHeight: 200.00, minWidth: 200.00, scale: 1.00, scaleMobile: 0.8,
-            color: 0x00d9ff, backgroundColor: 0x050505
-        });
-    }
-    
-    // TIMEOUT DE EMERGÊNCIA (ESTE CÓDIGO FORÇA A SAÍDA DA INTRO)
-    setTimeout(() => { 
-        document.getElementById('intro-overlay').classList.add('fade-out'); 
-        setTimeout(()=>{ document.getElementById('intro-overlay').style.display='none' }, 1500); 
-    }, 3500); // 3.5 segundos de espera máxima
-
+    // Não tem mais o timer. A tela de login aparece imediatamente.
 });
 
-// --- RESTO DO CÓDIGO DO SISTEMA (MANTIDO) ---
 
-// === 4. SISTEMA DE LOGIN (PEN DRIVE + PIN) ===
+// === FUNÇÕES DE SISTEMA (MANTIDAS) ===
 async function attemptLogin() {
     const fileInput = document.getElementById('usb-key-input');
     const pinInput = document.getElementById('pin-input').value.trim();
@@ -58,7 +40,7 @@ async function attemptLogin() {
         const content = e.target.result.trim();
         const msgBuffer = new TextEncoder().encode(content);
         const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-        const hashHex = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+        const hashHex = Array.from(new Uint8array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
         
         if (hashHex === SECURE_HASH && pinInput === ACCESS_PIN) {
             unlockSystem();
@@ -87,8 +69,6 @@ function initSystem() {
     updateDashboard();
     setInterval(updateDashboard, 5000);
 }
-
-// === 5. FUNÇÕES DE CONTROLE (VOZ, TELA, RELATÓRIO) ===
 
 function speak(text) {
     if(!voiceEnabled) return;
@@ -124,7 +104,6 @@ function downloadReport() {
     speak("Relatório tático baixado com sucesso.");
 }
 
-// === 6. DASHBOARD CORE ===
 function initChart() {
     const ctx = document.getElementById('liveChart').getContext('2d');
     myChart = new Chart(ctx, {
@@ -188,7 +167,6 @@ function updateDashboard() {
     document.getElementById('hidden-log').value += [${new Date().toLocaleTimeString()}] ${currentMode}: ${val}% Risk\n;
 }
 
-// === 7. TERMINAL DE CHAT IA + VOZ (SIMPLIFICADO) ===
 function handleEnter(e) { if(e.key === 'Enter') sendMessage(); }
 function sendMessage() {
     const input = document.getElementById('user-command');
@@ -222,10 +200,16 @@ function processAIResponse(userText) {
     speak(response);
 }
 
-// Utilitários
 function startClock() { setInterval(() => { document.getElementById('clock').innerText = new Date().toLocaleTimeString(); }, 1000); }
 function initStealthMode() {
     const locBox = document.getElementById('location-box');
     const locs = ["SAT-LINK: ALPHA", "SAT-LINK: BRAVO", "SAT-LINK: OMEGA"];
     setInterval(() => { locBox.innerText = 📍 ${locs[Math.floor(Math.random()*locs.length)]}; }, 4000);
 }
+
+// Inicialização: Chama a função que deve rodar no início.
+// O site agora carrega e mostra o login imediatamente.
+window.onload = function() {
+    // Não precisa de intro, então o sistema de segurança aparece imediatamente.
+    // Nada a fazer aqui além de esperar a autenticação.
+};
