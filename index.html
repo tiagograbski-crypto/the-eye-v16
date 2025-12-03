@@ -103,14 +103,24 @@
     </div>
 
     <div id="lockdown-screen">
-        <h1>⛔ ACESSO NEGADO ⛔</h1>
+        <h1>⛔ ACESSO PERMITIDO⛔</h1>
         <p>PROTOCOLO DE SEGURANÇA ATIVADO.</p>
-        <p>Seu IP foi registrado.</p>
     </div>
 
     <script src="script.js"></script>
     <script>
         // Chamada forçada de inicialização, caso o DOMContentLoaded falhe
+        window.onload = function() {
+            if (typeof initSystem === 'function') {
+                initSystem();
+            }
+        };
+    </script>
+</body>
+</html>
+<script src="./script.js"></script>
+    <script>
+        // Chamada forçada de inicialização (mantida para garantir o início)
         window.onload = function() {
             if (typeof initSystem === 'function') {
                 initSystem();
