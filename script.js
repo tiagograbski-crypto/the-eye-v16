@@ -1,14 +1,32 @@
-/* --- THE EYE V16.2: MODO SEGURO (SEM INTRO) --- */
+[14:07, 03/12/2025] Thiago: <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>THE EYE | OMNISCIENT V16</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
 
-// === 1. CONFIGURAÇÕES DE SEGURANÇA ===
+    <div id="security-overlay" style="display:none;"> 
+        <div class="login-box">
+            <h1>🔒 ACESSO RESTRITO</h1>
+            <p>AUTENTICAÇÃO BIOMÉTRICA + FÍSICA</p>
+            
+            <label style="font-size: 0.7rem; color: #666; display:block; margin-…
+[14:11, 03/12/2025] Thiago: /* --- THE EYE V16.3: BYPASS DE SEGURANÇA ATIVADO --- */
+
+// A TELA DE LOGIN ESTÁ OCULTA NO HTML, MAS O CÓDIGO AINDA ESTÁ PRONTO PARA RODAR AS FUNÇÕES
+
 const SECURE_HASH = "8d23cf6c86e834a7aa6ededb4078cd297594451087f941f7112ee5608b471207";
 const ACCESS_PIN = "1984";
-const EMERGENCY_OVERRIDE = "OMEGA-ZERO-RESET-SYSTEM"; // CHAVE DE EMERGÊNCIA
+const EMERGENCY_OVERRIDE = "OMEGA-ZERO-RESET-SYSTEM";
 const MAX_ATTEMPTS = 3;
 let failedAttempts = 0;
 let voiceEnabled = true; 
 
-// === 2. CONFIGURAÇÕES DE DADOS E MODOS ===
 let myChart = null;
 let chartData = Array(10).fill(0);
 
@@ -21,43 +39,31 @@ const MODES = {
 let currentMode = 'CRISIS';
 let currentRisk = 0;
 
-// === 3. INICIALIZAÇÃO (BOOT) ===
+// === INICIALIZAÇÃO (FORÇADA) ===
 document.addEventListener("DOMContentLoaded", () => {
-    // A tela de login (overlay) aparece imediatamente no DOMContentLoaded
-    // Não temos mais a lógica do Globo 3D, garantindo que o sistema não trave.
+    // A função initSystem() é chamada aqui, iniciando o painel imediatamente.
+    initSystem();
 });
 
 
-// === 4. SISTEMA DE LOGIN (PEN DRIVE + PIN + EMERGÊNCIA) ===
+// === FUNÇÕES DE SISTEMA (MANTIDAS) ===
+// Esta função NÃO é mais chamada pelo HTML (Bypass)
 async function attemptLogin() {
     const fileInput = document.getElementById('usb-key-input');
-    // .trim() garante que espaços extras não quebrem a senha
     const pinInput = document.getElementById('pin-input').value.trim();
     const msg = document.getElementById('login-msg');
 
-    // 🚨 CHECK DE EMERGÊNCIA (A CHAVE QUE ESTAVA FALHANDO)
-    if (pinInput === EMERGENCY_OVERRIDE) { 
-        unlockSystem(); 
-        return; 
-    }
-
-    // CHECK DE CHAVE FÍSICA E ERROS
-    if (fileInput.files.length === 0) { 
-        msg.textContent = "ERRO: CHAVE FÍSICA AUSENTE"; 
-        return; 
-    }
+    if (pinInput === EMERGENCY_OVERRIDE) { unlockSystem(); return; }
+    if (fileInput.files.length === 0) { msg.textContent = "ERRO: CHAVE FÍSICA AUSENTE"; return; }
     
-    // Leitura e Criptografia (SHA-256)
     const file = fileInput.files[0];
     const reader = new FileReader();
     reader.onload = async function(e) {
         const content = e.target.result.trim();
         const msgBuffer = new TextEncoder().encode(content);
         const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-        // Conversão do Hash
         const hashHex = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
         
-        // CHECK FINAL (Hash Válido E PIN normal)
         if (hashHex === SECURE_HASH && pinInput === ACCESS_PIN) {
             unlockSystem();
         } else {
@@ -134,6 +140,7 @@ function initChart() {
 
 function updateChart(val, color) {
     chartData.shift(); chartData.push(val);
+    myChart.data.datasets[0].data = chartData;
     myChart.data.datasets[0].borderColor = color;
     myChart.data.datasets[0].backgroundColor = color + '20';
     myChart.update();
@@ -149,7 +156,9 @@ function changeMode() {
 function updateDashboard() {
     const config = MODES[currentMode];
     document.documentElement.style.setProperty('--accent-blue', config.color);
-    document.querySelectorAll('.t-item .label').forEach((lbl, i) => { if(config.labels[i]) lbl.innerText = config.labels[i]; });
+    document.querySelectorAll('.t-item .label').forEach((lbl, i) => { 
+        if(config.labels[i]) lbl.innerText = config.labels[i]; 
+    });
 
     let val = 0;
     if (currentMode === 'CRISIS') {
