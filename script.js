@@ -1,67 +1,73 @@
-/* === script.js: LÓGICA V18 - CORREÇÃO DE INICIALIZAÇÃO === */
+// CONFIGURAÇÃO DO GATE RUBI
+const CONFIG = {
+    PASS_KEY: "RUBI2025", // Defina sua senha aqui
+    REDIRECT_URL: null    // Se quiser redirecionar para outro site ao logar, coloque a URL aqui
+};
 
-const NIVEIS_RISCO = { ALERTA: 'marrom', EMERGENCIA: 'vermelho', ESTAVEL: 'verde' };
-let statusAmeaca = NIVEIS_RISCO.ALERTA; 
-let modoAtual = 'geopolitico'; // O modo começa em geopolitico por padrão no HTML
+// Elementos do DOM
+const btnAuth = document.getElementById('btn-auth');
+const btnLogout = document.getElementById('btn-logout');
+const inputKey = document.getElementById('access-key');
+const gateLock = document.getElementById('gate-lock');
+const systemCore = document.getElementById('system-core');
+const errorMsg = document.getElementById('error-msg');
 
-function monitorarAmeacas() {
-    const mapaRisco = document.getElementById('mapa-risco');
-    
-    // Lógica para forçar a visualização do modo Crise
-    if (statusAmeaca === NIVEIS_RISCO.EMERGENCIA) {
-        if (modoAtual !== 'crise') trocarModo('crise');
-    } else if (statusAmeaca !== NIVEIS_RISCO.EMERGENCIA && modoAtual === 'crise') {
-        // Se a crise acabar, volta para geopolítico
-        trocarModo('geopolitico');
+// Função de Login
+function unlockGate() {
+    const userKey = inputKey.value;
+
+    if(userKey === CONFIG.PASS_KEY) {
+        // Sucesso
+        inputKey.style.borderColor = "#10b981"; // Verde
+        
+        // Animação de Saída do Login
+        gateLock.style.opacity = "0";
+        gateLock.style.transform = "scale(1.1)";
+        
+        setTimeout(() => {
+            gateLock.classList.add('hidden');
+            systemCore.classList.remove('hidden');
+            
+            // Salvar sessão (opcional)
+            sessionStorage.setItem('rubi_session', 'active');
+        }, 500);
+
+    } else {
+        // Erro
+        errorMsg.style.display = "block";
+        inputKey.style.borderColor = "red";
+        
+        // Efeito de "Tremer" (Shake)
+        gateLock.animate([
+            { transform: "translateX(0)" },
+            { transform: "translateX(-10px)" },
+            { transform: "translateX(10px)" },
+            { transform: "translateX(0)" }
+        ], { duration: 300 });
     }
-
-    // Atualiza a cor do mapa
-    mapaRisco.className = 'risco-' + statusAmeaca;
 }
 
-function trocarModo(modoNovo) {
-    if (modoAtual === modoNovo) return;
-    
-    // 1. Oculta todos os painéis e remove a classe 'ativo'
-    document.querySelectorAll('.modo-painel').forEach(panel => {
-        panel.classList.remove('ativo'); 
-        panel.style.display = 'none'; // Continua escondendo via JS
-    });
-    document.querySelectorAll('.btn-modo').forEach(button => {
-        button.classList.remove('ativo');
-    });
-
-    // 2. Exibe o painel selecionado e adiciona a classe 'ativo'
-    const painelSelecionado = document.getElementById('modo-' + modoNovo);
-    if (painelSelecionado) {
-        painelSelecionado.classList.add('ativo');
-        painelSelecionado.style.display = 'block'; 
-    }
-
-    // 3. Marca o botão
-    const botaoSelecionado = document.querySelector('.btn-modo[data-modo="' + modoNovo + '"]');
-    if (botaoSelecionado) {
-        botaoSelecionado.classList.add('ativo');
-    }
-    modoAtual = modoNovo;
+// Função de Logout
+function lockGate() {
+    sessionStorage.removeItem('rubi_session');
+    location.reload();
 }
 
-function fecharAlertaPrioritario() {
-    document.getElementById('alerta-prioridade').style.display = 'none';
+// Event Listeners
+btnAuth.addEventListener('click', unlockGate);
+
+inputKey.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') unlockGate();
+});
+
+if(btnLogout) {
+    btnLogout.addEventListener('click', lockGate);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Liga os event listeners
-    document.querySelectorAll('.btn-modo').forEach(button => {
-        button.addEventListener('click', function() {
-            trocarModo(this.getAttribute('data-modo'));
-        });
-    });
-    
-    // Configura o botão inicial como ativo
-    document.querySelector('.btn-modo[data-modo="geopolitico"]').classList.add('ativo');
-
-    // Inicia a monitoração de ameaças
-    setInterval(monitorarAmeacas, 5000); 
-    monitorarAmeacas();
+// Verificar Sessão ao Carregar
+window.addEventListener('load', () => {
+    if(sessionStorage.getItem('rubi_session') === 'active') {
+        gateLock.classList.add('hidden');
+        systemCore.classList.remove('hidden');
+    }
 });
