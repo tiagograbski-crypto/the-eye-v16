@@ -1,16 +1,17 @@
-/* === script.js: LÓGICA ESTÁVEL V17 === */
+/* === script.js: LÓGICA V18 - CORREÇÃO DE INICIALIZAÇÃO === */
 
 const NIVEIS_RISCO = { ALERTA: 'marrom', EMERGENCIA: 'vermelho', ESTAVEL: 'verde' };
-let statusAmeaca = NIVEIS_RISCO.ALERTA; // Inicia em Alerta (Marrom)
-let modoAtual = 'geopolitico';
+let statusAmeaca = NIVEIS_RISCO.ALERTA; 
+let modoAtual = 'geopolitico'; // O modo começa em geopolitico por padrão no HTML
 
 function monitorarAmeacas() {
     const mapaRisco = document.getElementById('mapa-risco');
     
-    // Lógica simples para forçar a visualização do modo Crise
+    // Lógica para forçar a visualização do modo Crise
     if (statusAmeaca === NIVEIS_RISCO.EMERGENCIA) {
         if (modoAtual !== 'crise') trocarModo('crise');
-    } else if (modoAtual !== 'geopolitico') {
+    } else if (statusAmeaca !== NIVEIS_RISCO.EMERGENCIA && modoAtual === 'crise') {
+        // Se a crise acabar, volta para geopolítico
         trocarModo('geopolitico');
     }
 
@@ -21,21 +22,23 @@ function monitorarAmeacas() {
 function trocarModo(modoNovo) {
     if (modoAtual === modoNovo) return;
     
-    // O JS gerencia a exibição explicitamente (Correção de estabilidade)
+    // 1. Oculta todos os painéis e remove a classe 'ativo'
     document.querySelectorAll('.modo-painel').forEach(panel => {
         panel.classList.remove('ativo'); 
-        panel.style.display = 'none'; 
+        panel.style.display = 'none'; // Continua escondendo via JS
     });
     document.querySelectorAll('.btn-modo').forEach(button => {
         button.classList.remove('ativo');
     });
 
+    // 2. Exibe o painel selecionado e adiciona a classe 'ativo'
     const painelSelecionado = document.getElementById('modo-' + modoNovo);
     if (painelSelecionado) {
         painelSelecionado.classList.add('ativo');
         painelSelecionado.style.display = 'block'; 
     }
 
+    // 3. Marca o botão
     const botaoSelecionado = document.querySelector('.btn-modo[data-modo="' + modoNovo + '"]');
     if (botaoSelecionado) {
         botaoSelecionado.classList.add('ativo');
@@ -44,19 +47,21 @@ function trocarModo(modoNovo) {
 }
 
 function fecharAlertaPrioritario() {
-    // Simplesmente esconde o alerta
     document.getElementById('alerta-prioridade').style.display = 'none';
 }
 
-// Inicialização
 document.addEventListener('DOMContentLoaded', () => {
+    // Liga os event listeners
     document.querySelectorAll('.btn-modo').forEach(button => {
         button.addEventListener('click', function() {
             trocarModo(this.getAttribute('data-modo'));
         });
     });
     
-    trocarModo('geopolitico');
+    // Configura o botão inicial como ativo
+    document.querySelector('.btn-modo[data-modo="geopolitico"]').classList.add('ativo');
+
+    // Inicia a monitoração de ameaças
     setInterval(monitorarAmeacas, 5000); 
     monitorarAmeacas();
 });
