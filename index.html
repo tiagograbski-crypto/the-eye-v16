@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>THE EYE | OMNISCIENT V16</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div id="intro-overlay">
+        <div class="intro-content">
+            <h1>THE EYE</h1>
+            <h3>V16 OMNISCIENT</h3>
+            <p class="loading-text">ESTABELECENDO NEURAL LINK...</p>
+        </div>
+    </div>
+
+    <div id="security-overlay">
+        <div class="login-box">
+            <h1>🔒 ACESSO RESTRITO</h1>
+            <p>AUTENTICAÇÃO BIOMÉTRICA + FÍSICA</p>
+            
+            <label style="font-size: 0.7rem; color: #666; display:block; margin-top:10px;">1. ARQUIVO DE CHAVE (PEN DRIVE)</label>
+            <input type="file" id="usb-key-input" class="full-width">
+            
+            <label style="font-size: 0.7rem; color: #666; display:block; margin-top:10px;">2. PIN DE COMANDO</label>
+            <input type="password" id="pin-input" placeholder="DIGITE O PIN" maxlength="20" class="full-width">
+            
+            <button onclick="attemptLogin()" class="btn-main">INICIAR SESSÃO</button>
+            <p id="login-msg"></p>
+        </div>
+    </div>
+
+    <div class="container" id="main-dashboard">
+        <header>
+            <div class="header-top">
+                <div id="location-box">📍 SATÉLITE BUSCANDO SINAL...</div>
+                
+                <div class="sys-controls">
+                    <button onclick="toggleVoice()" id="btn-voice">🔊 VOZ: ON</button>
+                    <button onclick="toggleFullScreen()">⛶ FULL</button>
+                    <button onclick="downloadReport()">⬇ RELATÓRIO</button>
+                </div>
+                
+                <div id="clock">00:00:00</div>
+            </div>
+            
+            <div class="header-main">
+                <h1>THE EYE <span class="version">V16.0</span></h1>
+                <div class="mode-control">
+                    <label>MODO:</label>
+                    <select id="mode-selector" onchange="changeMode()">
+                        <option value="CRISIS">⚠️ GESTÃO DE CRISE</option>
+                        <option value="CYBER">💻 CYBER SECURITY</option>
+                        <option value="MARKETING">📈 MARKETING OPS</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <div class="ai-dashboard">
+                <div class="ai-card oracle">
+                    <span class="ai-label">ÍNDICE DE ATIVIDADE</span>
+                    <div class="probability-meter">
+                        <span id="prediction-percent">0%</span>
+                    </div>
+                </div>
+                
+                <div class="ai-card analyst">
+                    <span class="ai-label">NÚCLEO DE INTELIGÊNCIA</span>
+                    <p id="ai-summary">Inicializando sensores...</p>
+                </div>
+                
+                <div id="status-card" class="status-green">
+                    <h2 id="status-title">NOMINAL</h2>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <canvas id="liveChart"></canvas>
+            </div>
+
+            <div class="telemetry-grid">
+                <div class="t-item"><span class="label">METRICA A</span><span class="value" id="val-1">...</span></div>
+                <div class="t-item"><span class="label">METRICA B</span><span class="value" id="val-2">...</span></div>
+                <div class="t-item"><span class="label">METRICA C</span><span class="value" id="val-3">...</span></div>
+                <div class="t-item"><span class="label">METRICA D</span><span class="value" id="val-4">...</span></div>
+            </div>
+
+            <div class="terminal-wrapper">
+                <div class="terminal-header">
+                    <span class="ai-label">🔵 NEURAL LINK (VOICE ENABLED)</span>
+                    <button onclick="clearTerminal()" style="background:none;border:none;color:#666;cursor:pointer;">[LIMPAR]</button>
+                </div>
+                <div id="chat-output">
+                    <div class="msg system">> Conexão estabelecida.</div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="user-command" placeholder="Digite um comando para a IA..." onkeypress="handleEnter(event)">
+                    <button onclick="sendMessage()" class="btn-send">ENVIAR</button>
+                </div>
+            </div>
+
+            <textarea id="hidden-log" style="display:none"></textarea>
+
+        </main>
+    </div>
+
+    <div id="lockdown-screen">
+        <h1>⛔ ACESSO NEGADO ⛔</h1>
+        <p>PROTOCOLO DE SEGURANÇA ATIVADO.</p>
+        <p>Seu IP foi registrado.</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+    
+    <script src="script.js"></script>
+</body>
+</html>
