@@ -4,13 +4,155 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gate Rubi | Restricted Access</title>
-    
     <meta name="robots" content="noindex, nofollow">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* --- VARIÁVEIS GLOBAIS --- */
+        :root {
+            --bg-deep: #050000;
+            --rubi-neon: #ff003c; /* Vermelho Neon */
+            --rubi-dark: #800020;
+            --glass-surface: rgba(20, 0, 5, 0.6);
+            --glass-border: rgba(255, 0, 60, 0.2);
+            --text-white: #ffffff;
+            --text-gray: #a1a1aa;
+        }
+
+        /* RESET GERAL */
+        * { box-sizing: border-box; transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); }
+
+        /* O FUNDO QUE ESTAVA FICANDO BRANCO AGORA É FORÇADO AQUI */
+        body, html {
+            margin: 0; padding: 0;
+            width: 100%; height: 100%;
+            background-color: var(--bg-deep) !important; /* Força o preto */
+            background-image: 
+                linear-gradient(0deg, rgba(0,0,0,0.9), rgba(5,0,0,0.4)),
+                repeating-linear-gradient(90deg, transparent 0, transparent 49px, rgba(255, 0, 60, 0.05) 50px),
+                repeating-linear-gradient(0deg, transparent 0, transparent 49px, rgba(255, 0, 60, 0.05) 50px);
+            font-family: "Rajdhani", sans-serif;
+            color: var(--text-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* UTILITÁRIO PARA ESCONDER ELEMENTOS */
+        .hidden { display: none !important; opacity: 0; }
+
+        /* --- TELA DE LOGIN (GATE) --- */
+        .gate-container {
+            position: relative;
+            width: 360px;
+            padding: 40px;
+            background: var(--glass-surface);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: 0 0 40px rgba(255, 0, 60, 0.1), inset 0 0 20px rgba(255, 0, 60, 0.05);
+            text-align: center;
+            z-index: 100;
+        }
+
+        .logo-rubi {
+            font-family: "Orbitron", sans-serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--text-white);
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            text-shadow: 0 0 15px var(--rubi-neon);
+        }
+
+        .sub-rubi {
+            font-size: 0.8rem;
+            color: var(--rubi-neon);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 15px;
+        }
+
+        /* CAMPOS E BOTÕES */
+        .rubi-input {
+            width: 100%;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid #333;
+            border-left: 2px solid var(--rubi-dark);
+            padding: 15px;
+            color: white;
+            font-family: "Orbitron", sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            margin-bottom: 20px;
+        }
+        .rubi-input:focus { border-color: var(--rubi-neon); box-shadow: 0 0 15px rgba(255, 0, 60, 0.2); }
+
+        .rubi-btn {
+            width: 100%;
+            background: linear-gradient(90deg, var(--rubi-dark), var(--rubi-neon));
+            border: none;
+            padding: 15px;
+            color: white;
+            font-family: "Orbitron", sans-serif;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+        }
+        .rubi-btn:hover { filter: brightness(1.2); transform: scale(1.02); }
+
+        .error-msg { color: var(--rubi-neon); font-size: 0.8rem; margin-top: 15px; display: none; text-shadow: 0 0 5px red; }
+
+        /* --- DASHBOARD (PAINEL INTERNO) --- */
+        .main-dashboard {
+            width: 90%; height: 90%; max-width: 1200px;
+            display: grid; grid-template-columns: 250px 1fr; gap: 30px;
+            animation: fadeEntry 1s ease forwards;
+        }
+
+        @keyframes fadeEntry { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* SIDEBAR (LATERAL) */
+        .sidebar {
+            background: rgba(20, 20, 20, 0.6);
+            border-right: 1px solid var(--glass-border);
+            padding: 30px;
+            border-radius: 16px;
+            display: flex; flex-direction: column;
+        }
+        .menu-title { color: var(--rubi-neon); margin-bottom: 10px; font-weight: bold; font-size: 0.8rem; }
+        .menu-item { color: #ccc; margin-bottom: 20px; font-size: 0.9rem; padding-left: 10px; border-left: 2px solid var(--rubi-neon); }
+        .menu-ghost { opacity: 0.5; margin-bottom: 10px; font-size: 0.9rem; }
+
+        /* ÁREA DE CONTEÚDO */
+        .content { display: grid; grid-template-rows: auto 1fr; gap: 20px; overflow-y: auto; }
+        .top-bar { display: flex; justify-content: space-between; align-items: center; }
+        .rubi-tag { padding: 4px 12px; background: rgba(255, 0, 60, 0.1); border: 1px solid var(--rubi-neon); color: var(--rubi-neon); font-size: 0.7rem; border-radius: 4px; }
+
+        /* CARDS */
+        .stat-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,0,60,0.02));
+            border: 1px solid var(--glass-border);
+            padding: 25px; border-radius: 12px;
+            position: relative; overflow: hidden; margin-bottom: 15px;
+        }
+        .stat-card::before { content: ""; position: absolute; top:0; left:0; width: 4px; height: 100%; background: var(--rubi-neon); }
+        .big-number { font-size: 3rem; font-weight: bold; font-family: 'Orbitron'; margin: 10px 0; }
+        
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        
+        @media (max-width: 768px) {
+            .main-dashboard { grid-template-columns: 1fr; }
+            .sidebar { display: none; }
+        }
+    </style>
 </head>
 <body>
 
@@ -18,70 +160,108 @@
         <div class="logo-rubi">GATE RUBI</div>
         <div class="sub-rubi">Restricted Access Protocol</div>
         
-        <div class="input-wrapper">
-            <input type="password" id="access-key" class="rubi-input" placeholder="ENTER ACCESS CODE">
-        </div>
-        
-        <button id="btn-auth" class="rubi-btn">AUTHENTICATE</button>
-        <p id="error-msg" class="error-hidden">// ACCESS DENIED</p>
+        <input type="password" id="access-key" class="rubi-input" placeholder="ENTER ACCESS CODE">
+        <button onclick="unlockGate()" class="rubi-btn">AUTHENTICATE</button>
+        <p id="error-msg" class="error-msg">// ACCESS DENIED</p>
     </div>
 
     <div id="system-core" class="main-dashboard hidden">
-        
         <aside class="sidebar">
-            <div class="logo-rubi small">RUBI CORE</div>
-            
-            <div class="menu-section">
-                <div class="menu-title">> MONITORING</div>
-                <div class="menu-item active">Live Feed Active</div>
-            </div>
-            
-            <div class="menu-section opacity-low">
-                <div class="menu-title">> AGENTS</div>
-                <div class="menu-title">> SECURITY</div>
-                <div class="menu-title">> LOGS</div>
-            </div>
-            
-            <div class="logout-area">
-                <button id="btn-logout" class="btn-text">[ LOGOUT ]</button>
-            </div>
+            <div class="logo-rubi" style="font-size: 1.5rem; margin-bottom: 30px;">RUBI CORE</div>
+            <div class="menu-title">> MONITORING</div>
+            <div class="menu-item">Live Feed Active</div>
+            <div class="menu-title" style="margin-top: 20px;">> MODULES</div>
+            <div class="menu-ghost">Agents [Locked]</div>
+            <div class="menu-ghost">Security [Locked]</div>
+            <button onclick="lockGate()" style="margin-top:auto; background:none; border:none; color:#666; cursor:pointer;">[ LOGOUT ]</button>
         </aside>
 
         <main class="content">
-            <header class="top-bar">
+            <div class="top-bar">
                 <div>
-                    <h2>SYSTEM OVERVIEW</h2>
-                    <small>SERVER: RUBI-01 // LOCATION: BR-SC</small>
+                    <h2 style="font-family:'Orbitron'; margin:0;">SYSTEM OVERVIEW</h2>
+                    <small style="color:#666;">SERVER: RUBI-01</small>
                 </div>
-                <div class="rubi-tag">● SECURE CONNECTION</div>
-            </header>
+                <div class="rubi-tag">● SECURE</div>
+            </div>
 
-            <div class="stats-grid">
+            <div class="grid-2">
                 <div class="stat-card">
-                    <h3>ACTIVE AGENTS</h3>
+                    <h3 style="margin:0; font-size:0.9rem; color:#888;">AGENTS</h3>
                     <div class="big-number">3</div>
-                    <div class="status-text rubi-color">All Systems Nominal</div>
+                    <small style="color:var(--rubi-neon);">Operational</small>
                 </div>
-                
                 <div class="stat-card">
-                    <h3>THREAT LEVEL</h3>
-                    <div class="big-number green-color">0%</div>
-                    <div class="status-text green-color">No Intrusions Detected</div>
+                    <h3 style="margin:0; font-size:0.9rem; color:#888;">THREATS</h3>
+                    <div class="big-number" style="color:#10b981;">0%</div>
+                    <small style="color:#10b981;">Clean</small>
                 </div>
             </div>
 
-            <div class="stat-card wide">
-                <h3>GATE RUBI LOGS</h3>
-                <div class="terminal-logs">
-                    > [19:00:01] Initializing Ruby Protocol...<br>
-                    > [19:00:05] Firewall: Active<br>
-                    > [19:00:10] User Authenticated via Gate Rubi.<br>
-                    > [19:00:12] Scanning for Bots... <span class="green-color">CLEAN</span>
+            <div class="stat-card">
+                <h3 style="margin:0; font-family:'Orbitron';">TERMINAL LOGS</h3>
+                <div style="font-family:monospace; color:#555; margin-top:10px; font-size:0.8rem;">
+                    > System Boot... OK<br>
+                    > CSS Loaded... OK<br>
+                    > Gate Rubi Authentication... SUCCESS
                 </div>
             </div>
         </main>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // CONFIGURAÇÃO
+        const SENHA = "RUBI2025"; 
+
+        function unlockGate() {
+            const input = document.getElementById("access-key");
+            const gate = document.getElementById("gate-lock");
+            const system = document.getElementById("system-core");
+            const error = document.getElementById("error-msg");
+
+            if(input.value === SENHA) {
+                // Sucesso
+                input.style.borderColor = "#10b981"; 
+                gate.style.opacity = "0";
+                gate.style.transform = "scale(1.1)";
+                
+                setTimeout(() => {
+                    gate.style.display = "none"; // Remove o login da tela
+                    system.classList.remove("hidden"); // Mostra o painel
+                    
+                    // Salvar sessão
+                    sessionStorage.setItem('rubi_session', 'active');
+                }, 500);
+            } else {
+                // Erro
+                error.style.display = "block";
+                input.style.borderColor = "red";
+                gate.animate([
+                    { transform: "translateX(0)" },
+                    { transform: "translateX(-10px)" },
+                    { transform: "translateX(10px)" },
+                    { transform: "translateX(0)" }
+                ], { duration: 300 });
+            }
+        }
+
+        function lockGate() {
+            sessionStorage.removeItem('rubi_session');
+            location.reload();
+        }
+
+        // Verifica login anterior
+        if(sessionStorage.getItem('rubi_session') === 'active') {
+            document.getElementById("gate-lock").style.display = "none";
+            document.getElementById("system-core").classList.remove("hidden");
+        }
+
+        // Enter funciona para logar
+        document.getElementById("access-key").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                unlockGate();
+            }
+        });
+    </script>
 </body>
 </html>
