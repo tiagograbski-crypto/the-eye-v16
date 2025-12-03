@@ -1,128 +1,170 @@
-/* === script.js: LÓGICA DE MONITORAMENTO E COMUNICAÇÃO ATIVA (ESTÁVEL) === */
+/* === styles.css: DESIGN E ESTILOS DO PAINEL (LIMPO E FOCADO) === */
 
-// VARIÁVEIS DE ESTADO GLOBAL (Simulando dados de backend/API)
-const NIVEIS_RISCO = {
-    ESTAVEL: 'verde',
-    ATENCAO: 'amarelo',
-    ALERTA: 'marrom', // Grau Médio (Gatilho de Crise)
-    EMERGENCIA: 'vermelho' // Grau Forte (Gatilho de Crise Total)
-};
-
-// SIMULAÇÃO DO STATUS DE AMEAÇA ATUAL
-let statusAmeacaEnergia = NIVEIS_RISCO.ALERTA; 
-let statusAmeacaInternet = NIVEIS_RISCO.ALERTA; 
-let modoAtual = 'geopolitico';
-let vozAtiva = false; 
-
-// ====================================================================
-// FUNÇÕES DE LÓGICA DO PAINEL
-// ====================================================================
-
-function monitorarAmeacas() {
-    const mapaRisco = document.getElementById('mapa-risco');
-    const alertaGatilho = NIVEIS_RISCO.ALERTA; 
-
-    // 1. CHECA GATILHO PARA MUDANÇA AUTOMÁTICA DE MODO
-    if (statusAmeacaEnergia === NIVEIS_RISCO.EMERGENCIA || statusAmeacaInternet === NIVEIS_RISCO.EMERGENCIA) {
-        if (modoAtual !== 'crise') {
-            trocarModo('crise');
-        }
-    } else if (statusAmeacaEnergia === alertaGatilho || statusAmeacaInternet === alertaGatilho) {
-        if (modoAtual !== 'geopolitico' && modoAtual !== 'crise') {
-            trocarModo('geopolitico');
-        }
-    }
-
-    // 2. ATUALIZA A COR DO MAPA (Implementação do Heatmap)
-    let maiorRisco = NIVEIS_RISCO.ESTAVEL;
-    if (statusAmeacaEnergia === NIVEIS_RISCO.EMERGENCIA || statusAmeacaInternet === NIVEIS_RISCO.EMERGENCIA) {
-        maiorRisco = NIVEIS_RISCO.EMERGENCIA;
-    } else if (statusAmeacaEnergia === NIVEIS_RISCO.ALERTA || statusAmeacaInternet === NIVEIS_RISCO.ALERTA) {
-        maiorRisco = NIVEIS_RISCO.ALERTA;
-    } else if (statusAmeacaEnergia === NIVEIS_RISCO.ATENCAO || statusAmeacaInternet === NIVEIS_RISCO.ATENCAO) {
-        maiorRisco = NIVEIS_RISCO.ATENCAO;
-    }
-
-    // Aplica a classe de cor correspondente ao mapa
-    mapaRisco.className = ''; 
-    mapaRisco.classList.add('risco-' + maiorRisco);
+/* RESET E GERAIS */
+body {
+    background-color: #0d0d0d; 
+    color: #e0e0e0;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.4;
 }
 
-function trocarModo(modoNovo) {
-    if (modoAtual === modoNovo) return;
-    
-    document.querySelectorAll('.modo-painel').forEach(panel => {
-        panel.classList.remove('ativo'); 
-        panel.style.display = 'none'; 
-    });
-    document.querySelectorAll('.btn-modo').forEach(button => {
-        button.classList.remove('ativo');
-    });
+#painel-controle {
+    max-width: 1200px; 
+    margin: 10px auto;
+    padding: 15px;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
 
-    const painelSelecionado = document.getElementById('modo-' + modoNovo);
-    if (painelSelecionado) {
-        painelSelecionado.classList.add('ativo');
-        painelSelecionado.style.display = 'block'; 
-    }
+h1, h2, h3 {
+    color: #76ff03;
+    font-weight: bold;
+    margin-top: 0;
+}
 
-    const botaoSelecionado = document.querySelector('.btn-modo[data-modo="' + modoNovo + '"]');
-    if (botaoSelecionado) {
-        botaoSelecionado.classList.add('ativo');
-    }
-    modoAtual = modoNovo;
+/* HEADER E CONTROLES */
+#painel-header {
+    border-bottom: 1px solid #333;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.titulo-painel {
+    text-align: center;
+    font-size: 2.2em;
+}
+
+/* ... (Estilos de conexao e select) ... */
+
+/* MENU DE MODOS */
+#menu-modos {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Espaço maior para só 2 botões */
+    margin-top: 10px;
+}
+
+.btn-modo {
+    background-color: #333;
+    color: #e0e0e0;
+    border: 1px solid #555;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s;
+}
+
+.btn-modo.ativo {
+    background-color: #76ff03;
+    color: #121212;
+    font-weight: bold;
+}
+
+/* ALERTA PRIORITÁRIO */
+#alerta-prioridade { margin: 15px 0; }
+
+.aba-prioridade {
+    background-color: #660000; 
+    border: 2px solid #ff0000;
+    padding: 12px;
+    border-radius: 6px;
+    text-align: center;
+    color: white;
+}
+
+.btn-fechar-alerta {
+    background-color: #FF0000;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    margin-top: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* MAPA DE RISCO E CORES */
+#mapa-risco {
+    padding: 30px 15px; 
+    border-radius: 6px;
+    text-align: center;
+    margin-bottom: 15px;
+    color: white;
+    transition: background-color 0.4s;
+}
+
+/* Cores de Risco (Heatmap) */
+.risco-verde { background-color: #4CAF50; }
+.risco-amarelo { background-color: #FFC107; color: #121212; }
+.risco-marrom { background-color: #8b4513; }
+.risco-vermelho { background-color: #FF0000; }
+
+/* WIDGETS */
+.widgets-area {
+    display: flex; 
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.widget-card {
+    flex: 1 1 200px; 
+    background-color: #282828;
+    padding: 15px;
+    border-radius: 4px;
+    border-left: 4px solid #4CAF50; 
+    min-width: 200px;
+}
+
+.kpi-value {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #76ff03;
+}
+
+/* CORES DOS WIDGETS */
+.widget-card.status-critical { border-left-color: #FF0000; }
+.status-critical .kpi-value { color: #FF0000; } 
+
+.widget-card.status-critical-internet {
+    border-left-color: #FF8C00;
+    background-color: #3b2a00;
+}
+.status-critical-internet .kpi-value { 
+    color: #FFA500;
+    animation: flash-orange 1.5s infinite alternate;
+}
+
+@keyframes flash-orange {
+    from { color: #FFA500; }
+    to { color: #FFD700; }
+}
+
+/* COMANDO DE VOZ FLUTUANTE */
+#icone-voz {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 25px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    z-index: 9999;
+}
+
+/* FEEDBACK VISUAL DO JS (Comando de Voz Ativo) */
+#icone-voz.voz-ativa {
+    background-color: #ffc107;
+    box-shadow: 0 0 15px #ffc107;
 }
 
 
-function toggleComandoVoz() {
-    const iconeVoz = document.getElementById('icone-voz');
-    
-    if (vozAtiva) {
-        vozAtiva = false;
-        iconeVoz.classList.remove('voz-ativa');
-    } else {
-        vozAtiva = true;
-        iconeVoz.classList.add('voz-ativa');
-    }
-}
-
-
-// ====================================================================
-// FUNÇÕES DE INTERAÇÃO BÁSICA (UX)
-// ====================================================================
-
-function fecharAlertaPrioritario() {
-    const alerta = document.getElementById('alerta-prioridade');
-    if (confirm("CONFIRMAR FECHAMENTO: Esta é uma Ação Prioritária. Deseja prosseguir?")) {
-        alerta.style.display = 'none';
-    }
-}
-
-function toggleHistorico() {
-    const detalhes = document.getElementById('detalhes-historico');
-    if (detalhes.style.display === 'none' || detalhes.style.display === '') {
-        detalhes.style.display = 'block';
-    } else {
-        detalhes.style.display = 'none';
-    }
-}
-
-
-// ====================================================================
-// INICIALIZAÇÃO DO PAINEL
-// ====================================================================
-
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.btn-modo').forEach(button => {
-        button.addEventListener('click', function() {
-            trocarModo(this.getAttribute('data-modo'));
-        });
-    });
-    
-    document.getElementById('icone-voz').addEventListener('click', toggleComandoVoz);
-
-    trocarModo('geopolitico');
-
-    // Inicia a monitoração de ameaças
-    setInterval(monitorarAmeacas, 5000); 
-    monitorarAmeacas();
-});
+/* CLASSES CONTROLADAS PELO JS */
+.modo-painel { display: none; }
+.modo-painel.ativo { display: block; }
