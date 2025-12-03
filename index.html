@@ -3,8 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Geopolítico - V18 (Final Fix)</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Painel Geopolítico - V19 (Diagnóstico Final)</title>
+    
+    <style>
+        /* GERAIS E ESTRUTURA */
+        body {
+            background-color: #0d0d0d; 
+            color: #e0e0e0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        #painel-controle {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 15px;
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .titulo-painel { color: #76ff03; text-align: center; }
+
+        /* BOTÕES E NAVEGAÇÃO */
+        #menu-modos { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; }
+        .btn-modo { background: #333; color: white; padding: 10px; border: 1px solid #555; cursor: pointer; }
+        .btn-modo.ativo { background: #76ff03; color: black; font-weight: bold; }
+
+        /* MAPA DE RISCO E CORES */
+        #mapa-risco {
+            padding: 50px 15px; 
+            text-align: center;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            color: white;
+        }
+        .risco-marrom { background-color: #8b4513; }
+        .risco-vermelho { background-color: #FF0000; }
+
+        /* ALERTA PRIORITÁRIO */
+        .aba-prioridade { background: #660000; border: 2px solid #FF0000; padding: 15px; text-align: center; margin-bottom: 20px; }
+        .btn-fechar-alerta { background: #FF0000; color: white; padding: 8px 15px; border: none; cursor: pointer; margin-top: 10px; }
+
+        /* WIDGETS */
+        .widgets-area { display: flex; flex-wrap: wrap; gap: 10px; }
+        .widget-card {
+            flex: 1 1 150px;
+            padding: 15px;
+            border-left: 4px solid #76ff03;
+            background: #282828;
+            color: white;
+        }
+        .widget-card.status-critical { border-left-color: #FF0000; }
+        .status-critical-internet { border-left-color: #FFA500; }
+        .status-critical-internet h3 { color: #FFA500; }
+
+        /* COMANDO DE VOZ E EXIBIÇÃO JS */
+        #icone-voz { position: fixed; bottom: 20px; right: 20px; font-size: 2em; cursor: pointer; color: #76ff03;}
+        #icone-voz.voz-ativa { background-color: #ffc107; box-shadow: 0 0 15px #ffc107; }
+        .modo-painel.ativo { display: block; }
+    </style>
 </head>
 <body>
 
@@ -48,6 +106,86 @@
         </main>
         
     </div>
-    <script src="script.js"></script>
+    
+    <script>
+        const NIVEIS_RISCO = { ALERTA: 'marrom', EMERGENCIA: 'vermelho', ESTAVEL: 'verde' };
+        let statusAmeaca = NIVEIS_RISCO.ALERTA; 
+        let modoAtual = 'geopolitico'; 
+        let vozAtiva = false; 
+
+
+        function monitorarAmeacas() {
+            const mapaRisco = document.getElementById('mapa-risco');
+            
+            if (statusAmeaca === NIVEIS_RISCO.EMERGENCIA) {
+                if (modoAtual !== 'crise') trocarModo('crise');
+            } else if (statusAmeaca !== NIVEIS_RISCO.EMERGENCIA && modoAtual === 'crise') {
+                trocarModo('geopolitico');
+            }
+
+            mapaRisco.className = 'risco-' + statusAmeaca;
+        }
+
+        function trocarModo(modoNovo) {
+            if (modoAtual === modoNovo) return;
+            
+            // Oculta todos
+            document.querySelectorAll('.modo-painel').forEach(panel => {
+                panel.classList.remove('ativo'); 
+                panel.style.display = 'none'; 
+            });
+            document.querySelectorAll('.btn-modo').forEach(button => {
+                button.classList.remove('ativo');
+            });
+
+            // Exibe o selecionado
+            const painelSelecionado = document.getElementById('modo-' + modoNovo);
+            if (painelSelecionado) {
+                painelSelecionado.classList.add('ativo');
+                painelSelecionado.style.display = 'block'; 
+            }
+
+            // Marca o botão
+            const botaoSelecionado = document.querySelector('.btn-modo[data-modo="' + modoNovo + '"]');
+            if (botaoSelecionado) {
+                botaoSelecionado.classList.add('ativo');
+            }
+            modoAtual = modoNovo;
+        }
+
+        function toggleComandoVoz() {
+            const iconeVoz = document.getElementById('icone-voz');
+            if (vozAtiva) {
+                vozAtiva = false;
+                iconeVoz.classList.remove('voz-ativa');
+            } else {
+                vozAtiva = true;
+                iconeVoz.classList.add('voz-ativa');
+            }
+        }
+
+        function fecharAlertaPrioritario() {
+            document.getElementById('alerta-prioridade').style.display = 'none';
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.btn-modo').forEach(button => {
+                button.addEventListener('click', function() {
+                    trocarModo(this.getAttribute('data-modo'));
+                });
+            });
+            
+            document.getElementById('icone-voz').addEventListener('click', toggleComandoVoz);
+
+            // Inicialização: Trocar modo não é mais necessário aqui, apenas iniciar a monitoração
+            // Pois o HTML já forçou o display do modo geopolitico.
+            
+            document.querySelector('.btn-modo[data-modo="geopolitico"]').classList.add('ativo');
+
+            // Inicia a monitoração de ameaças
+            setInterval(monitorarAmeacas, 5000); 
+            monitorarAmeacas();
+        });
+    </script>
 </body>
 </html>
