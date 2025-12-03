@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Geopolítico - V17 (Estável)</title>
+    <title>Painel Geopolítico - V18 (Final Fix)</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -15,7 +15,7 @@
         <header id="painel-header">
             <h1 class="titulo-painel">GEOPOLITICAL MASTER CONTROL</h1>
             <nav id="menu-modos">
-                <button class="btn-modo" data-modo="geopolitico">GEOPOLÍTICO</button>
+                <button class="btn-modo" data-modo="geopolitico" class="ativo">GEOPOLÍTICO</button>
                 <button class="btn-modo" data-modo="crise">GESTÃO DE CRISE</button>
             </nav>
         </header>
@@ -30,7 +30,7 @@
 
         <main id="conteudo-dinamico">
             
-            <div id="modo-geopolitico" class="modo-painel">
+            <div id="modo-geopolitico" class="modo-painel ativo" style="display: block;"> 
                 <div id="mapa-risco" class="risco-marrom">
                     <p class="titulo-mapa">MAPA DE RISCO REGIONAL</p>
                 </div>
