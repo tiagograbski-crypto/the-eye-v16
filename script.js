@@ -1,306 +1,231 @@
-/* === CONFIGURAÇÕES GERAIS === */
-const PASSWORDS = {
-    // Senha padrão (pode ser alterada via terminal)
-    default: "0000",
+/* --- THE EYE V16.1: CORREÇÃO DE INICIALIZAÇÃO --- */
+
+// === 1. CONFIGURAÇÕES DE SEGURANÇA ===
+const SECURE_HASH = "8d23cf6c86e834a7aa6ededb4078cd297594451087f941f7112ee5608b471207";
+const ACCESS_PIN = "1984";
+const EMERGENCY_OVERRIDE = "OMEGA-ZERO-RESET-SYSTEM";
+const MAX_ATTEMPTS = 3;
+let failedAttempts = 0;
+let voiceEnabled = true;
+
+// === 2. CONFIGURAÇÕES DE DADOS E MODOS ===
+let myChart = null;
+let chartData = Array(10).fill(0);
+
+const MODES = {
+    'CRISIS': { color: '#ff003c', label: 'NÍVEL GLOBAL', labels: ['SISMO', 'NEOs', 'CLIMA', 'WAR'] },
+    'CYBER': { color: '#00d9ff', label: 'REDE', labels: ['FIREWALL', 'LOAD', 'BLOCKS', 'VPN'] },
+    'MARKETING': { color: '#00ff41', label: 'LEADS', labels: ['LEADS', 'ROI', 'SENTIMENT', 'VIEWS'] }
 };
 
-const MODE_CONFIGS = {
-    // Cores e descrições para cada modo
-    ORACLE: {
-        accent: '#00d9ff', // Azul ciano
-        title: 'ORACLE MODE V16',
-        summary: 'Análise de Probabilidade e Processamento de Dados Multivetorial em Tempo Real.',
-        status: 'ONLINE',
-        status_class: 'status-green'
-    },
-    RED_ALERT: {
-        accent: '#ff003c', // Vermelho
-        title: 'ALERT MODE V16',
-        summary: 'Alerta de Segurança e Bloqueio de Sistema Ativado. Autenticação Necessária.',
-        status: 'LOCKDOWN',
-        status_class: 'status-red'
+let currentMode = 'CRISIS';
+let currentRisk = 0;
+
+// === 3. INICIALIZAÇÃO (BOOT) ===
+document.addEventListener("DOMContentLoaded", () => {
+    // TENTA INICIAR O GLOBO 3D (Se falhar, a função continua)
+    if(window.VANTA) {
+        VANTA.GLOBE({
+            el: "#intro-overlay",
+            mouseControls: false, touchControls: false, gyroControls: false,
+            minHeight: 200.00, minWidth: 200.00, scale: 1.00, scaleMobile: 0.8,
+            color: 0x00d9ff, backgroundColor: 0x050505
+        });
     }
-};
-
-let currentMode = 'ORACLE'; // Modo inicial
-
-/* === INICIALIZAÇÃO DO SISTEMA === */
-
-window.onload = function() {
-    // 1. Inicia o overlay de introdução
-    setTimeout(startIntro, 50); 
     
-    // 2. Define o modo inicial
-    setSystemMode(currentMode); 
+    // TIMEOUT DE EMERGÊNCIA (ESTE CÓDIGO FORÇA A SAÍDA DA INTRO)
+    setTimeout(() => { 
+        document.getElementById('intro-overlay').classList.add('fade-out'); 
+        setTimeout(()=>{ document.getElementById('intro-overlay').style.display='none' }, 1500); 
+    }, 3500); // 3.5 segundos de espera máxima
+
+});
+
+// --- RESTO DO CÓDIGO DO SISTEMA (MANTIDO) ---
+
+// === 4. SISTEMA DE LOGIN (PEN DRIVE + PIN) ===
+async function attemptLogin() {
+    const fileInput = document.getElementById('usb-key-input');
+    const pinInput = document.getElementById('pin-input').value.trim();
+    const msg = document.getElementById('login-msg');
+
+    if (pinInput === EMERGENCY_OVERRIDE) { unlockSystem(); return; }
+    if (fileInput.files.length === 0) { msg.textContent = "ERRO: CHAVE FÍSICA AUSENTE"; return; }
     
-    // 3. Adiciona listeners
-    document.getElementById('mode-selector').addEventListener('change', handleModeChange);
-    document.getElementById('command-form').addEventListener('submit', handleCommand);
-    document.getElementById('login-form').addEventListener('submit', handleLogin);
-    document.getElementById('logout-btn').addEventListener('click', () => setSystemMode('RED_ALERT'));
-
-    // 4. Inicia o loop de animação de dados
-    setInterval(updateTelemetry, 1000);
-    setInterval(updateOracleData, 3000);
-    setInterval(updateChatLog, 500);
-
-    // 5. Inicia o gráfico
-    initChart();
-};
-
-/* --- TELA DE INTRODUÇÃO --- */
-
-function startIntro() {
-    const introOverlay = document.getElementById('intro-overlay');
-    const introContent = document.querySelector('.intro-content');
-    const securityOverlay = document.getElementById('security-overlay');
-
-    // Atraso de 2 segundos para simular a inicialização
-    setTimeout(() => {
-        // Mostra a tela de login (RED_ALERT)
-        securityOverlay.style.display = 'flex';
-        // Começa a animação de fade-out da introdução
-        introOverlay.classList.add('fade-out');
-
-        // Remove o overlay de intro após a transição
-        setTimeout(() => {
-            introOverlay.style.display = 'none';
-        }, 1500); 
-    }, 2000); 
-}
-
-
-/* --- TELA DE LOGIN (RED_ALERT) --- */
-
-function handleLogin(e) {
-    e.preventDefault();
-    const passwordInput = document.getElementById('password-input').value;
-    const loginMsg = document.getElementById('login-msg');
-    
-    // Verifica a senha. A senha é a default (0000) por enquanto.
-    if (passwordInput === PASSWORDS.default) {
-        loginMsg.textContent = 'ACESSO CONCEDIDO';
-        loginMsg.style.color = MODE_CONFIGS.ORACLE.accent;
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+    reader.onload = async function(e) {
+        const content = e.target.result.trim();
+        const msgBuffer = new TextEncoder().encode(content);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+        const hashHex = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
         
-        setTimeout(() => {
-            document.getElementById('security-overlay').style.display = 'none';
-            setSystemMode('ORACLE'); // Muda para o modo normal
-        }, 1000);
-    } else {
-        loginMsg.textContent = 'FALHA DE AUTENTICAÇÃO';
-        loginMsg.style.color = MODE_CONFIGS.RED_ALERT.accent;
-        // Limpa a mensagem após um tempo
-        setTimeout(() => {
-            loginMsg.textContent = '';
-        }, 2000);
-    }
-}
-
-
-/* === CONTROLE DE MODO DO SISTEMA === */
-
-function setSystemMode(mode) {
-    // Guarda o modo atual
-    currentMode = mode; 
-    
-    // Carrega a configuração de cores e textos
-    const config = MODE_CONFIGS[mode];
-    
-    // 1. Atualiza as variáveis CSS para cores
-    document.documentElement.style.setProperty('--accent-blue', config.accent);
-    
-    // 2. Atualiza o status do dashboard
-    document.getElementById('system-title').textContent = config.title;
-    document.getElementById('ai-summary').textContent = config.summary;
-    document.getElementById('status-card').className = 'ai-card status-card ' + config.status_class;
-    document.getElementById('status-title').textContent = config.status;
-
-    // 3. Controla a tela de bloqueio
-    if (mode === 'RED_ALERT') {
-        document.getElementById('lockdown-screen').style.display = 'flex';
-    } else {
-        document.getElementById('lockdown-screen').style.display = 'none';
-    }
-
-    // 4. Seleciona a opção correta no dropdown
-    document.getElementById('mode-selector').value = mode;
-
-    // 5. Adiciona mensagem de log
-    if (mode === 'RED_ALERT') {
-        addToChatLog('SYSTEM', 'PROTOCOL RED_ALERT ATIVADO. BLOQUEIO DE SISTEMA.');
-    } else if (mode === 'ORACLE') {
-        addToChatLog('SYSTEM', 'PROTOCOL ORACLE RESTAURADO. ANÁLISE INICIADA.');
-    }
-}
-
-function handleModeChange(e) {
-    const newMode = e.target.value;
-    // O modo RED_ALERT só pode ser ativado, não desativado por aqui
-    if (newMode === 'RED_ALERT') {
-        setSystemMode('RED_ALERT');
-    } else if (newMode === 'ORACLE') {
-        // Redireciona para o login se estiver em modo de alerta
-        if (currentMode === 'RED_ALERT') {
-            document.getElementById('security-overlay').style.display = 'flex';
-            document.getElementById('password-input').value = '';
-            document.getElementById('login-msg').textContent = '';
+        if (hashHex === SECURE_HASH && pinInput === ACCESS_PIN) {
+            unlockSystem();
         } else {
-            setSystemMode('ORACLE');
+            failedAttempts++;
+            msg.textContent = FALHA DE ACESSO ${failedAttempts}/${MAX_ATTEMPTS};
+            if(failedAttempts >= MAX_ATTEMPTS) {
+                document.getElementById('security-overlay').style.display = 'none';
+                document.getElementById('lockdown-screen').style.display = 'flex';
+            }
         }
+    };
+    reader.readAsText(file);
+}
+
+function unlockSystem() {
+    document.getElementById('security-overlay').style.display = 'none';
+    initSystem();
+    speak("Identidade confirmada. Bem-vindo ao sistema Omniscient versão 16.");
+}
+
+function initSystem() {
+    startClock(); 
+    initChart(); 
+    initStealthMode(); 
+    updateDashboard();
+    setInterval(updateDashboard, 5000);
+}
+
+// === 5. FUNÇÕES DE CONTROLE (VOZ, TELA, RELATÓRIO) ===
+
+function speak(text) {
+    if(!voiceEnabled) return;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'pt-BR'; 
+    utterance.rate = 1.1; 
+    window.speechSynthesis.speak(utterance);
+}
+
+function toggleVoice() {
+    voiceEnabled = !voiceEnabled;
+    const btn = document.getElementById('btn-voice');
+    btn.innerText = voiceEnabled ? "🔊 VOZ: ON" : "🔇 VOZ: OFF";
+    btn.style.borderColor = voiceEnabled ? "var(--accent-blue)" : "#444";
+}
+
+function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    } else {
+        if (document.exitFullscreen) document.exitFullscreen();
     }
 }
 
-/* === DADOS E GRÁFICOS === */
+function downloadReport() {
+    const date = new Date().toLocaleString();
+    const content = === RELATÓRIO TÁTICO THE EYE V16 ===\nDATA: ${date}\nMODO: ${currentMode}\nRISCO ATUAL: ${currentRisk}%\nLOGS:\n${document.getElementById('hidden-log').value};
+    const blob = new Blob([content], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = RELATORIO_${Date.now()}.txt;
+    a.click();
+    speak("Relatório tático baixado com sucesso.");
+}
 
-// Função de Chart.js
-let telemtryChart;
-let chartData = [50, 50, 50, 50, 50];
-
+// === 6. DASHBOARD CORE ===
 function initChart() {
-    const ctx = document.getElementById('telemetry-chart').getContext('2d');
-    telemtryChart = new Chart(ctx, {
+    const ctx = document.getElementById('liveChart').getContext('2d');
+    myChart = new Chart(ctx, {
         type: 'line',
-        data: {
-            labels: ['0', '1', '2', '3', '4'],
-            datasets: [{
-                label: 'Sinal',
-                data: chartData,
-                backgroundColor: 'rgba(0, 217, 255, 0.1)',
-                borderColor: 'var(--accent-blue)',
-                borderWidth: 2,
-                pointRadius: 0,
-                tension: 0.1,
-                fill: true
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            scales: {
-                y: {
-                    min: 0, max: 100,
-                    grid: { color: 'rgba(51, 51, 51, 0.5)' },
-                    ticks: { color: '#666' }
-                },
-                x: {
-                    grid: { display: false },
-                    ticks: { color: '#666' }
-                }
-            },
-            plugins: {
-                legend: { display: false },
-                tooltip: { enabled: false }
-            },
-            animation: false
-        }
+        data: { labels: ['','','','','','','','','','AGORA'], datasets: [{ label: 'Atividade', data: chartData, borderColor: '#00d9ff', backgroundColor: 'rgba(0,217,255,0.1)', borderWidth: 2, fill: true, tension: 0.4 }] },
+        options: { responsive: true, maintainAspectRatio: false, animation: { duration: 1000 }, scales: { y: {display:false}, x: {display:false} }, plugins: { legend: {display:false} } }
     });
 }
 
-function updateTelemetry() {
-    if (currentMode !== 'ORACLE') return;
-
-    // 1. Atualiza o gráfico (rolling data)
-    const newValue = Math.floor(Math.random() * 80) + 10; // 10 a 90
-    chartData.push(newValue);
-    chartData.shift();
-    
-    telemtryChart.data.datasets[0].data = chartData;
-    telemtryChart.update();
-
-    // 2. Atualiza os dados do grid (telemetry-grid)
-    document.getElementById('temp-value').textContent = (Math.random() * (45 - 30) + 30).toFixed(2) + '°C';
-    document.getElementById('load-value').textContent = (Math.random() * 100).toFixed(1) + '%';
-    document.getElementById('band-value').textContent = (Math.random() * 500).toFixed(0) + 'Mbps';
-    document.getElementById('latency-value').textContent = (Math.random() * 10).toFixed(1) + 'ms';
+function updateChart(val, color) {
+    chartData.shift(); chartData.push(val);
+    myChart.data.datasets[0].data = chartData;
+    myChart.data.datasets[0].borderColor = color;
+    myChart.data.datasets[0].backgroundColor = color + '20';
+    myChart.update();
 }
 
-function updateOracleData() {
-    if (currentMode !== 'ORACLE') return;
-    
-    // Atualiza o medidor de probabilidade
-    const prob = (Math.random() * (99.9 - 70.0) + 70.0).toFixed(1);
-    document.getElementById('prob-meter').textContent = prob + '%';
-    
-    // Troca a cor do medidor dependendo da probabilidade
-    const probColor = prob > 90 ? MODE_CONFIGS.ORACLE.accent : '#ffcc00';
-    document.getElementById('prob-meter').style.color = probColor;
-    document.getElementById('prob-meter').style.textShadow = 0 0 10px ${probColor};
-
+function changeMode() {
+    currentMode = document.getElementById('mode-selector').value;
+    updateDashboard();
+    addChatMsg("system", > Modo alterado para: ${currentMode});
+    speak(Mudando para modo ${currentMode}.);
 }
 
-/* === TERMINAL DE CHAT === */
+function updateDashboard() {
+    const config = MODES[currentMode];
+    document.documentElement.style.setProperty('--accent-blue', config.color);
+    document.querySelectorAll('.t-item .label').forEach((lbl, i) => { if(config.labels[i]) lbl.innerText = config.labels[i]; });
 
-function handleCommand(e) {
-    e.preventDefault();
-    const commandInput = document.getElementById('user-command');
-    const command = commandInput.value.trim().toLowerCase();
-    commandInput.value = '';
-
-    if (command === '') return;
-
-    // 1. Adiciona o comando do usuário ao log
-    addToChatLog('USER', command);
-
-    // 2. Processa o comando
-    let response = '';
-    
-    if (currentMode === 'RED_ALERT') {
-        response = 'ERRO: SISTEMA BLOQUEADO. NECESSÁRIA AUTENTICAÇÃO.';
-    } else if (command === 'help') {
-        response = 'COMANDOS DISPONÍVEIS: status, log, lockdown, setpass <senha>.';
-    } else if (command === 'status') {
-        response = STATUS OPERACIONAL: ${MODE_CONFIGS[currentMode].status}. PROB: ${document.getElementById('prob-meter').textContent};
-    } else if (command === 'log') {
-        response = 'LOG: Nenhuma anomalia crítica registrada nas últimas 24 horas.';
-    } else if (command === 'lockdown') {
-        response = 'ATIVANDO PROTOCOL RED_ALERT...';
-        setTimeout(() => setSystemMode('RED_ALERT'), 1000);
-    } else if (command.startsWith('setpass')) {
-        const parts = command.split(' ');
-        if (parts.length === 2 && parts[1].length >= 4) {
-            PASSWORDS.default = parts[1];
-            response = SUCESSO: Senha alterada para ${parts[1]}.;
-        } else {
-            response = 'ERRO: Formato incorreto. Use: setpass <nova senha com 4 ou mais dígitos>.';
-        }
+    let val = 0;
+    if (currentMode === 'CRISIS') {
+        val = Math.floor(Math.random() * 30) + 10;
+        document.getElementById('val-1').innerText = "MAG " + (val/10).toFixed(1);
+        document.getElementById('val-2').innerText = "SCAN"; document.getElementById('val-3').innerText = "24°C"; document.getElementById('val-4').innerText = "NOMINAL";
+    } else if (currentMode === 'CYBER') {
+        val = Math.floor(Math.random() * 80) + 10;
+        document.getElementById('val-1').innerText = "ON"; document.getElementById('val-2').innerText = val + "%"; document.getElementById('val-3').innerText = "0"; document.getElementById('val-4').innerText = "SECURE";
     } else {
-        response = COMANDO "${command}" NÃO RECONHECIDO. Tente 'help'.;
+        val = Math.floor(Math.random() * 10) + 1;
+        document.getElementById('val-1').innerText = "+" + val; document.getElementById('val-2').innerText = "15x"; document.getElementById('val-3').innerText = "GOOD"; document.getElementById('val-4').innerText = "HIGH";
     }
 
-    // 3. Adiciona a resposta da IA ao log após um pequeno delay
-    setTimeout(() => addToChatLog('AI', response), 500);
+    currentRisk = val;
+    updateChart(val, config.color);
+    
+    document.getElementById('prediction-percent').innerText = val + "%";
+    document.getElementById('prediction-percent').style.color = config.color;
+    
+    const statusTitle = document.getElementById('status-title');
+    const statusCard = document.getElementById('status-card');
+    
+    if (val > 80) {
+        statusTitle.innerText = "CRÍTICO";
+        statusCard.className = 'status-red';
+    } else {
+        statusTitle.innerText = "NOMINAL";
+        statusCard.className = 'status-green';
+    }
+    statusCard.style.borderColor = config.color;
+    
+    document.getElementById('hidden-log').value += [${new Date().toLocaleTimeString()}] ${currentMode}: ${val}% Risk\n;
 }
 
-function addToChatLog(type, message) {
-    const chatOutput = document.getElementById('chat-output');
-    const msgDiv = document.createElement('div');
-    
-    msgDiv.className = 'msg ' + type.toLowerCase();
-    
-    // Prefixo para a mensagem
-    let prefix = '';
-    if (type === 'USER') prefix = '>> ';
-    else if (type === 'AI') prefix = 'ORACLE: ';
-    else if (type === 'SYSTEM') prefix = '[SYSTEM]: ';
-
-    msgDiv.textContent = prefix + message;
-
-    // Adiciona ao final e rola para baixo
-    chatOutput.appendChild(msgDiv);
-    chatOutput.scrollTop = chatOutput.scrollHeight;
+// === 7. TERMINAL DE CHAT IA + VOZ (SIMPLIFICADO) ===
+function handleEnter(e) { if(e.key === 'Enter') sendMessage(); }
+function sendMessage() {
+    const input = document.getElementById('user-command');
+    const txt = input.value.trim();
+    if(!txt) return;
+    addChatMsg("user", txt);
+    input.value = "";
+    setTimeout(() => { processAIResponse(txt); }, 600);
 }
 
-// Resposta automática da IA (para simular a atividade)
-function updateChatLog() {
-    if (currentMode !== 'ORACLE' || Math.random() > 0.99) return; // 1% de chance a cada 0.5s
+function addChatMsg(type, text) {
+    const div = document.createElement('div');
+    div.className = msg ${type};
+    div.innerText = text;
+    const output = document.getElementById('chat-output');
+    output.appendChild(div);
+    output.scrollTop = output.scrollHeight;
+}
 
-    const messages = [
-        "PROCESSANDO: Análise de sinais de entrada concluída. Padrão estável.",
-        "MONITORANDO: Tráfego de dados na banda V-10 está nominal.",
-        "ALARME: Nível de anomalia abaixo do limiar de alerta. Continuar monitoramento.",
-        "INFO: Reconfigurando o algoritmo de predição temporal."
-    ];
-    
-    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
-    addToChatLog('AI', randomMessage);
+function clearTerminal() { document.getElementById('chat-output').innerHTML = '<div class="msg system">> Memória limpa.</div>'; }
+
+function processAIResponse(userText) {
+    const txt = userText.toLowerCase();
+    let response = "";
+
+    if (txt.includes('status')) response = Status de ${currentMode}: Operando a ${currentRisk}% da capacidade de risco.;
+    else if (txt.includes('analise')) response = "Análise preliminar indica estabilidade.";
+    else response = "Comando processado. Sem anomalias.";
+
+    addChatMsg("ai", > ${response});
+    speak(response);
+}
+
+// Utilitários
+function startClock() { setInterval(() => { document.getElementById('clock').innerText = new Date().toLocaleTimeString(); }, 1000); }
+function initStealthMode() {
+    const locBox = document.getElementById('location-box');
+    const locs = ["SAT-LINK: ALPHA", "SAT-LINK: BRAVO", "SAT-LINK: OMEGA"];
+    setInterval(() => { locBox.innerText = 📍 ${locs[Math.floor(Math.random()*locs.length)]}; }, 4000);
 }
