@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>THE EYE | OMNISCIENT V16</title>
+    <title>THE EYE | WAR ROOM V18</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -13,35 +13,31 @@
     <div id="security-overlay" style="display:none;"> 
         <div class="login-box">
             <h1>🔒 ACESSO RESTRITO</h1>
-            <p>AUTENTICAÇÃO BIOMÉTRICA + FÍSICA</p>
-            
-            <label style="font-size: 0.7rem; color: #666; display:block; margin-top:10px;">1. ARQUIVO DE CHAVE (PEN DRIVE)</label>
+            <p>AUTENTICAÇÃO REQUERIDA</p>
+            <label style="font-size: 0.7rem; color: #666; display:block; margin-top:10px;">1. CHAVE FÍSICA</label>
             <input type="file" id="usb-key-input" class="full-width">
-            
-            <label style="font-size: 0.7rem; color: #666; display:block; margin-top:10px;">2. PIN DE COMANDO</label>
+            <label style="font-size: 0.7rem; color: #666; display:block; margin-top:10px;">2. PIN</label>
             <input type="password" id="pin-input" placeholder="DIGITE O PIN" maxlength="20" class="full-width">
-            
             <button onclick="attemptLogin()" class="btn-main">INICIAR SESSÃO</button>
             <p id="login-msg"></p>
         </div>
     </div>
 
     <div class="container" id="main-dashboard">
+        
         <header>
             <div class="header-top">
-                <div id="location-box">📍 SATÉLITE BUSCANDO SINAL...</div>
-                
+                <div id="location-box">📍 CARREGANDO COORDS...</div>
                 <div class="sys-controls">
                     <button onclick="toggleVoice()" id="btn-voice">🔊 VOZ: ON</button>
                     <button onclick="toggleFullScreen()">⛶ FULL</button>
                     <button onclick="downloadReport()">⬇ RELATÓRIO</button>
                 </div>
-                
                 <div id="clock">00:00:00</div>
             </div>
             
             <div class="header-main">
-                <h1>THE EYE <span class="version">V16.4</span></h1>
+                <h1>WAR ROOM <span class="version">V18.0</span></h1>
                 <div class="mode-control">
                     <label>MODO:</label>
                     <select id="mode-selector" onchange="changeMode()">
@@ -53,69 +49,74 @@
             </div>
         </header>
 
-        <main>
-            <div class="ai-dashboard">
-                <div class="ai-card oracle">
-                    <span class="ai-label">ÍNDICE DE ATIVIDADE</span>
-                    <div class="probability-meter">
-                        <span id="prediction-percent">0%</span>
+        <div class="main-grid">
+            
+            <div class="grid-col-1">
+                <div class="history-panel">
+                    <span class="ai-label" style="border-bottom: 1px solid #444;">HISTÓRICO DE MISSÃO</span>
+                    <ul id="mission-log-list">
+                        <li>Sem eventos registrados.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="grid-col-2">
+                <div class="ai-dashboard">
+                    <div id="status-card" class="status-green"><h2 id="status-title">NOMINAL</h2></div>
+                    
+                    <div class="ai-card analyst">
+                        <span class="ai-label">INTELIGÊNCIA (ANÁLISE)</span>
+                        <p id="ai-summary">Inicializando sensores...</p>
                     </div>
                 </div>
-                
-                <div class="ai-card analyst">
-                    <span class="ai-label">NÚCLEO DE INTELIGÊNCIA</span>
-                    <p id="ai-summary">Inicializando sensores...</p>
-                </div>
-                
-                <div id="status-card" class="status-green">
-                    <h2 id="status-title">NOMINAL</h2>
-                </div>
-            </div>
 
-            <div class="chart-container">
-                <canvas id="liveChart"></canvas>
-            </div>
+                <div class="chart-container"><canvas id="liveChart"></canvas></div>
 
-            <div class="telemetry-grid">
-                <div class="t-item"><span class="label">METRICA A</span><span class="value" id="val-1">...</span></div>
-                <div class="t-item"><span class="label">METRICA B</span><span class="value" id="val-2">...</span></div>
-                <div class="t-item"><span class="label">METRICA C</span><span class="value" id="val-3">...</span></div>
-                <div class="t-item"><span class="label">METRICA D</span><span class="value" id="val-4">...</span></div>
-            </div>
-
-            <div class="terminal-wrapper">
-                <div class="terminal-header">
-                    <span class="ai-label">🔵 NEURAL LINK (VOICE ENABLED)</span>
-                    <button onclick="clearTerminal()" style="background:none;border:none;color:#666;cursor:pointer;">[LIMPAR]</button>
-                </div>
-                <div id="chat-output">
-                    <div class="msg system">> Conexão estabelecida.</div>
-                </div>
-                <div class="chat-input-area">
-                    <input type="text" id="user-command" placeholder="Digite um comando para a IA..." onkeypress="handleEnter(event)">
-                    <button onclick="sendMessage()" class="btn-send">ENVIAR</button>
+                <div class="terminal-wrapper">
+                    <div class="terminal-header"><span class="ai-label">🔵 NEURAL LINK</span><button onclick="clearTerminal()">[CLR]</button></div>
+                    <div id="chat-output"><div class="msg system">> Conexão estabelecida.</div></div>
+                    <div class="chat-input-area">
+                        <input type="text" id="user-command" placeholder="Converse com a IA..." onkeypress="handleEnter(event)">
+                        <button onclick="sendMessage()" class="btn-send">ENVIAR</button>
+                    </div>
                 </div>
             </div>
 
-            <textarea id="hidden-log" style="display:none"></textarea>
+            <div class="grid-col-3">
+                <div class="detail-panel">
+                    <span class="ai-label" style="border-bottom: 1px solid #444;">DETALHES DO ALERTA / TELEMETRIA</span>
+                    <div id="detail-content">
+                        <div class="telemetry-grid">
+                            <div class="t-item"><span class="label">SISMO ATIVO</span><span class="value" id="val-1">...</span></div>
+                            <div class="t-item"><span class="label">CLIMA LOCAL</span><span class="value" id="val-3">...</span></div>
+                            <div class="t-item"><span class="label">CONFLITO WAR</span><span class="value" id="val-4">...</span></div>
+                            <div class="t-item"><span class="label">ASTEROIDES</span><span class="value" id="val-2">...</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        </main>
-    </div>
+            <div class="grid-col-4">
+                <div class="ai-card oracle">
+                    <span class="ai-label">ÍNDICE DE ATIVIDADE</span>
+                    <div class="probability-meter"><span id="prediction-percent">0%</span></div>
+                </div>
+                <div class="ai-card">
+                    <span class="ai-label">ESTADO DE HARDWARE</span>
+                    <p id="hardware-status">Bateria: 100%</p>
+                </div>
+                <div class="agent-log">
+                    <span class="ai-label">LOG DE SISTEMA</span>
+                    <ul id="system-log"></ul>
+                </div>
+            </div>
+
+        </div> </div>
 
     <div id="lockdown-screen">
         <h1>⛔ ACESSO NEGADO ⛔</h1>
-        <p>PROTOCOLO DE SEGURANÇA ATIVADO.</p>
-        <p>Seu IP foi registrado.</p>
     </div>
 
-    <script src="./script.js"></script>
-    <script>
-        // Chamada forçada de inicialização final
-        window.onload = function() {
-            if (typeof initSystem === 'function') {
-                initSystem();
-            }
-        };
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
