@@ -3,29 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Geopolítico - Foco de Alerta</title>
+    <title>Painel Geopolítico - V17 (Estável)</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <div id="icone-voz">
-        <span class="icone-microfone">🎙️</span>
-    </div>
+    <div id="icone-voz">🎙️</div>
 
     <div id="painel-controle">
         
         <header id="painel-header">
             <h1 class="titulo-painel">GEOPOLITICAL MASTER CONTROL</h1>
-            <div class="controles-topo">
-                <div id="status-conexao">
-                    <span class="status-link">NEURAL LINK: <span class="conexao-ok">Conexão Estabelecida</span></span>
-                </div>
-                <select id="seletor-localizacao">
-                    <option value="global">GLOBAL</option>
-                    <option value="chapeco" selected>CHAPECÓ - SC</option>
-                </select>
-            </div>
-            
             <nav id="menu-modos">
                 <button class="btn-modo" data-modo="geopolitico">GEOPOLÍTICO</button>
                 <button class="btn-modo" data-modo="crise">GESTÃO DE CRISE</button>
@@ -34,9 +22,9 @@
         
         <section id="alerta-prioridade">
             <div class="aba-prioridade">
-                <h3>🚨 AÇÃO PRIORITÁRIA (REQUER CONFIRMAÇÃO) 🚨</h3>
-                <p id="texto-alerta-prioritario">Risco de interrupção de Energia. Revisar Protocolo Alternativo.</p>
-                <button class="btn-fechar-alerta" onclick="fecharAlertaPrioritario()">FECHAR E CONFIRMAR</button>
+                <h3>🚨 AÇÃO PRIORITÁRIA 🚨</h3>
+                <p>Alerta de Risco de Energia.</p>
+                <button class="btn-fechar-alerta" onclick="fecharAlertaPrioritario()">FECHAR</button>
             </div>
         </section>
 
@@ -45,58 +33,21 @@
             <div id="modo-geopolitico" class="modo-painel">
                 <div id="mapa-risco" class="risco-marrom">
                     <p class="titulo-mapa">MAPA DE RISCO REGIONAL</p>
-                    <p class="status-mapa">Status: Crise Hídrica Potencial. <span class="kpi-value">Índice de Atividade: 75%</span></p>
                 </div>
                 
                 <div class="widgets-area">
-                    <div class="widget-card status-critical">
-                        <h3>ENERGIA</h3>
-                        <p class="kpi-value">Risco Alto</p>
-                        <p class="detalhe-kpi">Status: MARROM</p>
-                    </div>
-
-                    <div class="widget-card status-normal">
-                        <h3>ALIMENTAÇÃO</h3>
-                        <p class="kpi-value">Estável</p>
-                        <p class="detalhe-kpi">Nível de Reserva: OK</p>
-                    </div>
-
-                    <div class="widget-card status-critical-internet">
-                        <h3>INTERNET</h3>
-                        <p class="kpi-value">ALERTA CRÍTICO</p>
-                        <p class="detalhe-kpi">Risco de Cabo Submarino. Urgente: Avaliar Antena Satelital.</p>
-                    </div>
-
-                    <div class="widget-card status-normal">
-                        <h3>ASTEROIDES</h3>
-                        <p class="kpi-value">Sem Perigo</p>
-                        <p class="detalhe-kpi">Perigo Mínimo: 0.0001%</p>
-                    </div>
+                    <div class="widget-card status-critical"><h3>ENERGIA</h3></div>
+                    <div class="widget-card status-critical-internet"><h3>INTERNET</h3></div>
                 </div>
             </div>
 
             <div id="modo-crise" class="modo-painel">
                 <h2>GESTÃO DE CRISE</h2>
-                <p>⚠️ CHECKLISTS E PROTOCOLOS DE AÇÃO IMEDIATA. PRIORIDADE MÁXIMA.</p>
+                <p>CHECKLISTS E PROTOCOLOS.</p>
             </div>
-
         </main>
         
-        <footer id="painel-footer">
-            <div id="historico-missoes">
-                <h3 onclick="toggleHistorico()">HISTÓRICO DE MISSÕES (Prévia)</h3>
-                <p class="previa-historico">Última: Avaliação de Risco Geopolítico (2025-12-03)</p>
-                <div id="detalhes-historico" style="display: none;">
-                    <p>Detalhes da Missão mais recente aqui...</p>
-                </div>
-            </div>
-            <div id="time-especialistas">
-                <h3>TIME DE ESPECIALISTAS</h3>
-                <p>Geopolítica, Análise de Dados Críticos.</p>
-            </div>
-        </footer>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
