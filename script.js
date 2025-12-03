@@ -1,4 +1,4 @@
-/* --- THE EYE V17.0: CORREÇÃO TOTAL DE DADOS E INTEGRAÇÃO LOCAL --- */
+/* --- THE EYE V17.1: CORREÇÃO TOTAL DE DADOS E INTEGRAÇÃO LOCAL --- */
 
 // === 1. CONFIGURAÇÕES DE SEGURANÇA ===
 const SECURE_HASH = "8d23cf6c86e834a7aa6ededb4078cd297594451087f941f7112ee5608b471207";
@@ -13,12 +13,14 @@ let myChart = null;
 let chartData = Array(10).fill(0);
 const UPDATE_INTERVAL = 5000; // 5 segundos para o gráfico
 
-// Coordenadas de Chapecó (para o Alerta de 30°C)
+let userCoords = null; // Armazena a localização do usuário após permissão
+
+// Coordenadas de Chapecó (Fallback de Emergência)
 const CHAPECO_LAT = -27.095; 
 const CHAPECO_LON = -52.618;
 
 const MODES = {
-    'CRISIS': { color: '#ff003c', label: 'NÍVEL GLOBAL', labels: ['SISMO', 'NEOs', 'CLIMA C.P.', 'GUERRA'] },
+    'CRISIS': { color: '#ff003c', label: 'NÍVEL GLOBAL', labels: ['SISMO', 'NEOs', 'CLIMA LOCAL', 'GUERRA'] },
     'CYBER': { color: '#00d9ff', label: 'REDE', labels: ['FIREWALL', 'LOAD', 'BLOCKS', 'VPN'] },
     'MARKETING': { color: '#00ff41', label: 'LEADS', labels: ['LEADS', 'ROI', 'SENTIMENT', 'VIEWS'] }
 };
@@ -42,24 +44,76 @@ document.addEventListener("DOMContentLoaded", () => {
 function initSystem() {
     startClock(); 
     initChart(); 
-    initStealthMode();
+    getGeolocation(); // Pede a localização do usuário
     // Chamada inicial de coleta e análise
     fetchAllData();
     // Loop de atualização a cada 5 segundos
     setInterval(fetchAllData, UPDATE_INTERVAL); 
 }
 
-// === 4. COLETA E PROCESSAMENTO DE DADOS ===
+// === 4. GEOLOCALIZAÇÃO E CLIMA LOCAL ===
+
+function getGeolocation() {
+    // Pede a permissão do usuário para usar a localização
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const lat = position.coords.latitude.toFixed(3);
+                const lon = position.coords.longitude.toFixed(3);
+                userCoords = { lat, lon }; // Salva as coordenadas
+                document.getElementById('location-box').innerText = `📍 LOCAL: ${lat}, ${lon}`;
+                fetchWeatherByCoords(lat, lon, false); // Puxa o clima
+            },
+            (error) => {
+                // Se o usuário negar, usa o fallback de Chapecó
+                document.getElementById('location-box').innerText = `📍 GEOLOC. NEGADA (Fallback C.P.)`;
+                fetchWeatherByCoords(CHAFECO_LAT, CHAPECO_LON, true); 
+            }
+        );
+    } else {
+        document.getElementById('location-box').innerText = "📍 GEOLOC. INDISPONÍVEL";
+        fetchWeatherByCoords(CHAFECO_LAT, CHAPECO_LON, true);
+    }
+}
+
+async function fetchWeatherByCoords(lat, lon, isFallback) {
+    try {
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`;
+        const res = await fetch(url);
+        const data = await res.json();
+        
+        const temp = data.current_weather.temperature;
+        
+        let label = isFallback ? "CLIMA (C.P.)" : "CLIMA (LOCAL)";
+        document.getElementById('val-3').innerHTML = `${temp}°C <br><span style="font-size:0.7em;">${label}</span>`;
+        
+        // Alerta de Crise: Temperatura Acima de 30°C (em qualquer localização que ele esteja vendo)
+        if (temp > 30.0) {
+            activeThreats.push("Alerta Térmico Local");
+            speak(`Alerta! Temperatura local atingiu ${temp} graus.`);
+        }
+    } catch(e) {
+        document.getElementById('val-3').innerHTML = "CLIMA OFFLINE";
+    }
+}
+
+// === 5. COLETA E PROCESSAMENTO DE DADOS (INTERVALO) ===
 
 async function fetchAllData() {
     activeThreats = []; // Limpa alertas
     
-    // Chamadas de API (promessas para rodarem juntas)
+    // 1. Atualiza Clima: Usa a localização do usuário, se disponível
+    if (userCoords) {
+        fetchWeatherByCoords(userCoords.lat, userCoords.lon, false);
+    } else {
+        // Se ainda não conseguiu a localização, tenta o fallback
+        fetchWeatherByCoords(CHAFECO_LAT, CHAPECO_LON, true);
+    }
+    
+    // 2. Outras Chamadas de API
     await Promise.all([
         fetchEarthquakes(), 
-        fetchChapecowWeather(), // Alerta de Chapecó
         fetchNewsAndCyber()
-        // NASA e outros dados serão puxados aqui no futuro
     ]);
     
     runAIAnalysis();
@@ -68,48 +122,33 @@ async function fetchAllData() {
 // --- API 1: SISMOS (USGS) - CORREÇÃO DE LOCALIZAÇÃO ---
 async function fetchEarthquakes() {
     try {
+        // Puxa sismos maiores que 2.5 nas últimas 24h
         const res = await fetch('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson');
         const data = await res.json();
         
-        // Puxa o maior sismo
         let maxMag = 0;
-        let maxPlace = 'Sem Sismos Relevantes';
+        let maxPlace = 'NENHUM';
         
         data.features.forEach(q => { 
             if(q.properties.mag > maxMag) {
                 maxMag = q.properties.mag;
-                maxPlace = q.properties.place; // Puxa a localização
+                maxPlace = q.properties.place; 
             } 
         });
 
         const valElement = document.getElementById('val-1');
-        valElement.innerHTML = `MAG ${maxMag.toFixed(1)}<br><span style="font-size:0.7em;">${maxPlace.split(',')[0]}</span>`;
         
+        if (maxMag > 0) {
+            // Exibe Magnitude e Cidade
+            valElement.innerHTML = `MAG ${maxMag.toFixed(1)}<br><span style="font-size:0.7em;">${maxPlace.split(',')[0].toUpperCase()}</span>`;
+        } else {
+            valElement.innerHTML = `SCAN <br><span style="font-size:0.7em;">NOMINAL</span>`;
+        }
+
         // Contribuição para o Risco Global
         if (maxMag >= 6.0) activeThreats.push("Sismo > 6.0");
     } catch(e) { 
         document.getElementById('val-1').innerHTML = "ERRO SISMOS";
-    }
-}
-
-// --- API 2: CLIMA LOCAL (OPEN-METEO) - ALERTA DE CHAPECÓ ---
-async function fetchChapecowWeather() {
-    try {
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${CHAFECO_LAT}&longitude=${CHAFECO_LON}&current_weather=true`;
-        const res = await fetch(url);
-        const data = await res.json();
-        
-        const temp = data.current_weather.temperature;
-        
-        document.getElementById('val-3').innerHTML = `${temp}°C (C.P.)`;
-        
-        // Alerta de Crise: Temperatura Acima de 30°C
-        if (temp > 30.0) {
-            activeThreats.push("Alerta Térmico Chapecó");
-            speak(`Alerta! Temperatura em Chapecó atingiu ${temp} graus.`);
-        }
-    } catch(e) {
-        document.getElementById('val-3').innerHTML = "CLIMA OFFLINE";
     }
 }
 
@@ -122,9 +161,9 @@ async function fetchNewsAndCyber() {
     if (warCount >= 3) activeThreats.push("Tensão Geopolítica");
 }
 
-// --- 5. LÓGICA DA IA E GRÁFICO ---
+// --- 6. LÓGICA DA IA E GRÁFICO ---
 function runAIAnalysis() {
-    // SOMA DOS RISCOS: 1 ponto por ameaça ativa.
+    // SOMA DOS RISCOS: 15 pontos por ameaça ativa.
     currentRisk = activeThreats.length * 15 + Math.floor(Math.random() * 10);
     if (currentRisk > 99) currentRisk = 99;
 
@@ -134,15 +173,15 @@ function runAIAnalysis() {
     
     // 2. Atualiza Nível de Atividade (Porcentagem)
     elPrediction.innerText = `${currentRisk}%`;
-    elPrediction.style.color = currentRisk < 30 ? "var(--accent-green)" : currentRisk < 70 ? "#ffcc00" : "var(--accent-red)";
+    elPrediction.style.color = currentRisk < 30 ? "#00ff41" : currentRisk < 70 ? "#ffcc00" : "#ff003c";
     
     // 3. Resumo da IA
     if (activeThreats.length > 0) {
-        elSummary.innerText = `ALERTA: Detectados ${activeThreats.join(', ')}.`;
+        elSummary.innerText = `ALERTA: Detectados ${activeThreats.join(', ')}. ANALISANDO PRIORIDADES.`;
         elSummary.style.color = "#ffcc00";
         elStatusTitle.innerText = "ALERTA";
         elStatusCard.className = 'status-red';
-        speak(`Alerta! ${activeThreats[0]} detectado.`);
+        // A voz é ativada dentro do fetchWeatherByCoords ou fetchEarthquakes se o alerta for crítico
     } else {
         elSummary.innerText = "Sistemas Globais e Locais Estáveis. Sensores operacionais.";
         elSummary.style.color = "var(--text-main)";
@@ -154,14 +193,13 @@ function runAIAnalysis() {
     document.getElementById('hidden-log').value += `[${new Date().toLocaleTimeString()}] ${currentMode}: Risco ${currentRisk}%\n`;
 }
 
+
 // --- UTILS (Mantido) ---
 function startClock() { setInterval(() => { document.getElementById('clock').innerText = new Date().toLocaleTimeString(); }, 1000); }
 function initStealthMode() {
-    const locBox = document.getElementById('location-box');
-    const locs = ["SAT-LINK: ALPHA", "SAT-LINK: BRAVO", "SAT-LINK: OMEGA"];
-    setInterval(() => { locBox.innerText = `📍 ${locs[Math.floor(Math.random()*locs.length)]}`; }, 4000);
+    // Remove a parte de "SATÉLITE BUSCANDO SINAL..." para focar na Geolocalização real
+    // A função de localização real (getGeolocation) agora é responsável por atualizar 'location-box'.
 }
-
 // Gráfico (Chart.js)
 function initChart() {
     const ctx = document.getElementById('liveChart').getContext('2d');
@@ -195,9 +233,29 @@ function toggleVoice() {
     btn.style.borderColor = voiceEnabled ? "var(--accent-blue)" : "#444";
 }
 
+function toggleFullScreen() {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+    } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+    }
+}
+
+function downloadReport() {
+    const date = new Date().toLocaleString();
+    const content = `=== RELATÓRIO TÁTICO THE EYE V17.1 ===\nDATA: ${date}\nMODO: ${currentMode}\nRISCO ATUAL: ${currentRisk}%\nLOGS:\n${document.getElementById('hidden-log').value}`;
+    const blob = new Blob([content], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `RELATORIO_${Date.now()}.txt`;
+    a.click();
+    speak("Relatório tático baixado com sucesso.");
+}
+
 function changeMode() {
     currentMode = document.getElementById('mode-selector').value;
-    updateDashboard();
+    // Força a atualização dos dados e cores para o novo modo
+    runAIAnalysis(); 
     addChatMsg("system", `> Modo alterado para: ${currentMode}`);
     speak(`Mudando para modo ${currentMode}.`);
 }
@@ -210,4 +268,28 @@ function addChatMsg(type, text) {
     document.getElementById('chat-output').scrollTop = document.getElementById('chat-output').scrollHeight;
 }
 
-// (O restante das funções de terminal, login, etc., é mantido mas ocultado aqui para foco)
+function clearTerminal() { document.getElementById('chat-output').innerHTML = '<div class="msg system">> Memória limpa.</div>'; }
+
+function handleEnter(e) { if(e.key === 'Enter') sendMessage(); }
+function sendMessage() {
+    const input = document.getElementById('user-command');
+    const txt = input.value.trim();
+    if(!txt) return;
+    addChatMsg("user", txt);
+    input.value = "";
+    setTimeout(() => { processAIResponse(txt); }, 600);
+}
+
+function processAIResponse(userText) {
+    const txt = userText.toLowerCase();
+    let response = "";
+
+    if (txt.includes('status')) response = `Status de ${currentMode}: Operando a ${currentRisk}% da capacidade de risco.`;
+    else if (txt.includes('analise')) response = "Análise preliminar indica estabilidade.";
+    else response = "Comando processado. Sem anomalias.";
+
+    addChatMsg("ai", `> ${response}`);
+    speak(response);
+}
+
+// (As funções de login (attemptLogin, unlockSystem) estão ocultas para foco, mas não devem ser apagadas se estiverem no seu script)
