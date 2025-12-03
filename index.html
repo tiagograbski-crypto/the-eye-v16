@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>THE EYE | OMNISCIENT V16</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Roboto+Mono:wght[400;700](https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Roboto+Mono:wght@400;700&display=swap)&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -41,7 +41,7 @@
             </div>
             
             <div class="header-main">
-                <h1>THE EYE <span class="version">V16.3</span></h1>
+                <h1>THE EYE <span class="version">V16.4</span></h1>
                 <div class="mode-control">
                     <label>MODO:</label>
                     <select id="mode-selector" onchange="changeMode()">
@@ -109,5 +109,13 @@
     </div>
 
     <script src="script.js"></script>
+    <script>
+        // Chamada forçada de inicialização, caso o DOMContentLoaded falhe
+        window.onload = function() {
+            if (typeof initSystem === 'function') {
+                initSystem();
+            }
+        };
+    </script>
 </body>
 </html>
