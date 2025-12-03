@@ -19,7 +19,7 @@ body {
     overflow-x: hidden;
 }
 
-/* --- TELA DE ABERTURA (INTRO) - Mantida para garantir que o CSS não quebre --- */
+/* --- TELA DE ABERTURA (CSS mantido) --- */
 #intro-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     z-index: 99999; 
