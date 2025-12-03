@@ -2,120 +2,101 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>THE EYE | OMNISCIENT V16</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Roboto+Mono:wght[400;700](https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Roboto+Mono:wght@400;700&display=swap)&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Geopolítico - Foco de Alerta</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <div id="security-overlay" style="display:none;"> 
-        <div class="login-box">
-            <h1>🔒 ACESSO RESTRITO</h1>
-            <p>AUTENTICAÇÃO BIOMÉTRICA + FÍSICA</p>
-            
-            <label style="font-size: 0.7rem; color: #666; display:block; margin-top:10px;">1. ARQUIVO DE CHAVE (PEN DRIVE)</label>
-            <input type="file" id="usb-key-input" class="full-width">
-            
-            <label style="font-size: 0.7rem; color: #666; display:block; margin-top:10px;">2. PIN DE COMANDO</label>
-            <input type="password" id="pin-input" placeholder="DIGITE O PIN" maxlength="20" class="full-width">
-            
-            <button onclick="attemptLogin()" class="btn-main">INICIAR SESSÃO</button>
-            <p id="login-msg"></p>
-        </div>
+    <div id="icone-voz">
+        <span class="icone-microfone">🎙️</span>
     </div>
 
-    <div class="container" id="main-dashboard">
-        <header>
-            <div class="header-top">
-                <div id="location-box">📍 SATÉLITE BUSCANDO SINAL...</div>
-                
-                <div class="sys-controls">
-                    <button onclick="toggleVoice()" id="btn-voice">🔊 VOZ: ON</button>
-                    <button onclick="toggleFullScreen()">⛶ FULL</button>
-                    <button onclick="downloadReport()">⬇ RELATÓRIO</button>
+    <div id="painel-controle">
+        
+        <header id="painel-header">
+            <h1 class="titulo-painel">GEOPOLITICAL MASTER CONTROL</h1>
+            <div class="controles-topo">
+                <div id="status-conexao">
+                    <span class="status-link">NEURAL LINK: <span class="conexao-ok">Conexão Estabelecida</span></span>
                 </div>
-                
-                <div id="clock">00:00:00</div>
+                <select id="seletor-localizacao">
+                    <option value="global">GLOBAL</option>
+                    <option value="chapeco" selected>CHAPECÓ - SC</option>
+                </select>
             </div>
             
-            <div class="header-main">
-                <h1>THE EYE <span class="version">V16.4</span></h1>
-                <div class="mode-control">
-                    <label>MODO:</label>
-                    <select id="mode-selector" onchange="changeMode()">
-                        <option value="CRISIS">⚠️ GESTÃO DE CRISE</option>
-                        <option value="CYBER">💻 CYBER SECURITY</option>
-                        <option value="MARKETING">📈 MARKETING OPS</option>
-                    </select>
-                </div>
-            </div>
+            <nav id="menu-modos">
+                <button class="btn-modo" data-modo="geopolitico">GEOPOLÍTICO</button>
+                <button class="btn-modo" data-modo="crise">GESTÃO DE CRISE</button>
+            </nav>
         </header>
+        
+        <section id="alerta-prioridade">
+            <div class="aba-prioridade">
+                <h3>🚨 AÇÃO PRIORITÁRIA (REQUER CONFIRMAÇÃO) 🚨</h3>
+                <p id="texto-alerta-prioritario">Risco de interrupção de Energia. Revisar Protocolo Alternativo.</p>
+                <button class="btn-fechar-alerta" onclick="fecharAlertaPrioritario()">FECHAR E CONFIRMAR</button>
+            </div>
+        </section>
 
-        <main>
-            <div class="ai-dashboard">
-                <div class="ai-card oracle">
-                    <span class="ai-label">ÍNDICE DE ATIVIDADE</span>
-                    <div class="probability-meter">
-                        <span id="prediction-percent">0%</span>
+        <main id="conteudo-dinamico">
+            
+            <div id="modo-geopolitico" class="modo-painel">
+                <div id="mapa-risco" class="risco-marrom">
+                    <p class="titulo-mapa">MAPA DE RISCO REGIONAL</p>
+                    <p class="status-mapa">Status: Crise Hídrica Potencial. <span class="kpi-value">Índice de Atividade: 75%</span></p>
+                </div>
+                
+                <div class="widgets-area">
+                    <div class="widget-card status-critical">
+                        <h3>ENERGIA</h3>
+                        <p class="kpi-value">Risco Alto</p>
+                        <p class="detalhe-kpi">Status: MARROM</p>
+                    </div>
+
+                    <div class="widget-card status-normal">
+                        <h3>ALIMENTAÇÃO</h3>
+                        <p class="kpi-value">Estável</p>
+                        <p class="detalhe-kpi">Nível de Reserva: OK</p>
+                    </div>
+
+                    <div class="widget-card status-critical-internet">
+                        <h3>INTERNET</h3>
+                        <p class="kpi-value">ALERTA CRÍTICO</p>
+                        <p class="detalhe-kpi">Risco de Cabo Submarino. Urgente: Avaliar Antena Satelital.</p>
+                    </div>
+
+                    <div class="widget-card status-normal">
+                        <h3>ASTEROIDES</h3>
+                        <p class="kpi-value">Sem Perigo</p>
+                        <p class="detalhe-kpi">Perigo Mínimo: 0.0001%</p>
                     </div>
                 </div>
-                
-                <div class="ai-card analyst">
-                    <span class="ai-label">NÚCLEO DE INTELIGÊNCIA</span>
-                    <p id="ai-summary">Inicializando sensores...</p>
-                </div>
-                
-                <div id="status-card" class="status-green">
-                    <h2 id="status-title">NOMINAL</h2>
-                </div>
             </div>
 
-            <div class="chart-container">
-                <canvas id="liveChart"></canvas>
+            <div id="modo-crise" class="modo-painel">
+                <h2>GESTÃO DE CRISE</h2>
+                <p>⚠️ CHECKLISTS E PROTOCOLOS DE AÇÃO IMEDIATA. PRIORIDADE MÁXIMA.</p>
             </div>
-
-            <div class="telemetry-grid">
-                <div class="t-item"><span class="label">METRICA A</span><span class="value" id="val-1">...</span></div>
-                <div class="t-item"><span class="label">METRICA B</span><span class="value" id="val-2">...</span></div>
-                <div class="t-item"><span class="label">METRICA C</span><span class="value" id="val-3">...</span></div>
-                <div class="t-item"><span class="label">METRICA D</span><span class="value" id="val-4">...</span></div>
-            </div>
-
-            <div class="terminal-wrapper">
-                <div class="terminal-header">
-                    <span class="ai-label">🔵 NEURAL LINK (VOICE ENABLED)</span>
-                    <button onclick="clearTerminal()" style="background:none;border:none;color:#666;cursor:pointer;">[LIMPAR]</button>
-                </div>
-                <div id="chat-output">
-                    <div class="msg system">> Conexão estabelecida.</div>
-                </div>
-                <div class="chat-input-area">
-                    <input type="text" id="user-command" placeholder="Digite um comando para a IA..." onkeypress="handleEnter(event)">
-                    <button onclick="sendMessage()" class="btn-send">ENVIAR</button>
-                </div>
-            </div>
-
-            <textarea id="hidden-log" style="display:none"></textarea>
 
         </main>
-    </div>
-
-    <div id="lockdown-screen">
-        <h1>⛔ ACESSO NEGADO ⛔</h1>
-        <p>PROTOCOLO DE SEGURANÇA ATIVADO.</p>
-        <p>Seu IP foi registrado.</p>
+        
+        <footer id="painel-footer">
+            <div id="historico-missoes">
+                <h3 onclick="toggleHistorico()">HISTÓRICO DE MISSÕES (Prévia)</h3>
+                <p class="previa-historico">Última: Avaliação de Risco Geopolítico (2025-12-03)</p>
+                <div id="detalhes-historico" style="display: none;">
+                    <p>Detalhes da Missão mais recente aqui...</p>
+                </div>
+            </div>
+            <div id="time-especialistas">
+                <h3>TIME DE ESPECIALISTAS</h3>
+                <p>Geopolítica, Análise de Dados Críticos.</p>
+            </div>
+        </footer>
     </div>
 
     <script src="script.js"></script>
-    <script>
-        // Chamada forçada de inicialização, caso o DOMContentLoaded falhe
-        window.onload = function() {
-            if (typeof initSystem === 'function') {
-                initSystem();
-            }
-        };
-    </script>
 </body>
 </html>
