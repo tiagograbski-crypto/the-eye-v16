@@ -3,263 +3,330 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gate Rubi | Restricted Access</title>
-    <meta name="robots" content="noindex, nofollow">
-
+    <title>GATE RUBI | Nexus Control</title>
+    
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
     <style>
-        /* --- VARIÁVEIS GLOBAIS --- */
+        /* =========================================
+           CORE SYSTEM: RUBI AESTHETICS ENGINE
+           ========================================= */
         :root {
-            --bg-deep: #050000;
-            --rubi-neon: #ff003c; /* Vermelho Neon */
-            --rubi-dark: #800020;
-            --glass-surface: rgba(20, 0, 5, 0.6);
-            --glass-border: rgba(255, 0, 60, 0.2);
-            --text-white: #ffffff;
-            --text-gray: #a1a1aa;
+            --rubi-primary: #ff003c;       /* Vermelho Neon Principal */
+            --rubi-dark: #4a0013;          /* Vermelho Sangue (Fundo) */
+            --rubi-glow: rgba(255, 0, 60, 0.6);
+            
+            --bg-void: #030001;            /* Preto Absoluto */
+            --glass-panel: rgba(15, 5, 8, 0.7);
+            --glass-border: rgba(255, 0, 60, 0.3);
+            
+            --text-main: #e0e0e0;
+            --text-dim: #888888;
+            --success: #00ff9d;            /* Verde Matrix */
         }
 
-        /* RESET GERAL */
-        * { box-sizing: border-box; transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); }
-
-        /* O FUNDO QUE ESTAVA FICANDO BRANCO AGORA É FORÇADO AQUI */
+        /* --- RESET & ESTRUTURA --- */
+        * { box-sizing: border-box; outline: none; user-select: none; }
+        
         body, html {
             margin: 0; padding: 0;
             width: 100%; height: 100%;
-            background-color: var(--bg-deep) !important; /* Força o preto */
+            background-color: var(--bg-void);
+            font-family: 'Rajdhani', sans-serif;
+            color: var(--text-main);
+            overflow: hidden; /* Impede rolagem indesejada */
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        /* Efeito de Fundo (Grid Cyberpunk) */
+        body::before {
+            content: ""; position: absolute; top: 0; left: 0; width: 200%; height: 200%;
             background-image: 
-                linear-gradient(0deg, rgba(0,0,0,0.9), rgba(5,0,0,0.4)),
-                repeating-linear-gradient(90deg, transparent 0, transparent 49px, rgba(255, 0, 60, 0.05) 50px),
-                repeating-linear-gradient(0deg, transparent 0, transparent 49px, rgba(255, 0, 60, 0.05) 50px);
-            font-family: "Rajdhani", sans-serif;
-            color: var(--text-white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+                linear-gradient(var(--bg-void) 2px, transparent 2px),
+                linear-gradient(90deg, var(--bg-void) 2px, transparent 2px),
+                linear-gradient(rgba(255,0,60,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,0,60,0.03) 1px, transparent 1px);
+            background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+            animation: gridMove 60s linear infinite;
+            z-index: -1;
+        }
+        @keyframes gridMove { 0% { transform: translate(0,0); } 100% { transform: translate(-50px, -50px); } }
+
+        /* =========================================
+           MÓDULO 1: GATE DE SEGURANÇA (LOGIN)
+           ========================================= */
+        .layer-gate {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: radial-gradient(circle at center, rgba(20,0,5,0.9), var(--bg-void));
+            z-index: 999;
+            transition: all 0.8s cubic-bezier(0.7, 0, 0.3, 1);
         }
 
-        /* UTILITÁRIO PARA ESCONDER ELEMENTOS */
-        .hidden { display: none !important; opacity: 0; }
-
-        /* --- TELA DE LOGIN (GATE) --- */
-        .gate-container {
+        .login-frame {
+            width: 380px; padding: 40px;
+            background: var(--glass-panel);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 0 50px rgba(255, 0, 60, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 4px;
             position: relative;
-            width: 360px;
-            padding: 40px;
-            background: var(--glass-surface);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            box-shadow: 0 0 40px rgba(255, 0, 60, 0.1), inset 0 0 20px rgba(255, 0, 60, 0.05);
-            text-align: center;
-            z-index: 100;
+        }
+        /* Detalhes cantos do frame */
+        .login-frame::after { content: ""; position: absolute; top: -1px; left: -1px; width: 20px; height: 20px; border-top: 2px solid var(--rubi-primary); border-left: 2px solid var(--rubi-primary); }
+        .login-frame::before { content: ""; position: absolute; bottom: -1px; right: -1px; width: 20px; height: 20px; border-bottom: 2px solid var(--rubi-primary); border-right: 2px solid var(--rubi-primary); }
+
+        .brand-title {
+            font-family: 'Orbitron', sans-serif; font-size: 2.5rem; font-weight: 900;
+            text-align: center; margin: 0; letter-spacing: 4px;
+            color: white; text-shadow: 0 0 20px var(--rubi-primary);
+        }
+        
+        .brand-sub {
+            text-align: center; font-family: 'Share Tech Mono', monospace; color: var(--rubi-primary);
+            font-size: 0.8rem; letter-spacing: 2px; margin-bottom: 30px; opacity: 0.8;
         }
 
-        .logo-rubi {
-            font-family: "Orbitron", sans-serif;
-            font-size: 2rem;
-            font-weight: 900;
-            color: var(--text-white);
-            letter-spacing: 2px;
-            margin-bottom: 5px;
-            text-shadow: 0 0 15px var(--rubi-neon);
+        .input-group { position: relative; margin-bottom: 20px; }
+        
+        .rubi-field {
+            width: 100%; padding: 15px; background: rgba(0,0,0,0.6);
+            border: 1px solid #333; color: white; font-family: 'Orbitron'; letter-spacing: 2px;
+            font-size: 1.2rem; text-align: center; transition: 0.3s;
+        }
+        .rubi-field:focus { border-color: var(--rubi-primary); box-shadow: 0 0 15px rgba(255,0,60,0.3); }
+
+        .btn-access {
+            width: 100%; padding: 15px; cursor: pointer;
+            background: linear-gradient(90deg, #2b000a, var(--rubi-dark));
+            border: 1px solid var(--rubi-primary);
+            color: var(--rubi-primary); font-family: 'Orbitron'; font-weight: bold; letter-spacing: 2px;
+            text-transform: uppercase; transition: 0.3s;
+        }
+        .btn-access:hover { background: var(--rubi-primary); color: white; box-shadow: 0 0 30px var(--rubi-primary); }
+
+        .error-log {
+            color: var(--rubi-primary); font-family: 'Share Tech Mono'; font-size: 0.8rem;
+            text-align: center; margin-top: 15px; min-height: 20px; opacity: 0; transition: 0.3s;
         }
 
-        .sub-rubi {
-            font-size: 0.8rem;
-            color: var(--rubi-neon);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--glass-border);
-            padding-bottom: 15px;
+        /* =========================================
+           MÓDULO 2: DASHBOARD (PAINEL INTERNO)
+           ========================================= */
+        .layer-dashboard {
+            width: 95%; height: 90%; max-width: 1400px;
+            display: grid; grid-template-columns: 260px 1fr; gap: 20px;
+            opacity: 0; transform: scale(0.95); pointer-events: none; /* Escondido inicialmente */
+            transition: opacity 1s ease, transform 1s ease;
         }
-
-        /* CAMPOS E BOTÕES */
-        .rubi-input {
-            width: 100%;
-            background: rgba(0,0,0,0.4);
-            border: 1px solid #333;
-            border-left: 2px solid var(--rubi-dark);
-            padding: 15px;
-            color: white;
-            font-family: "Orbitron", sans-serif;
-            font-size: 0.9rem;
-            outline: none;
-            margin-bottom: 20px;
-        }
-        .rubi-input:focus { border-color: var(--rubi-neon); box-shadow: 0 0 15px rgba(255, 0, 60, 0.2); }
-
-        .rubi-btn {
-            width: 100%;
-            background: linear-gradient(90deg, var(--rubi-dark), var(--rubi-neon));
-            border: none;
-            padding: 15px;
-            color: white;
-            font-family: "Orbitron", sans-serif;
-            font-weight: bold;
-            letter-spacing: 1px;
-            cursor: pointer;
-            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
-        }
-        .rubi-btn:hover { filter: brightness(1.2); transform: scale(1.02); }
-
-        .error-msg { color: var(--rubi-neon); font-size: 0.8rem; margin-top: 15px; display: none; text-shadow: 0 0 5px red; }
-
-        /* --- DASHBOARD (PAINEL INTERNO) --- */
-        .main-dashboard {
-            width: 90%; height: 90%; max-width: 1200px;
-            display: grid; grid-template-columns: 250px 1fr; gap: 30px;
-            animation: fadeEntry 1s ease forwards;
-        }
-
-        @keyframes fadeEntry { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* SIDEBAR (LATERAL) */
+        
+        /* Sidebar */
         .sidebar {
-            background: rgba(20, 20, 20, 0.6);
-            border-right: 1px solid var(--glass-border);
-            padding: 30px;
-            border-radius: 16px;
-            display: flex; flex-direction: column;
+            background: var(--glass-panel); border: 1px solid var(--glass-border);
+            display: flex; flex-direction: column; padding: 25px;
         }
-        .menu-title { color: var(--rubi-neon); margin-bottom: 10px; font-weight: bold; font-size: 0.8rem; }
-        .menu-item { color: #ccc; margin-bottom: 20px; font-size: 0.9rem; padding-left: 10px; border-left: 2px solid var(--rubi-neon); }
-        .menu-ghost { opacity: 0.5; margin-bottom: 10px; font-size: 0.9rem; }
+        .nav-item {
+            padding: 12px; margin-bottom: 8px; color: var(--text-dim);
+            font-size: 0.9rem; border-left: 2px solid transparent; cursor: pointer; transition: 0.3s;
+        }
+        .nav-item:hover, .nav-item.active {
+            color: white; border-left-color: var(--rubi-primary);
+            background: linear-gradient(90deg, rgba(255,0,60,0.1), transparent);
+        }
+        .section-label {
+            font-family: 'Orbitron'; color: var(--rubi-primary); font-size: 0.7rem; margin: 20px 0 10px 0; opacity: 0.7;
+        }
 
-        /* ÁREA DE CONTEÚDO */
-        .content { display: grid; grid-template-rows: auto 1fr; gap: 20px; overflow-y: auto; }
-        .top-bar { display: flex; justify-content: space-between; align-items: center; }
-        .rubi-tag { padding: 4px 12px; background: rgba(255, 0, 60, 0.1); border: 1px solid var(--rubi-neon); color: var(--rubi-neon); font-size: 0.7rem; border-radius: 4px; }
+        /* Conteúdo Principal */
+        .main-stage {
+            display: grid; grid-template-rows: auto 1fr auto; gap: 20px;
+        }
 
-        /* CARDS */
-        .stat-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,0,60,0.02));
-            border: 1px solid var(--glass-border);
-            padding: 25px; border-radius: 12px;
-            position: relative; overflow: hidden; margin-bottom: 15px;
+        /* Header do Painel */
+        .hud-header {
+            display: flex; justify-content: space-between; align-items: center;
+            background: var(--glass-panel); padding: 15px 25px; border: 1px solid rgba(255,255,255,0.1);
         }
-        .stat-card::before { content: ""; position: absolute; top:0; left:0; width: 4px; height: 100%; background: var(--rubi-neon); }
-        .big-number { font-size: 3rem; font-weight: bold; font-family: 'Orbitron'; margin: 10px 0; }
-        
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        
-        @media (max-width: 768px) {
-            .main-dashboard { grid-template-columns: 1fr; }
-            .sidebar { display: none; }
+        .status-badge {
+            background: rgba(0, 255, 157, 0.1); color: var(--success); border: 1px solid var(--success);
+            padding: 5px 15px; font-size: 0.8rem; font-weight: bold; font-family: 'Share Tech Mono';
         }
+
+        /* Grid de Cards */
+        .cards-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+        }
+        .data-card {
+            background: linear-gradient(160deg, rgba(20,20,20,0.8), rgba(40,10,15,0.8));
+            border: 1px solid rgba(255,255,255,0.05); padding: 25px; position: relative; overflow: hidden;
+        }
+        .data-card::before {
+            content: ""; position: absolute; top:0; left:0; width: 100%; height: 3px;
+            background: linear-gradient(90deg, var(--rubi-primary), transparent);
+        }
+        .card-value { font-family: 'Orbitron'; font-size: 3rem; color: white; margin: 10px 0; }
+        .card-label { color: var(--text-dim); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Terminal Log */
+        .terminal-box {
+            background: black; border: 1px solid #333; padding: 15px;
+            font-family: 'Share Tech Mono', monospace; font-size: 0.8rem; color: #aaa;
+            height: 150px; overflow-y: auto;
+        }
+        .log-line { margin-bottom: 5px; border-bottom: 1px solid #111; padding-bottom: 2px; }
+        .cmd-prefix { color: var(--rubi-primary); margin-right: 10px; }
+
+        /* Responsividade */
+        @media (max-width: 900px) {
+            .layer-dashboard { grid-template-columns: 1fr; }
+            .sidebar { display: none; } /* Oculta sidebar em telas pequenas */
+            .cards-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Animações de Estado */
+        .unlocked .layer-gate { opacity: 0; pointer-events: none; transform: scale(1.1); }
+        .unlocked .layer-dashboard { opacity: 1; pointer-events: all; transform: scale(1); }
+
     </style>
 </head>
 <body>
 
-    <div id="gate-lock" class="gate-container">
-        <div class="logo-rubi">GATE RUBI</div>
-        <div class="sub-rubi">Restricted Access Protocol</div>
-        
-        <input type="password" id="access-key" class="rubi-input" placeholder="ENTER ACCESS CODE">
-        <button onclick="unlockGate()" class="rubi-btn">AUTHENTICATE</button>
-        <p id="error-msg" class="error-msg">// ACCESS DENIED</p>
+    <div id="gate-screen" class="layer-gate">
+        <div class="login-frame">
+            <h1 class="brand-title">GATE RUBI</h1>
+            <div class="brand-sub">SECURE PROTOCOL v4.0</div>
+
+            <div class="input-group">
+                <input type="password" id="pass-input" class="rubi-field" placeholder="••••••••">
+            </div>
+
+            <button onclick="executarLogin()" class="btn-access">INICIAR SESSÃO</button>
+            <div id="msg-erro" class="error-log">[ ! ] CREDENCIAIS INVÁLIDAS</div>
+        </div>
     </div>
 
-    <div id="system-core" class="main-dashboard hidden">
+    <div id="dash-screen" class="layer-dashboard">
+        
         <aside class="sidebar">
-            <div class="logo-rubi" style="font-size: 1.5rem; margin-bottom: 30px;">RUBI CORE</div>
-            <div class="menu-title">> MONITORING</div>
-            <div class="menu-item">Live Feed Active</div>
-            <div class="menu-title" style="margin-top: 20px;">> MODULES</div>
-            <div class="menu-ghost">Agents [Locked]</div>
-            <div class="menu-ghost">Security [Locked]</div>
-            <button onclick="lockGate()" style="margin-top:auto; background:none; border:none; color:#666; cursor:pointer;">[ LOGOUT ]</button>
+            <div style="font-family:'Orbitron'; font-size:1.5rem; color:white; margin-bottom:30px;">NEXUS<span style="color:var(--rubi-primary)">AI</span></div>
+            
+            <div class="section-label">MONITORAMENTO</div>
+            <div class="nav-item active">Visão Geral</div>
+            <div class="nav-item">Status da Rede</div>
+            
+            <div class="section-label">AGENTES</div>
+            <div class="nav-item">Hunter (Vendas)</div>
+            <div class="nav-item">SAC (Suporte)</div>
+            <div class="nav-item">Manager (Projetos)</div>
+            
+            <div style="margin-top:auto">
+                <div class="nav-item" onclick="fazerLogout()" style="color:var(--rubi-primary); border:1px solid var(--rubi-dark); text-align:center;">ENCERRAR</div>
+            </div>
         </aside>
 
-        <main class="content">
-            <div class="top-bar">
+        <main class="main-stage">
+            
+            <div class="hud-header">
                 <div>
-                    <h2 style="font-family:'Orbitron'; margin:0;">SYSTEM OVERVIEW</h2>
-                    <small style="color:#666;">SERVER: RUBI-01</small>
+                    <h2 style="margin:0; font-family:'Orbitron'">PAINEL DE COMANDO</h2>
+                    <span style="color:var(--text-dim); font-size:0.8rem;">SERVIDOR: BR-SC-01 // CRIPTOGRAFIA: AES-256</span>
                 </div>
-                <div class="rubi-tag">● SECURE</div>
+                <div class="status-badge">● SISTEMA SEGURO</div>
             </div>
 
-            <div class="grid-2">
-                <div class="stat-card">
-                    <h3 style="margin:0; font-size:0.9rem; color:#888;">AGENTS</h3>
-                    <div class="big-number">3</div>
-                    <small style="color:var(--rubi-neon);">Operational</small>
+            <div class="cards-grid">
+                <div class="data-card">
+                    <div class="card-label">Agentes Ativos</div>
+                    <div class="card-value">3</div>
+                    <div style="color:var(--success); font-size:0.8rem;">● Hunter, SAC, Manager Online</div>
                 </div>
-                <div class="stat-card">
-                    <h3 style="margin:0; font-size:0.9rem; color:#888;">THREATS</h3>
-                    <div class="big-number" style="color:#10b981;">0%</div>
-                    <small style="color:#10b981;">Clean</small>
+                <div class="data-card">
+                    <div class="card-label">Ameaças Bloqueadas</div>
+                    <div class="card-value" style="color:var(--rubi-primary)">142</div>
+                    <div style="color:var(--text-dim); font-size:0.8rem;">WAF Ativo (Firewall)</div>
+                </div>
+                <div class="data-card">
+                    <div class="card-label">Uptime</div>
+                    <div class="card-value" style="color:#00a8ff">99.9%</div>
+                    <div style="color:var(--text-dim); font-size:0.8rem;">Sem interrupções</div>
                 </div>
             </div>
 
-            <div class="stat-card">
-                <h3 style="margin:0; font-family:'Orbitron';">TERMINAL LOGS</h3>
-                <div style="font-family:monospace; color:#555; margin-top:10px; font-size:0.8rem;">
-                    > System Boot... OK<br>
-                    > CSS Loaded... OK<br>
-                    > Gate Rubi Authentication... SUCCESS
-                </div>
+            <div class="terminal-box" id="terminal-log">
+                <div class="log-line"><span class="cmd-prefix">></span> Inicializando protocolo Rubi...</div>
+                <div class="log-line"><span class="cmd-prefix">></span> Verificando integridade dos Agentes... OK</div>
+                <div class="log-line"><span class="cmd-prefix">></span> Aguardando autenticação de usuário...</div>
             </div>
+
         </main>
     </div>
 
     <script>
-        // CONFIGURAÇÃO
-        const SENHA = "RUBI2025"; 
+        // CONFIGURAÇÃO DE SEGURANÇA
+        // ATENÇÃO: Altere sua senha aqui antes de publicar
+        const SENHA_MESTRA = "RUBI2025"; 
 
-        function unlockGate() {
-            const input = document.getElementById("access-key");
-            const gate = document.getElementById("gate-lock");
-            const system = document.getElementById("system-core");
-            const error = document.getElementById("error-msg");
+        // Elementos
+        const gate = document.body;
+        const input = document.getElementById('pass-input');
+        const erro = document.getElementById('msg-erro');
+        const terminal = document.getElementById('terminal-log');
 
-            if(input.value === SENHA) {
+        function executarLogin() {
+            if(input.value === SENHA_MESTRA) {
                 // Sucesso
-                input.style.borderColor = "#10b981"; 
-                gate.style.opacity = "0";
-                gate.style.transform = "scale(1.1)";
+                erro.style.opacity = '0';
+                gate.classList.add('unlocked');
                 
-                setTimeout(() => {
-                    gate.style.display = "none"; // Remove o login da tela
-                    system.classList.remove("hidden"); // Mostra o painel
-                    
-                    // Salvar sessão
-                    sessionStorage.setItem('rubi_session', 'active');
-                }, 500);
+                // Salvar Sessão
+                sessionStorage.setItem('rubi_auth', 'true');
+
+                // Simular logs no terminal
+                adicionarLog("Usuário autenticado com sucesso.");
+                setTimeout(() => adicionarLog("Carregando módulos de IA..."), 800);
+                setTimeout(() => adicionarLog("Conexão estabelecida com Banco de Dados."), 1500);
             } else {
                 // Erro
-                error.style.display = "block";
-                input.style.borderColor = "red";
-                gate.animate([
-                    { transform: "translateX(0)" },
-                    { transform: "translateX(-10px)" },
-                    { transform: "translateX(10px)" },
-                    { transform: "translateX(0)" }
+                erro.style.opacity = '1';
+                erro.innerText = "[ ! ] ACESSO NEGADO";
+                input.value = '';
+                input.focus();
+                
+                // Shake effect
+                document.querySelector('.login-frame').animate([
+                    { transform: 'translateX(0)' },
+                    { transform: 'translateX(-10px)' },
+                    { transform: 'translateX(10px)' },
+                    { transform: 'translateX(0)' }
                 ], { duration: 300 });
             }
         }
 
-        function lockGate() {
-            sessionStorage.removeItem('rubi_session');
+        function fazerLogout() {
+            sessionStorage.removeItem('rubi_auth');
             location.reload();
         }
 
-        // Verifica login anterior
-        if(sessionStorage.getItem('rubi_session') === 'active') {
-            document.getElementById("gate-lock").style.display = "none";
-            document.getElementById("system-core").classList.remove("hidden");
+        function adicionarLog(texto) {
+            const linha = document.createElement('div');
+            linha.className = 'log-line';
+            linha.innerHTML = `<span class="cmd-prefix">></span> ${texto} <span style="color:#00ff9d">[OK]</span>`;
+            terminal.appendChild(linha);
+            terminal.scrollTop = terminal.scrollHeight;
         }
 
-        // Enter funciona para logar
-        document.getElementById("access-key").addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                unlockGate();
+        // Tecla Enter para logar
+        input.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter') executarLogin();
+        });
+
+        // Verificar se já estava logado
+        window.addEventListener('load', () => {
+            if(sessionStorage.getItem('rubi_auth') === 'true') {
+                gate.classList.add('unlocked');
             }
         });
     </script>
