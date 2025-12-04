@@ -3,511 +3,578 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GATE RUBI | ULTIMATE V26</title>
+    <title>TZeus | V42 AERO</title>
     
+    <!-- FONTES DE ALTA HIERARQUIA -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <!-- LIBRARIES -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
         /* =========================================
-           1. CORE ENGINE (VISUAL)
+           1. COLOR SCIENCE & VARIABLES
            ========================================= */
         :root {
-            --rubi: #ff003c;           /* Vermelho Principal */
-            --rubi-dark: #8a0020;      /* Vermelho Escuro */
-            --rubi-glow: rgba(255, 0, 60, 0.5);
-            --void: #020202;           /* Fundo Absoluto */
-            --glass: rgba(10, 5, 5, 0.9); /* Vidro Escuro */
-            --border: rgba(255, 0, 60, 0.3);
-            --text: #e0e0e0;
-            --cyan: #00f3ff;           /* Cor de Contraste (Aliados/Seguro) */
-            --warning: #ff9d00;        /* Laranja (Internet/Alerta) */
+            /* PALETA 'DEEP ETHER' - SOFISTICAÇÃO */
+            --void: #020406;             /* Fundo quase preto, leve azul */
+            --glass-bg: rgba(10, 15, 20, 0.75); /* Vidro fosco */
+            --glass-border: rgba(0, 240, 255, 0.15);
+            
+            --core: #00f3ff;             /* Ciano (Principal) */
+            --core-glow: rgba(0, 243, 255, 0.4);
+            
+            --accent: #ffffff;           /* Branco Puro (Texto Leitura) */
+            --muted: #586e75;            /* Cinza Azulado (Texto Secundário) */
+            
+            --danger: #ff2a2a;           /* Vermelho Puro (Crítico) */
+            --warning: #ffae00;          /* Laranja (Alerta) */
+            --safe: #00ff9d;             /* Verde (Estável) */
+            
+            --font-display: 'Orbitron', sans-serif;
+            --font-ui: 'Rajdhani', sans-serif;
+            --font-code: 'Share Tech Mono', monospace;
         }
 
-        * { box-sizing: border-box; outline: none; user-select: none; }
+        * { box-sizing: border-box; outline: none; user-select: none; cursor: crosshair; }
 
         body {
             margin: 0; padding: 0;
             background-color: var(--void);
-            font-family: 'Rajdhani', sans-serif;
-            color: var(--text);
-            height: 100vh;
-            overflow: hidden;
-            display: flex; justify-content: center; align-items: center;
+            font-family: var(--font-ui);
+            color: var(--accent);
+            height: 100vh; overflow: hidden;
+            font-size: 16px;
         }
 
-        /* EFEITO CRT / SCANLINE */
+        /* VIGNETTE CINEMATOGRÁFICA */
         body::after {
-            content: " "; display: block; position: absolute;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            z-index: 2; background-size: 100% 2px, 3px 100%; pointer-events: none;
+            content: ""; position: absolute; inset: 0;
+            background: radial-gradient(circle, transparent 60%, #000 120%);
+            pointer-events: none; z-index: 1000;
         }
 
-        /* FUNDO ANIMADO */
-        #neural-canvas {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 0; opacity: 0.25; pointer-events: none;
+        /* SCANLINES SUTIS (ALTA DEFINIÇÃO) */
+        body::before {
+            content: ""; position: absolute; inset: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%);
+            background-size: 100% 3px;
+            pointer-events: none; z-index: 999; opacity: 0.5;
         }
+
+        /* 3D CONTAINER */
+        #world-container { position: absolute; inset: 0; z-index: 0; }
 
         /* =========================================
-           2. CAMADA DE SEGURANÇA (LOGIN)
+           2. BOOT SEQUENCE (INTRO)
            ========================================= */
-        .gate-layer {
-            position: absolute; z-index: 100;
-            width: 100%; height: 100%;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            background: rgba(0,0,0,0.95);
-            transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+        #boot-layer {
+            position: fixed; inset: 0; background: #000; z-index: 20000;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            font-family: var(--font-code); color: var(--core);
         }
-
-        .gate-box {
-            background: var(--glass);
-            width: 420px; padding: 40px;
-            border: 1px solid var(--rubi);
-            border-radius: 8px;
-            box-shadow: 0 0 40px rgba(255, 0, 60, 0.1);
-            text-align: center;
-            position: relative;
-            backdrop-filter: blur(10px);
-        }
-
-        /* SCANNER SUPERIOR */
-        .gate-box::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px;
-            background: var(--rubi);
-            box-shadow: 0 0 15px var(--rubi);
-            animation: scan 2.5s infinite ease-in-out;
-        }
-        @keyframes scan { 0%, 100% { left: 0; width: 0; } 50% { left: 0; width: 100%; } }
-
-        .gate-title { 
-            font-family: 'Orbitron'; font-size: 2.5rem; color: white; margin: 0; 
-            letter-spacing: 4px; text-shadow: 0 0 15px var(--rubi); 
-        }
-        .gate-sub { color: var(--rubi); font-size: 0.8rem; letter-spacing: 6px; margin-bottom: 30px; font-weight: bold; }
-
-        /* ANIMAÇÃO DO GLOBO (ELEMENTO VISUAL) */
-        .holo-globe {
-            position: relative; width: 140px; height: 140px; margin: 0 auto 30px auto;
-            perspective: 1000px; transform-style: preserve-3d;
-        }
-        .ring {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            border: 2px solid var(--rubi); border-radius: 50%;
-            animation: rotate 6s linear infinite; box-shadow: 0 0 10px var(--rubi);
-        }
-        .ring:nth-child(2) { transform: rotateX(60deg); animation-delay: -2s; border-color: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
-        .ring:nth-child(3) { transform: rotateY(60deg); animation-delay: -4s; }
-        @keyframes rotate { 0% { transform: rotateX(0) rotateY(0); } 100% { transform: rotateX(360deg) rotateY(360deg); } }
-
-        /* CONTROLES DE LOGIN */
-        .status-text { 
-            font-family: 'Share Tech Mono'; font-size: 0.9rem; color: #888; 
-            min-height: 20px; margin-bottom: 15px; 
-        }
-        .blink { animation: blinker 0.8s infinite; color: var(--rubi); }
-        @keyframes blinker { 50% { opacity: 0; } }
-
-        .btn-action {
-            width: 100%; padding: 15px; cursor: pointer;
-            background: linear-gradient(90deg, #1a0000, var(--rubi-dark));
-            border: 1px solid var(--rubi); color: white; font-weight: bold;
-            font-family: 'Orbitron'; letter-spacing: 2px;
-            transition: 0.3s;
-        }
-        .btn-action:hover { background: var(--rubi); box-shadow: 0 0 25px var(--rubi-glow); color: black; }
         
-        .input-pin {
-            width: 100%; padding: 15px; background: rgba(0,0,0,0.8);
-            border: 1px solid #444; color: var(--rubi); text-align: center;
-            font-family: 'Orbitron'; font-size: 1.5rem; letter-spacing: 8px;
-            margin-bottom: 15px; display: none;
+        .boot-log {
+            width: 600px; height: 300px; overflow: hidden;
+            font-size: 0.8rem; text-align: left; opacity: 0.8;
+            border-left: 2px solid var(--core-dim); padding-left: 20px;
         }
-        .input-pin:focus { border-color: var(--rubi); outline: none; box-shadow: 0 0 15px var(--rubi-glow); }
+        .log-line { margin-bottom: 2px; }
+        .log-success { color: var(--core); }
+        .log-warn { color: var(--warning); }
+        
+        .loader-bar {
+            width: 600px; height: 2px; background: #111; margin-top: 20px; position: relative;
+        }
+        .loader-progress {
+            height: 100%; width: 0%; background: var(--core);
+            box-shadow: 0 0 15px var(--core); transition: width 0.1s;
+        }
 
         /* =========================================
-           3. CAMADA DO DASHBOARD (PAINEL)
+           3. LOCK SCREEN (MINIMALIST)
            ========================================= */
-        .dash-layer {
-            position: absolute; z-index: 50; width: 95%; height: 92%; max-width: 1600px;
-            display: grid; grid-template-columns: 280px 1fr; gap: 20px;
-            opacity: 0; transform: scale(1.05); pointer-events: none; transition: 0.8s ease-out;
+        #lock-layer {
+            position: fixed; inset: 0; background: rgba(2, 4, 6, 0.9); z-index: 10000;
+            display: none; flex-direction: column; justify-content: center; align-items: center;
+            backdrop-filter: blur(20px);
+        }
+        
+        .lock-card {
+            width: 400px; padding: 40px; text-align: center;
+            border: 1px solid var(--glass-border);
+            background: linear-gradient(180deg, rgba(0,243,255,0.05) 0%, rgba(0,0,0,0) 100%);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
 
-        /* PAINÉIS GERAIS */
+        .system-logo {
+            font-family: var(--font-display); font-size: 3rem; letter-spacing: 10px;
+            color: white; text-shadow: 0 0 20px var(--core-glow); margin-bottom: 5px;
+        }
+        
+        .btn-auth {
+            background: rgba(0, 243, 255, 0.1); border: 1px solid var(--core);
+            color: var(--core); padding: 15px; width: 100%;
+            font-family: var(--font-display); letter-spacing: 2px; font-size: 0.9rem;
+            cursor: pointer; transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            margin-top: 30px;
+        }
+        .btn-auth:hover { background: var(--core); color: #000; box-shadow: 0 0 30px var(--core-glow); }
+        
+        #pin-input {
+            background: transparent; border: none; border-bottom: 2px solid var(--core);
+            color: white; font-family: var(--font-display); font-size: 2rem;
+            text-align: center; letter-spacing: 15px; width: 100%; margin-top: 20px;
+            outline: none; display: none;
+        }
+
+        /* =========================================
+           4. MAIN HUD (GRID LAYOUT)
+           ========================================= */
+        .ui-layer {
+            position: absolute; inset: 0; z-index: 100; padding: 30px;
+            display: grid; gap: 20px; pointer-events: none; opacity: 0; transition: opacity 2s;
+            grid-template-columns: 320px 1fr 350px;
+            grid-template-rows: 60px 1fr 160px;
+            grid-template-areas: 
+                "header header header"
+                "left main right"
+                "footer footer footer";
+        }
+        .interactive { pointer-events: auto; }
+
+        /* PAINÉIS (GLASS) */
         .panel {
-            background: var(--glass); border: 1px solid var(--border);
-            border-radius: 6px; padding: 20px; display: flex; flex-direction: column;
-            position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: var(--glass-bg); border: 1px solid var(--glass-border);
+            padding: 20px; backdrop-filter: blur(15px);
+            display: flex; flex-direction: column;
+            position: relative;
+        }
+        /* Detalhe "Tech" nos cantos */
+        .panel::before { content:''; position: absolute; top:0; left:0; width: 2px; height: 15px; background: var(--core); }
+        .panel::after { content:''; position: absolute; top:0; left:0; width: 15px; height: 2px; background: var(--core); }
+
+        .p-title {
+            font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 2px;
+            color: var(--muted); border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 8px; margin-bottom: 15px; display: flex; justify-content: space-between;
         }
 
-        /* SIDEBAR (AGENTES) */
-        .sidebar-header { 
-            border-bottom: 2px solid var(--rubi); padding-bottom: 10px; margin-bottom: 20px;
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .sidebar-title { font-family: 'Orbitron'; font-size: 1.1rem; color: white; }
+        /* HEADER AREA */
+        .header-area { grid-area: header; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--glass-border); background: linear-gradient(90deg, transparent, rgba(0,0,0,0.8), transparent); }
+        .hud-logo { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 5px; color: white; }
+        .hud-logo span { color: var(--core); }
+        
+        .global-clock { display: flex; gap: 30px; font-family: var(--font-code); font-size: 0.8rem; color: var(--muted); }
+        .clock-val { color: var(--accent); font-weight: bold; margin-left: 5px; }
 
-        .agent-item {
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 12px; background: rgba(255,255,255,0.02); margin-bottom: 8px;
-            border-left: 3px solid #333; transition: 0.3s;
+        /* LEFT AREA */
+        .left-area { grid-area: left; display: flex; flex-direction: column; gap: 20px; }
+        
+        .data-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 0.9rem; }
+        .data-label { color: var(--muted); }
+        .data-val { font-weight: 600; font-family: var(--font-code); }
+        
+        .agent-status { 
+            padding: 8px 12px; background: rgba(255,255,255,0.03); margin-bottom: 5px; 
+            border-left: 2px solid transparent; transition: 0.3s;
         }
-        .agent-item:hover { border-left-color: var(--rubi); background: rgba(255,0,60,0.05); }
+        .status-scan { border-color: var(--warning); color: var(--warning); animation: pulse 1.5s infinite; }
+        .status-ok { border-color: var(--success); color: var(--success); }
+        .status-hack { border-color: #bd00ff; color: #bd00ff; }
 
-        /* SWITCH TOGGLE */
-        .toggle-switch {
-            width: 40px; height: 20px; background: #111; border: 1px solid #444;
-            border-radius: 10px; position: relative; cursor: pointer;
+        /* RIGHT AREA */
+        .right-area { grid-area: right; display: flex; flex-direction: column; gap: 20px; }
+        
+        .intel-feed { flex: 1; overflow: hidden; font-family: var(--font-code); font-size: 0.75rem; display: flex; flex-direction: column; gap: 5px; }
+        .feed-item { padding: 8px; background: rgba(0,0,0,0.3); border-left: 2px solid #333; color: #aaa; }
+        .feed-item.new { border-color: var(--core); color: white; background: rgba(0, 243, 255, 0.05); }
+
+        /* FOOTER */
+        .footer-area { grid-area: footer; display: flex; gap: 20px; }
+        
+        .cmd-bar { 
+            flex: 1; background: rgba(0,0,0,0.5); border: 1px solid var(--glass-border); 
+            display: flex; align-items: center; padding: 0 20px;
         }
-        .toggle-switch::after {
-            content:''; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px;
-            background: #666; border-radius: 50%; transition: 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+        .cmd-prompt { color: var(--core); margin-right: 15px; font-family: var(--font-code); }
+        #cmd-input { background: transparent; border: none; color: white; width: 100%; font-family: var(--font-code); font-size: 1rem; }
+
+        /* ALERTA DE IMPACTO (CAUSALITY) */
+        .causality-alert {
+            margin-top: 10px; padding: 10px; border: 1px dashed var(--glass-border);
+            font-family: var(--font-code); font-size: 0.8rem;
         }
-        .toggle-switch.active { border-color: var(--rubi); background: rgba(255,0,60,0.2); }
-        .toggle-switch.active::after { left: 22px; background: var(--rubi); box-shadow: 0 0 8px var(--rubi); }
+        .trigger { color: var(--accent); margin-bottom: 5px; display: block;}
+        .impact { color: var(--danger); font-weight: bold; text-shadow: 0 0 10px rgba(255, 42, 42, 0.5); }
 
-        /* ÁREA PRINCIPAL */
-        .main-grid { display: grid; grid-template-rows: auto 1fr auto; gap: 20px; height: 100%; }
+        /* ANIMATIONS */
+        @keyframes pulse { 0% {opacity: 0.6;} 50% {opacity: 1;} 100% {opacity: 0.6;} }
+        @keyframes scan { 0% {top:0} 100% {top:100%} }
 
-        /* CARDS SUPERIORES */
-        .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
-        .kpi-card {
-            background: rgba(0,0,0,0.5); border: 1px solid #333; padding: 15px; position: relative;
-        }
-        .kpi-card.alert { border-color: var(--rubi); background: rgba(50, 0, 10, 0.3); }
-        .kpi-card h4 { margin: 0; font-size: 0.7rem; color: #888; letter-spacing: 1px; }
-        .kpi-val { font-family: 'Orbitron'; font-size: 1.6rem; margin-top: 5px; color: white; }
-        .kpi-sub { font-size: 0.7rem; color: #666; margin-top: 5px; }
-
-        .text-alert { color: var(--rubi); animation: pulse 1s infinite; }
-        .text-warn { color: var(--warning); }
-        .text-safe { color: var(--cyan); }
-        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
-
-        /* MAPA TÁTICO */
-        .tactical-map {
-            flex: 1; border: 1px solid var(--border); background: #080505;
-            position: relative; overflow: hidden; border-radius: 4px;
-            background-image: radial-gradient(circle, #220000 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
-        /* Efeito Radar */
-        .radar-scan {
-            position: absolute; width: 150%; height: 150%; top: -25%; left: -25%;
-            background: conic-gradient(from 0deg, transparent 0deg, rgba(255, 0, 60, 0.15) 45deg, transparent 45deg);
-            border-radius: 50%; animation: scan-radar 4s linear infinite; pointer-events: none;
-        }
-        @keyframes scan-radar { from {transform: rotate(0deg);} to {transform: rotate(360deg);} }
-
-        /* MARCADORES NO MAPA */
-        .marker {
-            position: absolute; padding: 5px 10px; font-size: 0.75rem;
-            background: rgba(0,0,0,0.8); border: 1px solid var(--rubi);
-            color: var(--rubi); box-shadow: 0 0 10px var(--rubi-glow);
-        }
-        .marker.safe { border-color: var(--cyan); color: var(--cyan); box-shadow: 0 0 10px rgba(0, 243, 255, 0.3); }
-
-        /* TERMINAL */
-        .terminal {
-            height: 140px; background: #050505; border: 1px solid #333; padding: 10px;
-            font-family: 'Share Tech Mono', monospace; display: flex; flex-direction: column;
-        }
-        .terminal-output { flex: 1; overflow-y: auto; font-size: 0.8rem; color: #888; scrollbar-width: none; }
-        .cmd-row { display: flex; border-top: 1px solid #222; margin-top: 5px; padding-top: 5px; }
-        .prompt { color: var(--rubi); margin-right: 10px; }
-        #cmd-input { background: transparent; border: none; color: white; width: 100%; font-family: inherit; font-size: 0.9rem; }
-
-        /* ESTADOS DE VISIBILIDADE */
-        .unlocked .gate-layer { opacity: 0; pointer-events: none; transform: scale(1.1); }
-        .unlocked .dash-layer { opacity: 1; pointer-events: all; transform: scale(1); }
+        /* UTILS */
+        .hidden { display: none !important; }
+        .control-btn { background: transparent; border: 1px solid var(--muted); color: var(--muted); padding: 5px 10px; cursor: pointer; font-family: var(--font-code); font-size: 0.7rem; transition: 0.3s; }
+        .control-btn:hover { border-color: var(--core); color: var(--core); }
+        .control-btn.active { background: var(--core); color: black; border-color: var(--core); }
 
     </style>
 </head>
 <body>
 
-    <canvas id="neural-canvas"></canvas>
+    <!-- 3D SPACE -->
+    <div id="world-container"></div>
 
-    <div class="gate-layer" id="gate">
-        <div class="gate-box">
-            <h1 class="gate-title">GATE RUBI</h1>
-            <div class="gate-sub">V26 ULTIMATE PROTOCOL</div>
+    <!-- 1. BOOT LAYER -->
+    <div id="boot-layer">
+        <div class="boot-log" id="boot-log"></div>
+        <div class="loader-bar"><div class="loader-progress" id="boot-progress"></div></div>
+    </div>
 
-            <div class="holo-globe">
-                <div class="ring"></div>
-                <div class="ring"></div>
-                <div class="ring"></div>
+    <!-- 2. LOCK LAYER -->
+    <div id="lock-layer">
+        <div class="lock-card interactive">
+            <div class="system-logo">TZeus</div>
+            <div style="font-family: var(--font-code); color: var(--muted); font-size: 0.8rem; letter-spacing: 2px;">
+                V42 AERO // SECURE ENVIRONMENT
+            </div>
+            
+            <div id="auth-msg" style="margin-top: 40px; color: var(--core); font-family: var(--font-code);">
+                HARDWARE KEY REQUIRED
             </div>
 
-            <div class="status-text" id="status-msg">
-                AGUARDANDO CHAVE FÍSICA... <span class="blink">_</span>
-            </div>
-
-            <button id="btn-usb" class="btn-action" onclick="inserirPenDrive()">
-                INSERIR PEN DRIVE (KEY)
-            </button>
-
-            <input type="password" id="pin-input" class="input-pin" maxlength="4" placeholder="****">
-            <button id="btn-unlock" class="btn-action" style="display:none;" onclick="validarPin()">
-                DESBLOQUEAR SISTEMA
-            </button>
+            <button class="btn-auth" onclick="initAuth()">INITIALIZE HANDSHAKE</button>
+            <input type="password" id="pin-input" maxlength="4" placeholder="••••">
         </div>
     </div>
 
-    <div class="dash-layer" id="dashboard">
+    <!-- 3. MAIN UI LAYER -->
+    <div class="ui-layer" id="main-ui">
         
-        <aside class="panel">
-            <div class="sidebar-header">
-                <span class="sidebar-title">AGENTS</span>
-                <span style="font-size:0.8rem; color:var(--cyan)">ONLINE</span>
-            </div>
-
-            <div class="agent-item">
-                <span>HUNTER (Vendas)</span>
-                <div class="toggle-switch" id="sw-hunter" onclick="toggleAgent('hunter')"></div>
-            </div>
-            <div class="agent-item">
-                <span>SAC (Suporte)</span>
-                <div class="toggle-switch" id="sw-sac" onclick="toggleAgent('sac')"></div>
-            </div>
-            <div class="agent-item">
-                <span>MANAGER (Gestão)</span>
-                <div class="toggle-switch" id="sw-manager" onclick="toggleAgent('manager')"></div>
-            </div>
-
-            <div style="margin-top:auto; padding-top:20px; border-top:1px solid #333;">
-                <h4 style="margin:0 0 10px 0; color:#666;">SYSTEM METRICS</h4>
-                <div style="font-size:0.8rem; color:#888; margin-bottom:5px;">SESSION: <span id="session-time">00:00:00</span></div>
-                <button class="btn-action" style="padding:10px; font-size:0.8rem; margin-top:10px;" onclick="logout()">LOGOUT</button>
-            </div>
-        </aside>
-
-        <main class="main-grid">
+        <!-- HEADER -->
+        <div class="header-area interactive">
+            <div class="hud-logo">TZeus <span>V42</span></div>
             
-            <div class="kpi-row">
-                <div class="kpi-card alert">
-                    <h4>ENERGIA (REGIONAL)</h4>
-                    <div class="kpi-val text-alert">CRÍTICO</div>
-                    <div class="kpi-sub">Risco de Apagão</div>
+            <div class="global-clock">
+                <div>CHAPECÓ <span class="clock-val" id="clk-sc">00:00</span></div>
+                <div>NY <span class="clock-val" id="clk-ny">00:00</span></div>
+                <div>TOKYO <span class="clock-val" id="clk-tk">00:00</span></div>
+            </div>
+
+            <div style="display: flex; gap: 10px;">
+                <button class="control-btn" id="btn-sound" onclick="toggleSound()">AUDIO: ON</button>
+                <button class="control-btn" onclick="toggleFS()">FULLSCREEN</button>
+            </div>
+        </div>
+
+        <!-- LEFT COLUMN -->
+        <div class="left-area interactive">
+            
+            <!-- Agentes -->
+            <div class="panel">
+                <div class="p-title">AI AGENTS <span>STATUS</span></div>
+                <div class="agent-status status-scan" id="st-ghost">
+                    <div>GHOST [Infiltration]</div>
+                    <div style="font-size: 0.7rem; opacity: 0.8;">SCANNING DEEP WEB...</div>
                 </div>
-                <div class="kpi-card">
-                    <h4>INTERNET</h4>
-                    <div class="kpi-val text-warn">SATÉLITE</div>
-                    <div class="kpi-sub">Starlink Ativa</div>
+                <div class="agent-status status-ok">
+                    <div>ORACLE [Verification]</div>
+                    <div style="font-size: 0.7rem; opacity: 0.8;">FILTERING NOISE</div>
                 </div>
-                <div class="kpi-card">
-                    <h4>ALIMENTAÇÃO</h4>
-                    <div class="kpi-val text-safe">100%</div>
-                    <div class="kpi-sub">Estoque Seguro</div>
-                </div>
-                <div class="kpi-card">
-                    <h4>ASTEROIDES</h4>
-                    <div class="kpi-val">0.00%</div>
-                    <div class="kpi-sub">Sem Ameaças</div>
+                <div class="agent-status status-ok">
+                    <div>STRATCOM [Tactical]</div>
+                    <div style="font-size: 0.7rem; opacity: 0.8;">READY</div>
                 </div>
             </div>
 
-            <div class="tactical-map">
-                <div class="radar-scan"></div>
-                
-                <div class="marker" style="top: 30%; left: 25%;">
-                    <strong>⚠️ ALERTA: CABOS</strong><br>
-                    Setor Atlântico<br>Rompidos
-                </div>
-
-                <div class="marker safe" style="top: 60%; left: 60%;">
-                    <strong>🛡️ CHAPECÓ (QG)</strong><br>
-                    Defesa Ativa<br>Protocolo Rubi
-                </div>
-
-                <div style="position:absolute; bottom:10px; left:10px; font-size:0.7rem; color:#555;">
-                    LAT: -27.1000 | LON: -52.6000 | SAT: CONNECTED
+            <!-- Causality -->
+            <div class="panel">
+                <div class="p-title">CAUSALITY ENGINE <span>PREDICTION</span></div>
+                <div class="causality-alert">
+                    <span class="trigger" id="causality-trigger">Scanning Global Events...</span>
+                    <span class="impact" id="causality-impact">--</span>
                 </div>
             </div>
 
-            <div class="terminal">
-                <div class="terminal-output" id="term-out">
-                    <div>[BOOT] Gate Rubi Kernel v26 loaded.</div>
-                    <div>[NET] Establishing secure handshake...</div>
-                </div>
-                <div class="cmd-line">
-                    <span class="prompt">admin@rubi:~$</span>
-                    <input type="text" id="cmd-input" autocomplete="off">
+            <!-- Clima Local -->
+            <div class="panel">
+                <div class="p-title">LOCAL ATMOSPHERE <span>CHAPECÓ</span></div>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <div style="font-size: 3rem; font-family: var(--font-display); color:white;" id="temp-display">--°</div>
+                    <div style="text-align:right; font-family: var(--font-code); color: var(--muted);">
+                        WIND: <span id="wind-display" style="color:var(--core)">--</span> km/h<br>
+                        HUMIDITY: <span style="color:var(--core)">HIGH</span>
+                    </div>
                 </div>
             </div>
 
-        </main>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="right-area interactive">
+            
+            <!-- Market -->
+            <div class="panel">
+                <div class="p-title">GLOBAL MARKETS <span>LIVE</span></div>
+                <div class="data-row">
+                    <span class="data-label">USD/BRL</span> <span class="data-val" style="color:var(--danger)">▼ 6.05</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">BTC/USD</span> <span class="data-val" style="color:var(--success)">▲ 98,400</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">IBOVESPA</span> <span class="data-val" style="color:var(--warning)">▼ 126,200</span>
+                </div>
+                <div style="margin-top: 10px; border-top: 1px dashed #333; padding-top: 5px;">
+                    <span class="data-label">LOCAL BANKING:</span> <span class="data-val" id="bank-status" style="color:var(--success)">OPERATIONAL</span>
+                </div>
+            </div>
+
+            <!-- Intel Feed -->
+            <div class="panel" style="flex:1; overflow:hidden;">
+                <div class="p-title">INTEL FEED <span>ENCRYPTED</span></div>
+                <div class="intel-feed" id="intel-container"></div>
+            </div>
+
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer-area interactive">
+            <div class="panel" style="flex:1; flex-direction: row; align-items: center; padding: 10px 20px;">
+                <span class="cmd-prompt">admin@tzeus:~$</span>
+                <input type="text" id="cmd-input" placeholder="Execute command..." autocomplete="off">
+            </div>
+            <div class="panel" style="width: 350px;">
+                <div style="display:flex; justify-content:space-between; font-family:var(--font-code); font-size:0.7rem; color:var(--muted);">
+                    <span>CPU: <span style="color:var(--core)">34%</span></span>
+                    <span>MEM: <span style="color:var(--core)">12%</span></span>
+                    <span>NET: <span style="color:var(--success)">SECURE</span></span>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script>
-        // CONFIGURAÇÕES
-        const PIN_SECRET = "2025"; // SENHA MESTRA
-        const termOut = document.getElementById('term-out');
+        const PIN_SECRET = "2025";
+        let soundEnabled = true;
 
-        // --- SISTEMA DE LOGIN ---
-        function inserirPenDrive() {
-            const btn = document.getElementById('btn-usb');
-            const status = document.getElementById('status-msg');
+        /* =========================================
+           1. BOOT SEQUENCE (INTRO)
+           ========================================= */
+        const bootLines = [
+            "Initializing TZeus Kernel v42.0...",
+            "Loading Neural Network Weights...",
+            "Decrypting Secure Enclave...",
+            "Connecting to Satellite Array [Starlink-44]...",
+            "Verifying Bio-Signature...",
+            "Syncing Global Databases...",
+            "Checking Local Weather Nodes...",
+            "System Ready."
+        ];
 
-            btn.disabled = true;
-            btn.innerHTML = "LENDO DISPOSITIVO...";
-            status.innerHTML = "VERIFICANDO CHAVE DIGITAL...";
-            status.style.color = "var(--cyan)";
+        window.onload = function() {
+            const logBox = document.getElementById('boot-log');
+            const progBar = document.getElementById('boot-progress');
+            let delay = 0;
+
+            bootLines.forEach((line, i) => {
+                setTimeout(() => {
+                    const p = document.createElement('div');
+                    p.className = 'log-line';
+                    p.innerHTML = `<span style="color:#555">[BOOT]</span> ${line}`;
+                    logBox.appendChild(p);
+                    logBox.scrollTop = logBox.scrollHeight;
+                    
+                    // Progress Bar Logic
+                    const pct = ((i + 1) / bootLines.length) * 100;
+                    progBar.style.width = pct + "%";
+
+                }, delay);
+                delay += Math.random() * 400 + 200;
+            });
 
             setTimeout(() => {
-                status.innerHTML = "CHAVE ACEITA. <span style='color:var(--rubi)'>INSIRA O PIN.</span>";
+                document.getElementById('boot-layer').style.display = 'none';
+                document.getElementById('lock-layer').style.display = 'flex';
+                init3D(); // Start heavy 3D only after boot
+            }, delay + 800);
+        };
+
+        /* =========================================
+           2. SECURITY & AUTH
+           ========================================= */
+        function initAuth() {
+            const btn = document.querySelector('.btn-auth');
+            const status = document.getElementById('auth-msg');
+            
+            btn.innerText = "READING HARDWARE...";
+            btn.style.color = "var(--warning)";
+            btn.style.borderColor = "var(--warning)";
+            
+            setTimeout(() => {
+                status.innerText = "KEY VERIFIED. ENTER PIN.";
+                status.style.color = "var(--core)";
                 btn.style.display = 'none';
                 
-                document.getElementById('pin-input').style.display = 'block';
-                document.getElementById('btn-unlock').style.display = 'block';
-                document.getElementById('pin-input').focus();
+                const input = document.getElementById('pin-input');
+                input.style.display = 'block';
+                input.focus();
             }, 1500);
         }
 
-        function validarPin() {
-            const input = document.getElementById('pin-input');
-            const status = document.getElementById('status-msg');
-
-            if (input.value === PIN_SECRET) {
-                status.innerHTML = "ACESSO PERMITIDO.";
-                status.style.color = "#0f0";
-                
-                document.body.classList.add('unlocked');
-                logTerminal("User authenticated via 2FA (USB+PIN).");
-                iniciarLogs();
-            } else {
-                status.innerHTML = "PIN INCORRETO.";
-                input.value = "";
-                input.focus();
-                
-                // Animação de erro
-                document.querySelector('.gate-box').animate([
-                    { transform: 'translateX(-10px)' }, { transform: 'translateX(10px)' }, { transform: 'translateX(0)' }
-                ], { duration: 200, iterations: 2 });
-            }
-        }
-
-        // Atalho Enter para o PIN
         document.getElementById('pin-input').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') validarPin();
-        });
-
-        // --- SISTEMA DASHBOARD ---
-        
-        // Relógio de Sessão
-        let sessionSecs = 0;
-        setInterval(() => {
-            sessionSecs++;
-            const date = new Date(sessionSecs * 1000).toISOString().substr(11, 8);
-            document.getElementById('session-time').innerText = date;
-        }, 1000);
-
-        // Toggle Agentes
-        function toggleAgent(agent) {
-            const el = document.getElementById('sw-' + agent);
-            el.classList.toggle('active');
-            const state = el.classList.contains('active') ? "STARTED" : "STOPPED";
-            logTerminal(`[AGENT] Service ${agent.toUpperCase()} -> ${state}`);
-        }
-
-        // Terminal Log
-        function logTerminal(msg) {
-            const line = document.createElement('div');
-            const time = new Date().toLocaleTimeString().split(' ')[0];
-            line.innerHTML = `<span style="color:#555">[${time}]</span> ${msg}`;
-            termOut.appendChild(line);
-            termOut.scrollTop = termOut.scrollHeight;
-        }
-
-        function iniciarLogs() {
-            const logs = [
-                "[GEO] Scanning regional sectors...",
-                "[PWR] Grid fluctuations detected.",
-                "[NET] Switching to Backup Satellite Link.",
-                "[SEC] Encryption Key rotated.",
-                "[SYS] Memory optimized."
-            ];
-            setInterval(() => {
-                const randomMsg = logs[Math.floor(Math.random() * logs.length)];
-                logTerminal(randomMsg);
-            }, 3500);
-        }
-
-        // Input Terminal
-        document.getElementById('cmd-input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                const cmd = this.value.trim().toLowerCase();
-                logTerminal(`<span style="color:var(--rubi)">admin@rubi:~$</span> ${this.value}`);
-                
-                if (cmd === 'clear') termOut.innerHTML = '';
-                else if (cmd === 'logout') logout();
-                else logTerminal("Command not recognized.");
-                
-                this.value = '';
-            }
-        });
-
-        function logout() {
-            location.reload();
-        }
-
-        // --- PARTICLES BACKGROUND ---
-        const canvas = document.getElementById('neural-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-
-        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        window.addEventListener('resize', resize);
-        resize();
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.size = Math.random() * 2;
-            }
-            update() {
-                this.x += this.vx; this.y += this.vy;
-                if(this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if(this.y < 0 || this.y > canvas.height) this.vy *= -1;
-            }
-            draw() {
-                ctx.fillStyle = 'rgba(255, 0, 60, 0.5)';
-                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI*2); ctx.fill();
-            }
-        }
-
-        function initParticles() {
-            particles = [];
-            for(let i=0; i<100; i++) particles.push(new Particle());
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach((p, index) => {
-                p.update(); p.draw();
-                // Conexões
-                for(let j = index; j < particles.length; j++) {
-                    const dx = p.x - particles[j].x;
-                    const dy = p.y - particles[j].y;
-                    const dist = Math.sqrt(dx*dx + dy*dy);
-                    if(dist < 100) {
-                        ctx.strokeStyle = `rgba(255, 0, 60, ${0.1 - dist/1000})`;
-                        ctx.lineWidth = 1;
-                        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke();
-                    }
+            if(e.key === 'Enter') {
+                if(e.target.value === PIN_SECRET) {
+                    document.getElementById('lock-layer').style.display = 'none';
+                    document.getElementById('main-ui').style.opacity = 1;
+                    speak("Welcome back, Commander. Systems operational.");
+                    startSimulation();
+                } else {
+                    alert("ACCESS DENIED");
+                    e.target.value = "";
                 }
-            });
-            requestAnimationFrame(animate);
+            }
+        });
+
+        /* =========================================
+           3. DATA SIMULATION & API
+           ========================================= */
+        function updateClocks() {
+            const now = new Date();
+            const opts = {hour:'2-digit', minute:'2-digit'};
+            document.getElementById('clk-sc').innerText = now.toLocaleTimeString('pt-BR', {timeZone:'America/Sao_Paulo', ...opts});
+            document.getElementById('clk-ny').innerText = now.toLocaleTimeString('en-US', {timeZone:'America/New_York', ...opts});
+            document.getElementById('clk-tk').innerText = now.toLocaleTimeString('ja-JP', {timeZone:'Asia/Tokyo', ...opts});
+        }
+        setInterval(updateClocks, 1000);
+
+        async function fetchWeather() {
+            try {
+                const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=-27.1&longitude=-52.6&current_weather=true');
+                const data = await res.json();
+                document.getElementById('temp-display').innerText = Math.round(data.current_weather.temperature) + "°";
+                document.getElementById('wind-display').innerText = data.current_weather.windspeed;
+            } catch(e) { /* Fallback silent */ }
+        }
+        fetchWeather();
+
+        // Simulation Loop
+        const scenarios = [
+            { global: "CRISE PETRÓLEO ORIENTE MÉDIO", local: "ALTA COMBUSTÍVEL SC (+12%)", bank: "ESTÁVEL" },
+            { global: "ATAQUE CIBERNÉTICO GLOBAL", local: "FALHA SISTEMA BANCÁRIO", bank: "CRÍTICO" },
+            { global: "TEMPESTADE SOLAR CLASSE X", local: "FALHA TELECOMUNICAÇÕES", bank: "OFFLINE" }
+        ];
+
+        function startSimulation() {
+            // Intel Feed Randomizer
+            setInterval(() => {
+                const msgs = [
+                    "Detectado tráfego criptografado na rede regional.",
+                    "Satélite TZ-4 desalinhado. Recalibrando...",
+                    "Movimentação de fundos suspeita: Cayman Islands.",
+                    "Interceptação de rádio: Frequência Militar."
+                ];
+                const msg = msgs[Math.floor(Math.random() * msgs.length)];
+                addLog(msg);
+            }, 5000);
+
+            // Causality Randomizer
+            setInterval(() => {
+                const sc = scenarios[Math.floor(Math.random() * scenarios.length)];
+                document.getElementById('causality-trigger').innerText = sc.global;
+                document.getElementById('causality-impact').innerText = sc.local;
+                
+                const bank = document.getElementById('bank-status');
+                bank.innerText = sc.bank;
+                bank.style.color = (sc.bank === "ESTÁVEL") ? "var(--success)" : "var(--danger)";
+                
+                speak(`Alerta. ${sc.global}. Impacto local: ${sc.local}`);
+            }, 15000);
         }
 
-        initParticles();
-        animate();
+        function addLog(text) {
+            const cont = document.getElementById('intel-container');
+            const div = document.createElement('div');
+            div.className = 'feed-item new';
+            div.innerText = `> ${text}`;
+            cont.prepend(div);
+            if(cont.children.length > 10) cont.removeChild(cont.lastChild);
+            setTimeout(() => div.classList.remove('new'), 500);
+        }
 
+        /* =========================================
+           4. UTILS
+           ========================================= */
+        function toggleSound() {
+            soundEnabled = !soundEnabled;
+            document.getElementById('btn-sound').innerText = soundEnabled ? "AUDIO: ON" : "AUDIO: OFF";
+        }
+        function speak(text) {
+            if(!soundEnabled) return;
+            const u = new SpeechSynthesisUtterance(text);
+            u.lang = 'pt-BR'; u.rate = 1.1;
+            window.speechSynthesis.speak(u);
+        }
+        function toggleFS() {
+            if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+            else if (document.exitFullscreen) document.exitFullscreen();
+        }
+
+        /* =========================================
+           5. 3D VISUALIZATION (REFINED)
+           ========================================= */
+        function init3D() {
+            const container = document.getElementById('world-container');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            container.appendChild(renderer.domElement);
+
+            // Globe (Darker, more professional)
+            const geometry = new THREE.IcosahedronGeometry(9, 4);
+            const material = new THREE.MeshBasicMaterial({ color: 0x001115, wireframe: false });
+            const globe = new THREE.Mesh(geometry, material);
+            
+            // Wireframe Overlay
+            const wireGeo = new THREE.WireframeGeometry(geometry);
+            const wireMat = new THREE.LineBasicMaterial({ color: 0x005566, transparent: true, opacity: 0.15 });
+            const wire = new THREE.LineSegments(wireGeo, wireMat);
+            globe.add(wire);
+
+            scene.add(globe);
+
+            // Particles (Cyan Data Points)
+            const pGeo = new THREE.BufferGeometry();
+            const pCount = 800;
+            const pArr = new Float32Array(pCount * 3);
+            for(let i=0; i<pCount*3; i++) pArr[i] = (Math.random() - 0.5) * 22;
+            pGeo.setAttribute('position', new THREE.BufferAttribute(pArr, 3));
+            const pMat = new THREE.PointsMaterial({color: 0x00f3ff, size: 0.04, transparent: true, opacity: 0.6});
+            const particles = new THREE.Points(pGeo, pMat);
+            scene.add(particles);
+
+            camera.position.z = 25;
+
+            function animate() {
+                requestAnimationFrame(animate);
+                globe.rotation.y += 0.0008;
+                particles.rotation.y -= 0.0005;
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth/window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        }
     </script>
 </body>
 </html>
