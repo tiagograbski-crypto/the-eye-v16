@@ -99,7 +99,7 @@
 
         h1, h2, h3, .editorial-text { font-family: 'Cormorant Garamond', serif; }
 
-        /* CARTÃO "BLACK TITANIUM" - Efeito Refinado */
+        /* CARTÃO "BLACK TITANIUM" */
         .member-card {
             background: linear-gradient(145deg, #1a1a1a, #000000);
             border-radius: 16px;
@@ -109,20 +109,18 @@
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        /* Efeito de Brilho Dinâmico (Mobile & Desktop) */
         .member-card.active-glow, .member-card:hover {
             transform: scale(1.02) translateY(-5px);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 20px rgba(212, 175, 55, 0.1);
             border-color: rgba(212, 175, 55, 0.3);
         }
-        /* Reflexo Metálico */
         .member-card::before {
             content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background: repeating-linear-gradient(90deg, transparent 0, transparent 2px, rgba(255,255,255,0.02) 3px);
             opacity: 0.5; pointer-events: none;
         }
 
-        /* FEATURE CARDS (Borda Brilhante Estática/Pulsante) */
+        /* FEATURE CARDS */
         .feature-card {
             position: relative;
             background: #fff;
@@ -132,28 +130,33 @@
             border: 1px solid rgba(0,0,0,0.05);
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
-        
         .feature-card.active-glow, .feature-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px -5px rgba(197, 157, 36, 0.15); /* Sombra Dourada Sofisticada */
-            border-color: rgba(197, 157, 36, 0.4); /* Borda Dourada Suave */
+            box-shadow: 0 15px 30px -5px rgba(197, 157, 36, 0.15);
+            border-color: rgba(197, 157, 36, 0.4);
         }
-        
-        .feature-content {
-            padding: 20px;
-            position: relative;
-            z-index: 2;
-        }
+        .feature-content { padding: 20px; position: relative; z-index: 2; }
 
-        /* PREÇOS */
+        /* PREÇOS & CARROSSEL */
         .pricing-card {
             background: #fff; border-radius: 20px; overflow: hidden;
             box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
             border: 1px solid rgba(0,0,0,0.05);
             transition: all 0.5s ease;
             display: flex; flex-direction: column; height: 100%;
+            /* Tamanho fixo no mobile para carrossel */
+            min-width: 85vw; 
+            max-width: 85vw;
         }
         
+        /* Ajuste para desktop */
+        @media (min-width: 1024px) {
+            .pricing-card {
+                min-width: auto;
+                max-width: none;
+            }
+        }
+
         .pricing-card.active-glow, .pricing-card:hover { 
             transform: translateY(-8px); 
             box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1), 0 0 0 1px rgba(197, 157, 36, 0.1); 
@@ -162,6 +165,14 @@
         .card-header-pattern {
             background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
             background-size: 15px 15px;
+        }
+
+        /* DOTS DE NAVEGAÇÃO */
+        .carousel-dot {
+            width: 8px; height: 8px; border-radius: 50%; background: #ddd; transition: all 0.3s ease;
+        }
+        .carousel-dot.active {
+            width: 24px; border-radius: 4px; background: #C59D24;
         }
 
         /* TIMELINE SEMÁFORO */
@@ -354,7 +365,7 @@
     </section>
 
     <!-- =========================================
-         SEÇÃO 3: PLANOS (COM COPY DE DOR/RAIZ)
+         SEÇÃO 3: PLANOS (CARROSSEL MOBILE & PROMO VALIDAÇÃO)
          ========================================= -->
     <section id="planos" class="py-24 bg-gray-50 relative">
         <div class="max-w-7xl mx-auto px-4 xs:px-6">
@@ -364,19 +375,21 @@
                     Não cobramos no cartão de crédito. Você paga presencialmente no dia do seu procedimento.
                 </p>
                 
-                <!-- AVISO DE PROMOÇÃO GLOBAL -->
-                <div class="mt-8 bg-red-50 border border-red-200 text-red-800 px-6 py-4 rounded-xl inline-block shadow-sm animate-pulse">
+                <!-- AVISO DE PROMOÇÃO BLINDADO -->
+                <div class="mt-8 bg-red-50 border border-red-200 text-red-800 px-6 py-4 rounded-xl inline-block shadow-sm animate-pulse text-left md:text-center">
                     <p class="text-xs font-bold uppercase tracking-widest mb-1 flex items-center justify-center gap-2">
-                        <i class="fas fa-exclamation-circle"></i> Oportunidade Relâmpago
+                        <i class="fas fa-exclamation-circle"></i> Oportunidade Exclusiva
                     </p>
-                    <p class="text-sm font-medium">Alisou nos últimos 60 dias? <strong>Isenção total de adesão até 15/01.</strong></p>
+                    <p class="text-sm font-medium">Já é cliente <strong>Essência de Romã</strong> e alisou nos últimos 60 dias?</p>
+                    <p class="text-xs mt-1 text-red-600">Validaremos seu histórico em nosso cadastro e sua <strong>Adesão será ZERO</strong>.</p>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+            <!-- CONTAINER CARROSSEL (MOBILE) / GRID (DESKTOP) -->
+            <div id="plans-carousel" class="flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 pb-8 -mx-4 lg:grid lg:grid-cols-3 lg:gap-8 lg:items-stretch lg:px-0 lg:pb-0 lg:mx-0 no-scrollbar">
                 
                 <!-- CARD 1: SUBLIME (LISOS/ONDULADOS) -->
-                <div class="pricing-card reveal-on-scroll">
+                <div class="pricing-card snap-center shrink-0 w-[85vw] max-w-[350px] lg:w-auto lg:max-w-none reveal-on-scroll">
                     <!-- FAIXA PROMO -->
                     <div class="bg-red-600 text-white text-[9px] font-bold uppercase text-center py-1 tracking-widest">
                         Adesão Zero até 15/01*
@@ -388,10 +401,10 @@
                     </div>
                     
                     <div class="p-8 flex flex-col flex-grow bg-white relative">
-                        <!-- Copy de Dor: A Raiz Marcada -->
+                        <!-- Copy de Dor -->
                         <div class="mb-6 text-center border-b border-gray-100 pb-6">
                             <p class="text-xs text-gray-600 italic font-light leading-relaxed">
-                                "A raiz cresce e o contraste de textura no fio fino é imediato. Em 45 dias, aquele liso de capa de revista ganha um <strong>frizz indesejado no topo</strong> que derruba a elegância do seu visual."
+                                "A raiz cresce e o contraste de textura no fio fino é imediato. Em 45 dias, aquele liso ganha um <strong>frizz indesejado no topo</strong> que derruba sua elegância."
                             </p>
                         </div>
 
@@ -413,7 +426,7 @@
                                     <div class="flex justify-between w-full items-baseline border-b border-gray-100 pb-2">
                                         <div class="flex flex-col">
                                             <span class="text-xs font-bold text-brand-black">Adesão (1ª Vez)</span>
-                                            <span class="text-[9px] text-red-500 font-bold">*R$ 0,00 até 15/01</span>
+                                            <span class="text-[9px] text-red-500 font-bold">*R$ 0,00 (Cliente Ativa)</span>
                                         </div>
                                         <span class="text-xs text-gray-400 line-through">R$ 359</span>
                                     </div>
@@ -449,16 +462,15 @@
                             </div>
                         </div>
 
-                        <a href="https://wa.me/5549999954052?text=Ol%C3%A1!%20Fiz%20cabelo%20recentemente%20e%20quero%20aproveitar%20a%20isen%C3%A7%C3%A3o%20de%20ades%C3%A3o%20do%20plano%20Sublime." id="btn-plan-sublime" class="w-full btn-luxury-glow py-4 rounded-xl text-[11px] mt-8 block text-center shadow-lg">
-                            Garantir Isenção Agora
+                        <a href="https://wa.me/5549999954052?text=Ol%C3%A1!%20Sou%20cliente%20e%20quero%20validar%20minha%20isen%C3%A7%C3%A3o%20de%20ades%C3%A3o%20no%20plano%20Sublime." id="btn-plan-sublime" class="w-full btn-luxury-glow py-4 rounded-xl text-[11px] mt-8 block text-center shadow-lg">
+                            Validar Minha Isenção
                         </a>
                         <p class="text-center text-[9px] text-gray-400 mt-3 flex justify-center items-center gap-1"><i class="fas fa-lock text-[8px]"></i> Pagamento presencial</p>
                     </div>
                 </div>
 
                 <!-- CARD 2: IMPERIAL (CACHEADOS) -->
-                <div class="pricing-card reveal-on-scroll" style="transition-delay: 0.1s;">
-                    <!-- FAIXA PROMO -->
+                <div class="pricing-card snap-center shrink-0 w-[85vw] max-w-[350px] lg:w-auto lg:max-w-none reveal-on-scroll" style="transition-delay: 0.1s;">
                     <div class="bg-red-600 text-white text-[9px] font-bold uppercase text-center py-1 tracking-widest">
                         Adesão Zero até 15/01*
                     </div>
@@ -469,10 +481,10 @@
                     </div>
                     
                     <div class="p-8 flex flex-col flex-grow bg-white relative">
-                        <!-- Copy de Dor: Volume Indesejado -->
+                        <!-- Copy de Dor -->
                         <div class="mb-6 text-center border-b border-gray-100 pb-6">
                             <p class="text-xs text-gray-600 italic font-light leading-relaxed">
-                                "Cachos pedem definição desde a raiz. Em poucas semanas, o crescimento cria um <strong>volume desproporcional no topo</strong> (efeito capacete), quebrando a harmonia do seu corte."
+                                "Cachos pedem definição. Em poucas semanas, o crescimento cria um <strong>volume desproporcional na raiz</strong> (efeito capacete), quebrando a harmonia do seu corte."
                             </p>
                         </div>
 
@@ -493,7 +505,7 @@
                                     <div class="flex justify-between w-full items-baseline border-b border-gray-100 pb-2">
                                         <div class="flex flex-col">
                                             <span class="text-xs font-bold text-brand-black">Adesão (1ª Vez)</span>
-                                            <span class="text-[9px] text-red-500 font-bold">*R$ 0,00 até 15/01</span>
+                                            <span class="text-[9px] text-red-500 font-bold">*R$ 0,00 (Cliente Ativa)</span>
                                         </div>
                                         <span class="text-xs text-gray-400 line-through">R$ 410</span>
                                     </div>
@@ -522,16 +534,15 @@
                             </div>
                         </div>
 
-                        <a href="https://wa.me/5549999954052?text=Ol%C3%A1!%20Fiz%20cabelo%20recentemente%20e%20quero%20aproveitar%20a%20isen%C3%A7%C3%A3o%20de%20ades%C3%A3o%20do%20plano%20Imperial." id="btn-plan-imperial" class="w-full btn-ghost-dark py-4 rounded-xl text-[11px] mt-8 block text-center">
-                            Garantir Isenção Agora
+                        <a href="https://wa.me/5549999954052?text=Ol%C3%A1!%20Sou%20cliente%20e%20quero%20validar%20minha%20isen%C3%A7%C3%A3o%20de%20ades%C3%A3o%20do%20plano%20Imperial." id="btn-plan-imperial" class="w-full btn-ghost-dark py-4 rounded-xl text-[11px] mt-8 block text-center">
+                            Validar Minha Isenção
                         </a>
                         <p class="text-center text-[9px] text-gray-400 mt-3 flex justify-center items-center gap-1"><i class="fas fa-lock text-[8px]"></i> Sem cartão de crédito</p>
                     </div>
                 </div>
 
                 <!-- CARD 3: ABSOLUTO (CRESPOS) -->
-                <div class="pricing-card reveal-on-scroll" style="transition-delay: 0.2s;">
-                    <!-- FAIXA PROMO -->
+                <div class="pricing-card snap-center shrink-0 w-[85vw] max-w-[350px] lg:w-auto lg:max-w-none reveal-on-scroll" style="transition-delay: 0.2s;">
                     <div class="bg-red-600 text-white text-[9px] font-bold uppercase text-center py-1 tracking-widest">
                         Adesão Zero até 15/01*
                     </div>
@@ -542,10 +553,10 @@
                     </div>
                     
                     <div class="p-8 flex flex-col flex-grow bg-white relative">
-                        <!-- Copy de Dor: Quebra e Dificuldade -->
+                        <!-- Copy de Dor -->
                         <div class="mb-6 text-center border-b border-gray-100 pb-6">
                             <p class="text-xs text-gray-600 italic font-light leading-relaxed">
-                                "A raiz resistente empurra o fio alisado, criando uma <strong>marca visível</strong> que dificulta a escovação diária e pode causar quebra na transição das texturas."
+                                "A raiz resistente empurra o fio alisado, criando uma <strong>marca visível</strong> que dificulta a escovação e pode causar quebra na transição das texturas."
                             </p>
                         </div>
 
@@ -566,7 +577,7 @@
                                     <div class="flex justify-between w-full items-baseline border-b border-gray-100 pb-2">
                                         <div class="flex flex-col">
                                             <span class="text-xs font-bold text-brand-black">Adesão (1ª Vez)</span>
-                                            <span class="text-[9px] text-red-500 font-bold">*R$ 0,00 até 15/01</span>
+                                            <span class="text-[9px] text-red-500 font-bold">*R$ 0,00 (Cliente Ativa)</span>
                                         </div>
                                         <span class="text-xs text-gray-400 line-through">R$ 499</span>
                                     </div>
@@ -595,13 +606,20 @@
                             </div>
                         </div>
 
-                        <a href="https://wa.me/5549999954052?text=Ol%C3%A1!%20Fiz%20cabelo%20recentemente%20e%20quero%20aproveitar%20a%20isen%C3%A7%C3%A3o%20de%20ades%C3%A3o%20do%20plano%20Absoluto." id="btn-plan-absoluto" class="w-full btn-ghost-dark py-4 rounded-xl text-[11px] mt-8 block text-center">
-                            Garantir Isenção Agora
+                        <a href="https://wa.me/5549999954052?text=Ol%C3%A1!%20Sou%20cliente%20e%20quero%20validar%20minha%20isen%C3%A7%C3%A3o%20de%20ades%C3%A3o%20do%20plano%20Absoluto." id="btn-plan-absoluto" class="w-full btn-ghost-dark py-4 rounded-xl text-[11px] mt-8 block text-center">
+                            Validar Minha Isenção
                         </a>
                         <p class="text-center text-[9px] text-gray-400 mt-3 flex justify-center items-center gap-1"><i class="fas fa-lock text-[8px]"></i> Sem cartão de crédito</p>
                     </div>
                 </div>
 
+            </div>
+
+            <!-- DOTS DE NAVEGAÇÃO MOBILE -->
+            <div class="flex justify-center mt-6 lg:hidden gap-3" id="carousel-dots">
+                <div class="carousel-dot active"></div>
+                <div class="carousel-dot"></div>
+                <div class="carousel-dot"></div>
             </div>
         </div>
     </section>
@@ -676,7 +694,7 @@
                 <p><strong>3. Do Pagamento:</strong> Os valores são pagos presencialmente a cada visita. Não há cobrança recorrente automática em cartão de crédito.</p>
                 <p><strong>4. Do Cancelamento:</strong> O cliente pode deixar de frequentar o clube a qualquer momento sem multa. A única penalidade é a perda dos valores promocionais para retornos futuros.</p>
                 <p><strong>5. Da Garantia:</strong> A garantia de retoque gratuito é válida por 7 dias após o procedimento, mediante avaliação técnica presencial.</p>
-                <p><strong>6. Promoção "Adesão Zero":</strong> Válida até 15/01/2026 para clientes que realizaram alisamento nos últimos 60 dias (comprovado por histórico do salão ou nota fiscal de terceiros). Sujeito à disponibilidade de agenda.</p>
+                <p><strong>6. Promoção "Adesão Zero":</strong> Válida até 15/01/2026 para clientes que já realizaram alisamento no salão Essência de Romã nos últimos 60 dias. A isenção está condicionada à validação positiva do histórico da cliente em nosso sistema interno. Clientes de outros salões devem pagar a adesão normalmente ou apresentar nota fiscal comprovando procedimento recente (sujeito à análise).</p>
             </div>
         </div>
     </div>
@@ -694,6 +712,26 @@
         document.addEventListener('DOMContentLoaded', () => {
             lucide.createIcons();
 
+            // SCRIPT CARROSSEL DOTS
+            const carousel = document.getElementById('plans-carousel');
+            const dots = document.querySelectorAll('.carousel-dot');
+            
+            if(carousel) {
+                carousel.addEventListener('scroll', () => {
+                    const scrollPosition = carousel.scrollLeft;
+                    const cardWidth = carousel.querySelector('.pricing-card').offsetWidth + 16; // width + gap
+                    const index = Math.round(scrollPosition / cardWidth);
+                    
+                    dots.forEach((dot, i) => {
+                        if (i === index) {
+                            dot.classList.add('active');
+                        } else {
+                            dot.classList.remove('active');
+                        }
+                    });
+                });
+            }
+
             // SCRIPT MOBILE CENTER FOCUS
             const centerObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
@@ -703,9 +741,8 @@
                         entry.target.classList.remove('active-glow');
                     }
                 });
-            }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 }); // Ativa quando o elemento está no meio da tela (Mobile)
+            }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
 
-            // Aplicar observador em Cards e Preços
             const mobileElements = document.querySelectorAll('.feature-card, .member-card, .pricing-card');
             if (window.innerWidth <= 768) {
                 mobileElements.forEach(el => centerObserver.observe(el));
