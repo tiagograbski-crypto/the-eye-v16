@@ -69,6 +69,7 @@
                         'header-sublime': '#000000',
                         'header-imperial': '#3E2723',
                         'header-absoluto': '#263238',
+                        'promo-alert': '#EF4444',
                     },
                     fontFamily: {
                         'serif': ['Cormorant Garamond', 'serif'],
@@ -89,7 +90,7 @@
             overflow-x: hidden;
         }
 
-        /* TEXTURA DE PAPEL/RUÍDO */
+        /* TEXTURA DE PAPEL */
         body::before {
             content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
@@ -98,86 +99,72 @@
 
         h1, h2, h3, .editorial-text { font-family: 'Cormorant Garamond', serif; }
 
-        /* --- CARTÃO "BLACK TITANIUM" --- */
+        /* CARTÃO "BLACK TITANIUM" - Efeito Refinado */
         .member-card {
             background: linear-gradient(145deg, #1a1a1a, #000000);
             border-radius: 16px;
             position: relative;
             overflow: hidden;
-            box-shadow: 
-                0 20px 50px -10px rgba(0, 0, 0, 0.8),
-                inset 0 0 0 1px rgba(255, 255, 255, 0.1);
-            transition: transform 0.5s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        /* Textura Metal Escovado */
+        /* Efeito de Brilho Dinâmico (Mobile & Desktop) */
+        .member-card.active-glow, .member-card:hover {
+            transform: scale(1.02) translateY(-5px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 20px rgba(212, 175, 55, 0.1);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+        /* Reflexo Metálico */
         .member-card::before {
             content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
             background: repeating-linear-gradient(90deg, transparent 0, transparent 2px, rgba(255,255,255,0.02) 3px);
             opacity: 0.5; pointer-events: none;
         }
-        /* Brilho Holográfico Sutil ao passar o mouse */
-        .member-card::after {
-            content: ''; position: absolute; top: -100%; left: -100%; width: 300%; height: 300%;
-            background: linear-gradient(115deg, transparent 40%, rgba(212, 175, 55, 0.1) 45%, rgba(255, 255, 255, 0.1) 50%, rgba(212, 175, 55, 0.1) 55%, transparent 60%);
-            transition: 0.5s; opacity: 0; pointer-events: none;
-        }
-        .member-card:hover::after { opacity: 1; transform: translate(50px, 50px); }
-        .member-card:hover { transform: scale(1.02) rotateY(2deg); }
 
-        /* --- FEATURE CARDS (Borda Brilhante) --- */
+        /* FEATURE CARDS (Borda Brilhante Estática/Pulsante) */
         .feature-card {
             position: relative;
             background: #fff;
             border-radius: 12px;
-            padding: 2px; /* Espaço para a borda */
             overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: all 0.5s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
-        .feature-card:hover { transform: translateY(-3px); }
         
-        /* O conteúdo interno */
+        .feature-card.active-glow, .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -5px rgba(197, 157, 36, 0.15); /* Sombra Dourada Sofisticada */
+            border-color: rgba(197, 157, 36, 0.4); /* Borda Dourada Suave */
+        }
+        
         .feature-content {
-            background: #fff;
-            border-radius: 10px;
             padding: 20px;
-            height: 100%;
             position: relative;
             z-index: 2;
         }
-        
-        /* A borda animada */
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%; width: 200%; height: 200%;
-            background: conic-gradient(transparent, transparent, transparent, #C59D24);
-            animation: rotate-border 4s linear infinite;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .feature-card:hover::before { opacity: 1; }
-        
-        @keyframes rotate-border {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
 
-        /* --- PREÇOS & TIMELINE --- */
+        /* PREÇOS */
         .pricing-card {
             background: #fff; border-radius: 20px; overflow: hidden;
-            box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
             border: 1px solid rgba(0,0,0,0.05);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.5s ease;
             display: flex; flex-direction: column; height: 100%;
         }
-        .pricing-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px -12px rgba(0,0,0,0.15); }
+        
+        .pricing-card.active-glow, .pricing-card:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1), 0 0 0 1px rgba(197, 157, 36, 0.1); 
+        }
         
         .card-header-pattern {
-            background-image: radial-gradient(circle, rgba(255,255,255,0.07) 1px, transparent 1px);
+            background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
             background-size: 15px 15px;
         }
 
-        /* Timeline Semáforo */
+        /* TIMELINE SEMÁFORO */
         .timeline-wrapper { position: relative; margin-top: 15px; }
         .timeline-track { position: absolute; left: 7px; top: 5px; bottom: 5px; width: 2px; background: #f0f0f0; z-index: 0; }
         .timeline-point { position: relative; z-index: 1; display: flex; align-items: flex-start; margin-bottom: 20px; }
@@ -192,7 +179,7 @@
         .point-dot.red { background: #EF4444; border-color: #EF4444; }
         .point-dot.start { background: #000; border-color: #000; }
 
-        /* --- BOTÕES & ANIMAÇÕES --- */
+        /* BOTÕES & ANIMAÇÕES */
         .btn-luxury-glow {
             position: relative; overflow: hidden;
             background: linear-gradient(135deg, #C59D24 0%, #E6C25B 50%, #C59D24 100%);
@@ -219,27 +206,34 @@
         .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
 
         /* MODAL DE TERMOS */
-        #terms-modal {
-            backdrop-filter: blur(5px);
-        }
+        #terms-modal { backdrop-filter: blur(5px); }
         
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* PROMO ALERT (PULSE) */
+        @keyframes pulse-red {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+            50% { box-shadow: 0 0 0 6px rgba(239, 68, 68, 0); }
+        }
+        .promo-pulse { animation: pulse-red 2s infinite; }
     </style>
 </head>
 <body class="selection:bg-brand-gold selection:text-white">
 
     <!-- =========================================
-         SEÇÃO 1: HERO
+         SEÇÃO 1: HERO (NOVA IMAGEM - Humanização & Alegria)
          ========================================= -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-black">
-        <div class="absolute inset-0 z-0 opacity-50">
-            <img src="https://images.unsplash.com/photo-1620331311520-246422fd82f9?q=80&w=2072&auto=format&fit=crop" 
-                 alt="Cabelo com Selamento Capilar Perfeito" 
-                 class="w-full h-full object-cover"
-                 fetchpriority="high" width="2072" height="1200">
+        <div class="absolute inset-0 z-0 opacity-60">
+            <!-- Imagem Mulher Sorrindo com Cabelo Liso -->
+            <img src="https://images.unsplash.com/photo-1512413914633-b5043f4041ea?q=80&w=2000&auto=format&fit=crop" 
+                 alt="Mulher sorrindo com cabelo liso perfeito" 
+                 class="w-full h-full object-cover object-top"
+                 fetchpriority="high" width="2000" height="1200">
         </div>
-        <div class="absolute inset-0 z-10 bg-gradient-to-t from-brand-black via-brand-black/80 to-transparent"></div>
+        <!-- Gradiente ajustado -->
+        <div class="absolute inset-0 z-10 bg-gradient-to-t from-brand-black via-brand-black/60 to-transparent"></div>
 
         <div class="relative z-20 text-center px-4 xs:px-6 max-w-5xl mx-auto flex flex-col items-center w-full">
             <div class="mb-8 reveal-on-scroll inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full">
@@ -248,24 +242,24 @@
             </div>
 
             <div class="reveal-on-scroll w-full">
-                <h1 class="text-white text-5xl sm:text-7xl md:text-9xl font-serif font-light leading-none tracking-tighter">
+                <h1 class="text-white text-5xl sm:text-7xl md:text-9xl font-serif font-light leading-none tracking-tighter drop-shadow-lg">
                     Liso <span class="italic text-brand-gold-light">Blindado</span>
                 </h1>
-                <p class="text-gray-300 text-xs md:text-sm mt-6 tracking-[0.2em] uppercase font-light max-w-2xl mx-auto">
+                <p class="text-gray-200 text-xs md:text-sm mt-6 tracking-[0.2em] uppercase font-light max-w-2xl mx-auto drop-shadow-md">
                     A Evolução da <strong>Progressiva</strong> e do <strong>Selamento Capilar</strong>
                 </p>
             </div>
 
             <div class="mt-12 reveal-on-scroll flex flex-col items-center gap-8 w-full max-w-2xl">
-                <div class="border-l-2 border-brand-gold pl-6 text-left w-full">
+                <div class="border-l-2 border-brand-gold pl-6 text-left w-full bg-black/20 backdrop-blur-sm p-4 rounded-r-lg">
                     <p class="text-white font-serif text-xl mb-2">Powered by <span class="text-brand-gold-light font-bold">Essência de Romã Hair</span></p>
-                    <p class="text-gray-400 font-light text-sm leading-relaxed">
+                    <p class="text-gray-300 font-light text-sm leading-relaxed">
                         Esqueça a incerteza da progressiva comum ou o dano da definitiva. Com <strong>16 anos de excelência</strong>, entregamos um selamento que blinda sua liberdade. Previsibilidade e liso perfeito todo mês.
                     </p>
                 </div>
                 
                 <!-- CTA direciona para #exclusividade (Cartão) -->
-                <a href="#exclusividade" id="btn-hero-cta" class="btn-luxury-glow px-10 py-5 rounded-full text-xs w-full xs:w-auto min-w-[240px] text-center shadow-2xl">
+                <a href="#exclusividade" id="btn-hero-cta" class="btn-luxury-glow px-10 py-5 rounded-full text-xs w-full xs:w-auto min-w-[240px] text-center shadow-2xl tracking-widest border border-white/10">
                     DESBLOQUEAR MEU ACESSO
                 </a>
             </div>
@@ -282,9 +276,8 @@
                 <span class="text-brand-gold font-bold tracking-[0.2em] uppercase text-xs">Exclusividade Real</span>
                 <h2 class="text-4xl md:text-5xl text-brand-black font-serif mt-4 mb-8">Mais que um serviço.<br>Um Pacto de Beleza.</h2>
                 
-                <!-- CARDS DE BENEFÍCIOS (Retangulares com Glow) -->
+                <!-- CARDS DE BENEFÍCIOS (Retangulares com Glow Mobile) -->
                 <div class="grid gap-4">
-                    
                     <!-- Card 1 -->
                     <div class="feature-card cursor-default">
                         <div class="feature-content flex items-center gap-4">
@@ -297,7 +290,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Card 2 -->
                     <div class="feature-card cursor-default">
                         <div class="feature-content flex items-center gap-4">
@@ -310,7 +302,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Card 3 -->
                     <div class="feature-card cursor-default">
                         <div class="feature-content flex items-center gap-4">
@@ -323,34 +314,27 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
 
             <!-- O CARTÃO VISUAL (Design Black Titanium) -->
             <div class="md:w-1/2 flex justify-center reveal-on-scroll">
                 <div class="member-card w-full max-w-sm aspect-[1.586/1] p-8 flex flex-col justify-between relative group cursor-default">
-                    
                     <!-- Topo -->
                     <div class="flex justify-between items-start z-10">
                         <div>
                             <span class="text-brand-gold font-serif italic text-2xl tracking-wide block drop-shadow-md">Alisa Chapecó</span>
                             <span class="text-white/40 text-[7px] tracking-[0.3em] uppercase font-bold">Exclusive Membership</span>
                         </div>
-                        <!-- Logo (Sutil) -->
-                        <div class="opacity-50">
-                            <i class="fas fa-gem text-brand-gold text-2xl"></i>
-                        </div>
+                        <div class="opacity-50"><i class="fas fa-gem text-brand-gold text-2xl"></i></div>
                     </div>
-                    
-                    <!-- Centro (Número Estilizado) -->
+                    <!-- Centro -->
                     <div class="z-10 flex items-center gap-3 my-auto opacity-80">
                         <span class="text-gray-400 font-mono text-sm tracking-[0.2em] shadow-black drop-shadow-sm">XXXX</span>
                         <span class="text-gray-400 font-mono text-sm tracking-[0.2em] shadow-black drop-shadow-sm">XXXX</span>
                         <span class="text-gray-400 font-mono text-sm tracking-[0.2em] shadow-black drop-shadow-sm">PREMIER</span>
                     </div>
-
-                    <!-- Rodapé (Status Universal) -->
+                    <!-- Rodapé -->
                     <div class="z-10">
                         <div class="flex justify-between items-end border-t border-white/10 pt-5">
                             <div>
@@ -370,7 +354,7 @@
     </section>
 
     <!-- =========================================
-         SEÇÃO 3: PLANOS (PERSUASÃO MÁXIMA)
+         SEÇÃO 3: PLANOS (COM COPY DE DOR/RAIZ)
          ========================================= -->
     <section id="planos" class="py-24 bg-gray-50 relative">
         <div class="max-w-7xl mx-auto px-4 xs:px-6">
@@ -379,12 +363,24 @@
                 <p class="mt-4 text-gray-500 font-light text-sm max-w-xl mx-auto">
                     Não cobramos no cartão de crédito. Você paga presencialmente no dia do seu procedimento.
                 </p>
+                
+                <!-- AVISO DE PROMOÇÃO GLOBAL -->
+                <div class="mt-8 bg-red-50 border border-red-200 text-red-800 px-6 py-4 rounded-xl inline-block shadow-sm animate-pulse">
+                    <p class="text-xs font-bold uppercase tracking-widest mb-1 flex items-center justify-center gap-2">
+                        <i class="fas fa-exclamation-circle"></i> Oportunidade Relâmpago
+                    </p>
+                    <p class="text-sm font-medium">Alisou nos últimos 60 dias? <strong>Isenção total de adesão até 15/01.</strong></p>
+                </div>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
                 
-                <!-- CARD 1: SUBLIME -->
+                <!-- CARD 1: SUBLIME (LISOS/ONDULADOS) -->
                 <div class="pricing-card reveal-on-scroll">
+                    <!-- FAIXA PROMO -->
+                    <div class="bg-red-600 text-white text-[9px] font-bold uppercase text-center py-1 tracking-widest">
+                        Adesão Zero até 15/01*
+                    </div>
                     <div class="bg-header-sublime card-header-pattern p-8 text-center text-white relative">
                         <div class="absolute top-4 right-4 text-brand-gold-light text-[10px] border border-brand-gold-light px-2 py-0.5 rounded uppercase font-bold">Fio Fino</div>
                         <h3 class="text-3xl font-serif italic text-white mt-2">Sublime</h3>
@@ -392,12 +388,11 @@
                     </div>
                     
                     <div class="p-8 flex flex-col flex-grow bg-white relative">
-                        <!-- Benefício Matemático -->
-                        <div class="bg-gray-50 rounded-lg p-4 mb-6 text-center border-l-4 border-green-500 shadow-sm">
-                            <p class="text-brand-black text-[10px] font-bold uppercase tracking-wide">
-                                Economia Anual Projetada
+                        <!-- Copy de Dor: A Raiz Marcada -->
+                        <div class="mb-6 text-center border-b border-gray-100 pb-6">
+                            <p class="text-xs text-gray-600 italic font-light leading-relaxed">
+                                "A raiz cresce e o contraste de textura no fio fino é imediato. Em 45 dias, aquele liso de capa de revista ganha um <strong>frizz indesejado no topo</strong> que derruba a elegância do seu visual."
                             </p>
-                            <p class="text-2xl font-serif text-green-700 mt-1">R$ 2.870,00</p>
                         </div>
 
                         <div class="text-center mb-8">
@@ -418,9 +413,9 @@
                                     <div class="flex justify-between w-full items-baseline border-b border-gray-100 pb-2">
                                         <div class="flex flex-col">
                                             <span class="text-xs font-bold text-brand-black">Adesão (1ª Vez)</span>
-                                            <span class="text-[9px] text-gray-400">Entrada no Círculo</span>
+                                            <span class="text-[9px] text-red-500 font-bold">*R$ 0,00 até 15/01</span>
                                         </div>
-                                        <span class="text-xs font-bold text-gray-800">R$ 359</span>
+                                        <span class="text-xs text-gray-400 line-through">R$ 359</span>
                                     </div>
                                 </div>
                                 <div class="timeline-point">
@@ -438,7 +433,6 @@
                                     <div class="flex justify-between w-full items-baseline border-b border-gray-100 pb-2">
                                         <div class="flex flex-col">
                                             <span class="text-xs font-medium text-gray-600">Reativação (31-60d)</span>
-                                            <span class="text-[9px] text-gray-400">Ainda é Vantajoso</span>
                                         </div>
                                         <span class="text-xs font-medium text-gray-500">R$ 169,90</span>
                                     </div>
@@ -448,7 +442,6 @@
                                     <div class="flex justify-between w-full items-baseline">
                                         <div class="flex flex-col">
                                             <span class="text-xs font-medium text-gray-600">Avulso (+60d)</span>
-                                            <span class="text-[9px] text-red-400">Perdeu o Status</span>
                                         </div>
                                         <span class="text-xs font-medium text-gray-500">R$ 359,00</span>
                                     </div>
@@ -456,15 +449,19 @@
                             </div>
                         </div>
 
-                        <a href="https://wa.me/5549999954052?text=Ol%C3%A1!%20Tenho%20interesse%20no%20C%C3%ADrculo%20Sublime%20(Lisos)%20e%20gostaria%20de%20agendar%20minha%20ades%C3%A3o." id="btn-plan-sublime" class="w-full btn-luxury-glow py-4 rounded-xl text-[11px] mt-8 block text-center shadow-lg">
-                            Entrar no Clube Sublime
+                        <a href="https://wa.me/5549999954052?text=Ol%C3%A1!%20Fiz%20cabelo%20recentemente%20e%20quero%20aproveitar%20a%20isen%C3%A7%C3%A3o%20de%20ades%C3%A3o%20do%20plano%20Sublime." id="btn-plan-sublime" class="w-full btn-luxury-glow py-4 rounded-xl text-[11px] mt-8 block text-center shadow-lg">
+                            Garantir Isenção Agora
                         </a>
-                        <p class="text-center text-[9px] text-gray-400 mt-3 flex justify-center items-center gap-1"><i class="fas fa-lock text-[8px]"></i> Sem cartão de crédito</p>
+                        <p class="text-center text-[9px] text-gray-400 mt-3 flex justify-center items-center gap-1"><i class="fas fa-lock text-[8px]"></i> Pagamento presencial</p>
                     </div>
                 </div>
 
-                <!-- CARD 2: IMPERIAL -->
+                <!-- CARD 2: IMPERIAL (CACHEADOS) -->
                 <div class="pricing-card reveal-on-scroll" style="transition-delay: 0.1s;">
+                    <!-- FAIXA PROMO -->
+                    <div class="bg-red-600 text-white text-[9px] font-bold uppercase text-center py-1 tracking-widest">
+                        Adesão Zero até 15/01*
+                    </div>
                     <div class="bg-header-imperial card-header-pattern p-8 text-center text-white relative">
                         <div class="absolute top-4 right-4 text-white/50 text-[10px] border border-white/30 px-2 py-0.5 rounded uppercase font-bold">Fio Médio</div>
                         <h3 class="text-3xl font-serif italic text-white mt-2">Imperial</h3>
@@ -472,11 +469,11 @@
                     </div>
                     
                     <div class="p-8 flex flex-col flex-grow bg-white relative">
-                        <div class="bg-gray-50 rounded-lg p-4 mb-6 text-center border-l-4 border-green-500 shadow-sm">
-                            <p class="text-brand-black text-[10px] font-bold uppercase tracking-wide">
-                                Economia Anual Projetada
+                        <!-- Copy de Dor: Volume Indesejado -->
+                        <div class="mb-6 text-center border-b border-gray-100 pb-6">
+                            <p class="text-xs text-gray-600 italic font-light leading-relaxed">
+                                "Cachos pedem definição desde a raiz. Em poucas semanas, o crescimento cria um <strong>volume desproporcional no topo</strong> (efeito capacete), quebrando a harmonia do seu corte."
                             </p>
-                            <p class="text-2xl font-serif text-green-700 mt-1">R$ 3.240,00</p>
                         </div>
 
                         <div class="text-center mb-8">
@@ -494,8 +491,11 @@
                                 <div class="timeline-point">
                                     <div class="point-dot start">1</div>
                                     <div class="flex justify-between w-full items-baseline border-b border-gray-100 pb-2">
-                                        <div class="flex flex-col"><span class="text-xs font-bold text-brand-black">Adesão (1ª Vez)</span></div>
-                                        <span class="text-xs font-bold text-gray-800">R$ 410</span>
+                                        <div class="flex flex-col">
+                                            <span class="text-xs font-bold text-brand-black">Adesão (1ª Vez)</span>
+                                            <span class="text-[9px] text-red-500 font-bold">*R$ 0,00 até 15/01</span>
+                                        </div>
+                                        <span class="text-xs text-gray-400 line-through">R$ 410</span>
                                     </div>
                                 </div>
                                 <div class="timeline-point">
@@ -522,15 +522,19 @@
                             </div>
                         </div>
 
-                        <a href="https://wa.me/5549999954052?text=Ol%C3%A1!%20Tenho%20interesse%20no%20C%C3%ADrculo%20Imperial%20(Cachos)%20e%20gostaria%20de%20agendar." id="btn-plan-imperial" class="w-full btn-ghost-dark py-4 rounded-xl text-[11px] mt-8 block text-center">
-                            Entrar no Clube Imperial
+                        <a href="https://wa.me/5549999954052?text=Ol%C3%A1!%20Fiz%20cabelo%20recentemente%20e%20quero%20aproveitar%20a%20isen%C3%A7%C3%A3o%20de%20ades%C3%A3o%20do%20plano%20Imperial." id="btn-plan-imperial" class="w-full btn-ghost-dark py-4 rounded-xl text-[11px] mt-8 block text-center">
+                            Garantir Isenção Agora
                         </a>
                         <p class="text-center text-[9px] text-gray-400 mt-3 flex justify-center items-center gap-1"><i class="fas fa-lock text-[8px]"></i> Sem cartão de crédito</p>
                     </div>
                 </div>
 
-                <!-- CARD 3: ABSOLUTO -->
+                <!-- CARD 3: ABSOLUTO (CRESPOS) -->
                 <div class="pricing-card reveal-on-scroll" style="transition-delay: 0.2s;">
+                    <!-- FAIXA PROMO -->
+                    <div class="bg-red-600 text-white text-[9px] font-bold uppercase text-center py-1 tracking-widest">
+                        Adesão Zero até 15/01*
+                    </div>
                     <div class="bg-header-absoluto card-header-pattern p-8 text-center text-white relative">
                         <div class="absolute top-4 right-4 text-white/50 text-[10px] border border-white/30 px-2 py-0.5 rounded uppercase font-bold">Fio Grosso</div>
                         <h3 class="text-3xl font-serif italic text-white mt-2">Absoluto</h3>
@@ -538,11 +542,11 @@
                     </div>
                     
                     <div class="p-8 flex flex-col flex-grow bg-white relative">
-                        <div class="bg-gray-50 rounded-lg p-4 mb-6 text-center border-l-4 border-green-500 shadow-sm">
-                            <p class="text-brand-black text-[10px] font-bold uppercase tracking-wide">
-                                Economia Anual Projetada
+                        <!-- Copy de Dor: Quebra e Dificuldade -->
+                        <div class="mb-6 text-center border-b border-gray-100 pb-6">
+                            <p class="text-xs text-gray-600 italic font-light leading-relaxed">
+                                "A raiz resistente empurra o fio alisado, criando uma <strong>marca visível</strong> que dificulta a escovação diária e pode causar quebra na transição das texturas."
                             </p>
-                            <p class="text-2xl font-serif text-green-700 mt-1">R$ 4.080,00</p>
                         </div>
 
                         <div class="text-center mb-8">
@@ -560,8 +564,11 @@
                                 <div class="timeline-point">
                                     <div class="point-dot start">1</div>
                                     <div class="flex justify-between w-full items-baseline border-b border-gray-100 pb-2">
-                                        <div class="flex flex-col"><span class="text-xs font-bold text-brand-black">Adesão (1ª Vez)</span></div>
-                                        <span class="text-xs font-bold text-gray-800">R$ 499</span>
+                                        <div class="flex flex-col">
+                                            <span class="text-xs font-bold text-brand-black">Adesão (1ª Vez)</span>
+                                            <span class="text-[9px] text-red-500 font-bold">*R$ 0,00 até 15/01</span>
+                                        </div>
+                                        <span class="text-xs text-gray-400 line-through">R$ 499</span>
                                     </div>
                                 </div>
                                 <div class="timeline-point">
@@ -588,8 +595,8 @@
                             </div>
                         </div>
 
-                        <a href="https://wa.me/5549999954052?text=Ol%C3%A1!%20Tenho%20interesse%20no%20C%C3%ADrculo%20Absoluto%20(Crespos)%20e%20gostaria%20de%20agendar." id="btn-plan-absoluto" class="w-full btn-ghost-dark py-4 rounded-xl text-[11px] mt-8 block text-center">
-                            Entrar no Clube Absoluto
+                        <a href="https://wa.me/5549999954052?text=Ol%C3%A1!%20Fiz%20cabelo%20recentemente%20e%20quero%20aproveitar%20a%20isen%C3%A7%C3%A3o%20de%20ades%C3%A3o%20do%20plano%20Absoluto." id="btn-plan-absoluto" class="w-full btn-ghost-dark py-4 rounded-xl text-[11px] mt-8 block text-center">
+                            Garantir Isenção Agora
                         </a>
                         <p class="text-center text-[9px] text-gray-400 mt-3 flex justify-center items-center gap-1"><i class="fas fa-lock text-[8px]"></i> Sem cartão de crédito</p>
                     </div>
@@ -669,6 +676,7 @@
                 <p><strong>3. Do Pagamento:</strong> Os valores são pagos presencialmente a cada visita. Não há cobrança recorrente automática em cartão de crédito.</p>
                 <p><strong>4. Do Cancelamento:</strong> O cliente pode deixar de frequentar o clube a qualquer momento sem multa. A única penalidade é a perda dos valores promocionais para retornos futuros.</p>
                 <p><strong>5. Da Garantia:</strong> A garantia de retoque gratuito é válida por 7 dias após o procedimento, mediante avaliação técnica presencial.</p>
+                <p><strong>6. Promoção "Adesão Zero":</strong> Válida até 15/01/2026 para clientes que realizaram alisamento nos últimos 60 dias (comprovado por histórico do salão ou nota fiscal de terceiros). Sujeito à disponibilidade de agenda.</p>
             </div>
         </div>
     </div>
@@ -686,7 +694,24 @@
         document.addEventListener('DOMContentLoaded', () => {
             lucide.createIcons();
 
-            const observerOptions = { threshold: 0.1, rootMargin: '50px' };
+            // SCRIPT MOBILE CENTER FOCUS
+            const centerObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active-glow');
+                    } else {
+                        entry.target.classList.remove('active-glow');
+                    }
+                });
+            }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 }); // Ativa quando o elemento está no meio da tela (Mobile)
+
+            // Aplicar observador em Cards e Preços
+            const mobileElements = document.querySelectorAll('.feature-card, .member-card, .pricing-card');
+            if (window.innerWidth <= 768) {
+                mobileElements.forEach(el => centerObserver.observe(el));
+            }
+
+            // REVEAL ON SCROLL
             const revealObserver = new IntersectionObserver((entries, obs) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -694,7 +719,7 @@
                         obs.unobserve(entry.target); 
                     }
                 });
-            }, observerOptions);
+            }, { threshold: 0.1, rootMargin: '50px' });
 
             document.querySelectorAll('.reveal-on-scroll').forEach(el => revealObserver.observe(el));
         });
