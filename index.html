@@ -47,7 +47,7 @@
     <!-- FONTES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- ÍCONES -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -70,6 +70,7 @@
                         'header-imperial': '#3E2723',
                         'header-absoluto': '#263238',
                         'promo-alert': '#EF4444',
+                        'card-bg': '#FDFBF7',
                     },
                     fontFamily: {
                         'serif': ['Cormorant Garamond', 'serif'],
@@ -99,28 +100,79 @@
 
         h1, h2, h3, .editorial-text { font-family: 'Cormorant Garamond', serif; }
 
-        /* CARTÃO "BLACK TITANIUM" */
+        /* --- CARTÃO "BLACK TITANIUM" (AUDITORIA DE LUXO) --- */
         .member-card {
-            background: linear-gradient(145deg, #1a1a1a, #000000);
+            /* Fundo gradiente profundo simulando metal preto */
+            background: linear-gradient(135deg, #1c1c1c 0%, #000000 100%);
             border-radius: 16px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            /* Sombra suave e difusa */
+            box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7);
+            /* Borda fina (Bisel) para acabamento premium */
+            border: 1px solid rgba(255, 255, 255, 0.12);
             transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-        .member-card.active-glow, .member-card:hover {
-            transform: scale(1.02) translateY(-5px);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 20px rgba(212, 175, 55, 0.1);
-            border-color: rgba(212, 175, 55, 0.3);
-        }
+        
+        /* Textura Noise (Metal Escovado) */
         .member-card::before {
             content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: repeating-linear-gradient(90deg, transparent 0, transparent 2px, rgba(255,255,255,0.02) 3px);
-            opacity: 0.5; pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+            opacity: 0.6; pointer-events: none; mix-blend-mode: overlay;
         }
 
-        /* FEATURE CARDS */
+        /* ANIMAÇÃO "AUTO-SHINE" (MOBILE & DESKTOP) */
+        /* Uma onda de luz passa automaticamente para simular reflexo */
+        .member-card::after {
+            content: ''; position: absolute; 
+            top: -150%; left: -150%; width: 250%; height: 250%;
+            background: linear-gradient(
+                115deg, 
+                transparent 40%, 
+                rgba(255, 255, 255, 0.03) 45%, 
+                rgba(212, 175, 55, 0.15) 50%, /* Brilho Dourado */
+                rgba(255, 255, 255, 0.03) 55%, 
+                transparent 60%
+            );
+            transform: rotate(25deg);
+            animation: holo-shimmer 6s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes holo-shimmer {
+            0% { transform: translate(-20%, -20%) rotate(25deg); }
+            20% { transform: translate(20%, 20%) rotate(25deg); } /* Passa a luz */
+            100% { transform: translate(20%, 20%) rotate(25deg); } /* Espera */
+        }
+        
+        .member-card.active-glow, .member-card:hover {
+            transform: scale(1.02) translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.4); /* Borda acende em dourado */
+            box-shadow: 0 30px 70px -10px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.1);
+        }
+
+        /* TEXTO LIQUID GOLD (Aprimorado) */
+        .text-liquid-gold {
+            background: linear-gradient(
+                to right, 
+                #bf953f, 
+                #fcf6ba, 
+                #b38728, 
+                #fbf5b7, 
+                #aa771c
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            background-clip: text;
+            animation: shine-text 5s infinite linear;
+            text-shadow: 0px 2px 5px rgba(0,0,0,0.3); /* Sombra para destacar do fundo */
+        }
+        @keyframes shine-text {
+            to { background-position: 200% center; }
+        }
+
+        /* --- FEATURE CARDS (Borda Brilhante) --- */
         .feature-card {
             position: relative;
             background: #fff;
@@ -131,17 +183,19 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
         .feature-card.active-glow, .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             box-shadow: 0 15px 30px -5px rgba(197, 157, 36, 0.15);
             border-color: rgba(197, 157, 36, 0.4);
         }
         .feature-content { padding: 20px; position: relative; z-index: 2; }
 
-        /* PREÇOS & CARROSSEL */
+        /* --- PREÇOS & CARROSSEL --- */
         .pricing-card {
-            background: #fff; border-radius: 20px; overflow: hidden;
-            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
-            border: 1px solid rgba(0,0,0,0.05);
+            background: #FDFBF7; 
+            border-radius: 20px; 
+            overflow: hidden;
+            box-shadow: 0 20px 40px -5px rgba(0,0,0,0.1);
+            border: 1px solid rgba(212, 175, 55, 0.4);
             transition: all 0.5s ease;
             display: flex; flex-direction: column; height: 100%;
             min-width: 85vw; max-width: 85vw;
@@ -153,7 +207,8 @@
 
         .pricing-card.active-glow, .pricing-card:hover { 
             transform: translateY(-8px); 
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1), 0 0 0 1px rgba(197, 157, 36, 0.1); 
+            box-shadow: 0 30px 60px -12px rgba(0,0,0,0.15), 0 0 0 2px rgba(212, 175, 55, 0.6); 
+            border-color: transparent; 
         }
         
         .card-header-pattern {
@@ -185,16 +240,14 @@
         .point-dot.red { background: #EF4444; border-color: #EF4444; }
         .point-dot.start { background: #000; border-color: #000; }
 
-        /* BOTÕES & ANIMAÇÕES: O EFEITO OURO REAL UNIFICADO */
+        /* --- BOTÕES OTIMIZADOS (CTA) --- */
         .btn-luxury-glow, .btn-gold {
             position: relative; overflow: hidden;
-            /* PADRÃO OURO PARA TODOS */
             background: linear-gradient(135deg, #d4af37 0%, #fcf6ba 45%, #b38728 100%);
             border: 1px solid #ffecb3;
             color: #2b0505;
             box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
             font-weight: 800;
-            
             text-transform: uppercase; letter-spacing: 1px;
             transition: all 0.4s ease; 
         }
@@ -208,7 +261,6 @@
             transform: translateY(-2px); 
             box-shadow: 0 10px 25px rgba(197, 157, 36, 0.6); 
             border-color: #fff;
-            /* Mantém a cor dourada no hover, não muda para preto */
             background: linear-gradient(135deg, #d4af37 0%, #fcf6ba 45%, #b38728 100%);
             color: #2b0505;
         }
@@ -239,11 +291,13 @@
          ========================================= -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-brand-black">
         <div class="absolute inset-0 z-0 opacity-60">
-            <img src="https://images.unsplash.com/photo-1512413914633-b5043f4041ea?q=80&w=2000&auto=format&fit=crop" 
+            <!-- Imagem Atualizada do Carrd -->
+            <img src="https://testeessencia.carrd.co/assets/images/image14.jpg?v=6dfe078c" 
                  alt="Mulher sorrindo com cabelo liso perfeito" 
                  class="w-full h-full object-cover object-top"
                  fetchpriority="high" width="2000" height="1200">
         </div>
+        <!-- Gradiente ajustado -->
         <div class="absolute inset-0 z-10 bg-gradient-to-t from-brand-black via-brand-black/60 to-transparent"></div>
 
         <div class="relative z-20 text-center px-4 xs:px-6 max-w-5xl mx-auto flex flex-col items-center w-full">
@@ -269,6 +323,7 @@
                     </p>
                 </div>
                 
+                <!-- CTA direciona para #exclusividade (Cartão) -->
                 <a href="#exclusividade" id="btn-hero-cta" class="btn-luxury-glow px-10 py-5 rounded-full text-xs w-full xs:w-auto min-w-[240px] text-center shadow-2xl tracking-widest">
                     DESBLOQUEAR MEU ACESSO
                 </a>
@@ -277,7 +332,7 @@
     </section>
 
     <!-- =========================================
-         SEÇÃO 2: STATUS & CARTÃO
+         SEÇÃO 2: STATUS & CARTÃO (REFINADO ULTRA-PREMIUM)
          ========================================= -->
     <section id="exclusividade" class="py-20 bg-brand-white overflow-hidden">
         <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-16">
@@ -301,7 +356,7 @@
                             <div class="w-10 h-10 rounded-full bg-brand-black text-brand-gold flex items-center justify-center flex-shrink-0"><i class="fas fa-infinity"></i></div>
                             <div>
                                 <h4 class="text-sm font-bold text-brand-black uppercase tracking-wide">Liso Vitalício</h4>
-                                <p class="text-xs text-gray-500 mt-1">Mantendo o ciclo de 30-60 dias, seu liso é renovado pelo valor de membro.</p>
+                                <p class="text-xs text-gray-500 mt-1">Apenas para membros em dia com o ciclo. Falhou? Perde a blindagem e a garantia.</p>
                             </div>
                         </div>
                     </div>
@@ -318,30 +373,29 @@
             </div>
 
             <div class="md:w-1/2 flex justify-center reveal-on-scroll">
-                <div class="member-card w-full max-w-sm aspect-[1.586/1] p-8 flex flex-col justify-between relative group cursor-default">
-                    <div class="flex justify-between items-start z-10">
+                <!-- CARTÃO HOLOGRÁFICO MINIMALISTA (JOIA DA MARCA) -->
+                <div class="member-card w-full max-w-sm aspect-[1.586/1] flex flex-col justify-center items-center relative group cursor-default">
+                    
+                    <!-- Fundo Textura Diamante (via CSS) -->
+                    <div class="absolute inset-0 z-0"></div>
+
+                    <!-- Conteúdo Centralizado -->
+                    <div class="z-10 text-center flex flex-col items-center gap-4">
+                        <!-- Nome com Efeito Liquid Gold -->
                         <div>
-                            <span class="text-brand-gold font-serif italic text-2xl tracking-wide block drop-shadow-md">Alisa Chapecó</span>
-                            <span class="text-white/40 text-[7px] tracking-[0.3em] uppercase font-bold">Exclusive Membership</span>
+                            <h3 class="text-liquid-gold font-serif italic text-6xl leading-none tracking-tighter drop-shadow-2xl">
+                                Alisa
+                            </h3>
+                            <span class="text-white font-light text-2xl tracking-[0.2em] uppercase mt-2 block opacity-90">
+                                Chapecó
+                            </span>
                         </div>
-                        <div class="opacity-50"><i class="fas fa-gem text-brand-gold text-2xl"></i></div>
-                    </div>
-                    <div class="z-10 flex items-center gap-3 my-auto opacity-80">
-                        <span class="text-gray-400 font-mono text-sm tracking-[0.2em] shadow-black drop-shadow-sm">XXXX</span>
-                        <span class="text-gray-400 font-mono text-sm tracking-[0.2em] shadow-black drop-shadow-sm">XXXX</span>
-                        <span class="text-gray-400 font-mono text-sm tracking-[0.2em] shadow-black drop-shadow-sm">PREMIER</span>
-                    </div>
-                    <div class="z-10">
-                        <div class="flex justify-between items-end border-t border-white/10 pt-5">
-                            <div>
-                                <span class="text-brand-gold text-[7px] uppercase tracking-widest block mb-1 opacity-80">Titular</span>
-                                <span class="text-white text-xs uppercase tracking-[0.2em] font-medium text-shadow">MEMBRO VITALÍCIO</span>
-                            </div>
-                            <div class="text-right">
-                                <span class="text-white/30 text-[7px] uppercase tracking-widest block mb-1">Validade</span>
-                                <span class="text-white/60 text-[10px] tracking-widest">INDETERMINADA</span>
-                            </div>
-                        </div>
+                        
+                        <div class="w-16 h-[1px] bg-gradient-to-r from-transparent via-brand-gold to-transparent my-2"></div>
+
+                        <span class="text-white/60 text-[9px] tracking-[0.4em] uppercase font-bold">
+                            Exclusive Member
+                        </span>
                     </div>
                 </div>
             </div>
@@ -352,7 +406,7 @@
     <!-- =========================================
          SEÇÃO 3: PLANOS
          ========================================= -->
-    <section id="planos" class="py-24 bg-gray-50 relative">
+    <section id="planos" class="py-24 bg-brand-white relative">
         <div class="max-w-7xl mx-auto px-4 xs:px-6">
             <div class="text-center mb-16 reveal-on-scroll">
                 <h2 class="text-4xl md:text-6xl font-serif text-brand-black italic">Escolha Seu Plano</h2>
@@ -370,7 +424,7 @@
             </div>
 
             <!-- CONTAINER CARROSSEL -->
-            <div id="plans-carousel" class="flex overflow-x-auto snap-x snap-mandatory gap-4 px-4 pb-8 -mx-4 lg:grid lg:grid-cols-3 lg:gap-8 lg:items-stretch lg:px-0 lg:pb-0 lg:mx-0 no-scrollbar">
+            <div id="plans-carousel" class="flex overflow-x-auto snap-x snap-mandatory gap-6 px-4 pb-8 -mx-4 lg:grid lg:grid-cols-3 lg:gap-8 lg:items-stretch lg:px-0 lg:pb-0 lg:mx-0 no-scrollbar">
                 
                 <!-- CARD 1: SUBLIME -->
                 <div class="pricing-card snap-center shrink-0 w-[85vw] max-w-[350px] lg:w-auto lg:max-w-none reveal-on-scroll">
@@ -383,8 +437,7 @@
                         <p class="text-[10px] uppercase mt-2 tracking-wide opacity-70">Para Lisos & Ondulados</p>
                     </div>
                     
-                    <div class="p-8 flex flex-col flex-grow bg-white relative">
-                        <!-- PREÇO -->
+                    <div class="p-8 flex flex-col flex-grow relative">
                         <div class="text-center mb-8 mt-4">
                             <div class="flex items-start justify-center text-brand-black">
                                 <span class="text-lg mt-2 mr-1">R$</span>
@@ -394,7 +447,6 @@
                             <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">por sessão mensal</p>
                         </div>
 
-                        <!-- TIMELINE -->
                         <div class="timeline-container flex-grow">
                             <div class="timeline-wrapper">
                                 <div class="timeline-track"></div>
@@ -439,21 +491,20 @@
                             </div>
                         </div>
 
-                        <!-- Justificativa Técnica -->
                         <div class="bg-gray-50 p-3 rounded-lg mb-6 border border-gray-100">
                             <p class="text-[9px] text-gray-500 leading-relaxed text-justify font-light">
-                                <strong>Nota Técnica:</strong> O crescimento natural da raiz torna-se visível a partir de 45 dias. Fatores externos como frequência de lavagens e produtos incorretos reduzem a durabilidade do liso. A assinatura garante a manutenção no tempo exato.
+                                <strong>Nota Técnica (Tricologia):</strong> O crescimento capilar é biológico e contínuo. A partir do <strong>21º dia</strong>, a raiz nova já cria contraste de textura visível, comprometendo o alinhamento perfeito. Fatores como lavagens frequentes e suor aceleram a oxidação. O Ciclo de 30 dias é a única forma de manter a blindagem intacta.
                             </p>
                         </div>
 
-                        <a href="https://wa.me/5549999954052?text=Ol%C3%A1!%20Sou%20cliente%20e%20quero%20validar%20minha%20isen%C3%A7%C3%A3o%20de%20ades%C3%A3o%20no%20plano%20Sublime." id="btn-plan-sublime" class="w-full btn-luxury-glow py-4 rounded-xl text-[11px] block text-center shadow-lg">
-                            Validar Minha Isenção
+                        <a href="https://wa.me/5549999954052?text=Ol%C3%A1!%20Sou%20cliente%20e%20quero%20RESGATAR%20minha%20ISEN%C3%87%C3%83O%20de%20ades%C3%A3o%20no%20plano%20Sublime." id="btn-plan-sublime" class="w-full btn-luxury-glow py-4 rounded-xl text-[11px] block text-center shadow-lg">
+                            RESGATAR ISENÇÃO DE ADESÃO
                         </a>
                         <p class="text-center text-[9px] text-gray-400 mt-3 flex justify-center items-center gap-1"><i class="fas fa-lock text-[8px]"></i> Pagamento presencial</p>
                     </div>
                 </div>
 
-                <!-- CARD 2: IMPERIAL (CACHEADOS) -->
+                <!-- CARD 2: IMPERIAL -->
                 <div class="pricing-card snap-center shrink-0 w-[85vw] max-w-[350px] lg:w-auto lg:max-w-none reveal-on-scroll" style="transition-delay: 0.1s;">
                     <div class="bg-red-600 text-white text-[9px] font-bold uppercase text-center py-1 tracking-widest">
                         Adesão Zero até 15/01*
@@ -464,8 +515,7 @@
                         <p class="text-[10px] uppercase mt-2 tracking-wide opacity-70">Para Cacheados</p>
                     </div>
                     
-                    <div class="p-8 flex flex-col flex-grow bg-white relative">
-                        <!-- PREÇO -->
+                    <div class="p-8 flex flex-col flex-grow relative">
                         <div class="text-center mb-8 mt-4">
                             <div class="flex items-start justify-center text-brand-black">
                                 <span class="text-lg mt-2 mr-1">R$</span>
@@ -475,7 +525,6 @@
                             <p class="text-[10px] text-gray-400 uppercase tracking-widest mt-1">por sessão mensal</p>
                         </div>
 
-                        <!-- TIMELINE -->
                         <div class="timeline-container flex-grow">
                             <div class="timeline-wrapper">
                                 <div class="timeline-track"></div>
@@ -502,39 +551,34 @@
                                 <div class="timeline-point">
                                     <div class="point-dot yellow"><i class="fas fa-exclamation text-[6px]"></i></div>
                                     <div class="flex justify-between w-full items-baseline border-b border-gray-100 pb-2">
-                                        <div class="flex flex-col">
-                                            <span class="text-xs font-medium text-gray-600">Reativação (31-60d)</span>
-                                        </div>
+                                        <div class="flex flex-col"><span class="text-xs font-medium text-gray-600">Reativação (31-60d)</span></div>
                                         <span class="text-xs font-medium text-gray-500">R$ 189,00</span>
                                     </div>
                                 </div>
                                 <div class="timeline-point">
                                     <div class="point-dot red"><i class="fas fa-times text-[6px]"></i></div>
                                     <div class="flex justify-between w-full items-baseline">
-                                        <div class="flex flex-col">
-                                            <span class="text-xs font-medium text-gray-600">Avulso (+60d)</span>
-                                        </div>
+                                        <div class="flex flex-col"><span class="text-xs font-medium text-gray-600">Avulso (+60d)</span></div>
                                         <span class="text-xs font-medium text-gray-500">R$ 410,00</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Justificativa Técnica -->
                         <div class="bg-gray-50 p-3 rounded-lg mb-6 border border-gray-100">
                             <p class="text-[9px] text-gray-500 leading-relaxed text-justify font-light">
-                                <strong>Nota Técnica:</strong> O crescimento natural da raiz torna-se visível a partir de 45 dias. Fatores externos como frequência de lavagens e produtos incorretos reduzem a durabilidade do liso. A assinatura garante a manutenção no tempo exato.
+                                <strong>Nota Técnica (Tricologia):</strong> O crescimento capilar é biológico e contínuo. A partir do <strong>21º dia</strong>, a raiz nova já cria contraste de textura visível, comprometendo o alinhamento perfeito. Fatores como lavagens frequentes e suor aceleram a oxidação. O Ciclo de 30 dias é a única forma de manter a blindagem intacta.
                             </p>
                         </div>
 
-                        <a href="https://wa.me/5549999954052?text=Ol%C3%A1!%20Sou%20cliente%20e%20quero%20validar%20minha%20isen%C3%A7%C3%A3o%20de%20ades%C3%A3o%20do%20plano%20Imperial." id="btn-plan-imperial" class="w-full btn-luxury-glow py-4 rounded-xl text-[11px] block text-center">
-                            Validar Minha Isenção
+                        <a href="https://wa.me/5549999954052?text=Ol%C3%A1!%20Sou%20cliente%20e%20quero%20RESGATAR%20minha%20ISEN%C3%87%C3%83O%20de%20ades%C3%A3o%20do%20plano%20Imperial." id="btn-plan-imperial" class="w-full btn-luxury-glow py-4 rounded-xl text-[11px] block text-center">
+                            RESGATAR ISENÇÃO DE ADESÃO
                         </a>
-                        <p class="text-center text-[9px] text-gray-400 mt-3 flex justify-center items-center gap-1"><i class="fas fa-lock text-[8px]"></i> Sem cartão de crédito</p>
+                        <p class="text-center text-[9px] text-gray-400 mt-3 flex justify-center items-center gap-1"><i class="fas fa-lock text-[8px]"></i> Pagamento presencial</p>
                     </div>
                 </div>
 
-                <!-- CARD 3: ABSOLUTO (CRESPOS) -->
+                <!-- CARD 3: ABSOLUTO -->
                 <div class="pricing-card snap-center shrink-0 w-[85vw] max-w-[350px] lg:w-auto lg:max-w-none reveal-on-scroll" style="transition-delay: 0.2s;">
                     <div class="bg-red-600 text-white text-[9px] font-bold uppercase text-center py-1 tracking-widest">
                         Adesão Zero até 15/01*
@@ -545,7 +589,7 @@
                         <p class="text-[10px] uppercase mt-2 tracking-wide opacity-70">Para Crespos</p>
                     </div>
                     
-                    <div class="p-8 flex flex-col flex-grow bg-white relative">
+                    <div class="p-8 flex flex-col flex-grow relative">
                         <!-- PREÇO -->
                         <div class="text-center mb-8 mt-4">
                             <div class="flex items-start justify-center text-brand-black">
@@ -573,45 +617,37 @@
                                 <div class="timeline-point">
                                     <div class="point-dot green"><i class="fas fa-check text-[6px]"></i></div>
                                     <div class="flex justify-between w-full items-baseline bg-green-50 p-2 rounded -mt-2 border border-green-100">
-                                        <div class="flex flex-col">
-                                            <span class="text-xs font-bold text-green-800">Ciclo Ideal (30d)</span>
-                                            <span class="text-[9px] text-green-600">★ Preço de Membro</span>
-                                        </div>
+                                        <div class="flex flex-col"><span class="text-xs font-bold text-green-800">Ciclo Ideal (30d)</span><span class="text-[9px] text-green-600">★ Preço de Membro</span></div>
                                         <span class="text-sm font-bold text-header-absoluto">R$ 159,90</span>
                                     </div>
                                 </div>
                                 <div class="timeline-point">
                                     <div class="point-dot yellow"><i class="fas fa-exclamation text-[6px]"></i></div>
                                     <div class="flex justify-between w-full items-baseline border-b border-gray-100 pb-2">
-                                        <div class="flex flex-col">
-                                            <span class="text-xs font-medium text-gray-600">Reativação (31-60d)</span>
-                                        </div>
+                                        <div class="flex flex-col"><span class="text-xs font-medium text-gray-600">Reativação (31-60d)</span></div>
                                         <span class="text-xs font-medium text-gray-500">R$ 220,00</span>
                                     </div>
                                 </div>
                                 <div class="timeline-point">
                                     <div class="point-dot red"><i class="fas fa-times text-[6px]"></i></div>
                                     <div class="flex justify-between w-full items-baseline">
-                                        <div class="flex flex-col">
-                                            <span class="text-xs font-medium text-gray-600">Avulso (+60d)</span>
-                                        </div>
+                                        <div class="flex flex-col"><span class="text-xs font-medium text-gray-600">Avulso (+60d)</span></div>
                                         <span class="text-xs font-medium text-gray-500">R$ 499,00</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Justificativa Técnica -->
                         <div class="bg-gray-50 p-3 rounded-lg mb-6 border border-gray-100">
                             <p class="text-[9px] text-gray-500 leading-relaxed text-justify font-light">
-                                <strong>Nota Técnica:</strong> O crescimento natural da raiz torna-se visível a partir de 45 dias. Fatores externos como frequência de lavagens e produtos incorretos reduzem a durabilidade do liso. A assinatura garante a manutenção no tempo exato.
+                                <strong>Nota Técnica (Tricologia):</strong> O crescimento capilar é biológico e contínuo. A partir do <strong>21º dia</strong>, a raiz nova já cria contraste de textura visível, comprometendo o alinhamento perfeito. Fatores como lavagens frequentes e suor aceleram a oxidação. O Ciclo de 30 dias é a única forma de manter a blindagem intacta.
                             </p>
                         </div>
 
-                        <a href="https://wa.me/5549999954052?text=Ol%C3%A1!%20Sou%20cliente%20e%20quero%20validar%20minha%20isen%C3%A7%C3%A3o%20de%20ades%C3%A3o%20do%20plano%20Absoluto." id="btn-plan-absoluto" class="w-full btn-luxury-glow py-4 rounded-xl text-[11px] block text-center">
-                            Validar Minha Isenção
+                        <a href="https://wa.me/5549999954052?text=Ol%C3%A1!%20Sou%20cliente%20e%20quero%20RESGATAR%20minha%20ISEN%C3%87%C3%83O%20de%20ades%C3%A3o%20do%20plano%20Absoluto." id="btn-plan-absoluto" class="w-full btn-luxury-glow py-4 rounded-xl text-[11px] block text-center">
+                            RESGATAR ISENÇÃO DE ADESÃO
                         </a>
-                        <p class="text-center text-[9px] text-gray-400 mt-3 flex justify-center items-center gap-1"><i class="fas fa-lock text-[8px]"></i> Sem cartão de crédito</p>
+                        <p class="text-center text-[9px] text-gray-400 mt-3 flex justify-center items-center gap-1"><i class="fas fa-lock text-[8px]"></i> Pagamento presencial</p>
                     </div>
                 </div>
 
@@ -627,7 +663,7 @@
     </section>
 
     <!-- =========================================
-         SEÇÃO 4: FAQ
+         SEÇÃO 4: FAQ (Alta Relevância)
          ========================================= -->
     <section class="py-20 bg-brand-white">
         <div class="max-w-2xl mx-auto px-6">
@@ -695,19 +731,11 @@
                 <p><strong>2. Do Ciclo de Manutenção:</strong> Para manter o valor promocional ("Preço de Membro"), o retorno deve ocorrer dentro de 30 dias. Entre 31 e 60 dias, aplica-se o valor de reativação. Após 61 dias, perde-se o status de membro, sendo necessário novo pagamento de adesão ou valor avulso.</p>
                 <p><strong>3. Do Pagamento:</strong> Os valores são pagos presencialmente a cada visita. Não há cobrança recorrente automática em cartão de crédito.</p>
                 <p><strong>4. Do Cancelamento:</strong> O cliente pode deixar de frequentar o clube a qualquer momento sem multa. A única penalidade é a perda dos valores promocionais para retornos futuros.</p>
-                <p><strong>5. Da Garantia:</strong> A garantia de retoque gratuito é válida por 7 dias após o procedimento, mediante avaliação técnica presencial.</p>
-                <p><strong>6. Promoção "Adesão Zero":</strong> Válida até 15/01/2026 para clientes que já realizaram alisamento no salão Essência de Romã nos últimos 60 dias. A isenção está condicionada à validação positiva do histórico da cliente em nosso sistema interno. Clientes de outros salões devem pagar a adesão normalmente ou apresentar nota fiscal comprovando procedimento recente (sujeito à análise).</p>
+                <p><strong>5. Da Garantia:</strong> A Garantia Vitalícia do liso (blindagem) é um benefício exclusivo para membros com o ciclo ativo (30 a 60 dias). Clientes que não fazem parte do clube ou que interromperam o ciclo possuem apenas a garantia legal padrão de 7 dias após o procedimento.</p>
+                <p><strong>6. Promoção "Adesão Zero":</strong> Válida até 15/01/2026 EXCLUSIVAMENTE para clientes que já realizaram alisamento no salão Essência de Romã nos últimos 60 dias, mediante validação de histórico em nosso sistema interno. Clientes novos ou vindos de outros salões devem realizar o pagamento da taxa de adesão (1ª Vez) obrigatoriamente para ingressar no clube.</p>
             </div>
         </div>
     </div>
-
-    <!-- WHATSAPP FLOATING -->
-    <a href="https://wa.me/5549999954052?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20o%20Clube." id="btn-whatsapp-float" target="_blank" class="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 group transition-transform hover:scale-105" aria-label="Falar no WhatsApp">
-        <div class="flex items-center bg-[#25D366] text-white px-5 py-3 md:px-6 md:py-3 rounded-full shadow-2xl">
-            <i class="fab fa-whatsapp text-xl mr-2 md:mr-3"></i>
-            <span class="text-[10px] font-bold uppercase tracking-widest">Falar com Especialista</span>
-        </div>
-    </a>
 
     <!-- SCRIPTS -->
     <script>
@@ -721,7 +749,7 @@
             if(carousel) {
                 carousel.addEventListener('scroll', () => {
                     const scrollPosition = carousel.scrollLeft;
-                    const cardWidth = carousel.querySelector('.pricing-card').offsetWidth + 16; // width + gap
+                    const cardWidth = carousel.querySelector('.pricing-card').offsetWidth + 24; // width + gap
                     const index = Math.round(scrollPosition / cardWidth);
                     
                     dots.forEach((dot, i) => {
