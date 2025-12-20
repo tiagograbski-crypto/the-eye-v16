@@ -7,7 +7,7 @@
     <!-- 1. SEO & PERFORMANCE -->
     <title>Essência de Romã Hair | Liso Blindado & Clube Alisa</title>
     <meta name="description" content="Especialista em Alisamento Orgânico, Recuperação Capilar e Clube de Assinatura em Chapecó.">
-    <meta name="theme-color" content="#2b0505">
+    <meta name="theme-color" content="#0a0a0a">
     <link rel="icon" type="image/png" href="https://i.ibb.co/7xQTPb2t/LOGO.png" />
 
     <!-- FONTS & LIBS -->
@@ -29,21 +29,36 @@
             theme: {
                 extend: {
                     colors: {
-                        'brand-black': '#0a0a0a',
-                        'brand-gold': '#C59D24',
-                        'brand-gold-light': '#D4AF37',
+                        'brand-black': '#050505', /* Preto Absoluto */
+                        'brand-gold': '#D4AF37',
+                        'brand-gold-light': '#F3E5AB',
+                        'brand-dark-gold': '#8a6d1f',
                         'header-sublime': '#000000',
-                        'header-imperial': '#3E2723',
-                        'header-absoluto': '#263238',
-                        'gunmetal': '#1A1A1A',
-                        'card-dark': '#222222',
+                        'header-imperial': '#2c1a16',
+                        'header-absoluto': '#1a2327',
+                        'gunmetal': '#121212',
+                        'card-dark': '#181818',
                     },
                     fontFamily: {
                         'serif': ['Cormorant Garamond', 'serif'],
                         'playfair': ['Playfair Display', 'serif'],
                         'sans': ['Montserrat', 'sans-serif'],
                     },
-                    screens: { 'xs': '475px' }
+                    screens: { 'xs': '475px' },
+                    animation: {
+                        'swipe-hint': 'swipeHint 2s infinite ease-in-out',
+                        'shimmer': 'shimmer 3s infinite linear',
+                    },
+                    keyframes: {
+                        swipeHint: {
+                            '0%, 100%': { transform: 'translateX(0)', opacity: '0.6' },
+                            '50%': { transform: 'translateX(10px)', opacity: '1' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-100% 0' },
+                            '100%': { backgroundPosition: '200% 0' }
+                        }
+                    }
                 }
             }
         }
@@ -51,18 +66,18 @@
 
     <style>
         /* =========================================
-           CSS GLOBAL & MARCA MÃE (DARK THEME)
+           CSS GLOBAL & CORE
            ========================================= */
         * { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
-        body { background-color: #2b0505; font-family: 'Montserrat', sans-serif; overflow-x: hidden; margin: 0; padding: 0; color: #f3f3f3; }
+        body { background-color: #0a0a0a; font-family: 'Montserrat', sans-serif; overflow-x: hidden; margin: 0; padding: 0; color: #f3f3f3; }
         
         /* HEADER */
-        #header-sticky { background: rgba(43, 5, 5, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(197, 160, 89, 0.3); transition: all 0.3s ease; }
+        #header-sticky { background: rgba(10, 10, 10, 0.9); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(212, 175, 55, 0.15); transition: all 0.3s ease; }
         
         /* HERO */
-        .hero-container { position: relative; width: 100vw; height: 100dvh; overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: #2b0505; border-bottom: 2px solid #c5a059; }
+        .hero-container { position: relative; width: 100vw; height: 100dvh; overflow: hidden; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: #0a0a0a; border-bottom: 1px solid #8a6d1f; }
         .video-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; z-index: 0; }
-        .video-overlay { position: absolute; inset: 0; z-index: 1; background: radial-gradient(circle at center, rgba(75,0,0,0.1) 0%, rgba(43,5,5,0.8) 90%), linear-gradient(to bottom, rgba(75, 0, 0, 0.6) 0%, rgba(75, 0, 0, 0.2) 35%, rgba(43, 5, 5, 1) 100%); }
+        .video-overlay { position: absolute; inset: 0; z-index: 1; background: radial-gradient(circle at center, rgba(0,0,0,0.2) 0%, rgba(10,10,10,0.8) 90%), linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, rgba(10,10,10,1) 100%); }
         .hero-content { position: relative; z-index: 10; padding-top: 60px; text-align: center; }
         .hero-scroll-arrow { margin-top: 2rem; font-size: 2rem; color: #d4af37; animation: bounce 2s infinite; cursor: pointer; opacity: 0.9; }
 
@@ -70,251 +85,248 @@
         .font-playfair { font-family: 'Playfair Display', serif; }
         .text-gold-static { 
             color: #e8c872;
-            background: linear-gradient(to bottom, #e8c872 0%, #bf953f 26%, #b38728 58%, #fbf5b7 80%, #aa771c 100%);
+            background: linear-gradient(to bottom, #fcf6ba 0%, #bf953f 40%, #b38728 60%, #aa771c 100%);
             -webkit-background-clip: text; background-clip: text;
             -webkit-text-fill-color: transparent; 
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
             font-weight: 800;
         }
-        .text-gold-shine { background: linear-gradient(to right, #cfc09f, #ffecb3, #c5a059, #ffd700, #cfc09f); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine 6s linear infinite; }
+        .text-gold-shine { background: linear-gradient(to right, #8a6d1f, #ffd700, #fcf6ba, #ffd700, #8a6d1f); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shine 6s linear infinite; }
         @keyframes shine { to { background-position: 200% center; } }
-        .eyebrow-text { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: #e5e5e5; margin-bottom: 0.5rem; font-weight: 500; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
-        .hero-subtext { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; color: #e5e5e5; margin-top: 1.5rem; line-height: 1.6; max-width: 90%; margin-left: auto; margin-right: auto; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+        .eyebrow-text { font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: #a3a3a3; margin-bottom: 0.5rem; font-weight: 600; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+        .hero-subtext { font-family: 'Montserrat', sans-serif; font-size: 0.95rem; color: #e5e5e5; margin-top: 1.5rem; line-height: 1.6; max-width: 90%; margin-left: auto; margin-right: auto; text-shadow: 0 2px 4px rgba(0,0,0,0.9); }
 
         /* UI ELEMENTS */
-        .section-pill { display: inline-block; background: rgba(212, 175, 55, 0.15); border: 1px solid rgba(212, 175, 55, 0.5); color: #d4af37; font-size: 0.7rem; font-weight: 700; padding: 6px 20px; border-radius: 50px; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.2em; backdrop-filter: blur(5px); }
-        .btn-solid-gold { background: linear-gradient(135deg, #d4af37 0%, #fcf6ba 45%, #b38728 100%); color: #2b0505; border: 1px solid #ffecb3; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); transition: transform 0.2s; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; display: inline-flex; align-items: center; justify-content: center; }
+        .section-pill { display: inline-block; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 175, 55, 0.4); color: #d4af37; font-size: 0.7rem; font-weight: 700; padding: 6px 20px; border-radius: 50px; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.2em; backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
+        
+        /* BOTÕES DOURADOS (Efeito Lingote) */
+        .btn-solid-gold { 
+            background: linear-gradient(180deg, #fcf6ba 0%, #d4af37 40%, #aa771c 100%); 
+            color: #1a0505; 
+            border: 1px solid #fff; 
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4), inset 0 1px 0 rgba(255,255,255,0.4); 
+            transition: transform 0.2s, box-shadow 0.2s; 
+            font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; 
+            display: inline-flex; align-items: center; justify-content: center; 
+        }
         .btn-solid-gold:active { transform: scale(0.98); }
-        .btn-ghost { border: 1px solid rgba(255, 255, 255, 0.2); color: #e5e5e5; cursor: pointer; }
+        .btn-solid-gold:hover { box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6), inset 0 1px 0 rgba(255,255,255,0.6); }
+        .btn-ghost { border: 1px solid rgba(255, 255, 255, 0.2); color: #e5e5e5; cursor: pointer; transition: all 0.3s; }
+        .btn-ghost:hover { border-color: #d4af37; color: #d4af37; background: rgba(212, 175, 55, 0.05); }
 
-        /* CARDS & VOUCHERS */
-        .video-card { border-radius: 16px; overflow: hidden; border: 1px solid rgba(197, 160, 89, 0.4); box-shadow: 0 10px 30px rgba(0,0,0,0.5); background: #000; position: relative; aspect-ratio: 9/16; }
-        .card-mute-btn { position: absolute; bottom: 10px; right: 10px; width: 32px; height: 32px; background: rgba(0,0,0,0.7); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; z-index: 20; cursor: pointer; border: 1px solid rgba(255,255,255,0.3); }
-        .voucher-card { background: linear-gradient(145deg, #1a0505, #2b0808); border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 16px; padding: 1.5rem; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.4); text-align: center; display: flex; flex-direction: column; justify-content: space-between; align-items: center; min-width: 280px; transition: border-color 0.3s; }
-        .voucher-card.active-card { border-color: #ffd700; box-shadow: 0 15px 40px rgba(212, 175, 55, 0.15); }
-        .premium-tag { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728); color: #2b0505; text-transform: uppercase; font-size: 0.65rem; font-weight: 800; padding: 0.35rem 1.2rem; border-radius: 50px; letter-spacing: 0.15em; box-shadow: 0 5px 15px rgba(0,0,0,0.5); white-space: nowrap; z-index: 20; border: 1px solid #7a5c18; }
-        .voucher-price-new { font-family: 'Playfair Display', serif; font-weight: 700; color: #ffd700; font-size: 2.8rem; line-height: 1; margin: 0.5rem 0; display: flex; justify-content: center; align-items: baseline; gap: 2px; }
-        .voucher-currency, .voucher-cents { font-size: 1.2rem; margin-top: 6px; font-weight: 600; position: relative; top: -0.5em; }
-        .voucher-rule { font-size: 0.75rem; color: #ccc; border-top: 1px solid rgba(197, 160, 89, 0.2); padding-top: 0.8rem; margin-top: 0.8rem; width: 100%; }
-        .cut-toggle-container { margin-top: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 0.8rem; border: 1px solid rgba(197, 160, 89, 0.2); display: flex; align-items: center; justify-content: space-between; font-size: 0.75rem; color: #e5e5e5; text-align: left; width: 100%; }
+        /* VOUCHER CARDS (REFINADO - DEEP WINE) */
+        .voucher-card { 
+            /* Gradiente Vinho Profundo e Sutil */
+            background: linear-gradient(160deg, #1a0505 0%, #2b0808 60%, #150202 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08); 
+            border-radius: 16px; padding: 1.8rem 1.5rem; 
+            position: relative; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5); 
+            text-align: center; display: flex; flex-direction: column; justify-content: space-between; align-items: center; 
+            min-width: 280px; 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .voucher-card::before {
+            content: ''; position: absolute; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            opacity: 1; pointer-events: none; mix-blend-mode: overlay;
+        }
+        .voucher-card.active-card { 
+            border-color: #d4af37; 
+            box-shadow: 0 20px 50px rgba(212, 175, 55, 0.15); 
+            transform: translateY(-5px);
+        }
+        .premium-tag { 
+            position: absolute; top: -12px; left: 50%; transform: translateX(-50%); 
+            background: linear-gradient(90deg, #8a6d1f, #d4af37, #8a6d1f); 
+            color: #000; text-transform: uppercase; font-size: 0.6rem; font-weight: 800; 
+            padding: 0.4rem 1.2rem; border-radius: 50px; letter-spacing: 0.15em; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5); white-space: nowrap; z-index: 20; 
+            border: 1px solid #fcf6ba; 
+        }
+        .voucher-price-new { font-family: 'Playfair Display', serif; font-weight: 700; color: #fff; font-size: 3rem; line-height: 1; margin: 0.5rem 0; display: flex; justify-content: center; align-items: baseline; gap: 2px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+        .voucher-currency, .voucher-cents { font-size: 1.2rem; margin-top: 6px; font-weight: 600; position: relative; top: -0.5em; color: #d4af37; }
+        .voucher-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 700; color: #fff; margin: 0.5rem 0; font-style: italic; }
+        .voucher-rule { font-size: 0.7rem; color: #999; border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 0.8rem; margin-top: 0.8rem; width: 100%; letter-spacing: 0.05em; }
+        
+        .cut-toggle-container { margin-top: 1rem; background: rgba(0, 0, 0, 0.3); border-radius: 8px; padding: 0.8rem; border: 1px solid rgba(255, 255, 255, 0.05); display: flex; align-items: center; justify-content: space-between; font-size: 0.75rem; color: #ccc; text-align: left; width: 100%; box-shadow: inset 0 2px 4px rgba(0,0,0,0.2); }
         .switch { position: relative; display: inline-block; width: 34px; height: 20px; flex-shrink: 0; margin-left: 8px; }
         .switch input { opacity: 0; width: 0; height: 0; }
-        .slider-toggle { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #555; transition: .4s; border-radius: 34px; }
-        .slider-toggle:before { position: absolute; content: ""; height: 12px; width: 12px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
-        input:checked + .slider-toggle { background-color: #4ade80; }
-        input:checked + .slider-toggle:before { transform: translateX(14px); }
+        .slider-toggle { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #333; transition: .4s; border-radius: 34px; border: 1px solid #555; }
+        .slider-toggle:before { position: absolute; content: ""; height: 12px; width: 12px; left: 3px; bottom: 3px; background-color: #888; transition: .4s; border-radius: 50%; }
+        input:checked + .slider-toggle { background-color: #10B981; border-color: #10B981; }
+        input:checked + .slider-toggle:before { transform: translateX(14px); background-color: #fff; }
         #card-container { padding-right: 15%; }
         @media (min-width: 768px) { #card-container { padding-right: 0; justify-content: center; } }
 
         /* CINEMA MODE */
+        .video-card { border-radius: 16px; overflow: hidden; border: 1px solid rgba(197, 160, 89, 0.4); box-shadow: 0 10px 30px rgba(0,0,0,0.5); background: #000; position: relative; aspect-ratio: 9/16; }
         .transformation-box { position: relative; width: 100%; max-width: 340px; aspect-ratio: 9/16; margin: 0 auto; border-radius: 20px; overflow: hidden; border: 2px solid rgba(197, 160, 89, 0.3); box-shadow: 0 20px 60px -10px rgba(0,0,0,0.7); }
         .transform-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
         .control-dock { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 4px; padding: 4px; background: rgba(20, 5, 5, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.15); border-radius: 100px; z-index: 30; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
         .dock-btn { padding: 8px 24px; border-radius: 100px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; color: #888; transition: all 0.3s ease; }
         .dock-btn.active { background: #d4af37; color: #1a0505; box-shadow: 0 2px 12px rgba(212, 175, 55, 0.4); }
-        .dock-status-label { position: absolute; top: 20px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); color: #d4af37; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; padding: 6px 16px; border-radius: 100px; border: 1px solid rgba(212,175,55,0.3); z-index: 20; pointer-events: none; }
         
-        /* FAQ (MARCA MÃE) */
-        #faq-isolate { background-color: #1a0202; background-image: radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 40%); }
-        .faq-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(197, 160, 89, 0.2); border-radius: 8px; margin-bottom: 1rem; overflow: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; }
-        .faq-item[open] { background: rgba(20, 5, 5, 0.8); border-color: #d4af37; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5); }
-        .faq-item::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0%; background: #d4af37; transition: height 0.3s ease; }
-        .faq-item[open]::before { height: 100%; }
-        summary.faq-summary { display: flex; align-items: center; justify-content: space-between; padding: 1.5rem; cursor: pointer; list-style: none; }
-        .faq-question-text { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: #ffffff !important; transition: color 0.3s; }
-        .faq-item[open] .faq-question-text { color: #ffd700 !important; }
-        .faq-answer-content { padding: 0 1.5rem 1.5rem 1.5rem; color: #ffffff !important; font-size: 0.95rem; line-height: 1.7; border-top: 1px solid rgba(197, 160, 89, 0.1); }
-        
-        /* PRINTS */
+        /* FAQ & PRINTS */
+        #faq-isolate { background-color: #0f0202; background-image: radial-gradient(circle at 50% 50%, rgba(20, 0, 0, 1) 0%, rgba(10, 0, 0, 1) 100%); }
         .print-card { background: #fff; border-radius: 12px; overflow: hidden; border: 1px solid #e1e1e1; min-width: 220px; max-width: 280px; scroll-snap-align: center; }
-        .print-img-wrapper { width: 100%; height: 100%; overflow: hidden; background: #000; display: flex; align-items: center; justify-content: center; }
-        .print-img { width: 100%; height: 100%; object-fit: contain; }
 
         /* FOOTER */
-        #footer-empire-master { background-color: #1a0505; background-image: radial-gradient(circle at center top, #2b0808 0%, #1a0505 60%); color: #ccc; padding-top: 4rem; padding-bottom: 2rem; border-top: 1px solid rgba(197, 160, 89, 0.3); text-align: center; }
-        .footer-divider { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); width: 80%; max-width: 800px; display: flex; align-items: center; justify-content: center; }
-        .footer-divider::before, .footer-divider::after { content: ''; height: 1px; flex: 1; background: linear-gradient(90deg, transparent, #c5a059, transparent); }
-        .footer-divider-icon { color: #d4af37; font-size: 1.2rem; margin: 0 15px; background: #1a0505; padding: 0 10px; animation: pulse 3s infinite; }
-        .footer-heading { font-family: 'Montserrat', sans-serif; color: #C5A059; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.25em; margin-bottom: 1rem; display: inline-block; position: relative; padding-bottom: 5px; }
-        .footer-heading::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 30px; height: 2px; background: #C5A059; }
-        .brands-wrapper { border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 2rem; margin-bottom: 2rem; text-align: center; }
-        .brands-grid { display: flex; justify-content: center; flex-wrap: wrap; gap: 1.5rem 3rem; align-items: center; }
-        .brand-logo { font-family: 'Cormorant Garamond', serif; color: #fff; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.4; transition: all 0.5s ease; cursor: default; }
-        .brand-logo:hover { opacity: 1; color: #d4af37; text-shadow: 0 0 15px rgba(212, 175, 55, 0.6); transform: scale(1.05); }
-        
-        .social-links { display: flex; gap: 0.8rem; margin-bottom: 1.5rem; justify-content: center; }
-        .social-link { width: 36px; height: 36px; border: 1px solid rgba(197, 160, 89, 0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #d4af37; transition: all 0.3s; font-size: 1rem; }
-        .social-link:hover { background: #d4af37; color: #1a0505; border-color: #d4af37; transform: translateY(-3px); }
-        
-        .map-frame { width: 100%; max-width: 300px; height: 160px; border: 1px solid rgba(197, 160, 89, 0.4); padding: 4px; border-radius: 4px; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5); transition: transform 0.3s; margin: 0 auto; }
-
-        /* LEGAL MODAL */
-        #erh-legal-modal-overlay { display: none; position: fixed; z-index: 2147483647; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); backdrop-filter: blur(8px); align-items: center; justify-content: center; }
-        #erh-legal-modal-overlay.active { display: flex; }
-        .legal-modal-box { background-color: #FFF; color: #000; padding: 2.5rem; width: 90%; max-width: 700px; border-radius: 8px; position: relative; max-height: 80vh; overflow-y: auto; text-align: left; border-top: 4px solid #d4af37; z-index: 2147483648; }
-
-        @media (min-width: 768px) { #footer-empire-master .content-grid { grid-template-columns: 1fr 1fr 1fr; gap: 3rem; } .layout-split { flex-direction: row; justify-content: center; } }
-
+        #footer-empire-master { background-color: #050505; border-top: 1px solid rgba(212, 175, 55, 0.2); }
+        .footer-divider-icon { color: #d4af37; font-size: 1.2rem; margin: 0 15px; background: #050505; padding: 0 10px; animation: pulse 3s infinite; }
 
         /* =========================================
            CSS ESPECÍFICO DO CLUBE (ALISA CHAPECÓ)
            ========================================= */
         
-        /* NOVO TEMA CHUMBO/DARK LUXURY */
+        /* TEMA CHUMBO/DARK LUXURY - Refinado */
         .club-texture { 
             position: relative; 
-            background-color: #1A1A1A; /* Fundo Chumbo */
+            background-color: #121212; /* Chumbo Profundo */
         }
         .club-texture::before {
             content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-            pointer-events: none; z-index: 0; opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 0;
         }
-        .club-texture > * { position: relative; z-index: 1; }
 
-        /* CARTÃO "BLACK TITANIUM" 3.0 (REFINADO) */
+        /* CARTÃO "BLACK TITANIUM" 3.0 */
         .member-card {
-            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+            background: linear-gradient(135deg, #1c1c1c 0%, #000000 100%);
             border-radius: 20px; 
-            position: relative; 
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-            border: 1px solid rgba(212, 175, 55, 0.3); /* Borda Dourada Sutil */
+            position: relative; overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             transform-style: preserve-3d;
             transition: transform 0.1s ease-out;
         }
+        /* Borda Dourada Sutil no Hover */
+        .member-card:hover { border-color: rgba(212, 175, 55, 0.3); }
+
         .card-hologram {
             position: absolute; inset: -50%; width: 200%; height: 200%;
             background-image: 
-                linear-gradient(45deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.03) 75%, rgba(255, 255, 255, 0.03)), 
-                linear-gradient(45deg, rgba(255, 255, 255, 0.03) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.03) 75%, rgba(255, 255, 255, 0.03));
+                linear-gradient(45deg, rgba(255, 255, 255, 0.04) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.04) 75%, rgba(255, 255, 255, 0.04)), 
+                linear-gradient(45deg, rgba(255, 255, 255, 0.04) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.04) 75%, rgba(255, 255, 255, 0.04));
             background-size: 30px 30px; 
             background-position: 0 0, 15px 15px; 
-            opacity: 0.2; 
-            pointer-events: none;
+            opacity: 0.3; pointer-events: none;
             transition: transform 0.1s ease-out;
         }
-        /* Efeito de metal jateado */
-        .member-card::after {
-            content: ""; position: absolute; inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
-            opacity: 0.3; pointer-events: none; mix-blend-mode: overlay;
-        }
-
         .card-glare {
             position: absolute; inset: 0;
-            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.15), transparent 60%);
-            opacity: 0;
-            mix-blend-mode: overlay;
-            transition: opacity 0.3s;
-            pointer-events: none;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1), transparent 60%);
+            opacity: 0; mix-blend-mode: screen;
+            transition: opacity 0.3s; pointer-events: none;
         }
-        .member-card:hover .card-glare { opacity: 1; }
+        .member-card:hover .card-glare { opacity: 0.7; }
+        
         .text-liquid-gold-lg {
-            background: linear-gradient(135deg, #d4af37 0%, #fcf6ba 45%, #b38728 100%);
+            background: linear-gradient(135deg, #fcf6ba 0%, #d4af37 50%, #aa771c 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-size: 200% auto; animation: shine-text 6s infinite linear;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            text-shadow: 0 2px 15px rgba(212, 175, 55, 0.2);
         }
 
-        /* FEATURE CARDS - DARK MODE & SPOTLIGHT */
+        /* FEATURE CARDS - DARK LUXURY */
         .feature-card {
-            position: relative; background: #222; border-radius: 12px; overflow: hidden;
-            transition: all 0.5s ease; border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
-            opacity: 0.6; transform: scale(0.98); /* Default state for mobile */
+            position: relative; background: #181818; border-radius: 12px; overflow: hidden;
+            transition: all 0.5s ease; border: 1px solid rgba(255,255,255,0.03);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            opacity: 0.5; transform: scale(0.96); filter: grayscale(50%); /* Default Mobile */
         }
-        @media (min-width: 768px) { .feature-card { opacity: 1; transform: scale(1); } }
+        @media (min-width: 768px) { .feature-card { opacity: 1; transform: scale(1); filter: grayscale(0%); } }
         
         .feature-card.active-glow {
-            opacity: 1; transform: scale(1);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-            border-color: rgba(212, 175, 55, 0.5);
+            opacity: 1; transform: scale(1); filter: grayscale(0%);
+            box-shadow: 0 10px 30px -5px rgba(212, 175, 55, 0.1);
+            border-color: rgba(212, 175, 55, 0.4);
         }
-        .feature-content { padding: 20px; position: relative; z-index: 2; }
+        .feature-content { padding: 24px 20px; position: relative; z-index: 2; }
 
-        /* PREÇOS REFINADOS - DARK MODE */
+        /* PREÇOS REFINADOS - ONYX & GOLD */
         .pricing-card {
-            background: linear-gradient(145deg, #222, #1a1a1a); /* Fundo escuro */
-            border-radius: 20px; 
-            overflow: hidden;
-            box-shadow: 0 20px 40px -5px rgba(0,0,0,0.4); 
+            /* Efeito de luz vindo de cima */
+            background: radial-gradient(circle at 50% 0%, #2a2a2a 0%, #151515 70%, #0a0a0a 100%);
+            border-radius: 20px; overflow: hidden;
+            box-shadow: 0 20px 40px -5px rgba(0,0,0,0.6); 
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.5s ease; 
             display: flex; flex-direction: column; height: 100%;
             min-width: 85vw; max-width: 85vw;
-            /* Spotlight: default opacity/scale */
             opacity: 0.5; transform: scale(0.95); filter: grayscale(80%);
         }
         @media (min-width: 1024px) { 
             .pricing-card { min-width: auto; max-width: none; opacity: 1; transform: scale(1); filter: grayscale(0%); } 
         }
-        /* Classe ativa para o spotlight mobile */
         .pricing-card.spotlight-active {
             opacity: 1; transform: scale(1); filter: grayscale(0%);
-            box-shadow: 0 25px 60px -12px rgba(212, 175, 55, 0.15), 0 0 0 1px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 30px 70px -10px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(212, 175, 55, 0.4);
+            border-color: rgba(212, 175, 55, 0.2);
         }
-        .pricing-card:hover {
-            border-color: rgba(212, 175, 55, 0.5);
-        }
-
-        .card-header-pattern {
-            background-image: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 15px 15px;
-        }
-
-        /* TIMELINE MINIMALISTA (JÓIA) */
+        
+        /* TIMELINE "FIO DE OURO" */
         .timeline-wrapper { position: relative; margin-top: 15px; }
         .timeline-track { 
             position: absolute; left: 7px; top: 5px; bottom: 5px; width: 1px; 
-            background: linear-gradient(to bottom, transparent, #555 10%, #555 90%, transparent); 
-            z-index: 0; 
+            background: linear-gradient(to bottom, transparent, #8a6d1f 10%, #8a6d1f 90%, transparent); /* Linha Dourada Escura */
+            z-index: 0; opacity: 0.3;
         }
         .timeline-point { position: relative; z-index: 1; display: flex; align-items: flex-start; margin-bottom: 24px; }
         .timeline-point:last-child { margin-bottom: 0; }
         
         .point-dot {
             width: 14px; height: 14px; border-radius: 50%; 
-            background: #1a1a1a; 
+            background: #111; 
             border: 1px solid #444;
             flex-shrink: 0; margin-right: 14px; margin-top: 4px; 
             display: flex; align-items: center; justify-content: center;
             box-shadow: 0 0 10px rgba(0,0,0,0.5);
         }
-        .point-dot-inner { width: 6px; height: 6px; border-radius: 50%; }
+        .point-dot-inner { width: 4px; height: 4px; border-radius: 50%; background: #fff; }
         
-        /* Cores Neon/Metálicas */
-        .point-dot.green { border-color: #10B981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.3); }
+        /* Cores Refinadas */
+        .point-dot.green { border-color: #059669; box-shadow: 0 0 10px rgba(5, 150, 105, 0.2); }
         .point-dot.green .point-dot-inner { background: #10B981; box-shadow: 0 0 5px #10B981; }
         
-        .point-dot.yellow { border-color: #F59E0B; box-shadow: 0 0 8px rgba(245, 158, 11, 0.3); }
+        .point-dot.yellow { border-color: #D97706; box-shadow: 0 0 10px rgba(217, 119, 6, 0.2); }
         .point-dot.yellow .point-dot-inner { background: #F59E0B; box-shadow: 0 0 5px #F59E0B; }
         
-        .point-dot.red { border-color: #EF4444; box-shadow: 0 0 8px rgba(239, 68, 68, 0.3); }
+        .point-dot.red { border-color: #DC2626; box-shadow: 0 0 10px rgba(220, 38, 38, 0.2); }
         .point-dot.red .point-dot-inner { background: #EF4444; box-shadow: 0 0 5px #EF4444; }
         
-        .point-dot.start { border-color: #888; }
-        .point-dot.start .point-dot-inner { background: #fff; }
+        .point-dot.start { border-color: #666; }
+        .point-dot.start .point-dot-inner { background: #aaa; }
 
-        /* DOTS */
-        .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: #444; transition: all 0.3s ease; }
-        .carousel-dot.active { width: 24px; border-radius: 4px; background: linear-gradient(135deg, #d4af37 0%, #fcf6ba 45%, #b38728 100%); }
-        
+        /* BOTÃO LUXO (Clube) */
         .btn-luxury-glow { 
             position: relative; overflow: hidden;
-            background: linear-gradient(135deg, #d4af37 0%, #fcf6ba 45%, #b38728 100%);
-            border: 1px solid #ffecb3; color: #2b0505;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            background: linear-gradient(135deg, #8a6d1f 0%, #d4af37 50%, #8a6d1f 100%);
+            border: 1px solid rgba(255,255,255,0.2); color: #000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
             font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
             transition: all 0.4s ease; 
         }
-        .btn-luxury-glow:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(197, 157, 36, 0.6); border-color: #fff; }
+        .btn-luxury-glow:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2); 
+            border-color: #fff;
+            color: #2b0505;
+            background: linear-gradient(135deg, #d4af37 0%, #fcf6ba 50%, #d4af37 100%);
+        }
 
         .reveal-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; will-change: opacity, transform; }
         .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
         
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* SWIPE HINT ANIMATION */
+        @keyframes swipe-x {
+            0%, 100% { transform: translateX(0); opacity: 0.5; }
+            50% { transform: translateX(10px); opacity: 1; }
+        }
+        .animate-swipe { animation: swipe-x 1.5s infinite ease-in-out; }
     </style>
 </head>
 <body>
@@ -446,7 +458,7 @@
     <section id="clube-lp" class="text-gray-100 border-t-4 border-[#d4af37] club-texture">
         
         <!-- HERO DO CLUBE -->
-        <div class="py-16 text-center px-4 bg-gradient-to-b from-[#111] via-[#1A1A1A] to-[#1A1A1A]">
+        <div class="py-16 text-center px-4 bg-gradient-to-b from-[#111] via-[#121212] to-[#121212]">
             <div class="inline-flex items-center gap-2 bg-[#000] border border-[#333] text-white px-4 py-1.5 rounded-full mb-6 shadow-lg">
                 <span class="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span>
                 <span class="text-[10px] font-bold uppercase tracking-widest font-sans text-brand-gold">Tecnologia Essência de Romã</span>
@@ -456,15 +468,15 @@
         </div>
 
         <!-- EXCLUSIVIDADE & CARTÃO (MAXIMIZADO) -->
-        <div class="max-w-7xl mx-auto px-6 pb-20 flex flex-col md:flex-row items-center gap-16 bg-[#1A1A1A]">
+        <div class="max-w-7xl mx-auto px-6 pb-20 flex flex-col md:flex-row items-center gap-16 bg-[#121212]">
             <div class="md:w-1/2 reveal-on-scroll">
                 <span class="text-brand-gold font-bold tracking-[0.2em] uppercase text-xs font-sans">Exclusividade Real</span>
                 <h2 class="text-3xl md:text-4xl text-white font-serif mt-4 mb-8">Mais que um serviço.<br>Um Pacto de Beleza.</h2>
                 <div class="grid gap-4 font-sans">
-                    <div class="feature-card cursor-default"><div class="feature-content flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-[#333] text-brand-gold flex items-center justify-center flex-shrink-0 border border-brand-gold/20"><i class="fas fa-crown"></i></div><div><h4 class="text-sm font-bold text-white uppercase tracking-wide">Prioridade Absoluta</h4><p class="text-xs text-gray-400 mt-1">Sua agenda é bloqueada antes de todos. Nunca mais fique sem horário.</p></div></div></div>
-                    <div class="feature-card cursor-default"><div class="feature-content flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-[#333] text-brand-gold flex items-center justify-center flex-shrink-0 border border-brand-gold/20"><i class="fas fa-infinity"></i></div><div><h4 class="text-sm font-bold text-white uppercase tracking-wide">Liso Vitalício</h4><p class="text-xs text-gray-400 mt-1">Apenas para membros em dia com o ciclo. Falhou? Perde a blindagem e a garantia.</p></div></div></div>
-                    <div class="feature-card cursor-default"><div class="feature-content flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-[#333] text-brand-gold flex items-center justify-center flex-shrink-0 border border-brand-gold/20"><i class="fas fa-sync-alt"></i></div><div><h4 class="text-sm font-bold text-white uppercase tracking-wide">Crédito Flexível</h4><p class="text-xs text-gray-400 mt-1">Não quer alisar este mês? Use o valor da mensalidade em <strong>Cortes ou Mechas</strong>.</p></div></div></div>
-                    <div class="feature-card cursor-default"><div class="feature-content flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-[#333] text-brand-gold flex items-center justify-center flex-shrink-0 border border-brand-gold/20"><i class="fas fa-flask"></i></div><div><h4 class="text-sm font-bold text-white uppercase tracking-wide">Tecnologia Original</h4><p class="text-xs text-gray-400 mt-1">Química exclusiva Essência de Romã. Compatível, segura e duradoura.</p></div></div></div>
+                    <div class="feature-card cursor-default"><div class="feature-content flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-[#222] text-brand-gold flex items-center justify-center flex-shrink-0 border border-brand-gold/20"><i class="fas fa-crown"></i></div><div><h4 class="text-sm font-bold text-white uppercase tracking-wide">Prioridade Absoluta</h4><p class="text-xs text-gray-400 mt-1">Sua agenda é bloqueada antes de todos. Nunca mais fique sem horário.</p></div></div></div>
+                    <div class="feature-card cursor-default"><div class="feature-content flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-[#222] text-brand-gold flex items-center justify-center flex-shrink-0 border border-brand-gold/20"><i class="fas fa-infinity"></i></div><div><h4 class="text-sm font-bold text-white uppercase tracking-wide">Liso Vitalício</h4><p class="text-xs text-gray-400 mt-1">Apenas para membros em dia com o ciclo. Falhou? Perde a blindagem e a garantia.</p></div></div></div>
+                    <div class="feature-card cursor-default"><div class="feature-content flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-[#222] text-brand-gold flex items-center justify-center flex-shrink-0 border border-brand-gold/20"><i class="fas fa-sync-alt"></i></div><div><h4 class="text-sm font-bold text-white uppercase tracking-wide">Crédito Flexível</h4><p class="text-xs text-gray-400 mt-1">Não quer alisar este mês? Use o valor da mensalidade em <strong>Cortes ou Mechas</strong>.</p></div></div></div>
+                    <div class="feature-card cursor-default"><div class="feature-content flex items-center gap-4"><div class="w-10 h-10 rounded-full bg-[#222] text-brand-gold flex items-center justify-center flex-shrink-0 border border-brand-gold/20"><i class="fas fa-flask"></i></div><div><h4 class="text-sm font-bold text-white uppercase tracking-wide">Tecnologia Original</h4><p class="text-xs text-gray-400 mt-1">Química exclusiva Essência de Romã. Compatível, segura e duradoura.</p></div></div></div>
                 </div>
             </div>
             
@@ -489,7 +501,7 @@
         </div>
 
         <!-- PLANOS CARROSSEL REFINADO (4 MÓDULOS) -->
-        <div id="plans-carousel-section" class="py-16 bg-[#1A1A1A] relative font-sans">
+        <div id="plans-carousel-section" class="py-16 bg-[#121212] relative font-sans">
             <div class="max-w-7xl mx-auto px-4 xs:px-6">
                 <div class="text-center mb-16 reveal-on-scroll">
                     <h2 class="text-4xl font-serif text-white italic">Planos de Assinatura</h2>
@@ -511,7 +523,7 @@
                     <!-- MÓDULO 1: SUBLIME (LISOS) -->
                     <div class="pricing-card snap-center shrink-0 w-[85vw] max-w-[300px] lg:w-auto lg:max-w-none reveal-on-scroll">
                         <div class="bg-red-900/80 text-white text-[9px] font-bold uppercase text-center py-1 tracking-widest">Adesão Zero até 15/01*</div>
-                        <div class="bg-black/80 card-header-pattern p-6 text-center text-white relative border-b border-white/5"><div class="absolute top-4 right-4 text-brand-gold-light text-[9px] border border-brand-gold-light px-2 py-0.5 rounded uppercase font-bold">Fio Fino</div><h3 class="text-2xl font-serif italic text-white mt-2">Sublime</h3><p class="text-[9px] uppercase mt-2 tracking-wide opacity-70">Para Lisos</p></div>
+                        <div class="bg-black/40 card-header-pattern p-6 text-center text-white relative border-b border-white/5"><div class="absolute top-4 right-4 text-brand-gold-light text-[9px] border border-brand-gold-light px-2 py-0.5 rounded uppercase font-bold">Fio Fino</div><h3 class="text-2xl font-serif italic text-white mt-2">Sublime</h3><p class="text-[9px] uppercase mt-2 tracking-wide opacity-70">Para Lisos</p></div>
                         <div class="p-6 flex flex-col flex-grow relative">
                             <div class="text-center mb-6 mt-2"><div class="flex items-start justify-center text-white"><span class="text-lg mt-2 mr-1 text-gray-400">R$</span><span class="text-5xl font-serif font-medium">119</span><span class="text-lg mt-2 font-bold text-gray-400">,90</span></div><p class="text-[9px] text-gray-500 uppercase tracking-widest mt-1">por sessão mensal</p></div>
                             <div class="timeline-container flex-grow"><div class="timeline-wrapper"><div class="timeline-track"></div>
@@ -525,10 +537,10 @@
                                 <div class="flex flex-wrap gap-1">
                                     <span class="text-[9px] bg-white/5 border border-white/10 px-2 py-1 rounded text-gray-300">Crédito Flexível</span>
                                     <span class="text-[9px] bg-white/5 border border-white/10 px-2 py-1 rounded text-gray-300">15% OFF Home Care</span>
-                                    <!-- NOVO ITEM DE BENEFÍCIO -->
                                     <li class="flex items-center gap-2"><i class="fas fa-ruler-combined text-green-500"></i> <span class="font-bold text-gray-300">Sem Limite de Tamanho</span></li>
                                 </div>
                             </div>
+                            <div class="bg-black/30 p-3 rounded-lg mb-6 border border-white/5"><p class="text-[9px] text-gray-500 leading-relaxed text-justify font-light"><strong>Nota Técnica:</strong> O ciclo biológico de 21 dias e a oxidação natural exigem manutenção mensal para blindagem total.</p></div>
                             <a href="https://wa.me/5549999954052?text=Ol%C3%A1!%20Sou%20cliente%20e%20quero%20validar%20minha%20isen%C3%A7%C3%A3o%20no%20plano%20Sublime%20(Liso)." class="w-full btn-luxury-glow py-3 rounded-lg text-[10px] block text-center shadow-lg mt-auto">Validar Minha Isenção</a>
                         </div>
                     </div>
@@ -536,7 +548,7 @@
                     <!-- MÓDULO 2: MAGNÍFICO (ONDULADOS - NOVO) -->
                     <div class="pricing-card snap-center shrink-0 w-[85vw] max-w-[300px] lg:w-auto lg:max-w-none reveal-on-scroll">
                         <div class="bg-red-900/80 text-white text-[9px] font-bold uppercase text-center py-1 tracking-widest">Adesão Zero até 15/01*</div>
-                        <div class="bg-black/80 card-header-pattern p-6 text-center text-white relative border-b border-white/5"><div class="absolute top-4 right-4 text-white/70 text-[9px] border border-white/30 px-2 py-0.5 rounded uppercase font-bold">Fio 2A-2C</div><h3 class="text-2xl font-serif italic text-white mt-2">Magnífico</h3><p class="text-[10px] uppercase mt-2 tracking-wide opacity-70">Para Ondulados</p></div>
+                        <div class="bg-black/40 card-header-pattern p-6 text-center text-white relative border-b border-white/5"><div class="absolute top-4 right-4 text-white/70 text-[9px] border border-white/30 px-2 py-0.5 rounded uppercase font-bold">Fio 2A-2C</div><h3 class="text-2xl font-serif italic text-white mt-2">Magnífico</h3><p class="text-[10px] uppercase mt-2 tracking-wide opacity-70">Para Ondulados</p></div>
                         <div class="p-6 flex flex-col flex-grow relative">
                             <div class="text-center mb-6 mt-2"><div class="flex items-start justify-center text-white"><span class="text-lg mt-2 mr-1 text-gray-400">R$</span><span class="text-5xl font-serif font-medium">129</span><span class="text-lg mt-2 font-bold text-gray-400">,90</span></div><p class="text-[9px] text-gray-500 uppercase tracking-widest mt-1">por sessão mensal</p></div>
                             <div class="timeline-container flex-grow"><div class="timeline-wrapper"><div class="timeline-track"></div>
@@ -553,6 +565,7 @@
                                     <li class="flex items-center gap-2"><i class="fas fa-ruler-combined text-green-500"></i> <span class="font-bold text-gray-300">Sem Limite de Tamanho</span></li>
                                 </div>
                             </div>
+                            <div class="bg-black/30 p-3 rounded-lg mb-6 border border-white/5"><p class="text-[9px] text-gray-500 leading-relaxed text-justify font-light"><strong>Nota Técnica:</strong> O ciclo biológico de 21 dias e a oxidação natural exigem manutenção mensal para blindagem total.</p></div>
                             <a href="https://wa.me/5549999954052?text=Ol%C3%A1!%20Sou%20cliente%20e%20quero%20validar%20minha%20isen%C3%A7%C3%A3o%20no%20plano%20Magn%C3%ADfico%20(Ondulado)." class="w-full btn-luxury-glow py-3 rounded-lg text-[10px] block text-center shadow-lg mt-auto">Validar Minha Isenção</a>
                         </div>
                     </div>
@@ -577,6 +590,7 @@
                                     <li class="flex items-center gap-2"><i class="fas fa-ruler-combined text-green-500"></i> <span class="font-bold text-gray-300">Sem Limite de Tamanho</span></li>
                                 </div>
                             </div>
+                            <div class="bg-black/30 p-3 rounded-lg mb-6 border border-white/5"><p class="text-[9px] text-gray-500 leading-relaxed text-justify font-light"><strong>Nota Técnica:</strong> O ciclo biológico de 21 dias e a oxidação natural exigem manutenção mensal para blindagem total.</p></div>
                             <a href="https://wa.me/5549999954052?text=Ol%C3%A1!%20Sou%20cliente%20e%20quero%20validar%20minha%20isen%C3%A7%C3%A3o%20no%20plano%20Imperial." class="w-full btn-luxury-glow py-3 rounded-lg text-[10px] block text-center mt-auto">Validar Minha Isenção</a>
                         </div>
                     </div>
@@ -601,48 +615,31 @@
                                     <li class="flex items-center gap-2"><i class="fas fa-ruler-combined text-green-500"></i> <span class="font-bold text-gray-300">Sem Limite de Tamanho</span></li>
                                 </div>
                             </div>
-                            <a href="https://wa.me/5549999954052?text=Ol%C3%A1!%20Sou%20cliente%20e%20quero%20validar%20minha%20isen%C3%A7%C3%A3o%20no%20plano%20Absoluto." class="w-full btn-luxury-glow py-3 rounded-lg text-[10px] block text-center shadow-lg mt-auto">Validar Minha Isenção</a>
+                            <div class="bg-black/30 p-3 rounded-lg mb-6 border border-white/5"><p class="text-[9px] text-gray-500 leading-relaxed text-justify font-light"><strong>Nota Técnica:</strong> O ciclo biológico de 21 dias e a oxidação natural exigem manutenção mensal para blindagem total.</p></div>
+
+                            <a href="https://wa.me/5549999954052?text=Ol%C3%A1!%20Sou%20cliente%20e%20quero%20validar%20minha%20isen%C3%A7%C3%A3o%20no%20plano%20Absoluto." class="w-full btn-luxury-glow py-3 rounded-lg text-[10px] block text-center mt-auto">Validar Minha Isenção</a>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- FAQ DO CLUBE (DARK) -->
-        <div class="py-16 max-w-2xl mx-auto px-6 font-sans bg-[#1A1A1A]">
-            <h3 class="text-2xl font-serif text-white mb-6 text-center">Dúvidas sobre o Clube</h3>
-            <div class="space-y-4">
-                <details class="group bg-[#222] rounded-lg border border-white/10 overflow-hidden">
-                    <summary class="flex justify-between items-center p-5 cursor-pointer list-none text-white font-medium text-sm hover:bg-[#333] transition">E se eu não quiser alisar este mês?<span class="transition group-open:rotate-180"><i class="fas fa-chevron-down text-brand-gold text-xs"></i></span></summary>
-                    <div class="p-5 pt-0 text-gray-400 text-xs leading-relaxed border-t border-transparent group-open:border-white/5 group-open:pt-4">Sem problemas! Você paga sua mensalidade normalmente e usa o valor integral como <strong>Crédito Flexível</strong> para realizar Cortes, Mechas ou Tratamentos no mesmo mês.</div>
-                </details>
-                <details class="group bg-[#222] rounded-lg border border-white/10 overflow-hidden">
-                    <summary class="flex justify-between items-center p-5 cursor-pointer list-none text-white font-medium text-sm hover:bg-[#333] transition">Sou loira / tenho mechas. Posso fazer?<span class="transition group-open:rotate-180"><i class="fas fa-chevron-down text-brand-gold text-xs"></i></span></summary>
-                    <div class="p-5 pt-0 text-gray-400 text-xs leading-relaxed border-t border-transparent group-open:border-white/5 group-open:pt-4">Sim! Nossa tecnologia possui matizadores integrados e proteção térmica que preserva a cor e a integridade do fio descolorido.</div>
-                </details>
-                <details class="group bg-[#222] rounded-lg border border-white/10 overflow-hidden">
-                    <summary class="flex justify-between items-center p-5 cursor-pointer list-none text-white font-medium text-sm hover:bg-[#333] transition">Grávidas e lactantes podem usar?<span class="transition group-open:rotate-180"><i class="fas fa-chevron-down text-brand-gold text-xs"></i></span></summary>
-                    <div class="p-5 pt-0 text-gray-400 text-xs leading-relaxed border-t border-transparent group-open:border-white/5 group-open:pt-4">A segurança é nossa prioridade. Embora nosso produto seja livre de formol, recomendamos sempre a autorização do seu médico obstetra. Fornecemos a composição completa para você levar à consulta.</div>
-                </details>
-                <details class="group bg-[#222] rounded-lg border border-white/10 overflow-hidden">
-                    <summary class="flex justify-between items-center p-5 cursor-pointer list-none text-white font-medium text-sm hover:bg-[#333] transition">Quanto tempo demora o procedimento?<span class="transition group-open:rotate-180"><i class="fas fa-chevron-down text-brand-gold text-xs"></i></span></summary>
-                    <div class="p-5 pt-0 text-gray-400 text-xs leading-relaxed border-t border-transparent group-open:border-white/5 group-open:pt-4">Em média 2 a 3 horas, dependendo do volume do cabelo. Como membro Premier, seu horário é exclusivo, sem filas de espera ou "encaixes" que atrasam seu dia.</div>
-                </details>
+                <!-- SWIPE HINT ANIMATION (MOBILE ONLY) -->
+                <div class="lg:hidden mt-8 flex justify-center items-center text-gray-400 text-[10px] uppercase tracking-widest animate-swipe-hint">
+                    <i class="fas fa-hand-point-up transform rotate-45 mr-2 text-brand-gold"></i>
+                    Arraste para ver mais planos
+                    <i class="fas fa-arrow-right ml-2 text-brand-gold"></i>
+                </div>
             </div>
-        </div>
-        <div class="py-8 text-center bg-[#1A1A1A] border-t border-white/5">
-            <button onclick="document.getElementById('terms-modal').classList.remove('hidden')" class="text-[10px] text-gray-500 uppercase tracking-widest hover:text-white transition">Ler Termos de Uso do Clube</button>
         </div>
     </section>
 
     <!-- VOLTA PARA ESTRUTURA DARK DA MARCA MÃE -->
-    <section id="bloco-prints" class="bg-[#2b0505] border-t border-[#c5a059]/30 py-16">
+    <section id="bloco-prints" class="bg-[#0a0a0a] border-t border-[#c5a059]/30 py-16">
         <div class="container mx-auto px-6 max-w-6xl"><div class="text-center mb-10"><span class="text-gray-500 text-xs font-bold tracking-[0.2em] uppercase block mb-2">Transparência Total</span><h2 class="font-playfair text-3xl md:text-4xl text-white font-bold">O Que Elas Dizem <span class="text-[#25D366]">No WhatsApp</span></h2></div><div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-6 px-4 md:px-0 hide-scrollbar"><div class="print-card snap-center shrink-0"><div class="print-img-wrapper"><img src="https://res.cloudinary.com/dh4ekg6f2/image/upload/q_auto,f_auto,w_720/v1765217143/image10_hqklzu.jpg" class="print-img"></div></div><div class="print-card snap-center shrink-0"><div class="print-img-wrapper"><img src="https://res.cloudinary.com/dh4ekg6f2/image/upload/q_auto,f_auto,w_720/v1765217144/image12_o8mqvd.jpg" class="print-img"></div></div><div class="print-card snap-center shrink-0"><div class="print-img-wrapper"><img src="https://res.cloudinary.com/dh4ekg6f2/image/upload/q_auto,f_auto,w_720/v1765217143/image08_maqez1.jpg" class="print-img"></div></div><div class="print-card snap-center shrink-0"><div class="print-img-wrapper"><img src="https://res.cloudinary.com/dh4ekg6f2/image/upload/q_auto,f_auto,w_720/v1765217144/image11_aynsvl.jpg" class="print-img"></div></div></div><div class="text-center mt-8"><a href="#vouchers" class="btn-solid-gold py-3 px-8 rounded-full shadow-lg no-underline text-[#2b0505] font-bold">Quero Meu Resultado Assim</a></div></div>
     </section>
 
-    <section id="bloco-transformation" class="py-16 bg-[#2b0505] relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-30"></div><div class="container mx-auto px-6 max-w-4xl text-center relative z-10"><span class="text-[#c5a059] text-xs font-bold tracking-[0.3em] uppercase block mb-4">Resultado Real</span><h2 class="font-playfair text-3xl md:text-5xl text-white mb-8">A Transformação <span class="text-gold-shine">Absoluta</span></h2><div class="transformation-box"><video id="vid-antes" class="transform-video opacity-0" muted loop playsinline autoplay><source src="https://res.cloudinary.com/dh4ekg6f2/video/upload/q_auto,f_auto,w_720/v1765286921/WhatsApp_Video_2025-12-09_at_10.26.29_wrdw09.mp4" type="video/mp4"></video><video id="vid-depois" class="transform-video opacity-100" autoplay muted loop playsinline><source src="https://res.cloudinary.com/dh4ekg6f2/video/upload/q_auto,f_auto,w_720/v1765286926/WhatsApp_Video_2025-12-09_at_10.28.20_vfb8e7.mp4" type="video/mp4"></video><div id="status-label" class="dock-status-label">DEPOIS</div><div class="control-dock"><button onclick="toggleTransform('antes')" id="btn-antes" class="dock-btn">Ver Antes</button><button onclick="toggleTransform('depois')" id="btn-depois" class="dock-btn active">Ver Depois</button></div></div><p class="text-gray-400 text-xs mt-6 italic opacity-80">Toque nos botões para alternar instantaneamente</p></div></section>
+    <section id="bloco-transformation" class="py-16 bg-[#0a0a0a] relative overflow-hidden"><div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#d4af37] to-transparent opacity-30"></div><div class="container mx-auto px-6 max-w-4xl text-center relative z-10"><span class="text-[#c5a059] text-xs font-bold tracking-[0.3em] uppercase block mb-4">Resultado Real</span><h2 class="font-playfair text-3xl md:text-5xl text-white mb-8">A Transformação <span class="text-gold-shine">Absoluta</span></h2><div class="transformation-box"><video id="vid-antes" class="transform-video opacity-0" muted loop playsinline autoplay><source src="https://res.cloudinary.com/dh4ekg6f2/video/upload/q_auto,f_auto,w_720/v1765286921/WhatsApp_Video_2025-12-09_at_10.26.29_wrdw09.mp4" type="video/mp4"></video><video id="vid-depois" class="transform-video opacity-100" autoplay muted loop playsinline><source src="https://res.cloudinary.com/dh4ekg6f2/video/upload/q_auto,f_auto,w_720/v1765286926/WhatsApp_Video_2025-12-09_at_10.28.20_vfb8e7.mp4" type="video/mp4"></video><div id="status-label" class="dock-status-label">DEPOIS</div><div class="control-dock"><button onclick="toggleTransform('antes')" id="btn-antes" class="dock-btn">Ver Antes</button><button onclick="toggleTransform('depois')" id="btn-depois" class="dock-btn active">Ver Depois</button></div></div><p class="text-gray-400 text-xs mt-6 italic opacity-80">Toque nos botões para alternar instantaneamente</p></div></section>
 
-    <footer id="footer-empire-master"><div class="footer-divider"><i class="fas fa-gem footer-divider-icon"></i></div><div class="brands-wrapper"><span class="brands-title">PRODUTOS HOMOLOGADOS & PARCEIROS</span><div class="brands-grid"><span class="brand-logo brand-main">ESSÊNCIA DE ROMÃ</span><span class="brand-logo">A GATA LAMBEU</span><span class="brand-logo">ITALLIAN COLOR</span><span class="brand-logo">AMERICAN SMOOTH</span><span class="brand-logo">JESSICA GRABSKI</span><span class="brand-logo">ESSÊNCIA RARA</span></div></div><div class="content-grid text-center"><div><span class="footer-heading">Contato</span><p>Chapecó, SC</p><a href="#" onclick="openWhatsApp('Olá!')" class="text-white hover:text-[#C5A059] transition text-lg block my-2"> (49) 99995-4052</a><div class="badges-row justify-center"><div class="badge-minimal"><i class="fas fa-shield-alt"></i> SITE SEGURO</div><div class="badge-minimal"><i class="fas fa-check-circle"></i> ANVISA</div></div></div><div><span class="footer-heading">Horário de Atendimento</span><p><strong>Segunda-feira:</strong><br>13:00 - 17:00</p><p class="mt-2"><strong>Terça a Sábado:</strong><br>08:00 - 18:00</p><p class="text-xs text-[#666] mt-2 italic">*Horários sujeitos a alteração em feriados.</p></div><div><span class="footer-heading">Localização</span><p class="mb-2"><i class="fas fa-map-pin text-[#C5A059] mr-2"></i>Rua Achiles Tomazelli, 296 D - Centro</p><div class="map-frame"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3489.1751996515865!2d-52.6186419849202!3d-27.100918083072045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e4b574a6914757%3A0xc3f83734e941198c!2sRua%20Achiles%20Tomazelli%2C%20296%20D%20-%20Centro%2C%20Chapec%C3%B3%20-%20SC%2C%2089802-125!5e0!3m2!1spt-BR!2sbr!4v1628172930000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe></div><a href="https://www.google.com/maps/search/?api=1&query=Rua+Achiles+Tomazelli+296+D+Chapeco" target="_blank" class="text-xs text-[#C5A059] mt-2 block hover:underline">Abrir no Google Maps →</a></div></div><div class="bottom-bar"><div class="social-links justify-center"><a href="https://www.instagram.com/essenciaderoma.chapeco/" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/essenciaderoma.1" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a><a href="https://www.tiktok.com/@essenciaderoma.chapeco" target="_blank" class="social-link"><i class="fab fa-tiktok"></i></a><a href="https://www.youtube.com/@essenciaderomahair" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a></div><div class="legal-links"><button onclick="openModal('privacy')" id="btn-privacy-trigger">Política de Privacidade</button><span>|</span><button onclick="openModal('terms')" id="btn-terms-trigger">Termos de Uso</button></div><p class="copyright-text">&copy; 2016 - 2025 Essência de Romã Hair. Todos os direitos reservados.</p></div></footer>
+    <footer id="footer-empire-master"><div class="footer-divider"><i class="fas fa-gem footer-divider-icon"></i></div><div class="brands-wrapper"><span class="brands-title">PRODUTOS HOMOLOGADOS & PARCEIROS</span><div class="brands-grid"><span class="brand-logo brand-main">ESSÊNCIA DE ROMÃ</span><span class="brand-logo">A GATA LAMBEU</span><span class="brand-logo">ITALLIAN COLOR</span><span class="brand-logo">AMERICAN SMOOTH</span></div></div><div class="content-grid text-center"><div><span class="footer-heading">Contato</span><p>Chapecó, SC</p><a href="#" onclick="openWhatsApp('Olá!')" class="text-white hover:text-[#C5A059] transition text-lg block my-2"> (49) 99995-4052</a><div class="badges-row justify-center"><div class="badge-minimal"><i class="fas fa-shield-alt"></i> SITE SEGURO</div><div class="badge-minimal"><i class="fas fa-check-circle"></i> ANVISA</div></div></div><div><span class="footer-heading">Horário de Atendimento</span><p><strong>Segunda-feira:</strong><br>13:00 - 17:00</p><p class="mt-2"><strong>Terça a Sábado:</strong><br>08:00 - 18:00</p><p class="text-xs text-[#666] mt-2 italic">*Horários sujeitos a alteração em feriados.</p></div><div><span class="footer-heading">Localização</span><p class="mb-2"><i class="fas fa-map-pin text-[#C5A059] mr-2"></i>Rua Achiles Tomazelli, 296 D - Centro</p><div class="map-frame"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3489.1751996515865!2d-52.6186419849202!3d-27.100918083072045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e4b574a6914757%3A0xc3f83734e941198c!2sRua%20Achiles%20Tomazelli%2C%20296%20D%20-%20Centro%2C%20Chapec%C3%B3%20-%20SC%2C%2089802-125!5e0!3m2!1spt-BR!2sbr!4v1628172930000!5m2!1spt-BR!2sbr" allowfullscreen="" loading="lazy"></iframe></div><a href="https://www.google.com/maps/search/?api=1&query=Rua+Achiles+Tomazelli+296+D+Chapeco" target="_blank" class="text-xs text-[#C5A059] mt-2 block hover:underline">Abrir no Google Maps →</a></div></div><div class="bottom-bar"><div class="social-links justify-center"><a href="https://www.instagram.com/essenciaderoma.chapeco/" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a><a href="https://www.facebook.com/essenciaderoma.1" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a><a href="https://www.tiktok.com/@essenciaderoma.chapeco" target="_blank" class="social-link"><i class="fab fa-tiktok"></i></a><a href="https://www.youtube.com/@essenciaderomahair" target="_blank" class="social-link"><i class="fab fa-youtube"></i></a></div><div class="legal-links"><button onclick="openModal('privacy')" id="btn-privacy-trigger">Política de Privacidade</button><span>|</span><button onclick="openModal('terms')" id="btn-terms-trigger">Termos de Uso</button></div><p class="copyright-text">&copy; 2016 - 2025 Essência de Romã Hair. Todos os direitos reservados.</p></div></footer>
 
     <!-- MODAL DE TERMOS DO CLUBE -->
     <div id="terms-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/40">
