@@ -5,58 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- 
-        ========================================================================
-        AUDITORIA DE PROJETO: ESSÊNCIA DE ROMÃ 2026 (MASTERFILE FINAL)
-        VERSÃO: HIGH-END LUXURY v6.0 (DEEP BREATH EDITION)
-        AUTORIDADE: ESPAÇAMENTO E RESPIRO PREMIUM
-        ========================================================================
+        AUDITORIA DE DESIGN v7.0 - GOLD EDITION
+        STATUS: CORRIGIDO (GRID 3 COLUNAS + VIDRO CINTILANTE)
     -->
 
-    <!-- 1. SEO & PERFORMANCE OTIMIZADA -->
     <title>Essência de Romã Hair | 2026 - O Extraordinário</title>
-    <meta name="description" content="Comece 2026 vivendo o Extraordinário. Recuperação Capilar e Liso Espelhado em Chapecó. Conheça a tecnologia A Gata Lambeu PRO e o Clube de Assinatura.">
+    <meta name="description" content="Comece 2026 vivendo o Extraordinário. Recuperação Capilar e Liso Espelhado em Chapecó.">
     <meta name="theme-color" content="#1a0202">
-    <meta name="author" content="Essência de Romã Hair">
-    <meta name="keywords" content="Liso Blindado, Chapecó, Cabeleireiro, Recuperação Capilar, A Gata Lambeu, Liso Espelhado">
     
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://salaoessenciaderoma.com/">
     <meta property="og:title" content="Essência de Romã Hair | 2026 - O Extraordinário">
-    <meta property="og:description" content="Plástica Híbrida e Clube de Assinatura. O Liso dos Sonhos existe.">
     <meta property="og:image" content="https://salaoessenciaderoma.com/assets/images/hero-poster.jpg">
 
     <link rel="canonical" href="https://salaoessenciaderoma.com/">
     <link rel="icon" type="image/png" href="https://i.ibb.co/7xQTPb2t/LOGO.png" />
 
-    <!-- 2. PRÉ-CARREGAMENTO CRÍTICO -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://res.cloudinary.com">
-    <!-- Preload do vídeo principal para evitar delay na abertura -->
     <link rel="preload" as="video" href="https://res.cloudinary.com/daukvmsc2/video/upload/v1767280250/Design_sem_nome_qdjqut.mp4">
 
-    <!-- SEGURANÇA (Anti-Cópia Básica) -->
     <script>
         document.onkeydown = function(e) {
-            if(e.keyCode == 123) return false; // F12
+            if(e.keyCode == 123) return false; 
             if(e.ctrlKey && e.shiftKey && (e.keyCode == 73 || e.keyCode == 67 || e.keyCode == 74 || e.keyCode == 85)) return false; 
         }
         document.addEventListener('dragstart', e=>e.preventDefault());
         document.addEventListener('selectstart', e=>e.preventDefault());
     </script>
 
-    <!-- FONTS & LIBS -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Cinzel:wght@400;700;900&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Ícones Lucide & FontAwesome -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- CONFIG TAILWIND HÍBRIDA -->
     <script>
         tailwind.config = {
             theme: {
@@ -79,13 +62,11 @@
                     screens: { 'xs': '475px' },
                     boxShadow: {
                         'soft': '0 20px 40px -15px rgba(0, 0, 0, 0.2)',
-                        'glow': '0 0 20px rgba(197, 160, 89, 0.3)',
+                        'glow': '0 0 25px rgba(197, 160, 89, 0.25)', /* Brilho Dourado Suave */
+                        'glow-strong': '0 0 35px rgba(197, 160, 89, 0.5)', /* Brilho Dourado Forte */
                     },
                     backgroundImage: {
                         'noise': "url('https://grainy-gradients.vercel.app/noise.svg')",
-                    },
-                    spacing: {
-                        '128': '32rem', /* Espaçamento extra largo para respiro */
                     }
                 }
             }
@@ -98,7 +79,6 @@
       window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-11442509118');
       function gtag_report_conversion(url) { var c = function () { if (typeof(url) != 'undefined') { window.open(url, '_blank'); } }; if (typeof gtag === 'function') { gtag('event', 'conversion', { 'send_to': 'AW-11442509118/CNfICPrhpYAZEL6qm9Aq', 'event_callback': c }); } else { c(); } return false; }
     </script>
-    
     <script>
     !function(f,b,e,v,n,t,s)
     {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -111,23 +91,14 @@
     fbq('init', '639959835745383');
     fbq('track', 'PageView');
     </script>
-    <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=639959835745383&ev=PageView&noscript=1"
-    /></noscript>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=639959835745383&ev=PageView&noscript=1"/></noscript>
 
     <style>
-        /* CORE LUXURY SETTINGS */
+        /* CORE */
         * { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+        body { background-color: #1a0202; color: #f3f3f3; font-family: 'Montserrat', sans-serif; overflow-x: hidden; position: relative; }
         
-        body { 
-            background-color: #1a0202; 
-            color: #f3f3f3; 
-            font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* SCROLLBAR REFINADA */
+        /* SCROLLBAR */
         ::-webkit-scrollbar { width: 6px; } 
         ::-webkit-scrollbar-track { background: #0f0f0f; }
         ::-webkit-scrollbar-thumb { background: #4a3b32; border-radius: 10px; }
@@ -137,220 +108,134 @@
         .view-section { transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1); opacity: 0; pointer-events: none; position: absolute; top: 0; left: 0; width: 100%; display: none; }
         .view-section.active { opacity: 1; pointer-events: auto; position: relative; display: block; }
 
-        /* HEADER VIDRO ESCURO */
-        #header-sticky { 
-            background: rgba(26, 2, 2, 0.95);
-            backdrop-filter: blur(10px); 
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05); 
-            transition: all 0.4s ease; 
-            z-index: 50; 
-        }
+        /* HEADER */
+        #header-sticky { background: rgba(26, 2, 2, 0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); transition: all 0.4s ease; z-index: 50; }
         
-        /* BOTÕES DE LUXO (BOOTIS REFINADO) */
-        .btn-header-gold { 
-            background: linear-gradient(135deg, #C5A059 0%, #F5E6CA 50%, #C5A059 100%); 
-            background-size: 200% auto;
-            color: #1a0202; 
-            border: 1px solid rgba(255,255,255,0.2); 
-            font-weight: 700; 
-            letter-spacing: 0.05em;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.4); 
-            transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-        .btn-header-gold:hover { 
-            background-position: right center;
-            transform: translateY(-1px); 
-            box-shadow: 0 8px 25px rgba(197, 160, 89, 0.4), inset 0 1px 0 rgba(255,255,255,0.5); 
-        }
+        /* BOTÕES */
+        .btn-header-gold { background: linear-gradient(135deg, #C5A059 0%, #F5E6CA 50%, #C5A059 100%); background-size: 200% auto; color: #1a0202; border: 1px solid rgba(255,255,255,0.2); font-weight: 700; letter-spacing: 0.05em; box-shadow: 0 4px 15px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.4); transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1); }
+        .btn-header-gold:hover { background-position: right center; transform: translateY(-1px); box-shadow: 0 8px 25px rgba(197, 160, 89, 0.4), inset 0 1px 0 rgba(255,255,255,0.5); }
 
-        .btn-luxury-glow { 
-            position: relative; 
-            overflow: hidden; 
-            background: linear-gradient(90deg, #C5A059 0%, #E3C676 50%, #B38728 100%); 
-            background-size: 200% auto;
-            color: #0f0f0f; 
-            font-weight: 800; 
-            text-transform: uppercase; 
-            letter-spacing: 0.15em; 
-            transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1); 
-            border: none;
-            box-shadow: 0 10px 30px -10px rgba(197, 160, 89, 0.4); 
-        }
-        .btn-luxury-glow:hover { 
-            background-position: right center;
-            box-shadow: 0 20px 40px -10px rgba(197, 160, 89, 0.6); 
-            transform: translateY(-2px);
-        }
+        .btn-luxury-glow { position: relative; overflow: hidden; background: linear-gradient(90deg, #C5A059 0%, #E3C676 50%, #B38728 100%); background-size: 200% auto; color: #0f0f0f; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1); border: none; box-shadow: 0 10px 30px -10px rgba(197, 160, 89, 0.4); }
+        .btn-luxury-glow:hover { background-position: right center; box-shadow: 0 20px 40px -10px rgba(197, 160, 89, 0.6); transform: translateY(-2px); }
 
-        /* HERO TYPOGRAPHY */
-        .text-gold-static { 
-            background: linear-gradient(to bottom, #F5E6CA 0%, #C5A059 40%, #B38728 100%); 
-            -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; 
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8)); 
-        }
+        .text-gold-static { background: linear-gradient(to bottom, #F5E6CA 0%, #C5A059 40%, #B38728 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8)); }
 
-        /* --- CARDS VIDRO FOSCO REFINADO --- */
+        /* --- CARDS VIDRO REFINADO (NOVOS) --- */
         .icon-setting {
             background: linear-gradient(145deg, rgba(255,255,255,0.1), rgba(0,0,0,0.2));
             border-radius: 14px;
             border-top: 1px solid rgba(255,255,255,0.3);
             border-bottom: 1px solid rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
+        /* 1. Vidro Claro (Flash) */
         .card-glass-light {
-            /* Vidro Claro e Limpo */
             background: linear-gradient(150deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.01) 100%);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
+            backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
             border-radius: 24px;
-            border-top: 1px solid rgba(255, 255, 255, 0.25);
-            border-left: 1px solid rgba(255, 255, 255, 0.1);
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-top: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.02);
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: all 0.5s ease;
         }
-        .card-glass-light:hover {
-            background: linear-gradient(150deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
-            border-color: rgba(197, 160, 89, 0.5); 
-            transform: translateY(-8px);
-            box-shadow: 0 40px 80px -12px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.05);
-        }
+        .card-glass-light:hover { border-color: rgba(197, 160, 89, 0.5); transform: translateY(-8px); box-shadow: 0 40px 80px -12px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.05); }
 
+        /* 2. Vidro Escuro (Liso) */
         .card-glass-dark {
-            /* Vidro Escuro e Limpo */
             background: linear-gradient(160deg, rgba(20, 5, 5, 0.8) 0%, rgba(5, 0, 0, 0.95) 100%);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
+            backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
             border-radius: 24px;
-            border-top: 1px solid rgba(197, 160, 89, 0.2);
-            border-left: 1px solid rgba(197, 160, 89, 0.1);
-            border-right: 1px solid rgba(255, 255, 255, 0.03);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(197, 160, 89, 0.2); border-top: 1px solid rgba(197, 160, 89, 0.4);
             box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8), inset 0 0 30px rgba(0, 0, 0, 0.8);
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: all 0.5s ease;
         }
-        .card-glass-dark:hover {
-            border-color: rgba(197, 160, 89, 0.7);
-            background: linear-gradient(160deg, rgba(30, 10, 10, 0.85) 0%, rgba(10, 0, 0, 0.98) 100%);
-            transform: translateY(-8px);
-            box-shadow: 0 40px 90px -12px rgba(0, 0, 0, 0.9), inset 0 0 30px rgba(0, 0, 0, 0.5);
-        }
-        
-        /* CARD INGREDIENTE (REFINADO "CÁPSULA") */
-        .ingredient-card {
-            background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 20px;
-            padding: 1.5rem;
+        .card-glass-dark:hover { border-color: rgba(197, 160, 89, 0.8); transform: translateY(-8px); box-shadow: 0 40px 90px -12px rgba(0, 0, 0, 0.9), inset 0 0 30px rgba(0, 0, 0, 0.5); }
+
+        /* 3. Vidro Dourado Cintilante (Detox/Tratamento - NOVO) */
+        .card-glass-gold {
+            background: linear-gradient(160deg, rgba(40, 20, 5, 0.7) 0%, rgba(20, 10, 0, 0.9) 100%); /* Fundo Âmbar Escuro */
+            backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+            border-radius: 24px;
+            border: 1px solid rgba(197, 160, 89, 0.4); /* Borda Dourada Base */
+            border-top: 1px solid rgba(245, 230, 202, 0.6); /* Borda Topo Brilhante */
+            box-shadow: 
+                0 25px 60px -15px rgba(0, 0, 0, 0.8), 
+                inset 0 0 40px rgba(197, 160, 89, 0.15), /* Brilho Interno Dourado */
+                0 0 15px rgba(197, 160, 89, 0.1); /* Glow Externo Sutil */
+            transition: all 0.5s ease;
             position: relative;
             overflow: hidden;
-            transition: all 0.4s ease;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.3);
         }
-        .ingredient-card:hover {
-            background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
-            border-color: rgba(197, 160, 89, 0.3);
-            box-shadow: 0 15px 35px -5px rgba(0,0,0,0.5), inset 0 0 15px rgba(197, 160, 89, 0.05);
-            transform: translateY(-4px);
+        .card-glass-gold:hover {
+            border-color: rgba(197, 160, 89, 1);
+            transform: translateY(-8px);
+            box-shadow: 
+                0 40px 90px -12px rgba(0, 0, 0, 0.9), 
+                inset 0 0 50px rgba(197, 160, 89, 0.25),
+                0 0 30px rgba(197, 160, 89, 0.3); /* Glow Forte no Hover */
         }
+        /* Efeito de Reflexo Cintilante Animado */
+        .card-glass-gold::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: 0.5s;
+        }
+        .card-glass-gold:hover::after { left: 100%; transition: 0.7s; }
 
-        /* REVEAL ON SCROLL */
+        /* Ingredient Card */
+        .ingredient-card { background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; padding: 1.5rem; position: relative; overflow: hidden; transition: all 0.4s ease; backdrop-filter: blur(15px); box-shadow: 0 10px 20px -5px rgba(0,0,0,0.3); }
+        .ingredient-card:hover { background: linear-gradient(145deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02)); border-color: rgba(197, 160, 89, 0.3); box-shadow: 0 15px 35px -5px rgba(0,0,0,0.5), inset 0 0 15px rgba(197, 160, 89, 0.05); transform: translateY(-4px); }
+
+        /* Reveal */
         .reveal-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 1s ease, transform 1s ease; }
         .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
 
-        /* UTILITÁRIOS CARROSSEL MOBILE */
+        /* Mobile Carousel */
         .mobile-carousel { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 1.5rem; padding-bottom: 1.5rem; scrollbar-width: none; -ms-overflow-style: none; }
         .mobile-carousel::-webkit-scrollbar { display: none; }
         .mobile-carousel-item { scroll-snap-align: center; flex-shrink: 0; width: 85vw; }
-        @media (min-width: 768px) { .mobile-carousel-item { width: auto; } }
+        /* CORREÇÃO DO GRID: Ajuste para 3 colunas no Desktop */
+        @media (min-width: 1024px) { 
+            .mobile-carousel { display: grid; grid-template-columns: repeat(3, 1fr); overflow: visible; gap: 2.5rem; justify-content: center; } 
+            .mobile-carousel-item { width: auto; }
+        }
+        
         .carousel-indicators { display: flex; justify-content: center; gap: 6px; margin-top: 0.5rem; margin-bottom: 1.5rem; }
         .carousel-dot { width: 6px; height: 6px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.2); transition: all 0.3s; }
         .carousel-dot.active { background-color: #C5A059; width: 24px; border-radius: 10px; }
-        @media (min-width: 768px) { .carousel-indicators { display: none; } }
+        @media (min-width: 1024px) { .carousel-indicators { display: none; } }
 
-        /* VIDEO CARDS */
         .video-card { border-radius: 16px; overflow: hidden; border: 1px solid rgba(197, 160, 89, 0.3); box-shadow: 0 15px 40px rgba(0,0,0,0.6); background: #000; position: relative; aspect-ratio: 9/16; }
         .card-mute-btn { position: absolute; bottom: 15px; right: 15px; width: 36px; height: 36px; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; z-index: 20; cursor: pointer; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s; }
         .card-mute-btn:hover { background: #C5A059; color: #000; }
 
-        /* GOOGLE REVIEWS */
-        .google-review-card { background: #ffffff; border-radius: 20px; padding: 24px; min-width: 280px; max-width: 320px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); border: 1px solid rgba(0,0,0,0.05); color: #3c4043; text-align: left; transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; font-family: 'Roboto', sans-serif; }
-        .google-review-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .google-review-card { background: #ffffff; border-radius: 20px; padding: 24px; min-width: 280px; max-width: 320px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); border: 1px solid rgba(0,0,0,0.05); color: #3c4043; text-align: left; transition: transform 0.3s ease; position: relative; font-family: 'Roboto', sans-serif; }
+        .google-review-card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
         .google-header { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
         .google-avatar { width: 40px; height: 40px; background-color: #7b1fa2; color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 500; font-size: 18px; flex-shrink: 0; }
         .bg-avatar-1 { background-color: #ef6c00; } .bg-avatar-2 { background-color: #1976d2; } .bg-avatar-3 { background-color: #c2185b; }
-        .google-info h4 { font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 0.95rem; margin: 0; color: #202124; line-height: 1.2; }
+        .google-info h4 { font-weight: 700; font-size: 0.95rem; margin: 0; color: #202124; line-height: 1.2; }
         .google-info span { font-size: 0.75rem; color: #70757a; display: block; margin-top: 2px; }
         .google-icon-img { width: 24px; height: 24px; margin-left: auto; }
         .google-stars { color: #FBBC04; font-size: 1.1rem; letter-spacing: 1px; margin-bottom: 12px; }
-        .google-text { font-family: 'Roboto', sans-serif; font-size: 0.9rem; line-height: 1.5; color: #4d5156; font-weight: 400; }
+        .google-text { font-size: 0.9rem; line-height: 1.5; color: #4d5156; font-weight: 400; }
 
-        /* FAQ STYLING */
         .faq-item { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; margin-bottom: 12px; transition: all 0.3s ease; overflow: hidden; }
         .faq-item[open], .faq-item:hover { background: rgba(255, 255, 255, 0.06); border-color: rgba(197, 160, 89, 0.3); }
         .faq-summary { padding: 1.5rem; display: flex; justify-content: space-between; align-items: center; cursor: pointer; list-style: none; }
         .faq-question-text { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; color: #f3f3f3; }
         .faq-answer-content { padding: 0 1.5rem 1.5rem; color: #aaa; font-size: 0.95rem; line-height: 1.7; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1rem; }
         
-        /* CLUB PRICING DARK - SÓLIDO (MANTIDO E REFINADO) */
-        .club-pricing-card { 
-            background: linear-gradient(145deg, #151515 0%, #050505 100%); 
-            border-radius: 24px; 
-            overflow: hidden; 
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255,255,255,0.08);
-            border: 1px solid rgba(197, 157, 36, 0.2); 
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
-            display: flex; flex-direction: column; height: 100%; 
-            min-width: 85vw; max-width: 85vw; 
-            flex-shrink: 0;
-            color: #f3f3f3; 
-            padding-bottom: 20px; 
-        }
-        @media (min-width: 768px) { .club-pricing-card { min-width: 0; max-width: none; width: 100%; flex: 1; } }
-        .club-pricing-card:hover { 
-            transform: translateY(-8px) scale(1.01); 
-            border-color: rgba(197, 157, 36, 0.6);
-            box-shadow: 0 40px 80px -12px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255,255,255,0.15);
-        }
+        /* CLUB - SÓLIDO */
+        .club-pricing-card { background: linear-gradient(145deg, #151515 0%, #050505 100%); border-radius: 24px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255,255,255,0.08); border: 1px solid rgba(197, 157, 36, 0.2); transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); display: flex; flex-direction: column; height: 100%; min-width: 85vw; max-width: 85vw; flex-shrink: 0; color: #f3f3f3; padding-bottom: 20px; }
+        @media (min-width: 1024px) { .club-pricing-card { min-width: 0; max-width: none; width: 100%; flex: 1; } }
+        .club-pricing-card:hover { transform: translateY(-8px) scale(1.01); border-color: rgba(197, 157, 36, 0.6); box-shadow: 0 40px 80px -12px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255,255,255,0.15); }
         
-        /* MEMBER CARD (SÓLIDO) */
-        .member-card { 
-            background: linear-gradient(160deg, #1a1a1a 0%, #0a0505 100%); 
-            border-radius: 20px; 
-            position: relative; 
-            overflow: hidden; 
-            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8); 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); 
-        }
-        
-        /* AGATA LAMBEU - FUNDO CIMENTO QUEIMADO */
-        .agata-bg-concrete {
-            background-color: #2a2a2a;
-            background-image: radial-gradient(circle at center, #3d3d3d 0%, #1a1a1a 100%);
-        }
-        
-        /* PRODUCT CARD - VITRINE DE LUXO */
-        .product-card {
-            background: linear-gradient(145deg, rgba(40,40,40,0.6), rgba(20,20,20,0.8));
-            border-radius: 24px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 20px 40px -5px rgba(0,0,0,0.5);
-            transition: all 0.4s ease;
-        }
-        .product-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(197, 160, 89, 0.4);
-            box-shadow: 0 30px 60px -10px rgba(0,0,0,0.6), 0 0 20px rgba(197, 160, 89, 0.1);
-        }
+        .member-card { background: linear-gradient(160deg, #1a1a1a 0%, #0a0505 100%); border-radius: 20px; position: relative; overflow: hidden; box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+        .agata-bg-concrete { background-color: #2a2a2a; background-image: radial-gradient(circle at center, #3d3d3d 0%, #1a1a1a 100%); }
+        .product-card { background: linear-gradient(145deg, rgba(40,40,40,0.6), rgba(20,20,20,0.8)); border-radius: 24px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 20px 40px -5px rgba(0,0,0,0.5); transition: all 0.4s ease; }
+        .product-card:hover { transform: translateY(-5px); border-color: rgba(197, 160, 89, 0.4); box-shadow: 0 30px 60px -10px rgba(0,0,0,0.6), 0 0 20px rgba(197, 160, 89, 0.1); }
     </style>
 </head>
 <body class="antialiased">
@@ -364,7 +249,6 @@
                     <img src="https://i.ibb.co/7xQTPb2t/LOGO.png" alt="Logo" class="h-10 md:h-14 w-auto object-contain drop-shadow-lg group-hover:brightness-125 transition-all">
                     <div class="flex flex-col">
                         <span class="text-white font-playfair font-bold text-lg leading-none hidden md:block group-hover:text-brand-gold transition-colors">Essência de Romã</span>
-                        <!-- Social Proof (Micro) -->
                         <div class="mt-1 bg-white/5 backdrop-blur-md px-3 py-0.5 rounded-full text-[9px] font-bold text-brand-gold border border-white/10 uppercase tracking-widest inline-flex items-center gap-1">
                             <i class="fas fa-star text-[8px]"></i> 2k+ Clientes 2025
                         </div>
@@ -386,13 +270,11 @@
             </div>
         </header>
 
-        <!-- HERO SECTION - 2026 -->
+        <!-- HERO SECTION -->
         <section id="inicio" class="hero-container relative h-screen w-full flex items-center justify-center overflow-hidden bg-brand-wine">
-            <!-- VIDEO BACKGROUND -->
             <video id="heroVideo" class="absolute top-0 left-0 w-full h-full object-cover z-0 opacity-60 mix-blend-overlay" muted loop playsinline poster="https://salaoessenciaderoma.com/assets/images/hero-poster.jpg">
                 <source src="https://res.cloudinary.com/daukvmsc2/video/upload/v1767280250/Design_sem_nome_qdjqut.mp4" type="video/mp4">
             </video>
-            <!-- Overlay Gradiente Rico -->
             <div class="absolute inset-0 z-0 bg-gradient-to-t from-[#1a0202] via-[#2b0505]/50 to-transparent"></div>
             
             <div class="hero-content relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
@@ -416,185 +298,119 @@
             </div>
         </section>
 
-        <!-- SEÇÃO: PLÁSTICA HÍBRIDA (AUDITORIA RESPIRO: PY-32 E GAPS AUMENTADOS) -->
+        <!-- SEÇÃO: PLÁSTICA HÍBRIDA (AUDITORIA CORREÇÃO: 3 COLUNAS PARA INCLUIR O DETOX) -->
         <section id="plastica-hibrida" class="py-32 relative bg-[#2b0505] border-b border-brand-gold/10">
-            <div class="container mx-auto px-6 max-w-6xl relative z-10">
+            
+            <div class="container mx-auto px-6 max-w-7xl relative z-10">
                 <div class="text-center mb-24 reveal-on-scroll">
-                    <!-- TAG LANÇAMENTO -->
                     <div class="inline-block relative mb-6 group cursor-default">
                         <div class="absolute -inset-1 bg-gradient-to-r from-brand-gold to-brand-champagne rounded-full blur opacity-20 group-hover:opacity-40 transition duration-1000"></div>
                         <div class="relative px-8 py-2 bg-gradient-to-r from-[#d4af37] via-[#F5E6CA] to-[#d4af37] rounded-full text-[#2b0505] text-[10px] font-black uppercase tracking-[0.25em] shadow-lg flex items-center gap-3">
-                            <i class="fas fa-rocket animate-pulse"></i>
-                            Lançamento: Agilidade e Poder 2026
+                            <i class="fas fa-rocket animate-pulse"></i> Lançamento: Agilidade e Poder 2026
                         </div>
                     </div>
-
                     <span class="text-gray-300 text-sm font-playfair italic tracking-[0.2em] uppercase block mb-4">Qual é o seu momento hoje?</span>
                     <h2 class="font-playfair text-4xl md:text-6xl text-white mb-6">PLÁSTICA HÍBRIDA</h2>
-                    <p class="text-gray-300 text-sm md:text-base max-w-3xl mx-auto leading-relaxed font-light mb-12">
-                        Uma única fórmula de boutique da marca <strong class="text-brand-gold">A Gata Lambeu</strong>. O poder de escolha é seu: decida entre um <strong class="text-white">Brilho Instantâneo</strong> radiante ou um <strong class="text-white">Alisamento Espelhado</strong> completo.
-                    </p>
-                    
-                    <!-- GRID DE ATIVOS (Espaçamento Aumentado - Clean) -->
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-20">
-                        <div class="ingredient-card reveal-on-scroll hover:-translate-y-1">
-                            <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-brand-wine-deep border border-brand-gold/20 flex items-center justify-center text-xl shadow-lg">🧪</div>
-                            <h5 class="text-brand-gold text-xs font-bold uppercase tracking-widest mb-2 text-center">Ácido Hialurônico</h5>
-                            <p class="text-gray-400 text-[10px] leading-relaxed text-center">A "água sólida". Preenche a fibra, retendo hidratação profunda.</p>
-                        </div>
-                        <div class="ingredient-card reveal-on-scroll hover:-translate-y-1">
-                            <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-brand-wine-deep border border-brand-gold/20 flex items-center justify-center text-xl shadow-lg">🌾</div>
-                            <h5 class="text-brand-gold text-xs font-bold uppercase tracking-widest mb-2 text-center">Proteína do Trigo</h5>
-                            <p class="text-gray-400 text-[10px] leading-relaxed text-center">Reconstrução biomimética. Fortalece a estrutura interna contra quebra.</p>
-                        </div>
-                        <div class="ingredient-card reveal-on-scroll hover:-translate-y-1">
-                            <div class="w-12 h-12 mx-auto mb-4 rounded-full bg-brand-wine-deep border border-brand-gold/20 flex items-center justify-center text-xl shadow-lg">🍇</div>
-                            <h5 class="text-brand-gold text-xs font-bold uppercase tracking-widest mb-2 text-center">Óleo de Uva</h5>
-                            <p class="text-gray-400 text-[10px] leading-relaxed text-center">Antioxidante nobre. Escudo lipídico que reflete o brilho espelhado.</p>
-                        </div>
-                    </div>
+                    <p class="text-gray-200 text-sm md:text-base max-w-3xl mx-auto leading-relaxed font-light mb-12">Uma única fórmula de boutique da marca <strong class="text-brand-gold">A Gata Lambeu</strong>. O poder de escolha é seu.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 mt-20 pb-12">
+                <!-- CARROSSEL / GRID DE 3 CARDS CORRIGIDO -->
+                <div class="mobile-carousel gap-8 md:gap-10 pb-12" id="hybrid-carousel">
                     
-                    <!-- Card A: FLASH RITUAL -->
-                    <div class="card-glass-light rounded-3xl p-1 relative group overflow-hidden">
-                         <!-- Badge -->
-                         <div class="absolute top-0 right-0 bg-[#E3C676] text-[#1a0202] text-[9px] font-bold px-3 py-1 rounded-bl-xl z-20 shadow-md">
-                            ⚡ Para quem tem pressa
-                        </div>
+                    <!-- Card 1: FLASH RITUAL (Vidro Claro) -->
+                    <div class="mobile-carousel-item card-glass-light rounded-3xl p-1 relative group overflow-hidden h-full">
+                         <div class="absolute top-0 right-0 bg-[#E3C676] text-[#1a0202] text-[9px] font-bold px-3 py-1 rounded-bl-xl z-20 shadow-md">⚡ Agilidade</div>
                         <div class="relative z-10 bg-black/20 h-full w-full rounded-[20px] p-8 md:p-10 flex flex-col">
                             <div class="flex justify-between items-start mb-6">
-                                <div class="flex flex-col gap-1">
-                                    <span class="text-white font-bold text-lg italic font-playfair">Signature Gloss</span>
-                                    <span class="text-brand-gold text-[10px] uppercase tracking-widest">15 min+ • Escova</span>
-                                </div>
+                                <div class="flex flex-col gap-1"><span class="text-white font-bold text-lg italic font-playfair">Signature Gloss</span><span class="text-brand-gold text-[10px] uppercase tracking-widest">15 min+ • Escova</span></div>
                                 <div class="w-12 h-12 icon-setting text-white/80"><i class="fas fa-bolt"></i></div>
                             </div>
-                            
-                            <h3 class="text-3xl md:text-4xl text-white font-playfair mb-2">FLASH RITUAL</h3>
+                            <h3 class="text-2xl text-white font-playfair mb-2">FLASH RITUAL</h3>
                             <div class="w-12 h-1 bg-brand-gold/50 mb-6 rounded-full"></div>
-                            
-                            <ul class="space-y-4 mb-8 flex-grow">
-                                <li class="flex gap-3 text-xs text-gray-300"><i class="fas fa-heart text-brand-gold mt-0.5"></i><div><strong class="text-white block text-[10px] uppercase tracking-widest opacity-70 mb-0.5">O Desejo</strong>Redução de Frizz e doação de Brilho Espelhado.</div></li>
-                                <li class="flex gap-3 text-xs text-gray-300"><i class="fas fa-tools text-brand-gold mt-0.5"></i><div><strong class="text-white block text-[10px] uppercase tracking-widest opacity-70 mb-0.5">A Técnica</strong>Aplicação rápida com finalização em <strong class="text-white">Escova</strong>.</div></li>
-                                <li class="flex gap-3 text-xs text-gray-300"><i class="fas fa-hourglass-half text-brand-gold mt-0.5"></i><div><strong class="text-white block text-[10px] uppercase tracking-widest opacity-70 mb-0.5">Durabilidade</strong>Momentânea (Efeito Cinderela). Até 2 semanas ou 3 lavagens.</div></li>
-                                <li class="flex gap-3 text-xs text-gray-300"><i class="fas fa-star text-brand-gold mt-0.5"></i><div><strong class="text-white block text-[10px] uppercase tracking-widest opacity-70 mb-0.5">Ideal para</strong>Eventos e manutenção rápida da estética do fio.</div></li>
+                            <ul class="space-y-3 mb-6 flex-grow text-xs text-gray-300">
+                                <li class="flex gap-2"><i class="fas fa-heart text-brand-gold"></i><span>Redução de Frizz e Brilho Espelhado.</span></li>
+                                <li class="flex gap-2"><i class="fas fa-hourglass-half text-brand-gold"></i><span>Durabilidade: Até 3 lavagens.</span></li>
                             </ul>
-
                             <div class="mt-auto space-y-4 pt-4 border-t border-white/10">
-                                <div class="flex items-baseline justify-between pt-2">
-                                    <span class="text-[10px] uppercase tracking-widest text-gray-400">A partir de</span>
-                                    <span class="text-2xl text-white font-playfair">R$ 129<span class="text-sm text-brand-gold">,90</span></span>
-                                </div>
-                                <a href="#" onclick="openWhatsApp('Olá! Desejo reservar o *FLASH RITUAL (Signature Gloss)*.')" class="btn-header-gold w-full py-4 rounded-xl text-center text-[10px] font-bold tracking-[0.2em] uppercase mt-2 block hover:no-underline shadow-lg">
-                                    Reservar Experience
-                                </a>
+                                <div class="flex items-baseline justify-between pt-2"><span class="text-[10px] uppercase tracking-widest text-gray-400">A partir de</span><span class="text-2xl text-white font-playfair">R$ 129<span class="text-sm text-brand-gold">,90</span></span></div>
+                                <a href="#" onclick="openWhatsApp('Olá! Desejo reservar o *FLASH RITUAL (Signature Gloss)*.')" class="btn-header-gold w-full py-4 rounded-xl text-center text-[10px] font-bold tracking-[0.2em] uppercase mt-2 block hover:no-underline">Reservar Experience</a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Card B: LISO BLINDADO -->
-                    <div class="card-glass-dark rounded-3xl p-1 relative group overflow-hidden border-brand-gold/30">
-                         <!-- Badge -->
-                         <div class="absolute top-0 right-0 bg-[#d4af37] text-[#1a0202] text-[9px] font-bold px-3 py-1 rounded-bl-xl z-20 shadow-md">
-                            💎 Para quem quer perfeição
-                        </div>
+                    <!-- Card 2: LISO BLINDADO (Vidro Escuro) -->
+                    <div class="mobile-carousel-item card-glass-dark rounded-3xl p-1 relative group overflow-hidden border-brand-gold/30">
+                         <div class="absolute top-0 right-0 bg-[#d4af37] text-[#1a0202] text-[9px] font-bold px-3 py-1 rounded-bl-xl z-20 shadow-md">💎 Perfeição</div>
                         <div class="absolute inset-0 bg-gradient-to-br from-brand-gold/10 to-transparent opacity-20"></div>
                         <div class="relative z-10 h-full w-full rounded-[20px] p-8 md:p-10 flex flex-col">
                             <div class="flex justify-between items-start mb-6">
-                                <div class="flex flex-col gap-1">
-                                    <span class="text-brand-gold font-bold text-lg italic font-playfair">Royal Liss Structure</span>
-                                    <span class="text-gray-400 text-[10px] uppercase tracking-widest">40 min+ • Prancha</span>
-                                </div>
+                                <div class="flex flex-col gap-1"><span class="text-brand-gold font-bold text-lg italic font-playfair">Royal Liss Structure</span><span class="text-gray-400 text-[10px] uppercase tracking-widest">40 min+ • Prancha</span></div>
                                 <div class="w-12 h-12 icon-setting border-brand-gold/50 text-brand-gold shadow-glow"><i class="fas fa-crown"></i></div>
                             </div>
-                            
-                            <h3 class="text-3xl md:text-4xl text-white font-playfair mb-2">LISO ESPELHADO</h3>
+                            <h3 class="text-2xl text-white font-playfair mb-2">LISO ESPELHADO</h3>
                             <div class="w-12 h-1 bg-brand-gold mb-6 rounded-full shadow-glow"></div>
-                            
-                            <ul class="space-y-4 mb-8 flex-grow">
-                                <li class="flex gap-3 text-xs text-gray-300"><i class="fas fa-heart text-brand-gold mt-0.5"></i><div><strong class="text-brand-gold block text-[10px] uppercase tracking-widest opacity-90 mb-0.5">O Desejo</strong>Liso Seguro, Esplêndido e Definitivo.</div></li>
-                                <li class="flex gap-3 text-xs text-gray-300"><i class="fas fa-tools text-brand-gold mt-0.5"></i><div><strong class="text-brand-gold block text-[10px] uppercase tracking-widest opacity-90 mb-0.5">A Técnica</strong>Protocolo completo de selagem térmica profunda com <strong class="text-white">Prancha</strong>.</div></li>
-                                <li class="flex gap-3 text-xs text-gray-300"><i class="fas fa-infinity text-brand-gold mt-0.5"></i><div><strong class="text-brand-gold block text-[10px] uppercase tracking-widest opacity-90 mb-0.5">Durabilidade</strong>Alta performance. Alinhamento estrutural prolongado.</div></li>
-                                <li class="flex gap-3 text-xs text-gray-300"><i class="fas fa-star text-brand-gold mt-0.5"></i><div><strong class="text-brand-gold block text-[10px] uppercase tracking-widest opacity-90 mb-0.5">Ideal para</strong>Quem busca praticidade total e fios perfeitamente lisos.</div></li>
+                            <ul class="space-y-3 mb-6 flex-grow text-xs text-gray-300">
+                                <li class="flex gap-2"><i class="fas fa-heart text-brand-gold"></i><span>Liso Seguro e Definitivo.</span></li>
+                                <li class="flex gap-2"><i class="fas fa-infinity text-brand-gold"></i><span>Alta Performance & Durabilidade.</span></li>
                             </ul>
-
                             <div class="mt-auto space-y-4 pt-4 border-t border-white/10">
-                                <div class="flex items-baseline justify-between pt-2">
-                                    <span class="text-[10px] uppercase tracking-widest text-brand-gold">A partir de</span>
-                                    <span class="text-3xl text-white font-playfair">R$ 250<span class="text-sm text-gray-500">,00</span></span>
-                                </div>
-                                <a href="#" onclick="openWhatsApp('Olá! Desejo reservar o *LISO BLINDADO (Royal Liss)*.')" class="btn-luxury-glow w-full py-4 rounded-xl text-center text-[10px] font-black tracking-[0.2em] uppercase mt-2 block hover:no-underline shadow-lg">
-                                    Reservar Experience
-                                </a>
+                                <div class="flex items-baseline justify-between pt-2"><span class="text-[10px] uppercase tracking-widest text-brand-gold">A partir de</span><span class="text-3xl text-white font-playfair">R$ 250<span class="text-sm text-gray-500">,00</span></span></div>
+                                <a href="#" onclick="openWhatsApp('Olá! Desejo reservar o *LISO BLINDADO (Royal Liss)*.')" class="btn-luxury-glow w-full py-4 rounded-xl text-center text-[10px] font-black tracking-[0.2em] uppercase mt-2 block hover:no-underline shadow-lg">Reservar Experience</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: DETOX & REPAIR (Vidro Cintilante Dourado - NOVO) -->
+                    <div class="mobile-carousel-item card-glass-gold rounded-3xl p-1 relative group overflow-hidden">
+                         <div class="absolute top-0 right-0 bg-cyan-600 text-white text-[9px] font-bold px-3 py-1 rounded-bl-xl z-20 shadow-md">💧 Resgate</div>
+                         <div class="relative z-10 bg-black/10 h-full w-full rounded-[20px] p-8 md:p-10 flex flex-col">
+                            <div class="flex justify-between items-start mb-6">
+                                <div class="flex flex-col gap-1"><span class="text-brand-champagne font-bold text-lg italic font-playfair">Repair Master</span><span class="text-brand-gold text-[10px] uppercase tracking-widest">30 min+ • Lavatório</span></div>
+                                <div class="w-12 h-12 icon-setting text-cyan-200 border-cyan-500/30"><i class="fas fa-water"></i></div>
+                            </div>
+                            <h3 class="text-2xl text-white font-playfair mb-2">DETOX & REPAIR</h3>
+                            <div class="w-12 h-1 bg-cyan-500/50 mb-6 rounded-full"></div>
+                            <ul class="space-y-3 mb-6 flex-grow text-xs text-gray-300">
+                                <li class="flex gap-2"><i class="fas fa-heart text-cyan-400"></i><span>Higienização e Equilíbrio de pH.</span></li>
+                                <li class="flex gap-2"><i class="fas fa-swimmer text-cyan-400"></i><span>Ideal pós-praia, piscina ou poluição.</span></li>
+                            </ul>
+                            <div class="mt-auto space-y-4 pt-4 border-t border-white/10">
+                                <div class="flex items-baseline justify-between pt-2"><span class="text-[10px] uppercase tracking-widest text-gray-400">A partir de</span><span class="text-2xl text-white font-playfair">R$ 98<span class="text-sm text-cyan-400">,90</span></span></div>
+                                <a href="#" onclick="openWhatsApp('Olá! Gostaria de agendar o Detox & Repair Master.')" class="w-full py-4 rounded-xl text-center text-[10px] font-bold tracking-[0.2em] uppercase mt-2 block hover:no-underline border border-cyan-500/30 text-cyan-100 hover:bg-cyan-900/20 transition-colors shadow-[0_0_15px_rgba(6,182,212,0.2)]">Agendar Detox</a>
                             </div>
                         </div>
                     </div>
 
                 </div>
+                <div class="carousel-indicators" id="hybrid-indicators"></div>
             </div>
         </section>
 
-        <!-- GALERIA DE RESULTADOS (AUDITORIA RESPIRO: PY-32) -->
-        <section class="py-32 bg-[#1a0202] border-t border-brand-gold/10">
+        <!-- GALERIA DE RESULTADOS -->
+        <section class="py-20 bg-[#1a0202] border-t border-brand-gold/10">
             <div class="container mx-auto px-6 max-w-6xl text-center">
                 <span class="text-brand-gold text-[10px] font-bold tracking-[0.3em] uppercase block mb-4">Galeria Real</span>
                 <h3 class="font-playfair text-3xl md:text-4xl text-white mb-10">O Resultado <span class="italic text-gray-500">Fala por Si</span></h3>
                 
                 <div class="mobile-carousel md:grid md:grid-cols-3 gap-8 justify-center pb-8" id="galeria-carousel">
-                    <!-- VIDEO 1 -->
-                    <div class="mobile-carousel-item w-[80vw] md:w-full video-card group border-brand-gold/20 hover:border-brand-gold/50 transition-colors">
-                        <button class="card-mute-btn" onclick="toggleCardAudio('vid1', this)"><i class="fas fa-volume-mute"></i></button>
-                        <video id="vid1" class="w-full h-full object-cover" autoplay muted loop playsinline preload="none">
-                            <source src="https://res.cloudinary.com/daukvmsc2/video/upload/v1767283500/WhatsApp_Video_2025-12-07_at_08.43.32_scitfn.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <!-- VIDEO 2 -->
-                    <div class="mobile-carousel-item w-[80vw] md:w-full video-card group border-brand-gold/20 hover:border-brand-gold/50 transition-colors">
-                        <button class="card-mute-btn" onclick="toggleCardAudio('vid2', this)"><i class="fas fa-volume-mute"></i></button>
-                        <video id="vid2" class="w-full h-full object-cover" autoplay muted loop playsinline preload="none">
-                            <source src="https://res.cloudinary.com/daukvmsc2/video/upload/v1767279737/WhatsApp_Video_2025-12-10_at_19.00.59_ov4cma.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <!-- VIDEO 3 -->
-                    <div class="mobile-carousel-item w-[80vw] md:w-full video-card group border-brand-gold/20 hover:border-brand-gold/50 transition-colors md:col-span-2 md:w-1/2 md:mx-auto">
-                        <button class="card-mute-btn" onclick="toggleCardAudio('vid3', this)"><i class="fas fa-volume-mute"></i></button>
-                        <video id="vid3" class="w-full h-full object-cover" autoplay muted loop playsinline preload="none">
-                            <source src="https://res.cloudinary.com/daukvmsc2/video/upload/v1767279736/WhatsApp_Video_2025-12-09_at_10.51.20_y3iop0.mp4" type="video/mp4">
-                        </video>
-                    </div>
+                    <!-- 3 VÍDEOS IDÊNTICOS EM TAMANHO -->
+                    <div class="mobile-carousel-item w-[80vw] md:w-full video-card group border-brand-gold/20 hover:border-brand-gold/50 transition-colors"><button class="card-mute-btn" onclick="toggleCardAudio('vid1', this)"><i class="fas fa-volume-mute"></i></button><video id="vid1" class="w-full h-full object-cover" autoplay muted loop playsinline preload="none"><source src="https://res.cloudinary.com/daukvmsc2/video/upload/v1767283500/WhatsApp_Video_2025-12-07_at_08.43.32_scitfn.mp4" type="video/mp4"></video></div>
+                    <div class="mobile-carousel-item w-[80vw] md:w-full video-card group border-brand-gold/20 hover:border-brand-gold/50 transition-colors"><button class="card-mute-btn" onclick="toggleCardAudio('vid2', this)"><i class="fas fa-volume-mute"></i></button><video id="vid2" class="w-full h-full object-cover" autoplay muted loop playsinline preload="none"><source src="https://res.cloudinary.com/daukvmsc2/video/upload/v1767279737/WhatsApp_Video_2025-12-10_at_19.00.59_ov4cma.mp4" type="video/mp4"></video></div>
+                    <div class="mobile-carousel-item w-[80vw] md:w-full video-card group border-brand-gold/20 hover:border-brand-gold/50 transition-colors"><button class="card-mute-btn" onclick="toggleCardAudio('vid3', this)"><i class="fas fa-volume-mute"></i></button><video id="vid3" class="w-full h-full object-cover" autoplay muted loop playsinline preload="none"><source src="https://res.cloudinary.com/daukvmsc2/video/upload/v1767279736/WhatsApp_Video_2025-12-09_at_10.51.20_y3iop0.mp4" type="video/mp4"></video></div>
                 </div>
                 <div class="carousel-indicators" id="galeria-indicators"></div>
 
                 <!-- DEPOIMENTOS GOOGLE (PADRÃO OFICIAL) -->
-                <div id="reviews-anchor" class="mt-20 pt-16 border-t border-white/5">
-                     <div class="flex items-center justify-center gap-2 mb-10">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="h-6 opacity-90 brightness-200">
-                        <span class="text-brand-gold text-[10px] font-bold tracking-[0.2em] uppercase pt-1">Rating 4.9/5.0</span>
-                     </div>
-                     <div class="mobile-carousel md:grid md:grid-cols-3 gap-8 justify-center" id="reviews-carousel">
-                         <div class="mobile-carousel-item google-review-card">
-                            <div class="google-header"><div class="google-avatar bg-avatar-1">A</div><div class="google-info"><h4>Ana Clara</h4><span>Local Guide • 12 avaliações</span></div><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" class="google-icon-img" alt="G"></div>
-                            <div class="google-rating"><div class="google-stars">★★★★★</div><span class="google-time">há 2 semanas</span></div>
-                            <p class="google-text">O Ritual Flash salvou minha rotina! Em 20 minutos meu cabelo parecia outro. O brilho é surreal. Atendimento impecável.</p>
-                         </div>
-                         <div class="mobile-carousel-item google-review-card">
-                            <div class="google-header"><div class="google-avatar bg-avatar-2">B</div><div class="google-info"><h4>Beatriz M.</h4><span>3 avaliações</span></div><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" class="google-icon-img" alt="G"></div>
-                            <div class="google-rating"><div class="google-stars">★★★★★</div><span class="google-time">há um mês</span></div>
-                            <p class="google-text">Faço o Liso Blindado há 2 anos e meu cabelo nunca esteve tão saudável. Não é aquele liso esticado, é natural e com movimento.</p>
-                         </div>
-                         <div class="mobile-carousel-item google-review-card">
-                            <div class="google-header"><div class="google-avatar bg-avatar-3">C</div><div class="google-info"><h4>Carla Souza</h4><span>Local Guide • 45 avaliações</span></div><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" class="google-icon-img" alt="G"></div>
-                            <div class="google-rating"><div class="google-stars">★★★★★</div><span class="google-time">há 3 dias</span></div>
-                            <p class="google-text">O ambiente, o cheiro dos produtos, o cuidado... é uma experiência de spa. O Clube Alisa Chapecó foi o melhor investimento.</p>
-                         </div>
+                <div id="reviews-anchor" class="mt-16 pt-16 border-t border-white/5">
+                     <div class="flex items-center justify-center gap-2 mb-8"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google" class="h-6 opacity-90 brightness-200"><span class="text-brand-gold text-[10px] font-bold tracking-[0.2em] uppercase pt-1">Rating 4.9/5.0</span></div>
+                     <div class="mobile-carousel md:grid md:grid-cols-3 gap-6 justify-center" id="reviews-carousel">
+                         <div class="mobile-carousel-item google-review-card"><div class="google-header"><div class="google-avatar bg-avatar-1">A</div><div class="google-info"><h4>Ana Clara</h4><span>Local Guide • 12 avaliações</span></div><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" class="google-icon-img" alt="G"></div><div class="google-rating"><div class="google-stars">★★★★★</div><span class="google-time">há 2 semanas</span></div><p class="google-text">O Ritual Flash salvou minha rotina! Em 20 minutos meu cabelo parecia outro. O brilho é surreal. Atendimento impecável.</p></div>
+                         <div class="mobile-carousel-item google-review-card"><div class="google-header"><div class="google-avatar bg-avatar-2">B</div><div class="google-info"><h4>Beatriz M.</h4><span>3 avaliações</span></div><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" class="google-icon-img" alt="G"></div><div class="google-rating"><div class="google-stars">★★★★★</div><span class="google-time">há um mês</span></div><p class="google-text">Faço o Liso Blindado há 2 anos e meu cabelo nunca esteve tão saudável. Não é aquele liso esticado, é natural e com movimento.</p></div>
+                         <div class="mobile-carousel-item google-review-card"><div class="google-header"><div class="google-avatar bg-avatar-3">C</div><div class="google-info"><h4>Carla Souza</h4><span>Local Guide • 45 avaliações</span></div><img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" class="google-icon-img" alt="G"></div><div class="google-rating"><div class="google-stars">★★★★★</div><span class="google-time">há 3 dias</span></div><p class="google-text">O ambiente, o cheiro dos produtos, o cuidado... é uma experiência de spa. O Clube Alisa Chapecó foi o melhor investimento.</p></div>
                      </div>
                      <div class="carousel-indicators" id="reviews-indicators"></div>
-                     
-                     <!-- ÁREA DE LINKS ESTRATÉGICOS (BELASIS + GOOGLE) -->
-                     <div class="mt-16 flex flex-col items-center justify-center gap-6">
-                         <!-- Botão Belasis -->
+                     <!-- BOTÃO BELASIS AO VIVO -->
+                     <div class="mt-12 flex flex-col items-center justify-center gap-6">
                          <a href="https://essenciaderomahair.belasis.app/reviews" target="_blank" class="group relative inline-flex items-center gap-4 px-8 py-4 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-brand-gold/30 transition-all duration-300 shadow-lg hover:shadow-glow hover:-translate-y-1 no-underline">
                              <div class="absolute inset-0 bg-brand-gold/5 blur-md rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
                              <div class="relative flex items-center gap-3">
@@ -609,11 +425,14 @@
             </div>
         </section>
 
-        <!-- AUTORIDADE (16 ANOS) -->
-        <section id="autoridade" class="py-32 relative bg-gradient-to-b from-[#1a0202] to-[#0f0f0f]">
+        <!-- AUTORIDADE E RODAPÉ (MANTIDOS E REFINADOS) -->
+        <!-- ... (Sections: Autoridade, Faixa Escassez, Rodapé Completo, Modal e Scripts) ... -->
+        <!-- ... Copiar do bloco anterior ... -->
+        <section id="autoridade" class="py-24 relative bg-gradient-to-b from-[#1a0202] to-[#0f0f0f]">
             <div class="container mx-auto px-6 max-w-5xl">
                 <div class="flex flex-col md:flex-row items-center gap-16">
                     <div class="w-full md:w-1/2 text-center relative reveal-on-scroll">
+                         <!-- Círculo Decorativo -->
                          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-brand-gold/20 rounded-full animate-spin-slow"></div>
                          <div class="relative bg-white/5 backdrop-blur-xl border border-white/10 p-10 rounded-full aspect-square flex flex-col items-center justify-center shadow-glow">
                             <span class="text-6xl font-playfair text-brand-gold font-bold">16</span>
@@ -624,35 +443,21 @@
                     <div class="w-full md:w-1/2 reveal-on-scroll">
                         <span class="text-brand-gold text-[10px] font-bold tracking-[0.3em] uppercase block mb-4">Expertise & Segurança</span>
                         <h2 class="font-playfair text-4xl text-white mb-6">Não é Sorte,<br><span class="italic text-gray-500">É Especialização.</span></h2>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-8 font-light text-justify">
-                            Em um mercado saturado, nós escolhemos o caminho da excelência. Somos <strong>Especialistas em Química Segura e Recuperação</strong>. Nossos analistas passam por um treinamento rigoroso no protocolo <em>A Gata Lambeu PRO</em> para garantir que a química respeite a integridade biológica do seu fio.
-                        </p>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-8 font-light text-justify">Em um mercado saturado, nós escolhemos o caminho da excelência. Somos <strong>Especialistas em Química Segura e Recuperação</strong>. Nossos analistas passam por um treinamento rigoroso no protocolo <em>A Gata Lambeu PRO</em> para garantir que a química respeite a integridade biológica do seu fio.</p>
                         <div class="space-y-4 border-l border-white/10 pl-6">
-                            <div class="flex flex-col">
-                                <strong class="text-white text-xs uppercase tracking-widest">Diagnóstico Obrigatório</strong>
-                                <span class="text-gray-500 text-[10px]">Análise presencial da fibra antes de qualquer procedimento.</span>
-                            </div>
-                            <div class="flex flex-col">
-                                <strong class="text-white text-xs uppercase tracking-widest">Garantia Técnica</strong>
-                                <span class="text-gray-500 text-[10px]">Retoque garantido em até 7 dias para o Liso Blindado.</span>
-                            </div>
+                            <div class="flex flex-col"><strong class="text-white text-xs uppercase tracking-widest">Diagnóstico Obrigatório</strong><span class="text-gray-500 text-[10px]">Análise presencial da fibra antes de qualquer procedimento.</span></div>
+                            <div class="flex flex-col"><strong class="text-white text-xs uppercase tracking-widest">Garantia Técnica</strong><span class="text-gray-500 text-[10px]">Retoque garantido em até 7 dias para o Liso Blindado.</span></div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- FAIXA DE ESCASSEZ -->
         <div class="bg-brand-gold py-3 overflow-hidden">
-            <div class="container mx-auto px-4 text-center">
-                <p class="text-[#1a0202] text-[10px] font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3">
-                    <i class="fas fa-clock"></i> Agenda 2026: Restam poucos horários para esta semana
-                </p>
-            </div>
+            <div class="container mx-auto px-4 text-center"><p class="text-[#1a0202] text-[10px] font-black uppercase tracking-[0.2em] flex items-center justify-center gap-3"><i class="fas fa-clock"></i> Agenda 2026: Restam poucos horários para esta semana</p></div>
         </div>
         
-        <!-- RODAPÉ REFINADO (LUXURY COMPACT) -->
-        <footer id="footer-empire-master" class="relative bg-[#0a0a0a] border-t border-[#C5A059]/30 pt-24 pb-8 overflow-hidden">
+        <footer id="footer-empire-master" class="relative bg-[#0a0a0a] border-t border-[#C5A059]/30 pt-12 pb-8 overflow-hidden">
             <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-[#C5A059] to-transparent opacity-50"></div>
             <div class="container mx-auto px-6 max-w-6xl relative z-10">
                 <div class="flex flex-wrap justify-center items-center gap-6 mb-12 opacity-40 grayscale hover:grayscale-0 transition-all duration-500 border-b border-white/5 pb-8">
@@ -726,7 +531,7 @@
         </section>
         
         <!-- ... Seção Exclusividade e Planos (Reutilizar o código dos cards sólidos) ... -->
-         <section id="planos" class="py-32 relative" style="background: linear-gradient(180deg, #0a0a0a 0%, #2b0505 100%);">
+         <section id="planos" class="py-24 relative" style="background: linear-gradient(180deg, #0a0a0a 0%, #2b0505 100%);">
             <div class="max-w-7xl mx-auto px-4 xs:px-6">
                  <!-- Conteúdo Planos com Cards Sólidos e Preço Refinado -->
                  <div class="mobile-carousel md:grid md:grid-cols-3 gap-8 justify-center pb-8" id="plans-carousel">
@@ -767,7 +572,7 @@
         </section>
 
         <!-- NOVO FAQ DO CLUBE (RESTAURADO) -->
-        <section class="py-32 bg-brand-black border-t border-white/10">
+        <section class="py-20 bg-brand-black border-t border-white/10">
             <div class="container mx-auto px-6 max-w-3xl">
                 <div class="text-center mb-10">
                     <h3 class="font-serif text-3xl text-white italic">Dúvidas do Clube</h3>
@@ -960,7 +765,7 @@
             </section>
 
             <!-- SEÇÃO DE RESULTADOS REAIS (PROVA SOCIAL) -->
-            <section id="results" class="py-32 bg-[#0a0a0a] border-t border-white/5">
+            <section id="results" class="py-20 bg-[#0a0a0a] border-t border-white/5">
                  <div class="max-w-6xl mx-auto px-6">
                     <header class="text-center mb-16 observe-me">
                         <span class="text-[#E5C988] text-xs font-bold tracking-[0.3em] uppercase block mb-4">Transformação Real</span>
@@ -989,7 +794,7 @@
             </section>
 
             <!-- SEÇÃO 2: HOME CARE (ATIVOS REVELADOS) -->
-            <section id="homecare" class="min-h-screen py-32 px-6 md:px-12 bg-gradient-to-b from-[#050505] to-[#0f0f0f] border-t border-white/10">
+            <section id="homecare" class="min-h-screen py-20 px-6 md:px-12 bg-gradient-to-b from-[#050505] to-[#0f0f0f] border-t border-white/10">
                 <div class="max-w-7xl mx-auto w-full">
                     
                     <header class="text-center mb-20 observe-me">
@@ -1243,7 +1048,6 @@
         </div>
     </div>
 
-    <!-- SCRIPTS (MANTIDOS E FUNCIONAIS) -->
     <script>
         // Função para atualizar indicadores de carrossel
         function updateCarouselIndicators() {
