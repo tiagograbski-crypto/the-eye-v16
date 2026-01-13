@@ -336,11 +336,11 @@
                     </p>
                 </div>
 
-                <!-- LAYOUT LADO A LADO: IMAGEM + ATIVOS -->
-                <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 max-w-6xl mx-auto">
+                <!-- LAYOUT LADO A LADO: IMAGEM + ATIVOS + GUIA -->
+                <div class="flex flex-col lg:flex-row items-start gap-12 lg:gap-16 max-w-6xl mx-auto">
                     
-                    <!-- COLUNA 1: IMAGEM DO PRODUTO (Hero) -->
-                    <div class="w-full lg:w-1/2 reveal relative group">
+                    <!-- COLUNA 1: IMAGEM DO PRODUTO (Sticky para acompanhar o texto longo) -->
+                    <div class="w-full lg:w-1/2 reveal relative group lg:sticky lg:top-32 h-fit">
                         <!-- Glow de Fundo -->
                         <div class="absolute inset-0 bg-brand-gold/10 blur-[60px] rounded-full opacity-30 group-hover:opacity-50 transition duration-1000"></div>
                         
@@ -358,44 +358,66 @@
                         </div>
                     </div>
 
-                    <!-- COLUNA 2: LISTA DE ATIVOS (Editorial) -->
-                    <div class="w-full lg:w-1/2 flex flex-col gap-5">
+                    <!-- COLUNA 2: ATIVOS + GUIA DE ESCOLHA -->
+                    <div class="w-full lg:w-1/2 flex flex-col gap-8">
                         
-                        <!-- Ativo 1 -->
-                        <div class="reveal glass-panel p-5 rounded-xl flex items-start gap-5 border-l-2 border-l-transparent hover:border-l-brand-gold transition-all duration-300 hover:bg-white/5">
-                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-wine border border-brand-gold/30 flex items-center justify-center text-xl text-brand-gold shadow-luxury-glow">
-                                🧪
+                        <!-- 1. Lista de Ativos (Química) -->
+                        <div class="flex flex-col gap-5">
+                            <div class="reveal glass-panel p-5 rounded-xl flex items-start gap-5 border-l-2 border-l-transparent hover:border-l-brand-gold transition-all duration-300 hover:bg-white/5">
+                                <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-wine border border-brand-gold/30 flex items-center justify-center text-xl text-brand-gold shadow-luxury-glow">🧪</div>
+                                <div><h5 class="text-brand-gold text-xs font-bold uppercase tracking-widest mb-2">Ácido Hialurônico</h5><p class="text-gray-400 text-xs leading-relaxed font-light">Conhecido como "água sólida". Preenche a fibra capilar, retendo hidratação profunda nas camadas internas.</p></div>
                             </div>
-                            <div>
-                                <h5 class="text-brand-gold text-xs font-bold uppercase tracking-widest mb-2">Ácido Hialurônico</h5>
-                                <p class="text-gray-400 text-xs leading-relaxed font-light">
-                                    Conhecido como "água sólida". Preenche a fibra capilar, retendo hidratação profunda nas camadas internas e garantindo um balanço natural sem pesar.
-                                </p>
+                            <div class="reveal glass-panel p-5 rounded-xl flex items-start gap-5 border-l-2 border-l-transparent hover:border-l-brand-gold transition-all duration-300 hover:bg-white/5" style="transition-delay: 100ms;">
+                                <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-wine border border-brand-gold/30 flex items-center justify-center text-xl text-brand-gold shadow-luxury-glow">🌾</div>
+                                <div><h5 class="text-brand-gold text-xs font-bold uppercase tracking-widest mb-2">Proteína do Trigo</h5><p class="text-gray-400 text-xs leading-relaxed font-light">Reconstrução biomimética. Fortalece a estrutura interna do córtex do fio, protegendo contra quebra.</p></div>
                             </div>
-                        </div>
-
-                        <!-- Ativo 2 -->
-                        <div class="reveal glass-panel p-5 rounded-xl flex items-start gap-5 border-l-2 border-l-transparent hover:border-l-brand-gold transition-all duration-300 hover:bg-white/5" style="transition-delay: 100ms;">
-                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-wine border border-brand-gold/30 flex items-center justify-center text-xl text-brand-gold shadow-luxury-glow">
-                                🌾
-                            </div>
-                            <div>
-                                <h5 class="text-brand-gold text-xs font-bold uppercase tracking-widest mb-2">Proteína do Trigo</h5>
-                                <p class="text-gray-400 text-xs leading-relaxed font-light">
-                                    Reconstrução biomimética. Fortalece a estrutura interna do córtex do fio, protegendo contra a quebra e aumentando a elasticidade.
-                                </p>
+                            <div class="reveal glass-panel p-5 rounded-xl flex items-start gap-5 border-l-2 border-l-transparent hover:border-l-brand-gold transition-all duration-300 hover:bg-white/5" style="transition-delay: 200ms;">
+                                <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-wine border border-brand-gold/30 flex items-center justify-center text-xl text-brand-gold shadow-luxury-glow">🍇</div>
+                                <div><h5 class="text-brand-gold text-xs font-bold uppercase tracking-widest mb-2">Óleo de Uva</h5><p class="text-gray-400 text-xs leading-relaxed font-light">Antioxidante nobre. Cria um escudo lipídico que reflete a luz intensamente, resultando no "Brilho 8K".</p></div>
                             </div>
                         </div>
 
-                        <!-- Ativo 3 -->
-                        <div class="reveal glass-panel p-5 rounded-xl flex items-start gap-5 border-l-2 border-l-transparent hover:border-l-brand-gold transition-all duration-300 hover:bg-white/5" style="transition-delay: 200ms;">
-                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-wine border border-brand-gold/30 flex items-center justify-center text-xl text-brand-gold shadow-luxury-glow">
-                                🍇
+                        <!-- 2. Guia de Decisão (Neurovendas) -->
+                        <div class="border-t border-brand-gold/20 pt-8 mt-4 reveal">
+                            <h3 class="font-luxury text-xl text-white mb-3">A ESCOLHA: <span class="text-brand-gold italic">MOMENTÂNEO OU PROGRESSIVO?</span></h3>
+                            <p class="text-gray-400 text-xs mb-6 font-light">Para investir no procedimento certo, entenda a diferença de durabilidade:</p>
+
+                            <div class="space-y-6">
+                                <!-- Opção 1: Flash -->
+                                <div class="bg-white/5 p-6 rounded-2xl border border-white/5 hover:border-brand-gold/30 transition-all group">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-8 h-8 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-gold"><i class="fas fa-magic text-xs"></i></div>
+                                        <h4 class="font-bold text-sm text-white uppercase tracking-widest">1. FLASH RITUAL 8K <span class="text-[10px] text-gray-400 normal-case block md:inline md:ml-2">(O Efeito Maquiagem)</span></h4>
+                                    </div>
+                                    <ul class="text-xs text-gray-400 space-y-3 leading-relaxed">
+                                        <li><strong class="text-brand-gold">O Que É:</strong> Um "Blend Exclusivo" para redução de frizz e brilho instantâneo.</li>
+                                        <li><strong class="text-brand-gold">Para Que Serve:</strong> Ideal para eventos ou para quem quer o cabelo "desmaiado" e brilhoso agora.</li>
+                                        <li><strong class="text-brand-gold">Técnica:</strong> Pausa rápida (15-20 min) + Escova de Polimento.</li>
+                                        <li><strong class="text-brand-gold">Durabilidade:</strong> <span class="text-white">Momentânea.</span> O efeito dura cerca de 2 semanas (até 3 lavagens).</li>
+                                        <li><strong class="text-white bg-brand-gold/10 px-2 py-0.5 rounded">Investimento:</strong> A partir de R$ 129,90.</li>
+                                    </ul>
+                                </div>
+
+                                <!-- Opção 2: Progressiva -->
+                                <div class="bg-white/5 p-6 rounded-2xl border border-white/5 hover:border-brand-gold/30 transition-all group">
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <div class="w-8 h-8 rounded-full bg-brand-gold/20 flex items-center justify-center text-brand-gold"><i class="fas fa-shield-alt text-xs"></i></div>
+                                        <h4 class="font-bold text-sm text-white uppercase tracking-widest">2. LISO ESPLÊNDIDO <span class="text-[10px] text-gray-400 normal-case block md:inline md:ml-2">(A Progressiva)</span></h4>
+                                    </div>
+                                    <ul class="text-xs text-gray-400 space-y-3 leading-relaxed">
+                                        <li><strong class="text-brand-gold">O Que É:</strong> Um Alisamento Progressivo de alta performance.</li>
+                                        <li><strong class="text-brand-gold">Para Que Serve:</strong> Para quem busca redução de volume e facilidade no dia a dia.</li>
+                                        <li><strong class="text-brand-gold">Técnica:</strong> Pausa completa (40-60 min) + Selagem Térmica (Prancha).</li>
+                                        <li><strong class="text-brand-gold">Atenção à Durabilidade:</strong> Por ser uma Progressiva, o produto sai gradualmente conforme as lavagens.</li>
+                                        <li><strong class="text-brand-gold">Manutenção:</strong> Retoque de raiz e realinhamento necessário conforme o efeito passa.</li>
+                                        <li><strong class="text-white bg-brand-gold/10 px-2 py-0.5 rounded">Investimento:</strong> A partir de R$ 250,00.</li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div>
-                                <h5 class="text-brand-gold text-xs font-bold uppercase tracking-widest mb-2">Óleo de Uva</h5>
-                                <p class="text-gray-400 text-xs leading-relaxed font-light">
-                                    Antioxidante nobre e rico em Vitamina E. Cria um escudo lipídico que reflete a luz intensamente, resultando no famoso "Brilho 8K" espelhado.
+
+                            <div class="mt-8 p-4 bg-brand-gold/5 border-l-2 border-brand-gold rounded-r-xl">
+                                <p class="text-xs text-gray-300 italic font-light">
+                                    <i class="fas fa-hand-point-right text-brand-gold mr-2"></i> Qual o seu objetivo hoje? Um brilho para as próximas duas semanas (Flash) ou iniciar o seu projeto de liso progressivo (Esplêndido)?
                                 </p>
                             </div>
                         </div>
@@ -405,29 +427,7 @@
             </div>
         </section>
 
-        <!-- SEÇÃO NEUROVENDAS: QUIZ DE DECISÃO INTERATIVO (AUDITORIA) -->
-        <section class="py-16 bg-gradient-to-b from-[#050505] to-[#020202] border-t border-brand-gold/10">
-            <div class="container mx-auto px-6 text-center reveal">
-                <div class="max-w-3xl mx-auto border border-brand-gold/20 bg-[#2b0505]/20 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-luxury-glow">
-                    <span class="text-brand-gold text-[10px] font-bold tracking-[0.3em] uppercase block mb-6 animate-pulse">Personalização</span>
-                    <h3 class="font-luxury text-3xl md:text-4xl text-white italic mb-8">"Qual é o seu desejo hoje?"</h3>
-                    
-                    <div class="flex flex-col md:flex-row gap-4 justify-center">
-                        <button onclick="document.getElementById('card-flash').scrollIntoView({behavior: 'smooth'})" class="group relative px-8 py-4 bg-white/5 border border-white/10 rounded-xl hover:bg-brand-gold/20 hover:border-brand-gold/50 transition-all">
-                            <span class="block text-white font-bold text-xs uppercase tracking-widest mb-1">Praticidade</span>
-                            <span class="block text-[10px] text-gray-400 group-hover:text-brand-gold-light">Quero brilho rápido</span>
-                        </button>
-                        <button onclick="document.getElementById('card-liso').scrollIntoView({behavior: 'smooth'})" class="group relative px-8 py-4 bg-white/5 border border-white/10 rounded-xl hover:bg-brand-gold/20 hover:border-brand-gold/50 transition-all">
-                            <span class="block text-white font-bold text-xs uppercase tracking-widest mb-1">Transformação</span>
-                            <span class="block text-[10px] text-gray-400 group-hover:text-brand-gold-light">Quero liso definitivo</span>
-                        </button>
-                        <button onclick="document.getElementById('card-detox').scrollIntoView({behavior: 'smooth'})" class="group relative px-8 py-4 bg-white/5 border border-white/10 rounded-xl hover:bg-brand-gold/20 hover:border-brand-gold/50 transition-all">
-                            <span class="block text-white font-bold text-xs uppercase tracking-widest mb-1">Saúde</span>
-                            <span class="block text-[10px] text-gray-400 group-hover:text-brand-gold-light">Quero recuperar</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
+        <!-- NOVO: SEÇÃO NEUROVENDAS (DECISÃO) -->
         </section>
 
         <!-- SERVIÇOS (MENU) COM DESCRIÇÕES COMPLETAS -->
