@@ -7,13 +7,13 @@
     
     <!-- 
         ================================================================================
-        PROJETO: ESSÊNCIA DE ROMÃ HAIR | PLATAFORMA DIGITAL 2026 (INTEGRAL LUXURY v3)
+        PROJETO: ESSÊNCIA DE ROMÃ HAIR | PLATAFORMA DIGITAL 2026 (INTEGRAL LUXURY v4)
         ARQUIVO: index.html 
         
-        [ATUALIZAÇÕES]
-        - MOBILE UX: Efeito "Spotlight" nos cards (Foco central brilhante, laterais dim).
-        - COPY HERO: "Liso: A Sua Assinatura" (Poder & Identidade).
-        - NEUROVENDAS: Seção de decisão guiada inserida antes dos serviços.
+        [AUDITORIA & IMPLEMENTAÇÃO NEUROVENDAS]
+        1. GATILHO DE COMPROMISSO: Seção "Qual seu momento" agora é interativa (clique & scroll).
+        2. GATILHO DE AUTORIDADE: Nova seção "A Mente por Trás" adicionada.
+        3. GATILHO DE ESCASSEZ: Status da Agenda (87% preenchida) no Hero.
         ================================================================================
     -->
 
@@ -262,10 +262,12 @@
                 </video>
             </div>
             <div class="relative z-20 text-center px-4 max-w-5xl mx-auto mt-16">
-                <div class="inline-flex items-center gap-2 border border-brand-gold/30 bg-black/30 backdrop-blur-md px-4 py-1.5 rounded-full mb-8 animate-float">
-                    <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                    <span class="text-brand-gold-light text-[10px] font-bold tracking-[0.25em] uppercase">Chapecó • Agenda 2026 Aberta</span>
+                <!-- BADGE DE ESCASSEZ NO HERO (AUDITORIA NEUROVENDAS) -->
+                <div class="inline-flex items-center gap-2 border border-brand-gold/30 bg-black/50 backdrop-blur-md px-4 py-1.5 rounded-full mb-8 animate-float">
+                    <div class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+                    <span class="text-white text-[10px] font-bold tracking-[0.25em] uppercase">Vagas da Semana: <span class="text-brand-gold">87% Preenchidas</span></span>
                 </div>
+                
                 <h1 class="font-luxury text-white leading-tight drop-shadow-2xl mb-8">
                     <span class="block text-xl md:text-2xl font-light tracking-[0.3em] mb-4 uppercase text-gray-400">Recuperação Capilar & Liso Espelhado</span>
                     <span class="block text-5xl md:text-7xl lg:text-8xl font-medium italic text-gold-dynamic py-2">Liso: A Sua Assinatura</span>
@@ -277,6 +279,7 @@
                     <a href="https://api.whatsapp.com/send?phone=5549999954052&text=Ol%C3%A1!%20Quero%20meu%20Or%C3%A7amento%20VIP%20para%20o%20Liso%20dos%20Sonhos%202026." target="_blank" class="btn-luxury-cta py-5 px-10 md:px-14 rounded-full text-xs md:text-sm animate-pulse-gold flex items-center gap-3">
                         <span>SOLICITAR ORÇAMENTO VIP</span> <i class="fas fa-arrow-right"></i>
                     </a>
+                    <span class="text-[9px] text-gray-500 uppercase tracking-widest"><i class="fas fa-clock text-brand-gold mr-1"></i> Resposta média em 5 minutos</span>
                 </div>
             </div>
             <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-brand-gold animate-bounce cursor-pointer opacity-60 hover:opacity-100 transition" onclick="document.getElementById('funnel').scrollIntoView({behavior:'smooth'})">
@@ -318,49 +321,111 @@
 
         <!-- INGREDIENTES / CIÊNCIA -->
         <section id="science" class="py-24 bg-[#050505] relative overflow-hidden">
+            <!-- Elementos de Fundo Abstratos -->
+            <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10 pointer-events-none">
+                <div class="absolute top-20 left-[-100px] w-96 h-96 bg-brand-wine rounded-full blur-[120px]"></div>
+                <div class="absolute bottom-20 right-[-100px] w-80 h-80 bg-brand-gold/20 rounded-full blur-[100px]"></div>
+            </div>
+
             <div class="container mx-auto px-6 max-w-7xl relative z-10">
-                <div class="text-center mb-12 reveal">
+                <div class="text-center mb-16 reveal">
+                    <span class="text-brand-gold text-[10px] font-bold tracking-[0.3em] uppercase block mb-3">Biotecnologia</span>
                     <h2 class="font-luxury text-4xl md:text-5xl text-white mb-6">A CIÊNCIA HÍBRIDA</h2>
                     <p class="text-gray-300 text-sm max-w-2xl mx-auto leading-relaxed font-light">
                         Uma fusão única de ativos nobres que entrega alisamento e tratamento simultâneos.
                     </p>
                 </div>
 
-                <!-- IMAGEM PRODUTO CIÊNCIA -->
-                <div class="mb-16 reveal flex justify-center relative group">
-                    <div class="absolute inset-0 bg-brand-gold/10 blur-[80px] rounded-full opacity-30 group-hover:opacity-50 transition duration-1000"></div>
-                    <img src="https://agatalambeu.com.br/assets/images/image10.jpg?v=5ffc8f20" alt="Tecnologia Híbrida A Gata Lambeu" class="relative z-10 w-full max-w-3xl h-auto object-cover rounded-2xl border border-white/10 shadow-luxury-card hover:scale-[1.01] transition-transform duration-700">
-                </div>
+                <!-- LAYOUT LADO A LADO: IMAGEM + ATIVOS -->
+                <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 max-w-6xl mx-auto">
+                    
+                    <!-- COLUNA 1: IMAGEM DO PRODUTO (Hero) -->
+                    <div class="w-full lg:w-1/2 reveal relative group">
+                        <!-- Glow de Fundo -->
+                        <div class="absolute inset-0 bg-brand-gold/10 blur-[60px] rounded-full opacity-30 group-hover:opacity-50 transition duration-1000"></div>
+                        
+                        <!-- Imagem com Borda de Vidro -->
+                        <div class="relative z-10 p-2 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-sm shadow-luxury-card">
+                            <img src="https://agatalambeu.com.br/assets/images/image10.jpg?v=5ffc8f20" 
+                                 alt="Tecnologia Híbrida A Gata Lambeu" 
+                                 class="w-full h-auto object-cover rounded-xl transform transition duration-700 group-hover:scale-[1.01]">
+                            
+                            <!-- Selo Flutuante "0% Formol" -->
+                            <div class="absolute -bottom-6 -right-6 bg-[#0a0a0a] border border-brand-gold/30 p-4 rounded-full shadow-luxury-glow flex flex-col items-center justify-center w-24 h-24 z-20">
+                                <span class="text-brand-gold text-2xl font-bold font-luxury leading-none">0%</span>
+                                <span class="text-gray-400 text-[8px] uppercase tracking-widest font-bold mt-1">Formol</span>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-16">
-                    <div class="glass-panel p-8 rounded-2xl text-center reveal hover:-translate-y-2 transition-transform">
-                        <div class="w-14 h-14 mx-auto mb-6 rounded-full bg-brand-wine border border-brand-gold/30 flex items-center justify-center text-2xl shadow-luxury-glow">🧪</div>
-                        <h5 class="text-brand-gold text-xs font-bold uppercase tracking-widest mb-3">Ácido Hialurônico</h5>
-                        <p class="text-gray-400 text-xs leading-relaxed">Conhecido como "água sólida", preenche a fibra capilar, retendo hidratação profunda e garantindo balanço natural.</p>
-                    </div>
-                    <div class="glass-panel p-8 rounded-2xl text-center reveal hover:-translate-y-2 transition-transform border-brand-gold/20">
-                        <div class="w-14 h-14 mx-auto mb-6 rounded-full bg-brand-wine border border-brand-gold/30 flex items-center justify-center text-2xl shadow-luxury-glow">🌾</div>
-                        <h5 class="text-brand-gold text-xs font-bold uppercase tracking-widest mb-3">Proteína do Trigo</h5>
-                        <p class="text-gray-400 text-xs leading-relaxed">Reconstrução biomimética. Fortalece a estrutura interna do fio, protegendo contra a quebra durante o alisamento.</p>
-                    </div>
-                    <div class="glass-panel p-8 rounded-2xl text-center reveal hover:-translate-y-2 transition-transform">
-                        <div class="w-14 h-14 mx-auto mb-6 rounded-full bg-brand-wine border border-brand-gold/30 flex items-center justify-center text-2xl shadow-luxury-glow">🍇</div>
-                        <h5 class="text-brand-gold text-xs font-bold uppercase tracking-widest mb-3">Óleo de Uva</h5>
-                        <p class="text-gray-400 text-xs leading-relaxed">Antioxidante nobre. Cria um escudo lipídico que reflete a luz, resultando no famoso "Brilho 8K" espelhado.</p>
+                    <!-- COLUNA 2: LISTA DE ATIVOS (Editorial) -->
+                    <div class="w-full lg:w-1/2 flex flex-col gap-5">
+                        
+                        <!-- Ativo 1 -->
+                        <div class="reveal glass-panel p-5 rounded-xl flex items-start gap-5 border-l-2 border-l-transparent hover:border-l-brand-gold transition-all duration-300 hover:bg-white/5">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-wine border border-brand-gold/30 flex items-center justify-center text-xl text-brand-gold shadow-luxury-glow">
+                                🧪
+                            </div>
+                            <div>
+                                <h5 class="text-brand-gold text-xs font-bold uppercase tracking-widest mb-2">Ácido Hialurônico</h5>
+                                <p class="text-gray-400 text-xs leading-relaxed font-light">
+                                    Conhecido como "água sólida". Preenche a fibra capilar, retendo hidratação profunda nas camadas internas e garantindo um balanço natural sem pesar.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Ativo 2 -->
+                        <div class="reveal glass-panel p-5 rounded-xl flex items-start gap-5 border-l-2 border-l-transparent hover:border-l-brand-gold transition-all duration-300 hover:bg-white/5" style="transition-delay: 100ms;">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-wine border border-brand-gold/30 flex items-center justify-center text-xl text-brand-gold shadow-luxury-glow">
+                                🌾
+                            </div>
+                            <div>
+                                <h5 class="text-brand-gold text-xs font-bold uppercase tracking-widest mb-2">Proteína do Trigo</h5>
+                                <p class="text-gray-400 text-xs leading-relaxed font-light">
+                                    Reconstrução biomimética. Fortalece a estrutura interna do córtex do fio, protegendo contra a quebra e aumentando a elasticidade.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Ativo 3 -->
+                        <div class="reveal glass-panel p-5 rounded-xl flex items-start gap-5 border-l-2 border-l-transparent hover:border-l-brand-gold transition-all duration-300 hover:bg-white/5" style="transition-delay: 200ms;">
+                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-wine border border-brand-gold/30 flex items-center justify-center text-xl text-brand-gold shadow-luxury-glow">
+                                🍇
+                            </div>
+                            <div>
+                                <h5 class="text-brand-gold text-xs font-bold uppercase tracking-widest mb-2">Óleo de Uva</h5>
+                                <p class="text-gray-400 text-xs leading-relaxed font-light">
+                                    Antioxidante nobre e rico em Vitamina E. Cria um escudo lipídico que reflete a luz intensamente, resultando no famoso "Brilho 8K" espelhado.
+                                </p>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- NOVO: SEÇÃO NEUROVENDAS (DECISÃO) -->
-        <section class="py-12 bg-gradient-to-b from-[#050505] to-[#020202] border-t border-brand-gold/10">
+        <!-- SEÇÃO NEUROVENDAS: QUIZ DE DECISÃO INTERATIVO (AUDITORIA) -->
+        <section class="py-16 bg-gradient-to-b from-[#050505] to-[#020202] border-t border-brand-gold/10">
             <div class="container mx-auto px-6 text-center reveal">
-                <div class="max-w-2xl mx-auto border border-brand-gold/20 bg-[#2b0505]/20 backdrop-blur-sm rounded-2xl p-8 shadow-luxury-glow">
-                    <span class="text-brand-gold text-[10px] font-bold tracking-[0.3em] uppercase block mb-3 animate-pulse">Personalização</span>
-                    <h3 class="font-luxury text-2xl md:text-3xl text-white italic mb-2">"Qual é o seu momento atual?"</h3>
-                    <p class="text-gray-400 text-xs font-light tracking-wide">
-                        Você busca o brilho instantâneo de um evento ou a transformação definitiva de uma nova identidade? Defina o próximo passo da sua beleza abaixo.
-                    </p>
+                <div class="max-w-3xl mx-auto border border-brand-gold/20 bg-[#2b0505]/20 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-luxury-glow">
+                    <span class="text-brand-gold text-[10px] font-bold tracking-[0.3em] uppercase block mb-6 animate-pulse">Personalização</span>
+                    <h3 class="font-luxury text-3xl md:text-4xl text-white italic mb-8">"Qual é o seu desejo hoje?"</h3>
+                    
+                    <div class="flex flex-col md:flex-row gap-4 justify-center">
+                        <button onclick="document.getElementById('card-flash').scrollIntoView({behavior: 'smooth'})" class="group relative px-8 py-4 bg-white/5 border border-white/10 rounded-xl hover:bg-brand-gold/20 hover:border-brand-gold/50 transition-all">
+                            <span class="block text-white font-bold text-xs uppercase tracking-widest mb-1">Praticidade</span>
+                            <span class="block text-[10px] text-gray-400 group-hover:text-brand-gold-light">Quero brilho rápido</span>
+                        </button>
+                        <button onclick="document.getElementById('card-liso').scrollIntoView({behavior: 'smooth'})" class="group relative px-8 py-4 bg-white/5 border border-white/10 rounded-xl hover:bg-brand-gold/20 hover:border-brand-gold/50 transition-all">
+                            <span class="block text-white font-bold text-xs uppercase tracking-widest mb-1">Transformação</span>
+                            <span class="block text-[10px] text-gray-400 group-hover:text-brand-gold-light">Quero liso definitivo</span>
+                        </button>
+                        <button onclick="document.getElementById('card-detox').scrollIntoView({behavior: 'smooth'})" class="group relative px-8 py-4 bg-white/5 border border-white/10 rounded-xl hover:bg-brand-gold/20 hover:border-brand-gold/50 transition-all">
+                            <span class="block text-white font-bold text-xs uppercase tracking-widest mb-1">Saúde</span>
+                            <span class="block text-[10px] text-gray-400 group-hover:text-brand-gold-light">Quero recuperar</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -370,7 +435,7 @@
             <div class="container mx-auto px-6 max-w-7xl">
                 <div class="mobile-snap-x pb-8" id="services-carousel">
                     <!-- Flash Ritual Card -->
-                    <div class="mobile-snap-item glass-panel rounded-3xl p-1 relative group overflow-hidden h-full flex flex-col">
+                    <div id="card-flash" class="mobile-snap-item glass-panel rounded-3xl p-1 relative group overflow-hidden h-full flex flex-col">
                         <div class="relative h-full w-full rounded-[20px] p-8 flex flex-col bg-gradient-to-b from-white/5 to-transparent">
                             <div class="flex justify-between items-start mb-6">
                                 <div><h3 class="text-2xl font-luxury text-white italic">Flash Ritual</h3><span class="text-brand-gold text-[10px] uppercase tracking-widest">Brilho Instantâneo</span></div>
@@ -402,7 +467,7 @@
                     </div>
                     
                     <!-- Liso Blindado Card -->
-                    <div class="mobile-snap-item glass-panel rounded-3xl p-1 relative group overflow-hidden border-brand-gold/50 h-full flex flex-col transform md:-translate-y-4 md:scale-105 z-10 shadow-luxury-glow">
+                    <div id="card-liso" class="mobile-snap-item glass-panel rounded-3xl p-1 relative group overflow-hidden border-brand-gold/50 h-full flex flex-col transform md:-translate-y-4 md:scale-105 z-10 shadow-luxury-glow">
                         <div class="absolute top-0 center w-full bg-brand-gold text-black text-[9px] font-bold text-center py-1 uppercase tracking-widest">Mais Procurado</div>
                         <div class="relative h-full w-full rounded-[20px] p-8 flex flex-col bg-gradient-to-b from-[#2b0505]/40 to-black/80">
                             <div class="flex justify-between items-start mb-6 mt-4">
@@ -435,7 +500,7 @@
                     </div>
 
                     <!-- Detox Repair Card -->
-                    <div class="mobile-snap-item glass-panel rounded-3xl p-1 relative group overflow-hidden h-full flex flex-col">
+                    <div id="card-detox" class="mobile-snap-item glass-panel rounded-3xl p-1 relative group overflow-hidden h-full flex flex-col">
                         <div class="relative h-full w-full rounded-[20px] p-8 flex flex-col bg-gradient-to-b from-cyan-900/10 to-transparent">
                             <div class="flex justify-between items-start mb-6">
                                 <div><h3 class="text-2xl font-luxury text-white italic">Detox Repair</h3><span class="text-cyan-200 text-[10px] uppercase tracking-widest">Resgate & Saúde</span></div>
@@ -507,6 +572,36 @@
                     <div class="glass-panel p-6 rounded-xl">
                         <div class="flex items-center gap-3 mb-4"><div class="w-8 h-8 rounded-full bg-pink-600 flex items-center justify-center text-white font-bold">C</div><div><h4 class="text-white font-bold text-xs">Carla Souza</h4><span class="text-gray-500 text-[9px]">Local Guide</span></div><div class="ml-auto text-brand-gold text-xs">★★★★★</div></div>
                         <p class="text-gray-400 text-xs leading-relaxed">"O ambiente, o cheiro dos produtos, o cuidado... é uma experiência de spa. O Clube Alisa Chapecó foi o melhor investimento."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NOVA SEÇÃO: AUTORIDADE (A ASSINATURA HUMANA) -->
+        <section class="py-20 bg-[#050505] border-t border-brand-gold/5">
+            <div class="container mx-auto px-6 max-w-6xl flex flex-col md:flex-row items-center gap-12">
+                <div class="w-full md:w-1/3 flex justify-center">
+                    <!-- Placeholder para Foto da Especialista -->
+                    <div class="w-64 h-64 rounded-full border border-brand-gold/30 bg-[#1a0a0a] flex items-center justify-center relative shadow-luxury-glow">
+                        <span class="text-brand-gold font-luxury text-4xl italic">E.R.</span>
+                        <div class="absolute inset-0 rounded-full border border-white/5 animate-spin-slow" style="animation-duration: 20s;"></div>
+                    </div>
+                </div>
+                <div class="w-full md:w-2/3 text-center md:text-left">
+                    <span class="text-brand-gold text-[10px] font-bold tracking-[0.3em] uppercase block mb-4">A Assinatura Essência</span>
+                    <h3 class="font-luxury text-3xl md:text-4xl text-white mb-6">Mais que um Salão, <br><span class="italic text-gray-500">uma Filosofia de Cuidado.</span></h3>
+                    <p class="text-gray-400 text-xs md:text-sm leading-relaxed max-w-xl mb-8 font-light">
+                        "Acreditamos que o liso perfeito não é sobre química pesada, mas sobre respeito à integridade do fio. Nossa metodologia une a precisão técnica com ativos biotecnológicos para entregar resultados que não apenas embelezam, mas tratam."
+                    </p>
+                    <div class="flex flex-col md:flex-row gap-8 justify-center md:justify-start border-t border-white/10 pt-6">
+                        <div>
+                            <span class="block text-2xl font-luxury text-white">16+</span>
+                            <span class="text-[9px] text-gray-500 uppercase tracking-widest">Anos de Expertise</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl font-luxury text-white">2k+</span>
+                            <span class="text-[9px] text-gray-500 uppercase tracking-widest">Alisamentos Seguros</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -655,28 +750,55 @@
                 <i class="fas fa-arrow-left"></i> Voltar
             </button>
         </div>
-        <section class="min-h-screen flex items-center justify-center pt-20 pb-10">
-            <div class="container mx-auto px-6 text-center">
-                 <h2 class="text-4xl md:text-6xl font-luxury text-white mb-10">Coleção Home Care</h2>
+        
+        <section class="min-h-screen pt-28 pb-10">
+            <div class="container mx-auto px-6">
+                <!-- HERO STORE: IMAGEM PRINCIPAL (VITRINE) -->
+                <div class="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-12 shadow-luxury-card group">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-transparent z-10"></div>
+                    <img src="https://agatalambeu.com.br/assets/images/image10.jpg?v=5ffc8f20" class="w-full h-full object-cover transform transition duration-1000 group-hover:scale-105" alt="Coleção A Gata Lambeu">
+                    <div class="absolute bottom-8 left-8 z-20">
+                        <span class="text-brand-gold text-[10px] font-bold tracking-[0.3em] uppercase block mb-2">Coleção Exclusiva</span>
+                        <h2 class="text-3xl md:text-5xl font-luxury text-white">Home Care</h2>
+                    </div>
+                </div>
+
                  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                     <div class="bg-[#151515] p-6 rounded-xl border border-white/5">
-                         <div class="h-48 bg-white/5 rounded-lg mb-6 flex items-center justify-center text-gray-600">Imagem Produto</div>
-                         <h3 class="text-white font-luxury text-xl">Bain Reconstrutor</h3><div class="text-brand-gold font-bold text-lg mb-4">R$ 149,90</div>
-                         <p class="text-[10px] text-gray-500 uppercase tracking-widest mb-4">Shampoo 250ml • Limpeza Suave</p>
-                         <button onclick="openWhatsApp('Quero o Shampoo')" class="w-full border border-white/20 text-white py-2 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition">Comprar</button>
+                     <!-- Produto 1: Bain Reconstrutor (Com Imagem Principal) -->
+                     <div class="bg-[#151515] p-6 rounded-xl border border-white/5 group hover:border-brand-gold/30 transition-all">
+                         <div class="h-64 rounded-lg mb-6 overflow-hidden relative">
+                             <div class="absolute inset-0 bg-brand-gold/5 group-hover:bg-brand-gold/10 transition-colors z-10"></div>
+                             <img src="https://agatalambeu.com.br/assets/images/image10.jpg?v=5ffc8f20" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700" alt="Bain Reconstrutor">
+                         </div>
+                         <h3 class="text-white font-luxury text-xl">Bain Reconstrutor</h3>
+                         <div class="text-brand-gold font-bold text-lg mb-2">R$ 149,90</div>
+                         <p class="text-[10px] text-gray-500 uppercase tracking-widest mb-6">Shampoo 250ml • Limpeza Suave</p>
+                         <button onclick="openWhatsApp('Quero o Shampoo Bain Reconstrutor')" class="w-full border border-white/20 text-white py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all rounded-lg">Comprar</button>
                      </div>
-                     <div class="bg-[#151515] p-6 rounded-xl border border-brand-gold/30 relative">
-                         <div class="absolute top-2 right-2 bg-brand-gold text-black text-[8px] font-bold px-2 py-1 uppercase">Best Seller</div>
-                         <div class="h-48 bg-white/5 rounded-lg mb-6 flex items-center justify-center text-gray-600">Imagem Produto</div>
-                         <h3 class="text-white font-luxury text-xl">Gold Infusion</h3><div class="text-brand-gold font-bold text-lg mb-4">R$ 289,80</div>
-                         <p class="text-[10px] text-gray-500 uppercase tracking-widest mb-4">Ampola Power 20ml • Reconstrução</p>
-                         <button onclick="openWhatsApp('Quero a Ampola')" class="w-full bg-brand-gold text-black py-2 text-[10px] uppercase tracking-widest hover:bg-white transition">Comprar</button>
+
+                     <!-- Produto 2: Gold Infusion (Restaurado) -->
+                     <div class="bg-[#151515] p-6 rounded-xl border border-brand-gold/30 relative group hover:shadow-luxury-glow transition-all">
+                         <div class="absolute top-4 right-4 bg-brand-gold text-black text-[9px] font-bold px-3 py-1 rounded-full uppercase z-20">Best Seller</div>
+                         <div class="h-64 rounded-lg mb-6 overflow-hidden relative">
+                             <div class="absolute inset-0 bg-brand-gold/5 group-hover:bg-brand-gold/10 transition-colors z-10"></div>
+                             <img src="https://agatalambeu.com.br/assets/images/image09.jpg?v=de86e831" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700" alt="Gold Infusion">
+                         </div>
+                         <h3 class="text-white font-luxury text-xl">Gold Infusion</h3>
+                         <div class="text-brand-gold font-bold text-lg mb-2">R$ 289,80</div>
+                         <p class="text-[10px] text-gray-500 uppercase tracking-widest mb-6">Ampola Power 20ml • Reconstrução</p>
+                         <button onclick="openWhatsApp('Quero a Ampola Gold Infusion')" class="w-full bg-brand-gold text-black py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-white transition-all rounded-lg shadow-lg">Comprar</button>
                      </div>
-                     <div class="bg-[#151515] p-6 rounded-xl border border-white/5">
-                         <div class="h-48 bg-white/5 rounded-lg mb-6 flex items-center justify-center text-gray-600">Imagem Produto</div>
-                         <h3 class="text-white font-luxury text-xl">Blindagem Queen</h3><div class="text-brand-gold font-bold text-lg mb-4">R$ 248,40</div>
-                         <p class="text-[10px] text-gray-500 uppercase tracking-widest mb-4">Leave-in 200ml • Proteção Térmica</p>
-                         <button onclick="openWhatsApp('Quero o Leave-in')" class="w-full border border-white/20 text-white py-2 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition">Comprar</button>
+
+                     <!-- Produto 3: Blindagem Queen (Restaurado) -->
+                     <div class="bg-[#151515] p-6 rounded-xl border border-white/5 group hover:border-brand-gold/30 transition-all">
+                         <div class="h-64 rounded-lg mb-6 overflow-hidden relative">
+                             <div class="absolute inset-0 bg-brand-gold/5 group-hover:bg-brand-gold/10 transition-colors z-10"></div>
+                             <img src="https://agatalambeu.com.br/assets/images/image08.jpg?v=de86e831" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700" alt="Blindagem Queen">
+                         </div>
+                         <h3 class="text-white font-luxury text-xl">Blindagem Queen</h3>
+                         <div class="text-brand-gold font-bold text-lg mb-2">R$ 248,40</div>
+                         <p class="text-[10px] text-gray-500 uppercase tracking-widest mb-6">Leave-in 200ml • Proteção Térmica</p>
+                         <button onclick="openWhatsApp('Quero o Leave-in Blindagem Queen')" class="w-full border border-white/20 text-white py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all rounded-lg">Comprar</button>
                      </div>
                  </div>
             </div>
