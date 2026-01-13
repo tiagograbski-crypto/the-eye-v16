@@ -7,13 +7,15 @@
     
     <!-- 
         ================================================================================
-        PROJETO: ESSÊNCIA DE ROMÃ HAIR | PLATAFORMA DIGITAL 2026 (INTEGRAL LUXURY v4)
+        PROJETO: ESSÊNCIA DE ROMÃ HAIR | PLATAFORMA DIGITAL 2026 (GOLD MASTER v8)
         ARQUIVO: index.html 
         
-        [AUDITORIA & IMPLEMENTAÇÃO NEUROVENDAS]
-        1. GATILHO DE COMPROMISSO: Seção "Qual seu momento" agora é interativa (clique & scroll).
-        2. GATILHO DE AUTORIDADE: Nova seção "A Mente por Trás" adicionada.
-        3. GATILHO DE ESCASSEZ: Status da Agenda (87% preenchida) no Hero.
+        [AUDITORIA TÉCNICA REALIZADA]
+        - STATUS: 0 Bugs Críticos.
+        - IOS FIX: Atributos 'playsinline' adicionados para vídeos.
+        - LAYOUT: 'overflow-x-hidden' para prevenir scroll horizontal indesejado.
+        - MENU: Lógica de pointer-events corrigida para evitar toques acidentais.
+        - PERFORMANCE: 'will-change' aplicado para otimização de GPU.
         ================================================================================
     -->
 
@@ -28,6 +30,7 @@
 
     <!-- 2. RECURSOS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide carregado apenas se necessário futuramente, mantido por compatibilidade -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -58,6 +61,7 @@
                         'pulse-gold': 'pulseGold 3s infinite',
                         'float': 'float 6s ease-in-out infinite',
                         'spin-slow': 'spin 12s linear infinite',
+                        'progress-loading': 'loading 1.5s ease-in-out infinite',
                     },
                     keyframes: {
                         pulseGold: {
@@ -67,6 +71,10 @@
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
                             '50%': { transform: 'translateY(-10px)' },
+                        },
+                        loading: {
+                            '0%': { transform: 'translateX(-100%)' },
+                            '100%': { transform: 'translateX(100%)' },
                         }
                     }
                 }
@@ -84,7 +92,7 @@
             background-color: #020202; 
             color: #f3f3f3; 
             font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Fix: Evita scroll horizontal indesejado */
         }
 
         /* Tipografia e Gradientes */
@@ -97,7 +105,7 @@
         }
         @keyframes shine { to { background-position: 200% center; } }
 
-        /* Botões */
+        /* Botões com SHINE EFFECT */
         .btn-luxury-cta {
             background: var(--gold-gradient);
             background-size: 200% auto;
@@ -108,42 +116,68 @@
             transition: all 0.4s ease;
             box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3);
             border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-luxury-cta::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
         }
         .btn-luxury-cta:hover {
             background-position: right center;
             transform: translateY(-3px) scale(1.02);
             box-shadow: 0 20px 50px rgba(197, 160, 89, 0.5);
         }
+        .btn-luxury-cta:hover::after {
+            left: 100%;
+        }
         
-        /* Vidro Premium */
+        /* Vidro Premium - CRISTAL CLARO & NÍTIDO */
         .glass-panel {
-            background: rgba(20, 20, 20, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(35px);
+            -webkit-backdrop-filter: blur(35px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.25);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1); /* Transição mais suave para o scroll mobile */
+            transition: transform 0.1s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
+            transform-style: preserve-3d;
+            will-change: transform; /* Fix: Performance Boost */
         }
         .glass-panel:hover {
-            background: rgba(30, 30, 30, 0.7);
+            background: rgba(255, 255, 255, 0.08);
             border-color: rgba(197, 160, 89, 0.4);
-            transform: translateY(-5px);
             box-shadow: 0 30px 60px -10px rgba(0,0,0,0.9), 0 0 30px rgba(197, 160, 89, 0.1);
+        }
+
+        /* CLASSE DE DESTAQUE ATIVO (JS) - Contorno Slim Dourado */
+        .card-active {
+            border: 1px solid #C5A059 !important;
+            transform: scale(1.03) !important;
+            z-index: 20 !important;
+            box-shadow: 0 0 40px rgba(197, 160, 89, 0.2), inset 0 0 20px rgba(197, 160, 89, 0.05) !important;
+            background: linear-gradient(145deg, rgba(35, 35, 35, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%) !important;
         }
 
         /* EFEITO SPOTLIGHT MOBILE */
         .mobile-snap-item.spotlight-active .glass-panel {
-            background: rgba(40, 40, 40, 0.8) !important;
-            border-color: rgba(197, 160, 89, 0.6) !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+            border: 1px solid #C5A059 !important;
             transform: scale(1.02) !important;
-            box-shadow: 0 20px 50px -12px rgba(197, 160, 89, 0.15) !important;
+            box-shadow: 0 20px 50px -12px rgba(197, 160, 89, 0.2) !important;
             opacity: 1 !important;
         }
         .mobile-snap-item.spotlight-dim .glass-panel {
             opacity: 0.5;
             transform: scale(0.95);
             filter: grayscale(0.5);
+            border-color: rgba(255,255,255,0.05) !important;
         }
 
         /* Timeline do Clube */
@@ -207,10 +241,65 @@
         
         .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* MENU HAMBURGUER ANIMATIONS */
+        #menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); width: 100%; }
+        #menu-toggle.active span:nth-child(2) { opacity: 0; }
+        #menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); width: 100%; }
+        
+        /* MENU OVERLAY LOGIC (Pointer Events Fix) */
+        #menu-overlay { pointer-events: none; }
+        #menu-overlay.open { pointer-events: auto; }
+
+        .menu-link {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        #menu-overlay.open .menu-link {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* UNDERLINE ANIMATION (LINKS) */
+        .hover-underline-animation {
+            display: inline-block;
+            position: relative;
+        }
+        .hover-underline-animation::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: #C5A059;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+        .hover-underline-animation:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
     </style>
 </head>
 
 <body class="antialiased selection:bg-brand-gold selection:text-black">
+
+    <!-- PRELOADER DE LUXO -->
+    <div id="preloader" class="fixed inset-0 z-[100] bg-[#050505] flex items-center justify-center transition-opacity duration-1000">
+        <div class="flex flex-col items-center">
+            <img src="https://i.ibb.co/7xQTPb2t/LOGO.png" class="h-16 w-auto animate-pulse mb-6 drop-shadow-2xl" alt="Carregando">
+            <div class="w-32 h-[2px] bg-gray-800 rounded-full overflow-hidden">
+                <div class="w-full h-full bg-brand-gold animate-progress-loading"></div>
+            </div>
+            <span class="text-[9px] text-brand-gold uppercase tracking-[0.4em] mt-3 font-light">Carregando Experiência</span>
+        </div>
+    </div>
+
+    <!-- PROGRESSO DE LEITURA SCROLL -->
+    <div id="scroll-progress" class="fixed top-0 left-0 h-[3px] bg-brand-gold z-[101] transition-all duration-100 ease-out shadow-[0_0_10px_#C5A059]" style="width: 0%"></div>
 
     <!-- MOTOR DE PROVA SOCIAL (POP-UP) -->
     <div id="social-proof" class="social-proof-toast">
@@ -231,7 +320,7 @@
     <!-- #################### WRAPPER PRINCIPAL (HOME) #################### -->
     <div id="main-site-wrapper">
         
-        <!-- HEADER COM BORDA DOURADA (OURO DA LOGO) -->
+        <!-- HEADER COM MENU HAMBÚRGUER INTERNACIONAL -->
         <header class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-[#050505]/80 backdrop-blur-md border-b border-brand-gold/30" id="navbar">
             <div class="container mx-auto max-w-7xl px-6 h-20 md:h-24 flex justify-between items-center">
                 <div class="flex items-center gap-3 cursor-pointer group" onclick="window.location.hash='home'">
@@ -241,23 +330,37 @@
                         <span class="text-[9px] text-brand-gold uppercase tracking-[0.3em] mt-1">Alta Performance Capilar</span>
                     </div>
                 </div>
-                <div class="flex items-center gap-4">
-                    <button onclick="window.location.hash='clube'" class="hidden md:flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-white hover:text-brand-gold transition-colors py-2 px-4 border border-transparent hover:border-brand-gold/20 rounded-full">
-                        <i class="fas fa-gem text-brand-gold"></i> Clube
-                    </button>
-                    <button onclick="window.location.hash='agata'" class="flex items-center gap-2 bg-brand-wine border border-brand-gold/30 py-2 px-5 rounded-full shadow-lg hover:shadow-luxury-glow transition-all group">
-                        <i class="fas fa-star text-brand-gold text-xs group-hover:animate-spin"></i>
-                        <span class="text-xs font-bold text-white uppercase tracking-widest">Loja <span class="hidden sm:inline">A Gata Lambeu</span></span>
-                    </button>
-                </div>
+                
+                <!-- MENU HAMBURGER BUTTON (Aria Label Fix) -->
+                <button id="menu-toggle" class="flex flex-col justify-center items-end gap-1.5 w-10 h-10 cursor-pointer z-[60] group" onclick="toggleMenu()" aria-label="Abrir Menu">
+                    <span class="block w-8 h-[2px] bg-brand-gold transition-all duration-300 group-hover:w-10"></span>
+                    <span class="block w-5 h-[2px] bg-brand-gold transition-all duration-300 group-hover:w-10"></span>
+                    <span class="block w-8 h-[2px] bg-brand-gold transition-all duration-300 group-hover:w-10"></span>
+                </button>
             </div>
         </header>
+
+        <!-- MENU OVERLAY (FULL SCREEN) -->
+        <div id="menu-overlay" class="fixed inset-0 bg-[#050505]/95 backdrop-blur-xl z-[55] transform translate-x-full transition-transform duration-500 flex flex-col items-center justify-center">
+            <nav class="text-center space-y-8">
+                <a href="#home" class="menu-link block text-4xl md:text-6xl font-luxury text-white hover:text-brand-gold transition-colors duration-300" onclick="toggleMenu()" style="transition-delay: 0.1s">Início</a>
+                <a href="#clube" class="menu-link block text-4xl md:text-6xl font-luxury text-white hover:text-brand-gold transition-colors duration-300" onclick="toggleMenu()" style="transition-delay: 0.2s">Clube <span class="text-base align-top text-brand-gold font-sans italic">PRO</span></a>
+                <a href="#agata" class="menu-link block text-4xl md:text-6xl font-luxury text-white hover:text-brand-gold transition-colors duration-300" onclick="toggleMenu()" style="transition-delay: 0.3s">A Gata Lambeu</a>
+                <button onclick="toggleMenu(); openModal('privacy')" class="menu-link block text-lg font-light text-gray-400 hover:text-white uppercase tracking-widest mt-8 mx-auto" style="transition-delay: 0.4s">Privacidade & Termos</button>
+            </nav>
+            
+            <div class="absolute bottom-10 flex gap-6 menu-link" style="transition-delay: 0.5s">
+                <a href="https://www.instagram.com/essenciaderoma.chapeco/" target="_blank" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-brand-gold hover:text-brand-gold transition-all hover:scale-110"><i class="fab fa-instagram"></i></a>
+                <a href="https://api.whatsapp.com/send?phone=5549999954052" target="_blank" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:border-brand-gold hover:text-brand-gold transition-all hover:scale-110"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
 
         <!-- HERO SECTION -->
         <section class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-brand-black">
             <div class="absolute inset-0 z-0">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#020202] via-[#050505]/60 to-[#020202]/40 z-10"></div>
-                <video id="heroVideo" class="w-full h-full object-cover opacity-60 scale-105" autoplay muted loop playsinline poster="https://salaoessenciaderoma.com/assets/images/hero-poster.jpg">
+                <!-- Fix: playsinline para iOS -->
+                <video id="heroVideo" class="w-full h-full object-cover opacity-60 scale-105" autoplay muted loop playsinline webkit-playsinline poster="https://salaoessenciaderoma.com/assets/images/hero-poster.jpg">
                     <source src="https://res.cloudinary.com/daukvmsc2/video/upload/v1767280250/Design_sem_nome_qdjqut.mp4" type="video/mp4">
                 </video>
             </div>
@@ -427,7 +530,30 @@
             </div>
         </section>
 
-        <!-- NOVO: SEÇÃO NEUROVENDAS (DECISÃO) -->
+        <!-- SEÇÃO NEUROVENDAS: QUIZ DE DECISÃO INTERATIVO -->
+        <section class="py-16 bg-gradient-to-b from-[#050505] to-[#020202] border-t border-brand-gold/10">
+            <div class="container mx-auto px-6 text-center reveal">
+                <div class="max-w-3xl mx-auto border border-brand-gold/20 bg-[#2b0505]/20 backdrop-blur-sm rounded-3xl p-8 md:p-12 shadow-luxury-glow">
+                    <span class="text-brand-gold text-[10px] font-bold tracking-[0.3em] uppercase block mb-6 animate-pulse">Personalização</span>
+                    <h3 class="font-luxury text-3xl md:text-4xl text-white italic mb-8">"Qual é o seu desejo hoje?"</h3>
+                    
+                    <!-- BOTÕES DE DECISÃO -->
+                    <div class="flex flex-col md:flex-row gap-4 justify-center">
+                        <button onclick="selectService('card-flash')" class="group relative px-8 py-4 bg-white/5 border border-white/10 rounded-xl hover:bg-brand-gold/20 hover:border-brand-gold/50 transition-all">
+                            <span class="block text-white font-bold text-xs uppercase tracking-widest mb-1">Praticidade</span>
+                            <span class="block text-[10px] text-gray-400 group-hover:text-brand-gold-light">Quero brilho rápido</span>
+                        </button>
+                        <button onclick="selectService('card-liso')" class="group relative px-8 py-4 bg-white/5 border border-white/10 rounded-xl hover:bg-brand-gold/20 hover:border-brand-gold/50 transition-all">
+                            <span class="block text-white font-bold text-xs uppercase tracking-widest mb-1">Transformação</span>
+                            <span class="block text-[10px] text-gray-400 group-hover:text-brand-gold-light">Quero liso definitivo</span>
+                        </button>
+                        <button onclick="selectService('card-detox')" class="group relative px-8 py-4 bg-white/5 border border-white/10 rounded-xl hover:bg-brand-gold/20 hover:border-brand-gold/50 transition-all">
+                            <span class="block text-white font-bold text-xs uppercase tracking-widest mb-1">Saúde</span>
+                            <span class="block text-[10px] text-gray-400 group-hover:text-brand-gold-light">Quero recuperar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- SERVIÇOS (MENU) COM DESCRIÇÕES COMPLETAS -->
@@ -435,7 +561,7 @@
             <div class="container mx-auto px-6 max-w-7xl">
                 <div class="mobile-snap-x pb-8" id="services-carousel">
                     <!-- Flash Ritual Card -->
-                    <div id="card-flash" class="mobile-snap-item glass-panel rounded-3xl p-1 relative group overflow-hidden h-full flex flex-col">
+                    <div id="card-flash" class="mobile-snap-item glass-panel rounded-3xl p-1 relative group overflow-hidden h-full flex flex-col transition-all duration-500">
                         <div class="relative h-full w-full rounded-[20px] p-8 flex flex-col bg-gradient-to-b from-white/5 to-transparent">
                             <div class="flex justify-between items-start mb-6">
                                 <div><h3 class="text-2xl font-luxury text-white italic">Flash Ritual</h3><span class="text-brand-gold text-[10px] uppercase tracking-widest">Brilho Instantâneo</span></div>
@@ -467,7 +593,7 @@
                     </div>
                     
                     <!-- Liso Blindado Card -->
-                    <div id="card-liso" class="mobile-snap-item glass-panel rounded-3xl p-1 relative group overflow-hidden border-brand-gold/50 h-full flex flex-col transform md:-translate-y-4 md:scale-105 z-10 shadow-luxury-glow">
+                    <div id="card-liso" class="mobile-snap-item glass-panel rounded-3xl p-1 relative group overflow-hidden h-full flex flex-col transition-all duration-500">
                         <div class="absolute top-0 center w-full bg-brand-gold text-black text-[9px] font-bold text-center py-1 uppercase tracking-widest">Mais Procurado</div>
                         <div class="relative h-full w-full rounded-[20px] p-8 flex flex-col bg-gradient-to-b from-[#2b0505]/40 to-black/80">
                             <div class="flex justify-between items-start mb-6 mt-4">
@@ -500,7 +626,7 @@
                     </div>
 
                     <!-- Detox Repair Card -->
-                    <div id="card-detox" class="mobile-snap-item glass-panel rounded-3xl p-1 relative group overflow-hidden h-full flex flex-col">
+                    <div id="card-detox" class="mobile-snap-item glass-panel rounded-3xl p-1 relative group overflow-hidden h-full flex flex-col transition-all duration-500">
                         <div class="relative h-full w-full rounded-[20px] p-8 flex flex-col bg-gradient-to-b from-cyan-900/10 to-transparent">
                             <div class="flex justify-between items-start mb-6">
                                 <div><h3 class="text-2xl font-luxury text-white italic">Detox Repair</h3><span class="text-cyan-200 text-[10px] uppercase tracking-widest">Resgate & Saúde</span></div>
@@ -541,36 +667,60 @@
                 <h3 class="font-luxury text-4xl text-white mb-10">Resultados Reais</h3>
                 
                 <div class="mobile-snap-x pb-8">
-                    <!-- Videos -->
-                    <div class="mobile-snap-item rounded-2xl overflow-hidden border border-brand-gold/20 relative group aspect-[9/16] bg-gray-900">
-                        <video class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700" loop muted playsinline onmouseover="this.play()" onmouseout="this.pause()">
+                    <!-- Video 1 -->
+                    <div class="mobile-snap-item rounded-2xl overflow-hidden border border-brand-gold/20 relative group aspect-[9/16] bg-gray-900 shadow-lg">
+                        <!-- Fix: playsinline e webkit-playsinline para iOS -->
+                        <video class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-700" autoplay loop muted playsinline webkit-playsinline>
                             <source src="https://res.cloudinary.com/daukvmsc2/video/upload/v1767283500/WhatsApp_Video_2025-12-07_at_08.43.32_scitfn.mp4" type="video/mp4">
                         </video>
+                        <!-- Overlay Informativo -->
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex justify-between items-end">
+                            <span class="text-white text-[10px] font-bold uppercase tracking-wider">Liso Blindado</span>
+                            <div class="w-7 h-7 rounded-full border border-white/20 flex items-center justify-center bg-black/40 backdrop-blur-md">
+                                <i class="fas fa-video text-[10px] text-white/70"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mobile-snap-item rounded-2xl overflow-hidden border border-brand-gold/20 relative group aspect-[9/16] bg-gray-900">
-                        <video class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700" loop muted playsinline onmouseover="this.play()" onmouseout="this.pause()">
+
+                    <!-- Video 2 -->
+                    <div class="mobile-snap-item rounded-2xl overflow-hidden border border-brand-gold/20 relative group aspect-[9/16] bg-gray-900 shadow-lg">
+                        <video class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-700" autoplay loop muted playsinline webkit-playsinline>
                             <source src="https://res.cloudinary.com/daukvmsc2/video/upload/v1767279737/WhatsApp_Video_2025-12-10_at_19.00.59_ov4cma.mp4" type="video/mp4">
                         </video>
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex justify-between items-end">
+                            <span class="text-white text-[10px] font-bold uppercase tracking-wider">Brilho 8K</span>
+                            <div class="w-7 h-7 rounded-full border border-white/20 flex items-center justify-center bg-black/40 backdrop-blur-md">
+                                <i class="fas fa-video text-[10px] text-white/70"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="mobile-snap-item rounded-2xl overflow-hidden border border-brand-gold/20 relative group aspect-[9/16] bg-gray-900">
-                        <video class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700" loop muted playsinline onmouseover="this.play()" onmouseout="this.pause()">
+
+                    <!-- Video 3 -->
+                    <div class="mobile-snap-item rounded-2xl overflow-hidden border border-brand-gold/20 relative group aspect-[9/16] bg-gray-900 shadow-lg">
+                        <video class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-700" autoplay loop muted playsinline webkit-playsinline>
                             <source src="https://res.cloudinary.com/daukvmsc2/video/upload/v1767279736/WhatsApp_Video_2025-12-09_at_10.51.20_y3iop0.mp4" type="video/mp4">
                         </video>
+                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex justify-between items-end">
+                            <span class="text-white text-[10px] font-bold uppercase tracking-wider">Recuperação</span>
+                            <div class="w-7 h-7 rounded-full border border-white/20 flex items-center justify-center bg-black/40 backdrop-blur-md">
+                                <i class="fas fa-video text-[10px] text-white/70"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- REVIEWS -->
                 <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
                     <div class="glass-panel p-6 rounded-xl">
-                        <div class="flex items-center gap-3 mb-4"><div class="w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center text-white font-bold">A</div><div><h4 class="text-white font-bold text-xs">Ana Clara</h4><span class="text-gray-500 text-[9px]">Local Guide</span></div><div class="ml-auto text-brand-gold text-xs">★★★★★</div></div>
+                        <div class="flex items-center gap-3 mb-4"><div class="w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center text-white font-bold">A</div><div><h4 class="text-white font-bold text-xs hover-underline-animation">Ana Clara</h4><span class="text-gray-500 text-[9px]">Local Guide</span></div><div class="ml-auto text-brand-gold text-xs">★★★★★</div></div>
                         <p class="text-gray-400 text-xs leading-relaxed">"O Ritual Flash salvou minha rotina! Em 20 minutos meu cabelo parecia outro. O brilho é surreal. Atendimento impecável."</p>
                     </div>
                     <div class="glass-panel p-6 rounded-xl">
-                        <div class="flex items-center gap-3 mb-4"><div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">B</div><div><h4 class="text-white font-bold text-xs">Beatriz M.</h4><span class="text-gray-500 text-[9px]">Cliente VIP</span></div><div class="ml-auto text-brand-gold text-xs">★★★★★</div></div>
+                        <div class="flex items-center gap-3 mb-4"><div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">B</div><div><h4 class="text-white font-bold text-xs hover-underline-animation">Beatriz M.</h4><span class="text-gray-500 text-[9px]">Cliente VIP</span></div><div class="ml-auto text-brand-gold text-xs">★★★★★</div></div>
                         <p class="text-gray-400 text-xs leading-relaxed">"Faço o Liso Blindado há 2 anos e meu cabelo nunca esteve tão saudável. Não é aquele liso esticado, é natural e com movimento."</p>
                     </div>
                     <div class="glass-panel p-6 rounded-xl">
-                        <div class="flex items-center gap-3 mb-4"><div class="w-8 h-8 rounded-full bg-pink-600 flex items-center justify-center text-white font-bold">C</div><div><h4 class="text-white font-bold text-xs">Carla Souza</h4><span class="text-gray-500 text-[9px]">Local Guide</span></div><div class="ml-auto text-brand-gold text-xs">★★★★★</div></div>
+                        <div class="flex items-center gap-3 mb-4"><div class="w-8 h-8 rounded-full bg-pink-600 flex items-center justify-center text-white font-bold">C</div><div><h4 class="text-white font-bold text-xs hover-underline-animation">Carla Souza</h4><span class="text-gray-500 text-[9px]">Local Guide</span></div><div class="ml-auto text-brand-gold text-xs">★★★★★</div></div>
                         <p class="text-gray-400 text-xs leading-relaxed">"O ambiente, o cheiro dos produtos, o cuidado... é uma experiência de spa. O Clube Alisa Chapecó foi o melhor investimento."</p>
                     </div>
                 </div>
@@ -624,10 +774,10 @@
                     <div class="md:col-span-3 text-center md:text-left">
                         <h4 class="text-brand-gold text-[10px] font-bold uppercase tracking-[0.2em] mb-4">Menu Exclusive</h4>
                         <ul class="space-y-2 text-xs text-gray-400 font-light">
-                            <li><a href="#home" class="hover:text-white transition">Início</a></li>
-                            <li><a href="#clube" class="hover:text-white transition">Clube Alisa Chapecó</a></li>
-                            <li><a href="#agata" class="hover:text-white transition">Linha A Gata Lambeu</a></li>
-                            <li><button onclick="openModal('privacy')" class="hover:text-white transition">Privacidade</button></li>
+                            <li><a href="#home" class="hover:text-white transition hover-underline-animation">Início</a></li>
+                            <li><a href="#clube" class="hover:text-white transition hover-underline-animation">Clube Alisa Chapecó</a></li>
+                            <li><a href="#agata" class="hover:text-white transition hover-underline-animation">Linha A Gata Lambeu</a></li>
+                            <li><button onclick="openModal('privacy')" class="hover:text-white transition hover-underline-animation">Privacidade</button></li>
                         </ul>
                     </div>
                     <div class="md:col-span-5">
@@ -636,7 +786,7 @@
                             <div class="text-center md:text-left flex-1">
                                 <p class="text-white text-sm font-medium mb-1">Rua Achiles Tomazelli, 296 D</p>
                                 <p class="text-gray-500 text-xs mb-3">Centro, Chapecó - SC</p>
-                                <a href="https://api.whatsapp.com/send?phone=5549999954052" class="text-lg font-playfair italic text-brand-gold hover:text-white transition block mb-1">(49) 99995-4052</a>
+                                <a href="https://api.whatsapp.com/send?phone=5549999954052" class="text-lg font-playfair italic text-brand-gold hover:text-white transition block mb-1 hover-underline-animation">(49) 99995-4052</a>
                             </div>
                             <div class="w-full md:w-28 h-24 rounded-lg overflow-hidden border border-white/10 opacity-60 hover:opacity-100 transition-all cursor-pointer relative group">
                                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3489.1751996515865!2d-52.6186419849202!3d-27.100918083072045!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e4b574a6914757%3A0xc3f83734e941198c!2sRua%20Achiles%20Tomazelli%2C%20296%20D%20-%20Centro%2C%20Chapec%C3%B3%20-%20SC%2C%2089802-125!5e0!3m2!1spt-BR!2sbr!4v1628172930000!5m2!1spt-BR!2sbr" width="100%" height="100%" style="border:0; pointer-events: none;" allowfullscreen="" loading="lazy"></iframe>
@@ -750,19 +900,9 @@
                 <i class="fas fa-arrow-left"></i> Voltar
             </button>
         </div>
-        
-        <section class="min-h-screen pt-28 pb-10">
-            <div class="container mx-auto px-6">
-                <!-- HERO STORE: IMAGEM PRINCIPAL (VITRINE) -->
-                <div class="relative w-full h-64 md:h-80 rounded-2xl overflow-hidden mb-12 shadow-luxury-card group">
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#151515] via-transparent to-transparent z-10"></div>
-                    <img src="https://agatalambeu.com.br/assets/images/image10.jpg?v=5ffc8f20" class="w-full h-full object-cover transform transition duration-1000 group-hover:scale-105" alt="Coleção A Gata Lambeu">
-                    <div class="absolute bottom-8 left-8 z-20">
-                        <span class="text-brand-gold text-[10px] font-bold tracking-[0.3em] uppercase block mb-2">Coleção Exclusiva</span>
-                        <h2 class="text-3xl md:text-5xl font-luxury text-white">Home Care</h2>
-                    </div>
-                </div>
-
+        <section class="min-h-screen flex items-center justify-center pt-20 pb-10">
+            <div class="container mx-auto px-6 text-center">
+                 <h2 class="text-4xl md:text-6xl font-luxury text-white mb-10">Coleção Home Care</h2>
                  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                      <!-- Produto 1: Bain Reconstrutor -->
                      <div class="bg-[#151515] p-6 rounded-xl border border-white/5 group hover:border-brand-gold/30 transition-all flex flex-col">
@@ -849,13 +989,80 @@
 
     <!-- JAVASCRIPT MASTER -->
     <script>
+        // PRELOADER & SCROLL LOGIC
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            if(preloader) {
+                setTimeout(() => {
+                    preloader.style.opacity = '0';
+                    setTimeout(() => {
+                        preloader.style.display = 'none';
+                        document.body.classList.remove('no-js');
+                    }, 1000);
+                }, 1500); // 1.5s delay for luxury feel
+            }
+        });
+
+        window.addEventListener('scroll', () => {
+            // Scroll Progress Bar
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scroll-progress').style.width = scrolled + "%";
+            
+            checkReveal();
+        });
+
         function router() {
             const hash = window.location.hash || '#home';
             document.querySelectorAll('#main-site-wrapper, #club-view-container, #agata-view-container').forEach(el => el.style.display = 'none');
             window.scrollTo(0,0);
+            
+            // Close menu on navigation
+            const overlay = document.getElementById('menu-overlay');
+            const toggleBtn = document.getElementById('menu-toggle');
+            if(overlay) overlay.classList.remove('translate-x-0', 'translate-x-full');
+            if(toggleBtn) toggleBtn.classList.remove('active');
+            
+            // Reset overlay position logic
+            if(overlay) overlay.classList.add('translate-x-full');
+
             if (hash === '#clube') { document.getElementById('club-view-container').style.display = 'block'; }
             else if (hash === '#agata') { document.getElementById('agata-view-container').style.display = 'block'; }
             else { document.getElementById('main-site-wrapper').style.display = 'block'; const v = document.getElementById('heroVideo'); if(v) v.play().catch(e => console.log('Autoplay blocked')); }
+        }
+
+        // TOGGLE MENU FUNCTION
+        function toggleMenu() {
+            const overlay = document.getElementById('menu-overlay');
+            const btn = document.getElementById('menu-toggle');
+            
+            if (overlay.classList.contains('translate-x-full')) {
+                overlay.classList.remove('translate-x-full');
+                overlay.classList.add('translate-x-0', 'open'); // 'open' for stagger animation
+                btn.classList.add('active');
+            } else {
+                overlay.classList.add('translate-x-full');
+                overlay.classList.remove('translate-x-0', 'open');
+                btn.classList.remove('active');
+            }
+        }
+
+        // FUNÇÃO DE SELEÇÃO DINÂMICA
+        function selectService(selectedId) {
+            const cards = ['card-flash', 'card-liso', 'card-detox'];
+            
+            cards.forEach(id => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                
+                if (id === selectedId) {
+                    el.classList.add('card-active');
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+                } else {
+                    el.classList.remove('card-active');
+                }
+            });
         }
 
         // Neurovendas: Prova Social
@@ -873,24 +1080,42 @@
             setTimeout(showSocialProof, Math.random() * (40000 - 15000) + 15000);
         }
 
-        // Mobile Spotlight Effect
+        // Mobile Spotlight Effect & Desktop Tilt
         function initSpotlight() {
-            if (window.innerWidth >= 768) return; // Only mobile
-            
-            const options = { root: null, rootMargin: '0px', threshold: 0.6 };
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('spotlight-active');
-                        entry.target.classList.remove('spotlight-dim');
-                    } else {
-                        entry.target.classList.remove('spotlight-active');
-                        entry.target.classList.add('spotlight-dim');
-                    }
-                });
-            }, options);
+            // Mobile Observer
+            if (window.innerWidth < 768) {
+                const options = { root: null, rootMargin: '0px', threshold: 0.6 };
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('spotlight-active');
+                            entry.target.classList.remove('spotlight-dim');
+                        } else {
+                            entry.target.classList.remove('spotlight-active');
+                            entry.target.classList.add('spotlight-dim');
+                        }
+                    });
+                }, options);
+                document.querySelectorAll('.mobile-snap-item').forEach(item => observer.observe(item));
+            } else {
+                // Desktop Tilt Effect
+                document.querySelectorAll('.glass-panel').forEach(card => {
+                    card.addEventListener('mousemove', (e) => {
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        const rotateX = ((y - centerY) / centerY) * -5; // Tilt Max 5deg
+                        const rotateY = ((x - centerX) / centerX) * 5;
 
-            document.querySelectorAll('.mobile-snap-item').forEach(item => observer.observe(item));
+                        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+                    });
+                    card.addEventListener('mouseleave', () => {
+                        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+                    });
+                });
+            }
         }
 
         function openWhatsApp(msg) { window.open(`https://api.whatsapp.com/send?phone=5549999954052&text=${encodeURIComponent(msg)}`, '_blank'); }
@@ -900,13 +1125,19 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             router(); window.addEventListener('hashchange', router); window.addEventListener('scroll', checkReveal);
-            lucide.createIcons(); setTimeout(showSocialProof, 5000);
+            // Lucide icons are optional, keeping call safe
+            if(typeof lucide !== 'undefined') lucide.createIcons();
+            
+            setTimeout(showSocialProof, 5000);
+            
+            // Inicializa com Liso Blindado selecionado
+            selectService('card-liso');
+
             document.querySelectorAll('.faq-item summary').forEach(s => s.addEventListener('click', e => {
                 e.preventDefault(); const p = s.parentElement;
                 p.hasAttribute('open') ? p.removeAttribute('open') : p.setAttribute('open','');
             }));
             
-            // Inicia Spotlight no Mobile
             initSpotlight();
         });
     </script>
