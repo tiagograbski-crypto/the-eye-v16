@@ -11,14 +11,13 @@
     
     <!-- 
         ================================================================================
-        PROJETO: ESSÊNCIA DE ROMÃ HAIR | PLATAFORMA DIGITAL 2026 (BLACK MEMBER EDITION v26)
+        PROJETO: ESSÊNCIA DE ROMÃ HAIR | PLATAFORMA DIGITAL 2026 (VISUAL AUTHORITY v28)
         ARQUIVO: index.html 
         
-        [AUDITORIA DE CORES & NEUROVENDAS]
-        - CLUBE: Migração total para "Black Aesthetic" (Carbono #121212 + Preto #050505).
-        - GATILHO: Eliminação de tons avermelhados/bordô (alerta) para tons de Onyx (status).
-        - PADRONIZAÇÃO: Base unificada em tons de Preto em todo o site.
-        - A GATA LAMBEU: Mantida a identidade visual específica (Concrete Dark #2a2a2a).
+        [ATUALIZAÇÃO ESTRATÉGICA]
+        - HIERARQUIA VISUAL: Galeria de Vídeos e Slider Antes/Depois movidos para o TOPO (Pós-Funil).
+        - COPYWRITING HERO: "Liso Blindado: A Sua Assinatura de Poder" (Foco em Status e Identidade).
+        - NEUROVENDAS: Descrição refinada para atacar dores (tempo) e vender prazer (liberdade).
         ================================================================================
     -->
 
@@ -116,9 +115,9 @@
             theme: {
                 extend: {
                     colors: {
-                        'brand-black': '#050505',      /* Preto Puro (Base) */
-                        'brand-carbon': '#121212',     /* Carbono (Substituto do Bordô) */
-                        'brand-gold': '#C5A059',       /* Ouro Institucional */
+                        'brand-black': '#050505',      
+                        'brand-wine': '#220404',       
+                        'brand-gold': '#C5A059',       
                         'brand-gold-light': '#F2E2BA', 
                         'brand-gold-dark': '#8A6D3B',  
                         'brand-glass': 'rgba(255, 255, 255, 0.03)',
@@ -175,7 +174,7 @@
         }
 
         body { 
-            background-color: #050505; /* Black Base */
+            background-color: #020202; 
             color: #f3f3f3; 
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
@@ -256,46 +255,86 @@
             left: 100%;
         }
         
-        /* Vidro Premium - CRISTAL MAIS CLARO (Light Frost) */
+        /* Vidro Premium - CRISTAL MAIS CLARO & CONTRASTANTE (Ice Glass) */
         .glass-panel {
-            background: rgba(255, 255, 255, 0.08); /* Base mais clara (era 0.05) */
-            backdrop-filter: blur(40px); /* Blur aumentado para suavidade */
-            -webkit-backdrop-filter: blur(40px);
-            border: 1px solid rgba(255, 255, 255, 0.2); /* Borda mais nítida */
-            border-top: 1px solid rgba(255, 255, 255, 0.3); /* Luz superior mais forte */
+            background: rgba(255, 255, 255, 0.12); /* Aumentado para 12% para contraste */
+            backdrop-filter: blur(45px);
+            -webkit-backdrop-filter: blur(45px);
+            border: 1px solid rgba(255, 255, 255, 0.25); /* Borda mais nítida */
+            border-top: 1px solid rgba(255, 255, 255, 0.4); /* Luz superior forte */
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
             transition: transform 0.1s ease-out, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
             transform-style: preserve-3d;
             will-change: transform; 
         }
         .glass-panel:hover {
-            background: rgba(255, 255, 255, 0.12); /* Hover mais luminoso (era 0.08) */
-            border-color: rgba(197, 160, 89, 0.5);
-            box-shadow: 0 30px 60px -10px rgba(0,0,0,0.9), 0 0 30px rgba(197, 160, 89, 0.15);
+            background: rgba(255, 255, 255, 0.18); /* Hover bem iluminado */
+            border-color: rgba(197, 160, 89, 0.6);
+            box-shadow: 0 30px 60px -10px rgba(0,0,0,0.9), 0 0 30px rgba(197, 160, 89, 0.2);
         }
 
-        /* CLASSE DE DESTAQUE ATIVO (JS) - Contorno Slim Dourado */
+        /* CLASSE DE DESTAQUE ATIVO (JS) */
         .card-active {
             border: 1px solid #C5A059 !important;
             transform: scale(1.03) !important;
             z-index: 20 !important;
-            box-shadow: 0 0 40px rgba(197, 160, 89, 0.25), inset 0 0 20px rgba(197, 160, 89, 0.05) !important;
-            background: linear-gradient(145deg, rgba(45, 45, 45, 0.95) 0%, rgba(20, 20, 20, 0.98) 100%) !important; /* Fundo ajustado para contraste com a borda */
+            box-shadow: 0 0 40px rgba(197, 160, 89, 0.3), inset 0 0 20px rgba(197, 160, 89, 0.05) !important;
+            background: linear-gradient(145deg, rgba(50, 50, 50, 0.95) 0%, rgba(20, 20, 20, 0.98) 100%) !important;
         }
 
         /* EFEITO SPOTLIGHT MOBILE */
         .mobile-snap-item.spotlight-active .glass-panel {
-            background: rgba(255, 255, 255, 0.12) !important; /* Mais claro no mobile ativo */
+            background: rgba(255, 255, 255, 0.18) !important; /* Mais claro no mobile ativo */
             border: 1px solid #C5A059 !important;
             transform: scale(1.02) !important;
-            box-shadow: 0 20px 50px -12px rgba(197, 160, 89, 0.25) !important;
+            box-shadow: 0 20px 50px -12px rgba(197, 160, 89, 0.3) !important;
             opacity: 1 !important;
         }
         .mobile-snap-item.spotlight-dim .glass-panel {
-            opacity: 0.6; /* Levemente mais visível inativo */
-            transform: scale(0.95);
-            filter: grayscale(0.4);
-            border-color: rgba(255,255,255,0.1) !important;
+            opacity: 0.7; /* Mais visível inativo */
+            transform: scale(0.96);
+            filter: grayscale(0.2);
+            border-color: rgba(255,255,255,0.15) !important;
+        }
+
+        /* BEFORE/AFTER SLIDER (CSS) */
+        .ba-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 1.5rem;
+            touch-action: pan-y;
+            user-select: none;
+        }
+        .ba-img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+        .ba-overlay {
+            position: absolute;
+            top: 0; left: 0;
+            width: 50%; height: 100%;
+            overflow: hidden;
+            border-right: 2px solid #C5A059;
+            box-shadow: 5px 0 25px rgba(0,0,0,0.7);
+            z-index: 10;
+        }
+        .ba-handle {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 44px; height: 44px;
+            background: #C5A059;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 0 25px rgba(197, 160, 89, 0.6);
+            z-index: 20;
+            cursor: ew-resize;
+            pointer-events: none;
         }
 
         /* Timeline do Clube */
@@ -307,7 +346,7 @@
         .timeline-marker.warn { background: #C5A059; opacity: 0.8; }
         .timeline-marker.danger { background: #EF4444; }
 
-        /* Funil Passo a Passo - CONTRASTE AUMENTADO */
+        /* Funil Passo a Passo */
         .funnel-step {
             position: relative;
             padding: 24px;
@@ -555,12 +594,12 @@
                 <h1 class="font-luxury text-white leading-tight drop-shadow-2xl mb-10">
                     <!-- COPY DE GUERRA: AUTORIDADE & PIONEIRISMO -->
                     <span class="block text-xl md:text-3xl font-light tracking-[0.3em] mb-4 uppercase text-gray-400">Alisamentos, Mechas & Rituais</span>
-                    <span class="block text-5xl md:text-7xl lg:text-8xl font-medium italic text-gold-dynamic py-2">Liso: A Sua Assinatura</span>
+                    <span class="block text-5xl md:text-7xl lg:text-8xl font-medium italic text-gold-dynamic py-2">Liso Blindado: A Sua Assinatura de Poder</span>
                 </h1>
                 
                 <!-- COPY DE GUERRA: DESCRIÇÃO DE PODER & MÉRITO -->
                 <p class="text-gray-300 text-sm md:text-base font-light tracking-widest max-w-2xl mx-auto mb-12 leading-relaxed opacity-90">
-                    Tecnologia Híbrida focada exclusivamente na <strong>Redução de Frizz e no Liso Blindado Espelhado</strong>. Somos também referência em Mechas Criativas e Terapia Capilar de Alta Performance para a mulher moderna.
+                    Liberte-se da escrava da escova. Conquiste o <strong>Liso Espelhado</strong> que o Oeste Catarinense admira. Tecnologia Híbrida exclusiva para mulheres que não aceitam menos que a perfeição.
                 </p>
                 
                 <div class="flex flex-col items-center gap-6">
@@ -610,6 +649,67 @@
             </div>
         </section>
 
+        <!-- NOVA SEÇÃO: RESULTADOS REAIS (MOVIDA PARA CIMA E RENOVADA) -->
+        <section id="visual-results" class="py-24 md:py-32 bg-[#020202] relative overflow-hidden">
+            <div class="absolute inset-0 bg-brand-gold/5 blur-[120px] pointer-events-none"></div>
+            
+            <div class="container mx-auto px-6 max-w-7xl relative z-10">
+                <div class="text-center mb-24 reveal">
+                    <span class="text-brand-gold text-[10px] font-bold tracking-[0.3em] uppercase block mb-4">Sem Filtros</span>
+                    <h2 class="font-luxury text-4xl md:text-6xl text-white mb-6">A VERDADE VISUAL</h2>
+                    <p class="text-gray-300 text-base max-w-3xl mx-auto leading-relaxed font-light">
+                        Veja o impacto real da nossa tecnologia. Deslize para comparar ou assista ao movimento.
+                    </p>
+                </div>
+
+                <!-- SLIDER BEFORE/AFTER + VÍDEOS -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    
+                    <!-- COMPONENTE INTERATIVO: SLIDER ANTES E DEPOIS -->
+                    <div class="ba-container aspect-[4/5] shadow-luxury-card reveal" id="ba-slider">
+                        <!-- Imagem Depois (Fundo) -->
+                        <img src="https://agatalambeu.com.br/assets/images/image05.jpg?v=d3d58bdf" class="ba-img" alt="Cabelo Liso Depois">
+                        <!-- Imagem Antes (Sobreposta) -->
+                        <div class="ba-overlay" id="ba-overlay">
+                            <img src="https://agatalambeu.com.br/assets/images/image06.jpg?v=d3d58bdf" class="ba-img" alt="Cabelo Natural Antes" style="width: 200%; max-width: none;"> <!-- Width 200% compensa o corte do container de 50% -->
+                        </div>
+                        <!-- Handle (Botão de Arrastar) -->
+                        <div class="ba-handle" id="ba-handle">
+                            <i class="fas fa-arrows-alt-h text-black"></i>
+                        </div>
+                        <div class="absolute bottom-4 left-4 bg-black/60 px-3 py-1 text-[9px] text-white uppercase tracking-widest rounded backdrop-blur">Antes</div>
+                        <div class="absolute bottom-4 right-4 bg-brand-gold/90 px-3 py-1 text-[9px] text-black uppercase tracking-widest rounded backdrop-blur font-bold">Depois</div>
+                    </div>
+
+                    <!-- GALERIA DE VÍDEOS (LATERAL) -->
+                    <div class="grid grid-cols-2 gap-4 h-full reveal" style="transition-delay: 200ms;">
+                        <div class="rounded-2xl overflow-hidden border border-brand-gold/20 relative group aspect-[9/16] shadow-lg">
+                            <video class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-700" autoplay loop muted playsinline webkit-playsinline>
+                                <source src="https://res.cloudinary.com/daukvmsc2/video/upload/v1767283500/WhatsApp_Video_2025-12-07_at_08.43.32_scitfn.mp4" type="video/mp4">
+                            </video>
+                            <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 to-transparent">
+                                <span class="text-white text-[10px] font-bold uppercase tracking-wider block">Liso Blindado</span>
+                            </div>
+                        </div>
+                        <div class="rounded-2xl overflow-hidden border border-brand-gold/20 relative group aspect-[9/16] shadow-lg translate-y-8"> <!-- Deslocamento estético -->
+                            <video class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-700" autoplay loop muted playsinline webkit-playsinline>
+                                <source src="https://res.cloudinary.com/daukvmsc2/video/upload/v1767279737/WhatsApp_Video_2025-12-10_at_19.00.59_ov4cma.mp4" type="video/mp4">
+                            </video>
+                            <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 to-transparent">
+                                <span class="text-white text-[10px] font-bold uppercase tracking-wider block">Brilho 8K</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-20 text-center">
+                    <a href="#services" class="btn-luxury-cta inline-flex items-center gap-3 py-4 px-10 rounded-full text-xs font-bold tracking-widest">
+                        QUERO ESSE RESULTADO
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <!-- INGREDIENTES / CIÊNCIA (ESPAÇOSO & ALINHADO) -->
         <section id="science" class="py-24 md:py-32 bg-[#050505] relative overflow-hidden">
             <!-- Elementos de Fundo Abstratos com Parallax -->
@@ -655,15 +755,15 @@
                         <!-- 1. Lista de Ativos (Química) -->
                         <div class="flex flex-col gap-6">
                             <div class="reveal glass-panel p-6 rounded-2xl flex items-start gap-6 border-l-2 border-l-transparent hover:border-l-brand-gold transition-all duration-300 hover:bg-white/10">
-                                <div class="flex-shrink-0 w-14 h-14 rounded-full bg-brand-carbon border border-brand-gold/30 flex items-center justify-center text-2xl text-brand-gold shadow-luxury-glow">🧪</div>
+                                <div class="flex-shrink-0 w-14 h-14 rounded-full bg-brand-wine border border-brand-gold/30 flex items-center justify-center text-2xl text-brand-gold shadow-luxury-glow">🧪</div>
                                 <div><h5 class="text-brand-gold text-sm font-bold uppercase tracking-widest mb-2">Ácido Hialurônico</h5><p class="text-gray-400 text-sm leading-relaxed font-light">Conhecido como "água sólida". Preenche a fibra capilar, retendo hidratação profunda nas camadas internas.</p></div>
                             </div>
                             <div class="reveal glass-panel p-6 rounded-2xl flex items-start gap-6 border-l-2 border-l-transparent hover:border-l-brand-gold transition-all duration-300 hover:bg-white/10" style="transition-delay: 100ms;">
-                                <div class="flex-shrink-0 w-14 h-14 rounded-full bg-brand-carbon border border-brand-gold/30 flex items-center justify-center text-2xl text-brand-gold shadow-luxury-glow">🌾</div>
+                                <div class="flex-shrink-0 w-14 h-14 rounded-full bg-brand-wine border border-brand-gold/30 flex items-center justify-center text-2xl text-brand-gold shadow-luxury-glow">🌾</div>
                                 <div><h5 class="text-brand-gold text-sm font-bold uppercase tracking-widest mb-2">Proteína do Trigo</h5><p class="text-gray-400 text-sm leading-relaxed font-light">Reconstrução biomimética. Fortalece a estrutura interna do córtex do fio, protegendo contra quebra.</p></div>
                             </div>
                             <div class="reveal glass-panel p-6 rounded-2xl flex items-start gap-6 border-l-2 border-l-transparent hover:border-l-brand-gold transition-all duration-300 hover:bg-white/10" style="transition-delay: 200ms;">
-                                <div class="flex-shrink-0 w-14 h-14 rounded-full bg-brand-carbon border border-brand-gold/30 flex items-center justify-center text-2xl text-brand-gold shadow-luxury-glow">🍇</div>
+                                <div class="flex-shrink-0 w-14 h-14 rounded-full bg-brand-wine border border-brand-gold/30 flex items-center justify-center text-2xl text-brand-gold shadow-luxury-glow">🍇</div>
                                 <div><h5 class="text-brand-gold text-sm font-bold uppercase tracking-widest mb-2">Óleo de Uva</h5><p class="text-gray-400 text-sm leading-relaxed font-light">Antioxidante nobre. Cria um escudo lipídico que reflete a luz intensamente, resultando no "Brilho 8K".</p></div>
                             </div>
                         </div>
@@ -843,73 +943,6 @@
                                 <a href="#" onclick="openWhatsApp('Quero o Detox')" class="block w-full py-4 text-center border border-cyan-500/30 rounded-xl text-cyan-200 text-xs font-bold uppercase tracking-widest hover:bg-cyan-900/30 transition-all">Agendar</a>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PROVA SOCIAL: VÍDEOS & REVIEWS -->
-        <section class="py-24 md:py-32 bg-[#0a0202] border-t border-white/5">
-            <div class="container mx-auto px-6 max-w-6xl text-center">
-                <span class="text-brand-gold text-[10px] font-bold tracking-[0.3em] uppercase block mb-6">Sem Filtros</span>
-                <h3 class="font-luxury text-4xl md:text-5xl text-white mb-16">Resultados Reais</h3>
-                
-                <div class="mobile-snap-x pb-12">
-                    <!-- Video 1 -->
-                    <div class="mobile-snap-item rounded-2xl overflow-hidden border border-brand-gold/20 relative group aspect-[9/16] bg-gray-900 shadow-lg">
-                        <!-- Fix: playsinline e webkit-playsinline para iOS -->
-                        <video class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-700" autoplay loop muted playsinline webkit-playsinline>
-                            <source src="https://res.cloudinary.com/daukvmsc2/video/upload/v1767283500/WhatsApp_Video_2025-12-07_at_08.43.32_scitfn.mp4" type="video/mp4">
-                        </video>
-                        <!-- Overlay Informativo -->
-                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex justify-between items-end">
-                            <span class="text-white text-[10px] font-bold uppercase tracking-wider">Liso Blindado</span>
-                            <div class="w-7 h-7 rounded-full border border-white/20 flex items-center justify-center bg-black/40 backdrop-blur-md">
-                                <i class="fas fa-video text-[10px] text-white/70"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Video 2 -->
-                    <div class="mobile-snap-item rounded-2xl overflow-hidden border border-brand-gold/20 relative group aspect-[9/16] bg-gray-900 shadow-lg">
-                        <video class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-700" autoplay loop muted playsinline webkit-playsinline>
-                            <source src="https://res.cloudinary.com/daukvmsc2/video/upload/v1767279737/WhatsApp_Video_2025-12-10_at_19.00.59_ov4cma.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex justify-between items-end">
-                            <span class="text-white text-[10px] font-bold uppercase tracking-wider">Brilho 8K</span>
-                            <div class="w-7 h-7 rounded-full border border-white/20 flex items-center justify-center bg-black/40 backdrop-blur-md">
-                                <i class="fas fa-video text-[10px] text-white/70"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Video 3 -->
-                    <div class="mobile-snap-item rounded-2xl overflow-hidden border border-brand-gold/20 relative group aspect-[9/16] bg-gray-900 shadow-lg">
-                        <video class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-700" autoplay loop muted playsinline webkit-playsinline>
-                            <source src="https://res.cloudinary.com/daukvmsc2/video/upload/v1767279736/WhatsApp_Video_2025-12-09_at_10.51.20_y3iop0.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex justify-between items-end">
-                            <span class="text-white text-[10px] font-bold uppercase tracking-wider">Recuperação</span>
-                            <div class="w-7 h-7 rounded-full border border-white/20 flex items-center justify-center bg-black/40 backdrop-blur-md">
-                                <i class="fas fa-video text-[10px] text-white/70"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- REVIEWS -->
-                <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
-                    <div class="glass-panel p-6 rounded-xl">
-                        <div class="flex items-center gap-3 mb-4"><div class="w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center text-white font-bold">A</div><div><h4 class="text-white font-bold text-xs hover-underline-animation">Ana Clara</h4><span class="text-gray-500 text-[9px]">Local Guide</span></div><div class="ml-auto text-brand-gold text-xs">★★★★★</div></div>
-                        <p class="text-gray-400 text-xs leading-relaxed">"O Ritual Flash salvou minha rotina! Em 20 minutos meu cabelo parecia outro. O brilho é surreal. Atendimento impecável."</p>
-                    </div>
-                    <div class="glass-panel p-6 rounded-xl">
-                        <div class="flex items-center gap-3 mb-4"><div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">B</div><div><h4 class="text-white font-bold text-xs hover-underline-animation">Beatriz M.</h4><span class="text-gray-500 text-[9px]">Cliente VIP</span></div><div class="ml-auto text-brand-gold text-xs">★★★★★</div></div>
-                        <p class="text-gray-400 text-xs leading-relaxed">"Faço o Liso Blindado há 2 anos e meu cabelo nunca esteve tão saudável. Não é aquele liso esticado, é natural e com movimento."</p>
-                    </div>
-                    <div class="glass-panel p-6 rounded-xl">
-                        <div class="flex items-center gap-3 mb-4"><div class="w-8 h-8 rounded-full bg-pink-600 flex items-center justify-center text-white font-bold">C</div><div><h4 class="text-white font-bold text-xs hover-underline-animation">Carla Souza</h4><span class="text-gray-500 text-[9px]">Local Guide</span></div><div class="ml-auto text-brand-gold text-xs">★★★★★</div></div>
-                        <p class="text-gray-400 text-xs leading-relaxed">"O ambiente, o cheiro dos produtos, o cuidado... é uma experiência de spa. O Clube Alisa Chapecó foi o melhor investimento."</p>
                     </div>
                 </div>
             </div>
@@ -1265,7 +1298,8 @@
                          <div class="absolute top-0 left-0 bg-white/10 backdrop-blur text-[8px] uppercase tracking-widest text-white px-3 py-1 rounded-br-lg border-b border-r border-white/5">Disponibilidade Imediata</div>
                          <div class="h-64 rounded-lg mb-6 overflow-hidden relative">
                              <div class="absolute inset-0 bg-brand-gold/5 group-hover:bg-brand-gold/10 transition-colors z-10"></div>
-                             <img src="https://agatalambeu.com.br/assets/images/image10.jpg?v=5ffc8f20" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700" alt="Bain Reconstrutor">
+                             <!-- IMAGEM ATUALIZADA: BAIN RECONSTRUTOR (NOVA VERSÃO) -->
+                             <img src="https://agatalambeu.com.br/assets/images/image07.jpg?v=b477b91d" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700" alt="Bain Reconstrutor">
                          </div>
                          <h3 class="text-white font-luxury text-xl">Bain Reconstrutor</h3>
                          <div class="text-brand-gold font-bold text-lg mb-4">R$ 149,90</div>
@@ -1310,7 +1344,7 @@
                          <div class="absolute top-0 left-0 bg-white/10 backdrop-blur text-[8px] uppercase tracking-widest text-white px-3 py-1 rounded-br-lg border-b border-r border-white/5">Alta Procura</div>
                          <div class="h-64 rounded-lg mb-6 overflow-hidden relative">
                              <div class="absolute inset-0 bg-brand-gold/5 group-hover:bg-brand-gold/10 transition-colors z-10"></div>
-                             <img src="https://agatalambeu.com.br/assets/images/image08.jpg?v=de86e831" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700" alt="Blindagem Queen">
+                             <img src="https://agatalambeu.com.br/assets/images/image08.jpg?v=d0245179" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700" alt="Blindagem Queen">
                          </div>
                          <h3 class="text-white font-luxury text-xl">Blindagem Queen</h3>
                          <div class="text-brand-gold font-bold text-lg mb-4">R$ 248,40</div>
@@ -1495,9 +1529,6 @@
 
             if (storedValue) {
                 let previous = parseInt(storedValue);
-                
-                // Lógica de "Live Booking": 30% de chance de aumentar 1% ao atualizar a página
-                // MAS se o dia atual pede uma base muito maior (ex: voltou no sábado), respeita a base do dia.
                 if (previous >= basePercentage) {
                     const increment = Math.random() > 0.7 ? 1 : 0;
                     finalPercentage = Math.min(previous + increment, 99); // Trava em 99%
@@ -1660,6 +1691,7 @@
             }
         }
 
+        // TOGGLE MENU FUNCTION
         function toggleMenu() {
             const overlay = document.getElementById('menu-overlay');
             const btn = document.getElementById('menu-toggle');
