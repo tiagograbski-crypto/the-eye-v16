@@ -1,1389 +1,366 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth no-js">
+<html lang="pt-pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
-    <!-- 
-        ================================================================================
-        PROJETO: ESSÊNCIA DE ROMÃ HAIR | PLATAFORMA DIGITAL 2026 (MASTER v49.0)
-        GITHUB REPOSITORY: Master Production Branch
-        ARQUITETURA: DUAL-MODE + GLASS DOCK + GEO-LOCATION TUNING
-        
-        [AJUSTE GEOGRÁFICO v49.0]
-        1. LOCALIZAÇÃO: Removida a menção explícita a "Xaxim e Xanxerê" dos rodapés.
-           Texto ajustado para "Atendendo Chapecó e todo o Oeste Catarinense".
-        2. PARCEIROS: Mantido o botão estratégico de Seara na aba Liso 8K.
-        3. INTEGRIDADE: Todo o resto do layout e funcionalidades (Toasts, Modais) mantido.
-        ================================================================================
-    -->
-
-    <title>Melhor Salão de Chapecó | Liso Soberano 8K & Engenharia Capilar</title>
-    <meta name="description" content="Pioneiros em Liso Soberano 8K e Recuperação Capilar em Chapecó. Campanha Preço Congelado e Voucher de Resgate. Conheça a Nova Era dos Lisos.">
-    <meta name="author" content="Essência de Romã Hair">
-    
-    <meta name="theme-color" content="#050505" id="theme-color-meta">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-
-    <link rel="icon" type="image/png" href="https://i.ibb.co/7xQTPb2t/LOGO.png" />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.tailwindcss.com">
-    <link rel="preconnect" href="https://imagensagata.carrd.co">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <!-- GOOGLE ADS CONVERSION TRACKING -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-11442509118"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-11442509118');
-
-      function gtag_report_conversion(url) {
-        var callback = function () {
-          if (typeof(url) != 'undefined') {
-            window.location = url;
-          }
-        };
-        // Feedback visual imediato
-        if (typeof showToast === 'function') showToast('Iniciando atendimento...', 'success');
-        
-        if (typeof gtag === 'function') {
-            gtag('event', 'conversion', {
-                'send_to': 'AW-11442509118/SEU_LABEL_AQUI',
-                'event_callback': callback
-            });
-        } else {
-            callback();
-        }
-        return false;
-      }
-    </script>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DG Holding | Cinema Premiere 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-bg': 'var(--bg-color)',
-                        'brand-text': 'var(--text-color)',
-                        'brand-gold': '#D4AF37',
-                        'brand-gold-dark': '#C5A059',
-                        'midnight-wine': '#1a0505',
-                        'luxury-black': '#050101',
-                    },
-                    fontFamily: {
-                        'serif': ['Cinzel', 'serif'],
-                        'sans': ['Lato', 'sans-serif'],
-                        'display': ['Playfair Display', 'serif'],
-                        'signature': ['Great Vibes', 'cursive'],
-                    },
-                    backgroundImage: {
-                        'gold-metallic': 'linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C)',
-                        'gold-gradient': 'linear-gradient(135deg, #8A6D3B 0%, #C5A059 40%, #F2E2BA 50%, #C5A059 60%, #8A6D3B 100%)',
-                    },
-                    boxShadow: {
-                        'gold-glow': '0 0 30px rgba(197, 160, 89, 0.25)',
-                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
-                    },
-                    animation: {
-                        'fade-in-up': 'fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-                        'shine': 'shine 6s linear infinite',
-                        'bounce-short': 'bounceShort 0.5s ease-in-out 1',
-                        'pulse-gold': 'pulseGold 3s infinite',
-                        'spin-slow': 'spin 30s linear infinite',
-                        'toast-slide': 'toastSlide 0.3s ease-out forwards',
-                    },
-                    keyframes: {
-                        fadeInUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
-                        shine: { '0%': { backgroundPosition: '200% center' }, '100%': { backgroundPosition: '-200% center' } },
-                        bounceShort: { '0%, 100%': { transform: 'scale(1)' }, '50%': { transform: 'scale(1.2)' } },
-                        pulseGold: { '0%, 100%': { boxShadow: '0 0 0 0 rgba(197, 160, 89, 0.4)' }, '70%': { boxShadow: '0 0 0 15px rgba(197, 160, 89, 0)' } },
-                        toastSlide: { '0%': { transform: 'translateX(100%)', opacity: '0' }, '100%': { transform: 'translateX(0)', opacity: '1' } }
-                    }
-                }
-            }
-        }
-    </script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #FFFFFF;
-            --text-color: #111111;
-            --accent-color: #D4AF37;
-            --glass-bg: rgba(255, 255, 255, 0.7); 
-            --glass-border: rgba(255, 255, 255, 0.8);
-            --transition-speed: 0.4s;
+            --pink: #FF0080;
+            --cyan: #00D1FF;
+            --emerald: #00FF8A;
+            --obsidian: #010101;
+            --gold: #D4AF37;
+            /* Cine-Assets Repository */
+            --img-hero: url('https://calcularodadd.carrd.co/assets/images/image22.jpg?v=7f6e78a6'); /* Abertura Dourada */
+            --img-beauty: url('https://calcularodadd.carrd.co/assets/images/image13.jpg?v=4c040d6e'); /* Abertura Rosinha */
+            --img-sleep: url('https://calcularodadd.carrd.co/assets/images/image20.jpg?v=7f6e78a6'); /* Preta */
+            --img-focus: url('https://calcularodadd.carrd.co/assets/images/image21.jpg?v=7f6e78a6'); /* Branca */
+            --img-libido: url('https://calcularodadd.carrd.co/assets/images/image01.jpg?v=7f6e78a6'); /* Vermelha */
+            --img-macro: url('https://calcularodadd.carrd.co/assets/images/image14.jpg?v=4c040d6e');
         }
         
-        .dark {
-            --bg-color: #050101;
-            --text-color: #FAFAFA;
-            --accent-color: #C5A059;
-            --glass-bg: rgba(15, 15, 20, 0.6); 
-            --glass-border: rgba(255, 255, 255, 0.05);
-        }
-
-        html {
-            scroll-padding-top: 100px; /* Fix para header fixo não cobrir conteúdo */
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Lato', sans-serif;
-            transition: background-color var(--transition-speed), color var(--transition-speed);
-            overflow-x: hidden;
-            padding-bottom: 120px;
-        }
-
-        @media (min-width: 768px) { body { padding-bottom: 0; } }
-
-        #scroll-progress {
-            position: fixed; top: 0; left: 0; height: 3px; background: var(--accent-color);
-            z-index: 1000; width: 0%; transition: width 0.1s ease-out;
-            box-shadow: 0 0 10px var(--accent-color);
-        }
-
-        .text-gold-dynamic {
-            background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            background-size: 200% auto;
-            animation: shine 6s linear infinite;
-        }
-
-        .texture-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; opacity: 0.4;
-            mix-blend-mode: multiply; 
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E");
-        }
-        .dark .texture-overlay { opacity: 0.04; mix-blend-mode: normal; }
-
-        .glass-dock {
-            background: var(--glass-bg);
-            backdrop-filter: blur(25px) saturate(180%);
-            -webkit-backdrop-filter: blur(25px) saturate(180%);
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 20px 40px -5px rgba(0,0,0,0.1), inset 0 1px 0 0 rgba(255,255,255,0.1);
-            width: calc(100% - 24px);
-            max-width: 480px;
-            z-index: 100;
-        }
+        * { scrollbar-width: none; -ms-overflow-style: none; }
+        *::-webkit-scrollbar { display: none; }
         
-        .dock-item {
-            position: relative; color: var(--text-color); opacity: 0.6;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: var(--obsidian);
+            color: #FFFFFF;
+            overflow: hidden;
+            height: 100vh;
         }
-        .dock-item:hover, .dock-item.active { opacity: 1; transform: translateY(-3px); color: var(--accent-color); }
-        .dock-item.active::after {
-            content: ''; position: absolute; bottom: -6px; width: 4px; height: 4px;
-            background: var(--accent-color); border-radius: 50%; box-shadow: 0 0 8px var(--accent-color);
+
+        /* Menu Minimalista de Cinema */
+        .nav-cinema { 
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 40px 60px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,1) 0%, transparent 100%);
         }
+
+        .nav-link { 
+            font-size: 9px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: rgba(255,255,255,0.3);
+            transition: all 0.6s ease;
+            cursor: pointer;
+        }
+        .nav-link:hover, .nav-link.active { color: #fff; text-shadow: 0 0 20px rgba(255,255,255,0.5); }
+
+        .page-content {
+            display: none;
+            height: 100vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .page-content.active { display: block; }
+
+        /* Cinema Entrance Hero */
+        .hero-cinema {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            background-image: var(--img-hero);
+        }
+        .cinema-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle, transparent 0%, var(--obsidian) 90%);
+        }
+
+        .cinema-title {
+            font-size: clamp(2rem, 10vw, 8.5rem);
+            font-weight: 200;
+            letter-spacing: -10px;
+            line-height: 0.8;
+            text-transform: uppercase;
+            z-index: 10;
+            opacity: 0;
+            animation: fadeInBlur 2.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+            text-align: center;
+        }
+
+        @keyframes fadeInBlur {
+            from { transform: scale(1.1); filter: blur(20px); opacity: 0; }
+            to { transform: scale(1); filter: blur(0); opacity: 1; }
+        }
+
+        /* Movie Posters Product Grid */
+        .movie-poster {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            height: 750px;
+            background: #000;
+            border: 1px solid rgba(255,255,255,0.02);
+            transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+            cursor: pointer;
+        }
+        .movie-poster:hover { border-color: var(--gold); transform: translateY(-15px) scale(1.02); }
+        .poster-img { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.4; transition: 2s ease; }
+        .movie-poster:hover .poster-img { opacity: 0.7; transform: scale(1.1); }
+        .poster-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 60px; background: linear-gradient(0deg, #000 20%, transparent 100%); }
+
+        .btn-enter {
+            background: transparent;
+            color: white;
+            padding: 22px 60px;
+            border: 1px solid rgba(255,255,255,0.15);
+            font-size: 11px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 8px;
+            transition: all 0.6s ease;
+            margin-top: 60px;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+        }
+        .btn-enter:hover { background: white; color: black; border-color: white; box-shadow: 0 0 40px rgba(255,255,255,0.2); }
+
+        .tag-status { font-size: 8px; font-weight: 900; letter-spacing: 5px; color: var(--gold); text-transform: uppercase; margin-bottom: 20px; display: block; opacity: 0.6; }
         
-        .btn-editorial {
-            background-color: var(--text-color); color: var(--bg-color);
-            font-family: 'Cinzel', serif; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em;
-            padding: 1.2rem 3rem; border: 1px solid var(--text-color);
-            transition: all 0.4s ease; position: relative; overflow: hidden;
-            display: inline-flex; align-items: center; justify-content: center;
+        /* Boutique Internal Navigation */
+        .boutique-nav {
+            display: flex;
+            gap: 50px;
+            justify-content: center;
+            padding: 50px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            margin-bottom: 80px;
         }
-        .btn-editorial:hover { color: #FFF; border-color: var(--accent-color); background: var(--accent-color); }
+        .boutique-link { font-size: 10px; font-weight: 900; color: #333; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: 0.5s; }
+        .boutique-link.active { color: #fff; border-bottom: 2px solid var(--pink); padding-bottom: 15px; }
 
-        .btn-luxury-cta {
-            background: linear-gradient(135deg, #8A6D3B 0%, #C5A059 40%, #F2E2BA 50%, #C5A059 60%, #8A6D3B 100%);
-            background-size: 200% auto; color: #0F0202; font-weight: 800; text-transform: uppercase; letter-spacing: 0.15em; transition: all 0.4s ease;
-            box-shadow: 0 10px 30px rgba(197, 160, 89, 0.3); border: 1px solid rgba(255,255,255,0.2); position: relative; overflow: hidden;
-        }
-        .btn-luxury-cta:hover { background-position: right center; transform: translateY(-3px) scale(1.02); box-shadow: 0 20px 50px rgba(197, 160, 89, 0.5); }
+        .category-content { display: none; }
+        .category-content.active { display: block; animation: movieFade 1.5s ease; }
+        @keyframes movieFade { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
-        .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        #lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; display: none; justify-content: center; align-items: center; cursor: zoom-out; }
-        #lightbox img { max-width: 90%; max-height: 90vh; border: 1px solid var(--accent-color); }
-
-        .section-panel { display: none; opacity: 0; transition: opacity 0.4s ease-in-out; }
-        .section-panel.active { display: block; opacity: 1; }
+        .nutrition-grid { display: grid; gap: 15px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 20px; }
+        .nutrition-item { display: flex; justify-content: space-between; font-size: 10px; color: #666; font-style: italic; }
         
-        .cordinha-timeline { border-left: 2px solid var(--accent-color); padding-left: 1.5rem; }
-        
-        /* Mobile Snap Scroll */
-        .mobile-snap-x { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 1rem; padding-bottom: 1rem; scrollbar-width: none; }
-        .mobile-snap-x::-webkit-scrollbar { display: none; }
-        .mobile-snap-item { scroll-snap-align: center; flex-shrink: 0; width: 85vw; }
-        @media(min-width: 768px) { 
-            .mobile-snap-x { display: grid; width: 100%; gap: 2rem; grid-template-columns: repeat(4, 1fr); } 
-            .mobile-snap-item { width: auto; } 
-        }
-        .card-active {
-            border: 1px solid #C5A059 !important; transform: scale(1.03) !important; z-index: 20 !important; box-shadow: 0 0 40px rgba(197, 160, 89, 0.3), inset 0 0 20px rgba(197, 160, 89, 0.05) !important;
-            background: linear-gradient(145deg, rgba(50, 50, 50, 0.95) 0%, rgba(20, 20, 20, 0.98) 100%) !important;
-        }
-
-        .mandala-decoration { position: absolute; border-radius: 50%; border: 1px dashed rgba(197, 160, 89, 0.3); pointer-events: none; }
-        
-        /* Toast Notification */
-        #toast-container { position: fixed; top: 20px; right: 20px; z-index: 2000; display: flex; flex-direction: column; gap: 10px; }
-        .toast { background: white; color: black; padding: 12px 24px; border-left: 4px solid #D4AF37; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); font-family: 'Lato', sans-serif; font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; animation: toast-slide 0.3s ease-out; display: flex; align-items: center; gap: 10px; }
-        .dark .toast { background: #1a0505; color: white; border-left-color: #C5A059; }
+        .gold-title { color: var(--gold); text-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
+        .pink-title { color: var(--pink); }
     </style>
 </head>
+<body class="antialiased">
 
-<body class="antialiased relative" id="home">
-
-    <div class="texture-overlay"></div>
-    <div id="scroll-progress"></div>
-    <div id="toast-container"></div>
-
-    <!-- LIGHTBOX -->
-    <div id="lightbox" onclick="closeLightbox()">
-        <img id="lightbox-img" src="" alt="Zoom">
-    </div>
-
-    <!-- PRELOADER -->
-    <div id="preloader" class="fixed inset-0 z-[200] bg-white dark:bg-black flex flex-center items-center justify-center transition-opacity duration-1000">
-        <div class="flex flex-col items-center">
-            <img src="https://i.ibb.co/7xQTPb2t/LOGO.png" class="h-20 w-auto mb-10 filter brightness-0 dark:filter-none animate-pulse" alt="Essência de Romã">
-            <span class="text-[10px] text-black dark:text-brand-gold uppercase tracking-[0.5em] font-serif font-bold">Maison de Beauté</span>
+    <!-- NAVIGATION: THE THEATER MENU -->
+    <nav class="nav-cinema">
+        <div class="flex items-center gap-6">
+            <div class="w-12 h-12 border border-white/10 flex items-center justify-center font-black text-white text-2xl">DG</div>
+            <div class="hidden sm:block leading-none text-left">
+                <span class="text-xs font-black tracking-[0.3em] uppercase text-white">Dias Grabski</span><br>
+                <span class="text-[7px] text-gray-700 uppercase tracking-[0.6em]">Holding Premiere</span>
+            </div>
         </div>
-    </div>
-
-    <!-- MOBILE GLASS DOCK -->
-    <nav class="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] glass-dock rounded-full px-4 py-3 flex items-center justify-between gap-1 transition-all duration-300">
-        <a href="#home" id="nav-home" class="dock-item active" onclick="navigate('main-site-wrapper')">
-            <i class="fas fa-home text-lg"></i>
-            <span class="text-[5px] uppercase tracking-wider mt-1 font-bold">Início</span>
-        </a>
-        <a href="#liso" id="nav-liso" class="dock-item" onclick="navigate('liso-view-container')">
-            <i class="fas fa-gem text-lg"></i>
-            <span class="text-[5px] uppercase tracking-wider mt-1 font-bold">Liso 8K</span>
-        </a>
-        <a href="#atelier" id="nav-atelier" class="dock-item" onclick="navigate('atelier-view-container')">
-            <i class="fas fa-cut text-lg"></i>
-            <span class="text-[5px] uppercase tracking-wider mt-1 font-bold">Atelier</span>
-        </a>
-        <a href="#clube" id="nav-clube" class="dock-item" onclick="navigate('club-view-container')">
-            <i class="fas fa-crown text-lg"></i>
-            <span class="text-[5px] uppercase tracking-wider mt-1 font-bold">Clube</span>
-        </a>
-        <a href="#agata" id="nav-agata" class="dock-item" onclick="navigate('agata-view-container')">
-            <i class="fas fa-shopping-bag text-lg"></i>
-            <span class="text-[5px] uppercase tracking-wider mt-1 font-bold">Boutique</span>
-        </a>
-        <button onclick="toggleTheme()" class="dock-item">
-            <i class="fas fa-circle-half-stroke text-lg"></i>
-            <span class="text-[5px] uppercase tracking-wider mt-1 font-bold">Tema</span>
-        </button>
+        <div class="flex gap-14">
+            <a onclick="switchPage('movie')" class="nav-link active" data-page="movie">The Premiere</a>
+            <a onclick="switchPage('shop')" class="nav-link" data-page="shop">The Boutique</a>
+            <a onclick="switchPage('factory')" class="nav-link" data-page="factory">Engineering</a>
+            <a onclick="switchPage('ritual')" class="nav-link" data-page="ritual">The Ritual</a>
+        </div>
     </nav>
 
-    <!-- NAVBAR DESKTOP -->
-    <header class="hidden md:flex fixed top-0 left-0 w-full z-[90] bg-white/90 dark:bg-black/80 backdrop-blur-md border-b border-gray-100 dark:border-white/10 h-24 items-center">
-        <div class="container mx-auto px-6 flex justify-between items-center">
-            <div class="flex items-center gap-4 cursor-pointer" onclick="navigate('main-site-wrapper')">
-                <img src="https://i.ibb.co/7xQTPb2t/LOGO.png" alt="Essência de Romã" class="h-12 w-auto filter brightness-0 dark:filter-none">
-                <div class="flex flex-col text-left">
-                    <span class="text-black dark:text-white font-serif text-xl tracking-widest uppercase font-bold">ESSÊNCIA DE ROMÃ</span>
-                    <span class="text-[8px] text-brand-gold uppercase tracking-[0.4em] mt-1 font-bold">Maison Chapecó</span>
-                </div>
-            </div>
-            <nav class="flex items-center gap-12">
-                <a href="javascript:void(0)" onclick="navigate('main-site-wrapper')" class="text-xs uppercase font-bold hover:text-brand-gold transition-colors tracking-widest">Início</a>
-                <a href="javascript:void(0)" onclick="navigate('liso-view-container')" class="text-xs uppercase font-bold hover:text-brand-gold transition-colors tracking-widest">Liso 8K</a>
-                <a href="javascript:void(0)" onclick="navigate('atelier-view-container')" class="text-xs uppercase font-bold hover:text-brand-gold transition-colors tracking-widest">Maison Atelier</a>
-                <a href="javascript:void(0)" onclick="navigate('club-view-container')" class="text-xs uppercase font-bold hover:text-brand-gold transition-colors tracking-widest">Membership</a>
-                <a href="javascript:void(0)" onclick="navigate('agata-view-container')" class="text-xs uppercase font-bold hover:text-brand-gold transition-colors tracking-widest">Boutique</a>
-                <button onclick="toggleTheme()" class="ml-4 text-lg hover:text-brand-gold transition"><i class="fas fa-circle-half-stroke"></i></button>
-            </nav>
-        </div>
-    </header>
-
-    <!-- ####################################################### -->
-    <!-- ################ MAIN VIEW (HOME COMPLETA) ############ -->
-    <!-- ####################################################### -->
-    <div id="main-site-wrapper" class="section-panel active">
+    <div class="wrapper">
         
-        <!-- 1. HERO SECTION -->
-        <section class="h-screen w-full flex items-center justify-center relative overflow-hidden bg-white dark:bg-luxury-black transition-colors duration-500">
-            <div class="absolute inset-0 z-0">
-                <video id="heroVideoMain" class="w-full h-full object-cover opacity-80 dark:opacity-60" autoplay muted loop playsinline>
-                    <source src="https://res.cloudinary.com/daukvmsc2/video/upload/v1767280250/Design_sem_nome_qdjqut.mp4" type="video/mp4">
-                </video>
-                <div class="absolute inset-0 bg-gradient-to-t from-white dark:from-luxury-black via-transparent to-transparent"></div>
-            </div>
+        <!-- MODULO: THE PREMIERE (Entrada Cinema Noir) -->
+        <main id="page-movie" class="page-content active">
+            <section class="hero-cinema">
+                <div class="cinema-overlay"></div>
+                <span class="tag-status z-10">Private Collection 2026</span>
+                <h1 class="cinema-title text-white">Dias Grabski <br> <span class="italic gold-title font-bold">Holding.</span></h1>
+                <button onclick="switchPage('shop')" class="btn-enter">Enter the Boutique</button>
+            </section>
 
-            <div class="relative z-20 text-center px-6 md:mt-10 pt-20 md:pt-0">
-                <div class="flex items-center justify-center gap-2 mb-6 opacity-90 animate-fade-in-up">
-                    <div class="flex text-brand-gold text-[10px] gap-1 drop-shadow-lg">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <!-- Cast Selection: Os 4 Filmes / Segmentos -->
+            <section class="container mx-auto px-10 py-48 bg-black">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    
+                    <!-- Foco (Branca) -->
+                    <div class="movie-poster" onclick="switchPage('shop')">
+                        <div class="poster-img" style="background-image: var(--img-focus)"></div>
+                        <div class="poster-content">
+                            <span class="text-white text-[8px] font-black uppercase tracking-[5px] block mb-4 opacity-40">Performance Day</span>
+                            <h4 class="text-5xl font-light text-white italic mb-2">Foco.</h4>
+                            <p class="text-[11px] text-gray-300 uppercase tracking-[2px] font-black italic">Ativação Diurna</p>
+                        </div>
                     </div>
-                    <span class="text-gray-600 dark:text-gray-400 text-[10px] uppercase tracking-widest border-l border-gray-400 pl-2 ml-1">Referência em Chapecó</span>
+
+                    <!-- Sono (Preta) -->
+                    <div class="movie-poster" onclick="switchPage('shop')">
+                        <div class="poster-img" style="background-image: var(--img-sleep)"></div>
+                        <div class="poster-content">
+                            <span class="text-white text-[8px] font-black uppercase tracking-[5px] block mb-4 opacity-40">Recovery Night</span>
+                            <h4 class="text-5xl font-light text-white italic mb-2">Sono Revigorante.</h4>
+                            <p class="text-[11px] text-gray-300 uppercase tracking-[2px] font-black italic">Restauro Sistêmico</p>
+                        </div>
+                    </div>
+
+                    <!-- Libido (Vermelha) -->
+                    <div class="movie-poster" onclick="switchPage('shop')">
+                        <div class="poster-img" style="background-image: var(--img-libido)"></div>
+                        <div class="poster-content">
+                            <span class="text-white text-[8px] font-black uppercase tracking-[5px] block mb-4 opacity-40">Vitality Drive</span>
+                            <h4 class="text-5xl font-light pink-title italic mb-2">Libido.</h4>
+                            <p class="text-[11px] text-gray-300 uppercase tracking-[2px] font-black italic">Vitalidade & Desejo</p>
+                        </div>
+                    </div>
+
+                    <!-- Ápice da Balada (Dourada) -->
+                    <div class="movie-poster" onclick="switchPage('shop')">
+                        <div class="poster-img" style="background-image: var(--img-hero)"></div>
+                        <div class="poster-content">
+                            <span class="text-white text-[8px] font-black uppercase tracking-[5px] block mb-4 opacity-40">Elite Edition</span>
+                            <h4 class="text-5xl font-light gold-title italic mb-2">Ápice da Balada.</h4>
+                            <p class="text-[11px] text-gray-300 uppercase tracking-[2px] font-black italic">Ultra Luxury Experience</p>
+                        </div>
+                    </div>
+
                 </div>
+            </section>
+        </main>
 
-                <h1 class="font-serif leading-[0.95] mb-8 drop-shadow-2xl animate-fade-in-up">
-                    <span class="block text-xl md:text-3xl font-light text-black dark:text-white tracking-[0.3em] uppercase mb-4">Chega de Frizz e Volume</span>
-                    <span class="block text-5xl md:text-[8rem] text-black dark:text-white uppercase font-bold">Liso Blindado <br><span class="text-brand-gold dark:text-gold-dynamic italic font-light">O Fim da Chapinha</span></span>
-                </h1>
-
-                <div class="flex items-center justify-center gap-4 mb-8 animate-fade-in-up">
-                    <span class="px-4 py-1 border border-brand-gold/30 bg-brand-gold/10 text-brand-gold text-[10px] font-bold uppercase tracking-widest rounded-full">Zero Formol</span>
-                    <span class="px-4 py-1 border border-gray-300 dark:border-white/10 bg-white dark:bg-white/5 text-gray-700 dark:text-gray-300 text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">Compatível com Loiras</span>
-                </div>
-
-                <p class="text-gray-600 dark:text-gray-300 text-sm md:text-lg max-w-2xl mx-auto mb-8 md:mb-12 font-light tracking-wide leading-relaxed animate-fade-in-up" style="animation-delay: 0.2s;">
-                    Conquiste a liberdade de acordar pronta todos os dias. Tecnologia Híbrida exclusiva que alisa, trata e espelha o brilho na primeira aplicação.
-                </p>
+        <!-- MODULO: THE BOUTIQUE (Shopping Estratégico Cinema) -->
+        <main id="page-shop" class="page-content">
+            <div class="container mx-auto px-10 pt-52 max-w-7xl">
+                <h2 class="text-8xl font-extralight text-white uppercase italic text-center mb-16">The <span class="pink-title font-bold">Boutique.</span></h2>
                 
-                <div class="flex flex-col items-center gap-6 animate-fade-in-up" style="animation-delay: 0.4s;">
-                    <button onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Ol%C3%A1!%20Estou%20na%20Home%20do%20site%20e%20quero%20conquistar%20meu%20Liso%20Blindado%20definitivo.'); return false;" class="btn-luxury-cta py-5 px-12 rounded-full text-xs font-bold tracking-widest shadow-lg hover:scale-105 transition-transform w-full md:w-auto">QUERO MEU LISO BLINDADO <i class="fas fa-arrow-right ml-2"></i></button>
-                    <span class="text-[10px] text-gray-600 dark:text-gray-500 uppercase tracking-widest"><i class="fas fa-check-circle text-brand-gold mr-1"></i> Garantia de Resultado 7 Dias</span>
-                    
-                    <!-- BANNER DE CASHBACK -->
-                    <div class="mt-4 w-full max-w-md mx-auto">
-                        <div class="relative bg-gray-50 dark:bg-gradient-to-r dark:from-[#1a0505] dark:to-[#0a0a0a] border border-brand-gold/30 rounded-xl p-4 flex items-center justify-between gap-4 shadow-lg cursor-pointer" onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Ol%C3%A1!%20Vi%20o%20banner%20de%20Cashback%20na%20Home%20e%20quero%20comprar%20produtos%20para%20ganhar%20cr%C3%A9dito.'); return false;">
-                            <div class="flex-shrink-0 w-12 h-12 rounded-full border border-brand-gold/50 flex items-center justify-center bg-white dark:bg-black/50 text-brand-gold shadow-gold-glow animate-pulse-gold relative z-10">
-                                <i class="fas fa-shopping-bag text-xl"></i>
+                <div class="boutique-nav">
+                    <a onclick="switchCategory('beauty')" class="boutique-link active" id="btn-beauty">I: Beauty (Cabelo • Pele • Unha)</a>
+                    <a onclick="switchCategory('performance')" class="boutique-link" id="btn-performance">II: Performance (Elite Energy)</a>
+                </div>
+
+                <!-- LINHA BEAUTY (CLÍNICAS / SPAS) -->
+                <div id="cat-beauty" class="category-content active">
+                    <div class="grid lg:grid-cols-2 gap-24 items-center">
+                        <div class="movie-poster h-[850px] border-pink-500/20">
+                            <div class="poster-img" style="background-image: var(--img-beauty); opacity: 0.9;"></div>
+                            <div class="poster-content">
+                                <h3 class="text-6xl font-black text-white italic uppercase tracking-tighter">Treatment Flagship</h3>
                             </div>
-                            <div class="text-left flex-grow relative z-10">
-                                <h4 class="text-black dark:text-white font-serif text-xl leading-none mb-1">Compre Home Care <span class="text-brand-gold">& Ganhe Crédito</span></h4>
-                                <p class="text-[9px] text-gray-600 dark:text-gray-400 uppercase tracking-widest">50% do valor vira desconto no <span class="text-black dark:text-white font-bold">Liso Soberano 8k</span>.</p>
+                        </div>
+                        <div class="space-y-12 text-left">
+                            <span class="tag-status">Mantra Sistêmico</span>
+                            <h3 class="text-7xl font-bold italic text-white uppercase leading-none">Cabelo <br> Pele <br> Unha</h3>
+                            <p class="text-gray-500 text-2xl font-light italic leading-relaxed">
+                                A biotecnologia definitiva para o mercado de luxo. Regeneração celular visível com foco profissional B2B.
+                            </p>
+                            <div class="nutrition-grid">
+                                <div class="nutrition-item"><span>Biotina B7 Pure</span><span class="text-pink-500 font-bold">100% VD</span></div>
+                                <div class="nutrition-item"><span>Colagénio Fibrilar</span><span class="text-white">Premium Grade</span></div>
+                                <div class="nutrition-item"><span>Ferro & Zinco Orgânico</span><span class="text-white">Blindagem Térmica</span></div>
                             </div>
-                            <div class="flex-shrink-0 relative z-10">
-                                <span class="w-8 h-8 rounded-full bg-brand-gold text-white dark:text-black flex items-center justify-center"><i class="fas fa-arrow-right text-xs"></i></span>
+                            <div class="p-14 glass-panel border-white/10 flex justify-between items-center">
+                                <div><p class="text-[10px] text-gray-600 uppercase font-black tracking-[4px]">Dose Unitária</p><span class="text-6xl font-black text-white italic tracking-tighter">R$ 19</span></div>
+                                <button class="btn-enter mt-0 border-white/40">Request Access</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LINHA PERFORMANCE (FOCO / SONO / LIBIDO / BALADA) -->
+                <div id="cat-performance" class="category-content">
+                    <div class="grid md:grid-cols-2 gap-12">
+                        <!-- Foco: Branca -->
+                        <div class="glass-panel p-12 flex flex-col justify-between border-white/5 bg-white/[0.01]">
+                            <div class="image-container h-[480px] mb-10 shadow-2xl">
+                                <img src="https://calcularodadd.carrd.co/assets/images/image21.jpg?v=7f6e78a6" class="w-full h-full object-cover">
+                                <div class="absolute top-8 left-8"><span class="tag-day">Branca: Foco Diurno</span></div>
+                            </div>
+                            <h4 class="text-4xl font-bold text-white uppercase italic">Energy Performance</h4>
+                            <p class="text-lg text-gray-500 mt-4 font-light italic">Energia limpa para dominar o salão e a rotina extraordinária.</p>
+                            <div class="mt-12 pt-10 border-t border-white/5 flex justify-between items-center">
+                                <span class="text-5xl font-black italic tracking-tighter text-white">R$ 19</span>
+                                <button class="btn-enter mt-0 py-3 px-8 text-[9px]">Select Film</button>
+                            </div>
+                        </div>
+                        <!-- Sono: Preta -->
+                        <div class="glass-panel p-12 flex flex-col justify-between border-pink-500/10 bg-pink-500/[0.02]">
+                            <div class="image-container h-[480px] mb-10 shadow-2xl">
+                                <img src="https://calcularodadd.carrd.co/assets/images/image20.jpg?v=7f6e78a6" class="w-full h-full object-cover">
+                                <div class="absolute top-8 left-8"><span class="tag-night">Preta: Sono Revigorante</span></div>
+                            </div>
+                            <h4 class="text-4xl font-bold text-white uppercase italic">Night Recovery</h4>
+                            <p class="text-lg text-gray-500 mt-4 font-light italic">Restauro biológico de <strong>Cabelo, Pele e Unha</strong> durante o sono profundo.</p>
+                            <div class="mt-12 pt-10 border-t border-white/5 flex justify-between items-center">
+                                <span class="text-5xl font-black italic tracking-tighter text-white">R$ 19</span>
+                                <button class="btn-enter mt-0 py-3 px-8 text-[9px] border-pink-500/30">Select Film</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </main>
 
-        <!-- 2. VISUAL RESULTS -->
-        <section class="py-24 md:py-32 bg-gray-50 dark:bg-[#020202] relative overflow-hidden transition-colors duration-500">
-            <div class="container mx-auto px-6 max-w-7xl relative z-10">
-                <div class="text-center mb-16 reveal">
-                    <span class="text-brand-gold text-[10px] font-bold tracking-[0.3em] uppercase block mb-4">Sem Filtros</span>
-                    <h2 class="font-serif text-4xl md:text-6xl text-black dark:text-white mb-6 uppercase italic">A VERDADE VISUAL</h2>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm max-w-3xl mx-auto leading-relaxed font-light uppercase tracking-widest">
-                        Veja o impacto real da nossa tecnologia. <strong class="text-black dark:text-white">Resultado na Primeira Sessão.</strong>
-                    </p>
-                </div>
-
-                <div class="mobile-snap-x pb-8">
-                    <div class="mobile-snap-item rounded-sm overflow-hidden border border-gray-200 dark:border-white/10 relative group aspect-[9/16] shadow-xl md:flex-1 cursor-zoom-in" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image19.jpg?v=c257b396')">
-                        <video class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-700" autoplay loop muted playsinline>
-                            <source src="https://imagensagata.carrd.co/assets/videos/video06.mp4?v=83fac04c" type="video/mp4">
-                        </video>
-                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 to-transparent flex justify-between items-end">
-                            <span class="text-white text-[10px] font-bold uppercase tracking-wider">Liso Supremo</span>
-                            <div class="w-7 h-7 rounded-full border border-white/20 flex items-center justify-center bg-black/40 backdrop-blur-md"><i class="fas fa-video text-[10px] text-white/70"></i></div>
-                        </div>
-                    </div>
-
-                    <div class="mobile-snap-item rounded-sm overflow-hidden border border-gray-200 dark:border-white/10 relative group aspect-[9/16] shadow-xl md:flex-1 cursor-zoom-in" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image20.jpg?v=4b458cce')">
-                        <video class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-700" autoplay loop muted playsinline>
-                            <source src="https://imagensagata.carrd.co/assets/videos/video03.mp4?v=fd8cb1e0" type="video/mp4">
-                        </video>
-                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 to-transparent flex justify-between items-end">
-                            <span class="text-white text-[10px] font-bold uppercase tracking-wider">Liso Blindado</span>
-                            <div class="w-7 h-7 rounded-full border border-white/20 flex items-center justify-center bg-black/40 backdrop-blur-md"><i class="fas fa-video text-[10px] text-white/70"></i></div>
-                        </div>
-                    </div>
-
-                    <div class="mobile-snap-item rounded-sm overflow-hidden border border-gray-200 dark:border-white/10 relative group aspect-[9/16] shadow-xl md:flex-1 cursor-zoom-in" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image11.jpg?v=4b8919f9')">
-                        <video class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-700" autoplay loop muted playsinline>
-                            <source src="https://res.cloudinary.com/daukvmsc2/video/upload/v1767279737/WhatsApp_Video_2025-12-10_at_19.00.59_ov4cma.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 to-transparent flex justify-between items-end">
-                            <span class="text-white text-[10px] font-bold uppercase tracking-wider">Brilho 8K</span>
-                            <div class="w-7 h-7 rounded-full border border-white/20 flex items-center justify-center bg-black/40 backdrop-blur-md"><i class="fas fa-video text-[10px] text-white/70"></i></div>
-                        </div>
-                    </div>
-
-                    <div class="mobile-snap-item rounded-sm overflow-hidden border border-gray-200 dark:border-white/10 relative group aspect-[9/16] shadow-xl md:flex-1 cursor-zoom-in" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image12.jpg?v=c257b396')">
-                        <video class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition duration-700" autoplay loop muted playsinline>
-                            <source src="https://imagensagata.carrd.co/assets/videos/video01.mp4?v=c257b396" type="video/mp4">
-                        </video>
-                        <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/90 to-transparent flex justify-between items-end">
-                            <span class="text-white text-[10px] font-bold uppercase tracking-wider">Resultado Premium</span>
-                            <div class="w-7 h-7 rounded-full border border-white/20 flex items-center justify-center bg-black/40 backdrop-blur-md"><i class="fas fa-video text-[10px] text-white/70"></i></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-16 text-center">
-                    <button onclick="navigate('liso-view-container')" class="btn-editorial bg-black dark:bg-white text-white dark:text-black border-none hover:bg-brand-gold hover:text-white text-xs">VER PROTOCOLO COMPLETO</button>
+        <!-- FACTORY (Industrial Engineering) -->
+        <main id="page-factory" class="page-content">
+            <div class="container mx-auto px-10 pt-52 max-w-6xl text-center">
+                <span class="tag-status">Industrial Operations</span>
+                <h2 class="text-7xl font-extralight text-white mb-20 italic">The <span class="text-emerald-400 font-bold">Scale.</span></h2>
+                <div class="glass-panel p-24 border-white/5">
+                    <table class="w-full text-left font-light italic">
+                        <thead><tr class="bg-white/5 border-b border-white/10"><th class="p-8 uppercase text-[12px] tracking-[6px] text-gray-500">Feature</th><th class="p-8 uppercase text-[12px] tracking-[6px] text-gray-500">Investment</th></tr></thead>
+                        <tbody>
+                            <tr><td class="p-8 text-2xl font-light">Lote Piloto (700 Unidades)</td><td class="p-8 text-5xl font-black text-pink-500 italic">R$ 6.643</td></tr>
+                            <tr class="border-t border-white/5"><td class="p-8 text-2xl font-light">Mantra Sistêmico</td><td class="p-8 text-xl font-bold text-gray-400 uppercase italic">Cabelo • Pele • Unha</td></tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </section>
+        </main>
 
-        <!-- 3. NEUROVENDAS (DIAGNÓSTICO HÍBRIDO) -->
-        <section class="py-24 bg-white dark:bg-gradient-to-b dark:from-[#050505] dark:to-[#020202] border-t border-gray-100 dark:border-brand-gold/10 transition-colors duration-500">
-            <div class="container mx-auto px-6 text-center reveal">
-                <div class="max-w-5xl mx-auto border border-gray-200 dark:border-brand-gold/20 bg-gray-50 dark:bg-[#2b0505]/20 backdrop-blur-sm rounded-sm p-10 md:p-16 shadow-xl dark:shadow-gold-glow">
-                    <span class="text-brand-gold text-xs font-bold tracking-[0.3em] uppercase block mb-8 animate-pulse">Consultoria Digital</span>
-                    <h3 class="font-serif text-4xl md:text-5xl text-black dark:text-white italic mb-4">"Qual o seu objetivo hoje?"</h3>
-                    <p class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-12">Selecione para navegar para a experiência ideal</p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <!-- Botão 1: Liso (Navegação Interna) -->
-                        <button onclick="navigate('liso-view-container')" class="group relative px-6 py-8 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-sm hover:border-brand-gold transition-all shadow-sm hover:-translate-y-1 flex flex-col items-center">
-                            <div class="w-12 h-12 rounded-full bg-gray-100 dark:bg-white/10 flex items-center justify-center text-brand-gold mb-4 text-xl group-hover:bg-brand-gold group-hover:text-black transition-colors"><i class="fas fa-gem"></i></div>
-                            <span class="block text-black dark:text-white font-bold text-xs uppercase tracking-widest mb-2">Alisamento 8K</span>
-                            <span class="block text-[10px] text-gray-500 dark:text-gray-400 group-hover:text-brand-gold">Conhecer a tecnologia Liso Soberano</span>
-                        </button>
+    </div>
 
-                        <!-- Botão 2: Tratamento/Recuperação (WhatsApp direto) -->
-                        <a href="#" onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Ol%C3%A1!%20Preciso%20de%20uma%20ajuda%20especializada.%20Sinto%20meu%20cabelo%20danificado%20e%20gostaria%20de%20um%20diagn%C3%B3stico%20para%20a%20UTI%20Capilar.'); return false;" class="group relative px-6 py-8 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-sm hover:border-brand-gold transition-all shadow-sm hover:-translate-y-1 flex flex-col items-center">
-                            <div class="w-12 h-12 rounded-full bg-gray-100 dark:bg-white/10 flex items-center justify-center text-brand-gold mb-4 text-xl group-hover:bg-brand-gold group-hover:text-black transition-colors"><i class="fas fa-heartbeat"></i></div>
-                            <span class="block text-black dark:text-white font-bold text-xs uppercase tracking-widest mb-2">Recuperação (UTI)</span>
-                            <span class="block text-[10px] text-gray-500 dark:text-gray-400 group-hover:text-brand-gold">Diagnóstico para cabelos danificados</span>
-                        </a>
-
-                        <!-- Botão 3: Cor e Corte (Navegação Interna) -->
-                        <button onclick="navigate('atelier-view-container')" class="group relative px-6 py-8 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-sm hover:border-brand-gold transition-all shadow-sm hover:-translate-y-1 flex flex-col items-center">
-                            <div class="w-12 h-12 rounded-full bg-gray-100 dark:bg-white/10 flex items-center justify-center text-brand-gold mb-4 text-xl group-hover:bg-brand-gold group-hover:text-black transition-colors"><i class="fas fa-palette"></i></div>
-                            <span class="block text-black dark:text-white font-bold text-xs uppercase tracking-widest mb-2">Cor & Visagismo</span>
-                            <span class="block text-[10px] text-gray-500 dark:text-gray-400 group-hover:text-brand-gold">Ver portfólio de Mechas e Corte</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. MENU DE SERVIÇOS (CARROSSEL HOME) -->
-        <section id="services" class="py-24 md:py-32 bg-gray-50 dark:bg-[#020202] transition-colors duration-500">
-            <div class="container mx-auto px-6 max-w-7xl">
-                <div class="text-center mb-16 reveal">
-                    <h2 class="font-serif text-4xl md:text-5xl text-black dark:text-white uppercase italic">Menu de Experiências</h2>
-                </div>
-                <div class="mobile-snap-x pb-8">
-                    
-                    <!-- LISO SOBERANO -->
-                    <div class="mobile-snap-item bg-white dark:bg-white/5 rounded-sm p-1 relative group overflow-hidden h-full flex flex-col transition-all duration-500 w-full max-w-[380px] border border-brand-gold shadow-gold-glow">
-                        <div class="absolute top-0 left-0 w-full bg-brand-gold text-black text-[10px] font-bold text-center py-2 uppercase tracking-widest z-20 shadow-md">⭐ ESCOLHA DA ESPECIALISTA</div>
-                        <div class="relative h-full w-full p-8 pt-12 flex flex-col">
-                            <div class="w-full h-48 rounded-sm overflow-hidden mb-8 border border-gray-100 dark:border-brand-gold/30 shadow-lg relative mt-2">
-                                <img src="https://imagensagata.carrd.co/assets/images/image19.jpg?v=c257b396" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" alt="Liso Soberano 8K">
-                            </div>
-                            <ul class="space-y-4 mb-8 flex-grow text-xs text-gray-600 dark:text-gray-400">
-                                <li class="flex gap-3 text-brand-gold"><i class="fas fa-check-circle"></i> Sem Formol | Garantia de 7 Dias</li>
-                                <li class="flex gap-3">
-                                    <i class="fas fa-heart text-brand-gold mt-0.5"></i>
-                                    <div><strong class="text-black dark:text-brand-gold block uppercase tracking-wide opacity-90 mb-0.5">O Desejo</strong>Liso absoluto, com efeito espelhado e durabilidade extrema.</div>
-                                </li>
-                                <li class="flex gap-3">
-                                    <i class="fas fa-fire text-brand-gold mt-0.5"></i>
-                                    <div><strong class="text-black dark:text-brand-gold block uppercase tracking-wide opacity-90 mb-0.5">A Técnica</strong>Arquitetura de Liso Blindado. Protocolo de reconstrução e selagem covalente.</div>
-                                </li>
-                            </ul>
-                            <div class="border-t border-gray-200 dark:border-brand-gold/20 pt-6 mt-auto">
-                                <div class="flex justify-between items-end mb-6">
-                                    <span class="text-[10px] text-gray-500 dark:text-brand-gold uppercase">A partir de</span>
-                                    <span class="text-3xl text-black dark:text-white font-serif font-bold">R$ 390</span>
-                                </div>
-                                <button onclick="navigate('liso-view-container')" class="btn-editorial w-full bg-brand-gold text-white hover:bg-black py-4 text-[10px] rounded-sm">VER DETALHES</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- GLASS MOLECULAR / TERAPIA -->
-                    <div class="mobile-snap-item bg-white dark:bg-white/5 rounded-sm p-1 relative group overflow-hidden h-full flex flex-col transition-all duration-500 w-full max-w-[380px] border border-gray-200 dark:border-white/10">
-                        <div class="relative h-full w-full p-8 flex flex-col">
-                            <div class="w-full h-48 rounded-sm overflow-hidden mb-8 border border-gray-100 dark:border-white/10 shadow-lg relative">
-                                <img src="https://imagensagata.carrd.co/assets/images/image11.jpg?v=4b8919f9" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" alt="Glass Molecular">
-                            </div>
-                            <ul class="space-y-4 mb-8 flex-grow text-xs text-gray-600 dark:text-gray-400">
-                                <li class="flex gap-3 text-gray-500"><i class="fas fa-shield-alt text-brand-gold"></i> Brilho Instantâneo</li>
-                                <li class="flex gap-3">
-                                    <i class="fas fa-heart text-brand-gold mt-0.5"></i>
-                                    <div><strong class="text-black dark:text-white block uppercase tracking-wide opacity-80 mb-0.5">O Desejo</strong>Eliminar a porosidade e disciplinar sem perder o balanço natural.</div>
-                                </li>
-                                <li class="flex gap-3">
-                                    <i class="fas fa-tools text-brand-gold mt-0.5"></i>
-                                    <div><strong class="text-black dark:text-white block uppercase tracking-wide opacity-80 mb-0.5">A Técnica</strong>Fusão tecnológica avançada. Acabamento de alta resolução.</div>
-                                </li>
-                            </ul>
-                            <div class="border-t border-gray-200 dark:border-white/10 pt-6 mt-auto">
-                                <div class="flex justify-between items-end mb-6">
-                                    <span class="text-[10px] text-gray-500 uppercase">A partir de</span>
-                                    <span class="text-3xl text-black dark:text-white font-serif font-bold">R$ 180</span>
-                                </div>
-                                <a href="#" onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Ol%C3%A1!%20Me%20interessei%20pelo%20Glass%20Molecular%20da%20Home.%20Quero%20brilho%20instant%C3%A2neo.'); return false;" class="btn-outline w-full block text-center py-4 text-[10px] rounded-sm">AGENDAR</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- DETOX REPAIR -->
-                    <div class="mobile-snap-item bg-white dark:bg-white/5 rounded-sm p-1 relative group overflow-hidden h-full flex flex-col transition-all duration-500 w-full max-w-[380px] border border-gray-200 dark:border-white/10">
-                        <div class="relative h-full w-full p-8 flex flex-col">
-                             <div class="w-full h-48 rounded-sm overflow-hidden mb-8 border border-gray-100 dark:border-cyan-500/20 shadow-lg relative bg-gray-100 dark:bg-cyan-900/20">
-                                 <img src="https://imagensagata.carrd.co/assets/images/image12.jpg?v=c257b396" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" alt="Detox Repair">
-                             </div>
-                             <ul class="space-y-4 mb-8 flex-grow text-xs text-gray-600 dark:text-gray-400">
-                                <li class="flex gap-3 text-cyan-600 dark:text-cyan-400"><i class="fas fa-leaf"></i> Saúde Capilar</li>
-                                <li class="flex gap-3">
-                                    <i class="fas fa-heart text-cyan-600 dark:text-cyan-400 mt-0.5"></i>
-                                    <div><strong class="text-black dark:text-cyan-200 block uppercase tracking-wide opacity-90 mb-0.5">O Desejo</strong>Recuperar cabelos pesados, opacos ou pós-química.</div>
-                                </li>
-                                <li class="flex gap-3">
-                                    <i class="fas fa-flask text-cyan-600 dark:text-cyan-400 mt-0.5"></i>
-                                    <div><strong class="text-black dark:text-cyan-200 block uppercase tracking-wide opacity-90 mb-0.5">A Técnica</strong>Limpeza quelante + Reposição de Massa.</div>
-                                </li>
-                            </ul>
-                            <div class="border-t border-gray-200 dark:border-white/10 pt-6 mt-auto">
-                                <div class="flex justify-between items-end mb-6">
-                                    <span class="text-[10px] text-gray-500 uppercase">A partir de</span>
-                                    <span class="text-3xl text-black dark:text-white font-serif font-bold">R$ 148</span>
-                                </div>
-                                <a href="#" onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Ol%C3%A1!%20Preciso%20do%20Detox%20Repair%20que%20vi%20na%20Home.%20Meu%20cabelo%20precisa%20de%20sa%C3%BAde.'); return false;" class="btn-outline w-full block text-center py-4 text-[10px] rounded-sm">AGENDAR</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-16 text-center">
-                    <button onclick="navigate('liso-view-container')" class="btn-editorial bg-black dark:bg-white text-white dark:text-black border-none hover:bg-brand-gold hover:text-white text-xs">VER PROTOCOLO COMPLETO</button>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. FUNIL DE AGENDAMENTO -->
-        <section id="funnel" class="bg-white dark:bg-[#0a0202] py-24 md:py-32 border-b border-gray-100 dark:border-brand-gold/10 relative overflow-hidden transition-colors">
-            <div class="container mx-auto px-6 max-w-7xl relative z-10">
-                <div class="text-center mb-20 reveal">
-                    <span class="text-brand-gold text-xs md:text-sm font-bold tracking-[0.2em] uppercase">Processo Simples</span>
-                    <h3 class="font-serif text-4xl md:text-5xl text-black dark:text-white mt-4 italic uppercase">Do Agendamento ao Espelho</h3>
-                </div>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 reveal">
-                    <div class="text-center group p-6 border border-gray-200 dark:border-white/10 rounded-sm hover:border-brand-gold transition-all shadow-sm">
-                        <div class="w-16 h-16 mx-auto rounded-full border border-brand-gold/30 bg-gray-50 dark:bg-white/5 flex items-center justify-center text-brand-gold mb-6 group-hover:bg-brand-gold group-hover:text-white transition-all"><i class="far fa-calendar-check text-2xl"></i></div>
-                        <h4 class="text-black dark:text-white font-bold text-sm uppercase mb-3">1. Reserva Express</h4>
-                        <p class="text-gray-500 text-xs leading-relaxed uppercase tracking-widest">Toque no botão e garanta seu horário pelo WhatsApp.</p>
-                    </div>
-                    <div class="text-center group p-6 border border-gray-200 dark:border-white/10 rounded-sm hover:border-brand-gold transition-all shadow-sm">
-                        <div class="w-16 h-16 mx-auto rounded-full border border-brand-gold/30 bg-gray-50 dark:bg-white/5 flex items-center justify-center text-brand-gold mb-6 group-hover:bg-brand-gold group-hover:text-white transition-all"><i class="fas fa-microscope text-2xl"></i></div>
-                        <h4 class="text-black dark:text-white font-bold text-sm uppercase mb-3">2. Análise Gratuita</h4>
-                        <p class="text-gray-500 text-xs leading-relaxed uppercase tracking-widest">Avaliamos seu fio presencialmente para garantir segurança total.</p>
-                    </div>
-                    <div class="text-center group p-6 border border-gray-200 dark:border-white/10 rounded-sm hover:border-brand-gold transition-all shadow-sm">
-                        <div class="w-16 h-16 mx-auto rounded-full border border-brand-gold/30 bg-gray-50 dark:bg-white/5 flex items-center justify-center text-brand-gold mb-6 group-hover:bg-brand-gold group-hover:text-white transition-all"><i class="fas fa-magic text-2xl"></i></div>
-                        <h4 class="text-black dark:text-white font-bold text-sm uppercase mb-3">3. Aplicação Única</h4>
-                        <p class="text-gray-500 text-xs leading-relaxed uppercase tracking-widest">Tecnologia Híbrida que alisa enquanto trata.</p>
-                    </div>
-                    <div class="text-center group p-6 border border-gray-200 dark:border-white/10 rounded-sm hover:border-brand-gold transition-all shadow-sm">
-                        <div class="w-16 h-16 mx-auto rounded-full border border-brand-gold/30 bg-gray-50 dark:bg-white/5 flex items-center justify-center text-brand-gold mb-6 group-hover:bg-brand-gold group-hover:text-white transition-all"><i class="fas fa-gem text-2xl"></i></div>
-                        <h4 class="text-black dark:text-white font-bold text-sm uppercase mb-3">4. Liso Soberano</h4>
-                        <p class="text-gray-500 text-xs leading-relaxed uppercase tracking-widest">Saia do salão com o cabelo lavado, seco e perfeito.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. CIÊNCIA HÍBRIDA -->
-        <section id="science" class="py-24 md:py-32 bg-gray-50 dark:bg-[#050505] relative overflow-hidden transition-colors">
-            <div class="container mx-auto px-6 max-w-7xl relative z-10">
-                <div class="text-center mb-16 reveal">
-                    <span class="text-brand-gold text-[10px] font-bold tracking-[0.3em] uppercase block mb-2">Biotecnologia</span>
-                    <h2 class="font-serif text-4xl md:text-6xl text-black dark:text-white mb-4 uppercase italic">A CIÊNCIA HÍBRIDA</h2>
-                    <p class="text-gray-600 dark:text-gray-300 text-sm max-w-2xl mx-auto leading-relaxed font-light uppercase tracking-widest">
-                        Uma fusão única de ativos nobres que entrega alisamento e tratamento simultâneos.
-                    </p>
-                </div>
-
-                <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 max-w-6xl mx-auto">
-                    <div class="w-full lg:w-5/12 reveal relative group h-fit">
-                        <div class="relative z-10 p-2 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-sm shadow-2xl">
-                            <img src="https://imagensagata.carrd.co/assets/images/image10.jpg?v=bc2296e1" loading="lazy" class="w-full h-auto object-cover rounded-sm transform transition duration-700 group-hover:scale-[1.01]" alt="Tecnologia Híbrida">
-                            <div class="absolute -bottom-6 -right-6 bg-white dark:bg-[#0a0a0a] border border-brand-gold/30 p-6 rounded-full shadow-gold-glow flex flex-col items-center justify-center w-24 h-24 z-20">
-                                <span class="text-brand-gold text-2xl font-bold font-serif leading-none">0%</span>
-                                <span class="text-gray-600 dark:text-gray-400 text-[8px] uppercase tracking-widest font-bold mt-1">Formol</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="w-full lg:w-7/12 flex flex-col gap-6">
-                        <div class="reveal bg-white dark:bg-white/5 p-6 rounded-sm flex items-center gap-6 border-l-4 border-l-brand-gold shadow-sm">
-                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gray-50 dark:bg-brand-wine border border-brand-gold/30 flex items-center justify-center text-xl text-brand-gold shadow-sm"><i class="fas fa-vial"></i></div>
-                            <div><h5 class="text-black dark:text-brand-gold text-sm font-bold uppercase tracking-widest mb-1">Ácido Hialurônico</h5><p class="text-gray-600 dark:text-gray-400 text-xs leading-relaxed font-light uppercase tracking-wide">Conhecido como "água sólida". Preenche a fibra capilar, retendo hidratação profunda.</p></div>
-                        </div>
-                        <div class="reveal bg-white dark:bg-white/5 p-6 rounded-sm flex items-center gap-6 border-l-4 border-l-brand-gold shadow-sm" style="transition-delay: 50ms;">
-                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gray-50 dark:bg-brand-wine border border-brand-gold/30 flex items-center justify-center text-xl text-brand-gold shadow-sm"><i class="fas fa-seedling"></i></div>
-                            <div><h5 class="text-black dark:text-brand-gold text-sm font-bold uppercase tracking-widest mb-1">Proteína do Trigo</h5><p class="text-gray-600 dark:text-gray-400 text-xs leading-relaxed font-light uppercase tracking-wide">Reconstrução biomimética. Fortalece a estrutura interna do córtex, protegendo contra quebra.</p></div>
-                        </div>
-                        <div class="reveal bg-white dark:bg-white/5 p-6 rounded-sm flex items-center gap-6 border-l-4 border-l-brand-gold shadow-sm" style="transition-delay: 100ms;">
-                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-gray-50 dark:bg-brand-wine border border-brand-gold/30 flex items-center justify-center text-xl text-brand-gold shadow-sm"><i class="fas fa-tint"></i></div>
-                            <div><h5 class="text-black dark:text-brand-gold text-sm font-bold uppercase tracking-widest mb-1">Óleo de Uva</h5><p class="text-gray-600 dark:text-gray-400 text-xs leading-relaxed font-light uppercase tracking-wide">Antioxidante nobre. Cria um escudo lipídico que reflete a luz intensamente (Brilho 8K).</p></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 7. AUTORIDADE (A ASSINATURA ESSÊNCIA) -->
-        <section class="py-24 md:py-32 bg-white dark:bg-[#050505] border-t border-gray-100 dark:border-brand-gold/5 transition-colors">
-            <div class="container mx-auto px-6 max-w-6xl flex flex-col md:flex-row items-center gap-16">
-                <div class="w-full md:w-1/3 flex justify-center reveal">
-                    <div class="w-72 h-72 rounded-full border border-gray-200 dark:border-brand-gold/30 bg-gray-50 dark:bg-[#1a0a0a] flex items-center justify-center relative shadow-xl overflow-hidden">
-                         <video class="w-full h-full object-cover opacity-90 dark:opacity-80" autoplay muted loop playsinline>
-                             <source src="https://imagensagata.carrd.co/assets/videos/video05.mp4?v=ed760a36" type="video/mp4">
-                         </video>
-                    </div>
-                </div>
-                <div class="w-full md:w-2/3 text-center md:text-left reveal">
-                    <span class="text-brand-gold text-[10px] font-bold tracking-[0.3em] uppercase block mb-6">A Assinatura Essência</span>
-                    <h3 class="font-serif text-4xl md:text-5xl text-black dark:text-white mb-8 uppercase italic">Mais que um Salão, <br><span class="font-light text-gray-500">uma Filosofia de Cuidado.</span></h3>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-2xl mb-10 font-light uppercase tracking-widest leading-loose">
-                        "Somos especialistas em <strong>Progressivas e Tratamentos de Alto Impacto</strong>. Acreditamos que o liso perfeito não é sobre química pesada, mas sobre respeito à integridade do fio. Nossa metodologia une a precisão técnica com ativos biotecnológicos para entregar resultados que não apenas embelezam, mas tratam."
-                    </p>
-                    
-                    <div class="mb-10">
-                        <span class="font-signature text-4xl text-brand-gold block transform -rotate-2 opacity-90">Equipe Essência de Romã</span>
-                    </div>
-
-                    <div class="flex flex-col md:flex-row gap-10 justify-center md:justify-start border-t border-gray-200 dark:border-white/10 pt-8">
-                        <div>
-                            <span class="block text-4xl font-serif text-black dark:text-white">16+</span>
-                            <span class="text-[9px] text-gray-500 uppercase tracking-widest font-bold">Anos de Expertise</span>
-                        </div>
-                        <div>
-                            <span class="block text-4xl font-serif text-black dark:text-white">10k+</span>
-                            <span class="text-[9px] text-gray-500 uppercase tracking-widest font-bold">Alisamentos Seguros</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 8. FAQ REFINADO -->
-        <section class="py-24 bg-gray-50 dark:bg-[#111] border-t border-gray-200 dark:border-white/5 transition-colors">
-             <div class="max-w-3xl mx-auto px-6 text-left relative z-10">
-                <span class="text-brand-gold text-[10px] font-bold tracking-[0.3em] uppercase block mb-2 text-center">Transparência Total</span>
-                <h3 class="font-serif text-4xl text-black dark:text-white italic mb-12 text-center uppercase leading-none">Principais Dúvidas</h3>
-                
-                <details class="bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-sm mb-4 overflow-hidden shadow-sm group">
-                    <summary class="p-6 display-flex justify-between items-center cursor-pointer list-none text-black dark:text-white font-bold uppercase tracking-widest text-xs hover:text-brand-gold transition-colors">
-                        <span>Loiras podem fazer o Liso Soberano?</span><i class="fas fa-chevron-down text-brand-gold"></i>
-                    </summary>
-                    <div class="px-6 pb-6 text-gray-600 dark:text-gray-400 text-[10px] uppercase leading-loose tracking-widest border-t border-gray-100 dark:border-white/5 mt-2 pt-4 italic">
-                        Sim. Nossa tecnologia híbrida é totalmente compatível com descoloração, desde que o fio passe no teste de mechas de resistência.
-                    </div>
-                </details>
-                
-                <details class="bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-sm mb-4 overflow-hidden shadow-sm group">
-                    <summary class="p-6 display-flex justify-between items-center cursor-pointer list-none text-black dark:text-white font-bold uppercase tracking-widest text-xs hover:text-brand-gold transition-colors">
-                        <span>Grávidas e Lactantes podem usar?</span><i class="fas fa-chevron-down text-brand-gold"></i>
-                    </summary>
-                    <div class="px-6 pb-6 text-gray-600 dark:text-gray-400 text-[10px] uppercase leading-loose tracking-widest border-t border-gray-100 dark:border-white/5 mt-2 pt-4 italic">
-                        Nossa fórmula é zero formol e sem derivados, porém sempre recomendamos a consulta e autorização prévia do seu médico obstetra por segurança.
-                    </div>
-                </details>
-             </div>
-        </section>
-
-        <!-- SEO LOCAL FOOTER SNIPPET -->
-        <div class="bg-white dark:bg-black py-16 border-t border-gray-200 dark:border-white/5 text-center px-6 transition-colors">
-            <div class="cordinha-timeline max-w-lg mx-auto inline-block text-left mb-6">
-                <p class="text-[10px] text-gray-500 uppercase tracking-widest leading-loose italic">
-                    Atendendo Chapecó e todo o Oeste Catarinense. <br>
-                    <strong>Progressiva, Semi Definitiva, Corte no Melhor Salão de Chapecó e Coloração Mechas.</strong>
-                </p>
-            </div>
-            <div class="mt-8 text-[8px] text-gray-400 uppercase tracking-widest opacity-50">© 2026 Essência de Romã Hair. Empire Master Design.</div>
-            <div class="pb-32 md:pb-8"></div> <!-- Espaço extra mobile -->
+    <!-- FOOTER CINEMA -->
+    <footer class="fixed bottom-0 w-full h-24 bg-black/98 border-t border-white/5 z-[900] flex flex-col justify-center">
+        <div class="flex flex-wrap justify-center gap-20 text-[7px] font-black text-gray-700 uppercase tracking-[0.6em] italic px-10">
+            <span class="text-white cursor-crosshair">Thiago Dias</span>
+            <span class="text-white cursor-crosshair">Vera Dias</span>
+            <span class="text-white cursor-crosshair">Jessica Grabski</span>
+            <span class="text-white cursor-crosshair">Mony Liss</span>
+            <span class="text-white cursor-crosshair">Studio SD</span>
         </div>
-    </div>
-
-    <!-- ####################################################### -->
-    <!-- ################ LISO SOBERANO 8K (CAMPAIGN EDIT) #### -->
-    <!-- ####################################################### -->
-    <div id="liso-view-container" class="section-panel bg-white dark:bg-luxury-black min-h-screen text-black dark:text-white pt-24 pb-40 px-6 transition-colors duration-500">
-        
-        <div class="max-w-7xl mx-auto py-12 flex justify-between items-end border-b border-gray-100 dark:border-white/10 mb-20">
-            <div>
-                <span class="text-brand-gold text-[10px] uppercase tracking-[0.5em] font-bold block mb-4 uppercase">The Signature Protocol</span>
-                <h2 class="font-serif text-5xl md:text-8xl italic uppercase leading-none">Liso Soberano <span class="text-brand-gold">8K</span></h2>
-            </div>
-            <div class="hidden md:block text-right">
-                <p class="text-[10px] text-gray-500 uppercase tracking-widest leading-loose italic">A evolução da Semi Definitiva <br> Exclusividade Essência de Romã</p>
-            </div>
-        </div>
-
-        <section class="container mx-auto">
-            
-            <!-- 1. INTRODUÇÃO TÉCNICA (FROZEN PRICE CAMPAIGN) -->
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-40 items-center">
-                <div class="lg:col-span-7 relative overflow-hidden h-[60vh] md:h-[80vh] group shadow-2xl rounded-sm border border-gray-100 dark:border-white/5">
-                    <video class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-[2.5s] group-hover:scale-105" autoplay loop muted playsinline>
-                        <source src="https://imagensagata.carrd.co/assets/videos/video06.mp4?v=83fac04c" type="video/mp4">
-                    </video>
-                    <div class="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent"></div>
-                    <div class="absolute bottom-10 left-10 text-white font-serif text-2xl tracking-[0.3em] italic uppercase leading-none">La Perfection Visuelle</div>
-                </div>
-                <div class="lg:col-span-5 flex flex-col justify-center">
-                    
-                    <!-- SPECIAL CAMPAIGN BADGE -->
-                    <div class="inline-block mb-6">
-                        <span class="bg-brand-gold text-black text-[9px] font-bold uppercase tracking-[0.2em] px-3 py-1 animate-pulse">Válido até 14/02</span>
-                    </div>
-
-                    <span class="text-brand-gold text-[9px] font-bold uppercase tracking-[0.6em] mb-4">Bem-vinda à Nova Era</span>
-                    <h3 class="font-serif text-4xl md:text-6xl mb-6 leading-tight uppercase text-black dark:text-white">Preço Antigo <br><span class="text-brand-gold italic">Tecnologia Nova</span></h3>
-                    
-                    <!-- OFFER BLOCK -->
-                    <div class="border-l-2 border-brand-gold pl-6 py-4 mb-8 bg-brand-gold/5 rounded-r-lg">
-                        <h4 class="text-black dark:text-white font-bold uppercase tracking-widest text-sm mb-1">Preço Congelado ❄️</h4>
-                        <p class="text-gray-500 dark:text-gray-400 text-xs italic">Agende e pague o valor da sua última experiência no salão.</p>
-                    </div>
-
-                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-10 font-light uppercase tracking-widest text-justify leading-loose italic">
-                        O Liso Soberano 8K evoluiu para uma engenharia que atua por afinidade, preservando o balanço enquanto entrega um brilho vítreo permanente.
-                    </p>
-                    
-                    <div class="cordinha-timeline ml-1 mb-10 space-y-10 border-brand-gold/30">
-                        <div>
-                            <p class="text-[11px] font-bold text-black dark:text-white uppercase tracking-widest">Fase 1. Higienização Química</p>
-                            <p class="text-[10px] text-gray-500 uppercase tracking-widest leading-loose">Remoção de metais pesados para o melhor resultado em Progressiva a melhor salão em Chapecó.</p>
-                        </div>
-                        <div>
-                            <p class="text-[11px] font-bold text-black dark:text-white uppercase tracking-widest">Fase 2. Infusão Híbrida 8K</p>
-                            <p class="text-[10px] text-gray-500 uppercase tracking-widest leading-loose">Aplicação da tecnologia de Semi Definitiva Liso Soberano.</p>
-                        </div>
-                        <div>
-                            <p class="text-[11px] font-bold text-black dark:text-white uppercase tracking-widest">Fase 3. Selagem Vitrificada</p>
-                            <p class="text-[10px] text-gray-500 uppercase tracking-widest leading-loose">Finalização termodinâmica que cria o efeito "vidro" e atua como Redutor de Frizz permanente.</p>
-                        </div>
-                    </div>
-
-                    <div class="flex flex-col gap-4 mt-8 w-full max-w-md mx-auto">
-                        <!-- Main Button (Chapecó) -->
-                        <a href="#" onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Ol%C3%A1!%20Quero%20aproveitar%20a%20campanha%20Pre%C3%A7o%20Congelado%20do%20Liso%20Soberano%20(v%C3%A1lido%20at%C3%A9%2014/02).'); return false;" class="btn-editorial bg-black dark:bg-white text-white dark:text-black border-none hover:bg-brand-gold hover:text-white transition-all text-center w-full shadow-lg rounded-sm py-5">
-                            Garantir Preço Congelado <span class="text-[9px] opacity-70 block font-normal normal-case mt-1">(Unidade Chapecó)</span>
-                        </a>
-
-                        <!-- Divisor Estratégico -->
-                        <div class="flex items-center gap-4 opacity-50 my-2">
-                            <div class="h-px bg-gray-300 dark:bg-white/20 flex-1"></div>
-                            <span class="text-[8px] uppercase tracking-widest text-gray-500">Atendimento na Região</span>
-                            <div class="h-px bg-gray-300 dark:bg-white/20 flex-1"></div>
-                        </div>
-
-                        <!-- Seara -->
-                        <a href="#" onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=554999157323&text=Ol%C3%A1!%20Vi%20o%20Liso%20Soberano%208K%20no%20site%20oficial%20e%20gostaria%20de%20agendar%20com%20o%20parceiro%20licenciado%20em%20Seara.'); return false;" class="group btn-outline border-black dark:border-white/30 text-black dark:text-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black w-full text-center py-3 text-[10px] flex flex-col items-center justify-center rounded-sm">
-                            <span class="uppercase font-bold tracking-widest flex items-center gap-2"><i class="fas fa-map-marker-alt text-brand-gold"></i> Agendar em Seara - SC</span>
-                            <span class="block text-[8px] opacity-60 mt-1 font-normal normal-case group-hover:text-brand-gold transition-colors">Parceiro Licenciado Essência</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- CASES GALLERY (Storytelling) -->
-            <div class="mb-40">
-                <div class="text-center mb-16 reveal">
-                     <span class="text-brand-gold text-[10px] uppercase tracking-[0.5em] block mb-4 uppercase font-bold">Immersive Results</span>
-                     <h3 class="font-serif text-4xl md:text-6xl italic uppercase leading-none">Casos de Sucesso 8K</h3>
-                     <p class="text-gray-500 text-[10px] uppercase tracking-widest mt-4">Toque para ver a engenharia capilar aplicada</p>
-                </div>
-                
-                <div class="mobile-snap-x pb-8">
-                    <!-- Case 1 -->
-                    <div class="mobile-snap-item relative aspect-[9/14] overflow-hidden rounded-sm group border border-gray-100 dark:border-white/5 cursor-zoom-in" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image19.jpg?v=c257b396')">
-                        <img src="https://imagensagata.carrd.co/assets/images/image19.jpg?v=c257b396" class="w-full h-full object-cover" alt="Resultado vitorioso">
-                        <div class="absolute top-4 left-4 bg-black/60 text-white text-[8px] font-bold px-2 py-1 uppercase tracking-widest">Diagnóstico: Resistente</div>
-                        <div class="absolute bottom-4 left-4 bg-brand-gold/90 text-black text-[8px] font-bold px-3 py-1 uppercase tracking-widest">Resultado: Liso Soberano</div>
-                    </div>
-                    <!-- Case 2 -->
-                    <div class="mobile-snap-item relative aspect-[9/14] overflow-hidden rounded-sm group border border-gray-100 dark:border-white/5 cursor-zoom-in" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image20.jpg?v=4b458cce')">
-                        <img src="https://imagensagata.carrd.co/assets/images/image20.jpg?v=4b458cce" class="w-full h-full object-cover" alt="Antes e Depois">
-                        <div class="absolute top-4 left-4 bg-black/60 text-white text-[8px] font-bold px-2 py-1 uppercase tracking-widest">Diagnóstico: Ondulado/Frizz</div>
-                        <div class="absolute bottom-4 left-4 bg-brand-gold/90 text-black text-[8px] font-bold px-3 py-1 uppercase tracking-widest">Resultado: Brilho 8K</div>
-                    </div>
-                    <!-- Case 3 -->
-                    <div class="mobile-snap-item relative aspect-[9/14] overflow-hidden rounded-sm group border border-gray-100 dark:border-white/5 cursor-zoom-in" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image11.jpg?v=4b8919f9')">
-                        <img src="https://imagensagata.carrd.co/assets/images/image11.jpg?v=4b8919f9" class="w-full h-full object-cover" alt="Glass hair">
-                        <div class="absolute top-4 left-4 bg-black/60 text-white text-[8px] font-bold px-2 py-1 uppercase tracking-widest">Diagnóstico: Sem Vida</div>
-                        <div class="absolute bottom-4 left-4 bg-brand-gold/90 text-black text-[8px] font-bold px-3 py-1 uppercase tracking-widest">Resultado: Glassing</div>
-                    </div>
-                     <!-- Case 4 -->
-                    <div class="mobile-snap-item relative aspect-[9/14] overflow-hidden rounded-sm group border border-gray-100 dark:border-white/5 cursor-zoom-in" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image12.jpg?v=c257b396')">
-                        <img src="https://imagensagata.carrd.co/assets/images/image12.jpg?v=c257b396" class="w-full h-full object-cover" alt="Recuperação">
-                        <div class="absolute top-4 left-4 bg-black/60 text-white text-[8px] font-bold px-2 py-1 uppercase tracking-widest">Diagnóstico: Danificado</div>
-                        <div class="absolute bottom-4 left-4 bg-brand-gold/90 text-black text-[8px] font-bold px-3 py-1 uppercase tracking-widest">Resultado: Saúde Total</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- ####################################################### -->
-    <!-- ################ VIEW: MEMBERSHIP (CLUBE) ############ -->
-    <!-- ####################################################### -->
-    <div id="club-view-container" class="section-panel bg-[#F9F9F9] dark:bg-luxury-black min-h-screen pt-24 pb-40 px-6 text-black dark:text-white transition-colors duration-500">
-        <div class="max-w-7xl mx-auto py-12 text-center mb-16">
-            <span class="text-brand-gold text-[10px] uppercase tracking-[0.5em] font-bold block mb-4 uppercase">Membership Circle</span>
-            <h2 class="font-serif text-5xl md:text-8xl italic mb-6 uppercase leading-none text-black dark:text-white">Alisa Chapecó</h2>
-            
-            <!-- AVISO DE PAGAMENTO -->
-            <div class="inline-flex items-center gap-3 bg-white dark:bg-white/5 border border-brand-gold/30 px-6 py-3 rounded-full mb-8 shadow-sm">
-                <i class="fas fa-wallet text-brand-gold"></i>
-                <span class="text-[10px] uppercase tracking-widest font-bold">Zero Burocracia. Pague apenas no Balcão. Sem cartão de crédito.</span>
-            </div>
-            
-            <p class="text-[11px] text-gray-500 dark:text-gray-400 uppercase tracking-widest max-w-2xl mx-auto leading-relaxed italic">
-                Participe do nosso círculo exclusivo. Inclui Pacote de Escova, Pacote de Higienização e manutenção do liso o ano todo.
-            </p>
-        </div>
-
-        <section class="container mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-                
-                <!-- SUBLIME -->
-                <div class="p-10 border border-gray-200 dark:border-white/5 bg-white dark:bg-white/[0.02] text-left hover:border-brand-gold transition-all duration-500 relative flex flex-col group rounded-sm shadow-xl">
-                    <h3 class="font-serif text-3xl mb-2 italic">Sublime</h3>
-                    <p class="text-[9px] text-gray-400 uppercase tracking-widest mb-6 font-bold">Lisos & Ondulados</p>
-                    <div class="text-4xl text-brand-gold font-light mb-8 italic">R$ 119,90</div>
-                    
-                    <div class="cordinha-timeline ml-1 mb-10 space-y-4 border-brand-gold/30">
-                        <div class="flex justify-between text-xs font-bold text-black dark:text-white"><span>Ideal (30d)</span><span>R$ 119,90</span></div>
-                        <div class="flex justify-between text-xs opacity-60"><span>Alerta (60d)</span><span>R$ 159,90</span></div>
-                        <!-- VOUCHER RESGATE (DESTAQUE) -->
-                        <div class="relative flex justify-between text-xs text-green-600 dark:text-green-500 font-bold bg-green-50 dark:bg-green-900/10 p-2 -mx-2 rounded border border-green-500/30">
-                             <span class="flex items-center gap-1"><i class="fas fa-ticket-alt"></i> Resgate (90d+)</span>
-                             <span>R$ 199,90</span>
-                             <span class="absolute -top-2 -right-1 bg-red-500 text-white text-[7px] px-2 rounded-full animate-pulse uppercase">5 Vagas</span>
-                        </div>
-                        <div class="flex justify-between text-xs opacity-40"><span>Tabela (Avulso)</span><span class="line-through font-bold">R$ 350,00</span></div>
-                    </div>
-
-                    <ul class="space-y-4 text-[10px] uppercase tracking-widest text-gray-600 dark:text-gray-400 mb-12 flex-grow">
-                        <li><i class="fas fa-check text-brand-gold mr-2"></i> Manutenção Liso 8K</li>
-                        <li><i class="fas fa-check text-brand-gold mr-2"></i> Pacote de Higienização e Escova</li>
-                        <li><i class="fas fa-check text-brand-gold mr-2"></i> Ritual de Corte Visagista</li>
-                        <li><i class="fas fa-check text-brand-gold mr-2"></i> Boutique 20% OFF</li>
-                    </ul>
-                    <a href="#" onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Ol%C3%A1!%20Quero%20fazer%20parte%20do%20Clube%20Sublime.%20Me%20interessei%20pelo%20Voucher%20de%20Resgate.'); return false;" class="btn-outline w-full block text-center mt-auto py-3 text-[10px]">Aderir ao Plano</a>
-                </div>
-
-                <!-- IMPERIAL (RECOMENDADO) -->
-                <div class="p-10 border border-brand-gold bg-luxury-black text-white text-left shadow-gold-glow relative transform md:-translate-y-4 z-10 transition-all duration-500 flex flex-col rounded-sm">
-                    <div class="absolute top-0 right-0 bg-brand-gold text-black text-[8px] font-bold px-4 py-2 uppercase tracking-widest">Favorito Maison</div>
-                    <h3 class="font-serif text-3xl mb-2 italic text-brand-gold">Imperial</h3>
-                    <p class="text-[9px] text-brand-gold-dark uppercase tracking-widest mb-6 font-bold">Cacheados & Volumosos</p>
-                    <div class="text-5xl text-brand-gold font-light mb-8 italic">R$ 139,90</div>
-                    
-                    <div class="cordinha-timeline ml-1 mb-10 space-y-4 border-white/20">
-                        <div class="flex justify-between text-xs font-bold text-white"><span>Ideal (30d)</span><span>R$ 139,90</span></div>
-                        <div class="flex justify-between text-xs opacity-60"><span>Alerta (60d)</span><span>R$ 189,90</span></div>
-                         <!-- VOUCHER RESGATE -->
-                        <div class="relative flex justify-between text-xs text-green-400 font-bold bg-green-900/20 p-2 -mx-2 rounded border border-green-500/30">
-                             <span class="flex items-center gap-1"><i class="fas fa-ticket-alt"></i> Resgate (90d+)</span>
-                             <span>R$ 239,90</span>
-                             <span class="absolute -top-2 -right-1 bg-red-500 text-white text-[7px] px-2 rounded-full animate-pulse uppercase font-bold">5 Vagas</span>
-                        </div>
-                        <div class="flex justify-between text-xs opacity-40"><span>Tabela (Avulso)</span><span class="line-through font-bold">R$ 380,00</span></div>
-                    </div>
-
-                    <ul class="space-y-4 text-[10px] uppercase tracking-widest text-gray-400 mb-12 flex-grow font-bold">
-                        <li><i class="fas fa-crown text-brand-gold mr-2"></i> Manutenção Liso 8K</li>
-                        <li><i class="fas fa-crown text-brand-gold mr-2"></i> Pacote de Higienização e Escova</li>
-                        <li><i class="fas fa-crown text-brand-gold mr-2"></i> Ritual de Corte Visagista</li>
-                        <li><i class="fas fa-crown text-brand-gold mr-2"></i> Boutique 20% OFF</li>
-                    </ul>
-                    <a href="#" onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Ol%C3%A1!%20Quero%20ser%20do%20Clube%20Imperial%20e%20conquistar%20o%20liso%20com%20o%20Voucher%2090d.'); return false;" class="btn-editorial w-full bg-brand-gold text-black border-none py-3 text-[10px] mt-auto">Aderir ao Imperial</a>
-                </div>
-
-                <!-- ABSOLUTO -->
-                <div class="p-10 border border-gray-200 dark:border-white/5 bg-white dark:bg-white/[0.02] text-left hover:border-brand-gold transition-all duration-500 relative flex flex-col group rounded-sm shadow-xl">
-                    <h3 class="font-serif text-3xl mb-2 italic">Absoluto</h3>
-                    <p class="text-[9px] text-gray-400 uppercase tracking-widest mb-6 font-bold">Crespos & Resistentes</p>
-                    <div class="text-4xl text-brand-gold font-light mb-8 italic">R$ 159,90</div>
-                    
-                    <div class="cordinha-timeline ml-1 mb-10 space-y-4">
-                        <div class="flex justify-between text-xs font-bold text-black dark:text-white"><span>Ideal (30d)</span><span>R$ 159,90</span></div>
-                        <div class="flex justify-between text-xs opacity-60"><span>Alerta (60d)</span><span>R$ 219,90</span></div>
-                         <!-- VOUCHER RESGATE -->
-                        <div class="relative flex justify-between text-xs text-green-600 dark:text-green-500 font-bold bg-green-50 dark:bg-green-900/10 p-2 -mx-2 rounded border border-green-500/30">
-                             <span class="flex items-center gap-1"><i class="fas fa-ticket-alt"></i> Resgate (90d+)</span>
-                             <span>R$ 279,90</span>
-                             <span class="absolute -top-2 -right-1 bg-red-500 text-white text-[7px] px-2 rounded-full animate-pulse uppercase">5 Vagas</span>
-                        </div>
-                        <div class="flex justify-between text-xs opacity-40"><span>Tabela (Avulso)</span><span class="line-through font-bold">R$ 420,00</span></div>
-                    </div>
-
-                    <ul class="space-y-4 text-[11px] uppercase tracking-widest text-gray-500 mb-12 flex-grow">
-                        <li><i class="fas fa-check text-brand-gold mr-2"></i> Manutenção Liso 8K</li>
-                        <li><i class="fas fa-check text-brand-gold mr-2"></i> Pacote de Higienização e Escova</li>
-                        <li><i class="fas fa-check text-brand-gold mr-2"></i> Pacote de Mechas (Especial)</li>
-                        <li><i class="fas fa-check text-brand-gold mr-2"></i> Boutique 20% OFF</li>
-                    </ul>
-                    <a href="#" onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Ol%C3%A1!%20Quero%20entrar%20para%20o%20plano%20Absoluto%20e%20solicitar%20o%20voucher%20promocional.'); return false;" class="btn-outline w-full block text-center mt-auto py-3 text-[10px]">Aderir ao Plano</a>
-                </div>
-            </div>
-
-            <!-- TABELAS DE ANCORAGEM -->
-            <div class="max-w-5xl mx-auto py-20 border-t border-gray-200 dark:border-white/10 text-center">
-                <h3 class="font-luxury text-3xl mb-4 italic uppercase">Tabelas de Referência</h3>
-                <p class="text-xs text-gray-500 uppercase tracking-widest mb-12">Confira os valores de balcão (Preço Avulso) para não-membros</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <img src="https://imagensagata.carrd.co/assets/images/image20.jpg?v=4b458cce" class="w-full h-auto rounded-xl shadow-2xl border border-gray-200 dark:border-white/5 cursor-zoom-in" onclick="openLightbox(this.src)" alt="Tabela Liso">
-                    <img src="https://imagensagata.carrd.co/assets/images/image21.jpg?v=4b458cce" class="w-full h-auto rounded-xl shadow-2xl border border-gray-200 dark:border-white/5 cursor-zoom-in" onclick="openLightbox(this.src)" alt="Tabela Glass">
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- ####################################################### -->
-    <!-- ################ VIEW: BOUTIQUE (GRIS EDITION) ######### -->
-    <!-- ####################################################### -->
-    <div id="agata-view-container" class="section-panel bg-white dark:bg-luxury-black min-h-screen text-black dark:text-white pt-24 pb-40 px-6 transition-colors duration-500">
-        
-        <div class="max-w-7xl mx-auto py-12 flex justify-between items-end border-b border-gray-100 dark:border-white/10 mb-20">
-            <div>
-                <span class="text-brand-gold text-[10px] uppercase tracking-[0.5em] font-bold block mb-4 uppercase leading-none">Haute Boutique</span>
-                <h2 class="font-serif text-5xl md:text-7xl italic uppercase leading-none">A Gata Lambeu</h2>
-            </div>
-            <div class="flex items-center gap-6">
-                <button class="relative text-black dark:text-white hover:text-brand-gold transition-colors" id="cart-btn-shop">
-                    <i class="fas fa-shopping-bag text-2xl"></i>
-                    <span id="cart-count-shop" class="absolute -top-1 -right-1 bg-brand-gold text-black text-[9px] font-bold w-4 h-4 flex items-center justify-center rounded-full transform transition-transform scale-0">0</span>
-                </button>
-                <div class="hidden md:block text-right">
-                    <p class="text-[10px] text-gray-500 uppercase tracking-widest leading-loose italic">Inspiração Olfativa: Light Blue <br> Envio Nacional Express</p>
-                </div>
-            </div>
-        </div>
-
-        <section class="container mx-auto">
-            
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-32 items-center">
-                <div class="lg:col-span-7 relative overflow-hidden h-[60vh] md:h-[80vh] group border border-gray-100 dark:border-white/5 shadow-2xl rounded-sm">
-                    <img src="https://imagensagata.carrd.co/assets/images/image22.jpg?v=02dd65e7" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-[2.5s] group-hover:scale-105" alt="Editorial Boutique Vogue">
-                    <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent"></div>
-                    <div class="absolute bottom-10 left-10 text-white font-serif text-2xl tracking-[0.3em] italic uppercase">L'Alchimie Du Lissage</div>
-                </div>
-                <div class="lg:col-span-5 flex flex-col justify-center">
-                    <span class="text-brand-gold text-[9px] font-bold uppercase tracking-[0.6em] mb-4">The Sensory Collection</span>
-                    <h3 class="font-serif text-4xl md:text-7xl mb-8 leading-tight uppercase text-black dark:text-white">O SEGREDO DO <br><span class="text-brand-gold italic">SALÃO EM CASA</span></h3>
-                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-10 font-light uppercase tracking-widest text-justify leading-loose italic">
-                        Preserve a engenharia do seu <strong>Liso Soberano</strong> com o rastro sofisticado da nossa linha Gris. Fórmulas de alta afinidade capilar com notas de Limão Siciliano e Bambu.
-                    </p>
-                    
-                    <div class="cordinha-timeline ml-1 mb-10 space-y-6 border-brand-gold/30">
-                        <div><p class="text-[10px] font-bold text-black dark:text-white uppercase tracking-widest">Alquimia Pós-Química</p><p class="text-[9px] text-gray-500 uppercase tracking-widest leading-loose italic">Ativos que estabilizam o pH e prolongam o efeito espelhado 8K.</p></div>
-                        <div><p class="text-[10px] font-bold text-black dark:text-white uppercase tracking-widest">Cashback Maison 50%</p><p class="text-[9px] text-gray-500 uppercase tracking-widest leading-loose italic">Metade do valor investido na Boutique vira crédito para seu próximo serviço.</p></div>
-                    </div>
-
-                    <button onclick="document.getElementById('products-grid').scrollIntoView({behavior:'smooth'})" class="btn-editorial bg-black dark:bg-white text-white dark:text-black border-none hover:bg-brand-gold hover:text-white transition-all">Explorar Boutique</button>
-                </div>
-            </div>
-
-            <!-- ARQUITETURA OLFATIVA -->
-            <div class="mb-32 bg-gray-50 dark:bg-white/[0.01] border border-gray-200 dark:border-white/5 p-12 md:p-24 rounded-sm text-center relative overflow-hidden">
-                <span class="text-brand-gold text-[10px] uppercase tracking-[0.5em] block mb-6 font-bold uppercase tracking-widest">Olfactory Architecture</span>
-                <h3 class="font-serif text-4xl md:text-6xl italic mb-16 uppercase text-black dark:text-white">A Assinatura Olfativa</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-5xl mx-auto">
-                    <div class="reveal group">
-                        <div class="w-20 h-20 mx-auto rounded-full border border-brand-gold flex items-center justify-center mb-6 group-hover:bg-brand-gold transition duration-500">
-                            <i class="fas fa-wind text-brand-gold group-hover:text-black"></i>
-                        </div>
-                        <h4 class="text-brand-gold uppercase tracking-widest text-xs font-bold mb-4 font-serif italic">Notas de Topo</h4>
-                        <p class="text-gray-500 dark:text-gray-400 text-[10px] uppercase leading-loose">Limão Siciliano & <br>Maçã Verde</p>
-                    </div>
-                    <div class="reveal group" style="transition-delay: 200ms;">
-                        <div class="w-24 h-24 mx-auto rounded-full border-2 border-brand-gold flex items-center justify-center mb-6 shadow-gold-glow">
-                            <i class="fas fa-spa text-brand-gold text-2xl"></i>
-                        </div>
-                        <h4 class="text-brand-gold uppercase tracking-widest text-xs font-bold mb-4 font-serif italic">Notas de Coração</h4>
-                        <p class="text-gray-500 dark:text-gray-400 text-[10px] uppercase leading-loose">Bambu & <br>Pétalas de Jasmim</p>
-                    </div>
-                    <div class="reveal group" style="transition-delay: 400ms;">
-                        <div class="w-20 h-20 mx-auto rounded-full border border-brand-gold flex items-center justify-center mb-6 group-hover:bg-brand-gold transition duration-500">
-                            <i class="fas fa-gem text-brand-gold group-hover:text-black"></i>
-                        </div>
-                        <h4 class="text-brand-gold uppercase tracking-widest text-xs font-bold mb-4 font-serif italic">Notas de Base</h4>
-                        <p class="text-gray-500 dark:text-gray-400 text-[10px] uppercase leading-loose">Madeira de Âmbar & <br>Musk Precioso</p>
-                    </div>
-                </div>
-                <p class="text-[9px] text-gray-400 mt-16 uppercase tracking-widest italic opacity-60">Inspiração olfativa: Light Blue. Uma brisa mediterrânea nos seus fios.</p>
-            </div>
-
-            <!-- GRID PRODUTOS (COM A ESSÊNCIA SENSORIAL) -->
-            <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-32">
-                
-                <!-- KIT TRINDADE -->
-                <div class="border border-gray-100 dark:border-white/5 bg-gray-50 dark:bg-white/[0.01] p-6 group overflow-hidden shadow-xl flex flex-col h-full rounded-sm relative">
-                    <div class="absolute top-2 right-2 p-2"><span class="text-[8px] text-red-500 font-bold uppercase tracking-widest animate-pulse">Restam 5 Unidades</span></div>
-                    <div class="cursor-zoom-in relative mb-6" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image05.jpg?v=4b8919f9')">
-                         <img src="https://imagensagata.carrd.co/assets/images/image05.jpg?v=4b8919f9" class="w-full h-56 object-contain transform group-hover:scale-105 transition duration-[2s]" alt="Kit Trindade">
-                    </div>
-                    <div class="text-center flex-grow flex flex-col">
-                        <span class="text-brand-gold text-[9px] font-bold uppercase tracking-[0.4em] mb-4 block">Signature Set</span>
-                        <h4 class="font-serif text-xl mb-4 uppercase italic leading-none">Kit Trindade</h4>
-                        
-                        <!-- A ESSÊNCIA (NO LUGAR DE ATIVOS TÉCNICOS) -->
-                        <div class="text-[9px] text-gray-500 dark:text-gray-400 uppercase tracking-widest leading-relaxed mb-6 flex-grow italic border-y border-gray-200 dark:border-white/5 py-4 my-4">
-                            "A alquimia completa. O ritual de três passos que transforma o banho em um spa. Limpeza, nutrição e proteção em perfeita harmonia."
-                        </div>
-
-                        <div class="text-2xl font-light mb-6 text-brand-gold dark:text-gold-metallic italic font-serif">R$ 688,10</div>
-                        <div class="text-[8px] text-green-500 font-bold uppercase tracking-widest mb-6 border border-green-500/20 px-2 py-1 rounded bg-green-900/10 text-center"><i class="fas fa-undo mr-1"></i> Cashback R$ 344,05</div>
-                        <button onclick="addToCart('Kit Trindade', 'https://wa.me/5549999954052?text=Ol%C3%A1!%20Quero%20comprar%20o%20Kit%20Trindade%20PRO%20e%20garantir%20meu%20Cashback%20M%C3%A1ximo.')" class="btn-editorial w-full border-black dark:border-white/20 text-black dark:text-white bg-transparent hover:bg-brand-gold hover:text-white py-3 px-0 text-[10px] mt-auto">Adicionar</button>
-                    </div>
-                </div>
-
-                <!-- BAINHO REPAIR -->
-                <div class="border border-gray-100 dark:border-white/5 bg-gray-50 dark:bg-white/[0.01] p-6 group overflow-hidden shadow-xl flex flex-col h-full rounded-sm relative">
-                    <div class="absolute top-2 right-2 p-2"><span class="text-[8px] text-red-500 font-bold uppercase tracking-widest animate-pulse">Restam 3 Unidades</span></div>
-                    <div class="cursor-zoom-in relative mb-6" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image07.jpg?v=c257b396')">
-                         <img src="https://imagensagata.carrd.co/assets/images/image07.jpg?v=c257b396" class="w-full h-56 object-contain transform group-hover:scale-105 transition duration-[2s]" alt="Bain Repair">
-                    </div>
-                    <div class="text-center flex-grow flex flex-col">
-                        <span class="text-brand-gold text-[9px] font-bold uppercase tracking-[0.4em] mb-4 block">Step 01: Cleanse</span>
-                        <h4 class="font-serif text-xl mb-4 uppercase italic leading-none">Bainho Repair</h4>
-                        
-                        <div class="text-[9px] text-gray-500 dark:text-gray-400 uppercase tracking-widest leading-relaxed mb-6 flex-grow italic border-y border-gray-200 dark:border-white/5 py-4 my-4">
-                            "A pureza do toque. Uma espuma rica e cremosa que higieniza sem agredir, preparando a fibra com a leveza do Limão Siciliano."
-                        </div>
-
-                        <div class="text-2xl font-light mb-6 text-brand-gold dark:text-gold-metallic italic font-serif">R$ 149,90</div>
-                        <div class="text-[8px] text-green-500 font-bold uppercase tracking-widest mb-6"><i class="fas fa-undo mr-1"></i> Cashback R$ 74,95</div>
-                        <button onclick="addToCart('Bain Repair', 'https://wa.me/5549999954052?text=Ol%C3%A1!%20Quero%20comprar%20o%20Bainho%20Repair%20e%20pontuar%20no%20Cashback.')" class="btn-editorial w-full border-black dark:border-white/20 text-black dark:text-white bg-transparent hover:bg-brand-gold hover:text-white py-3 px-0 text-[10px] mt-auto">Adicionar</button>
-                    </div>
-                </div>
-
-                <!-- GOLD FUSION -->
-                <div class="border border-gray-100 dark:border-white/5 bg-gray-50 dark:bg-white/[0.01] p-6 group overflow-hidden shadow-xl flex flex-col h-full rounded-sm relative">
-                    <div class="absolute top-2 right-2 p-2"><span class="text-[8px] text-red-500 font-bold uppercase tracking-widest animate-pulse">Restam 7 Unidades</span></div>
-                    <div class="cursor-zoom-in relative mb-6" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image09.jpg?v=4b8919f9')">
-                         <img src="https://imagensagata.carrd.co/assets/images/image09.jpg?v=4b8919f9" class="w-full h-56 object-contain transform group-hover:scale-105 transition duration-[2s]" alt="Gold Fusion">
-                    </div>
-                    <div class="text-center flex-grow flex flex-col">
-                        <span class="text-brand-gold text-[9px] font-bold uppercase tracking-[0.4em] mb-4 block">Step 02: Nourish</span>
-                        <h4 class="font-serif text-xl mb-4 uppercase italic leading-none">Gold Fusion</h4>
-                        
-                        <div class="text-[9px] text-gray-500 dark:text-gray-400 uppercase tracking-widest leading-relaxed mb-6 flex-grow italic border-y border-gray-200 dark:border-white/5 py-4 my-4">
-                            "Ouro líquido em seus fios. Uma infusão de óleos preciosos que derrete ao toque, deixando um rastro aveludado de Baunilha e Âmbar."
-                        </div>
-
-                        <div class="text-2xl font-light mb-6 text-brand-gold dark:text-gold-metallic italic font-serif">R$ 289,80</div>
-                        <div class="text-[8px] text-green-500 font-bold uppercase tracking-widest mb-6"><i class="fas fa-undo mr-1"></i> Cashback R$ 144,90</div>
-                        <button onclick="addToCart('Gold Fusion', 'https://wa.me/5549999954052?text=Ol%C3%A1!%20Quero%20comprar%20a%20Gold%20Fusion%20e%20pontuar%20no%20Cashback.')" class="btn-editorial w-full border-black dark:border-white/20 text-black dark:text-white bg-transparent hover:bg-brand-gold hover:text-white py-3 px-0 text-[10px] mt-auto">Adicionar</button>
-                    </div>
-                </div>
-
-                <!-- BABY QUEEN -->
-                <div class="border border-gray-100 dark:border-white/5 bg-gray-50 dark:bg-white/[0.01] p-6 group overflow-hidden shadow-xl flex flex-col h-full rounded-sm relative">
-                    <div class="absolute top-2 right-2 p-2"><span class="text-[8px] text-red-500 font-bold uppercase tracking-widest animate-pulse">Restam 4 Unidades</span></div>
-                    <div class="cursor-zoom-in relative mb-6" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image08.jpg?v=c257b396')">
-                         <img src="https://imagensagata.carrd.co/assets/images/image08.jpg?v=c257b396" class="w-full h-56 object-contain transform group-hover:scale-105 transition duration-[2s]" alt="Baby Queen">
-                    </div>
-                    <div class="text-center flex-grow flex flex-col">
-                        <span class="text-brand-gold text-[9px] font-bold uppercase tracking-[0.4em] mb-4 block">Step 03: Shield</span>
-                        <h4 class="font-serif text-xl mb-4 uppercase italic leading-none">Baby Queen</h4>
-                        
-                        <div class="text-[9px] text-gray-500 dark:text-gray-400 uppercase tracking-widest leading-relaxed mb-6 flex-grow italic border-y border-gray-200 dark:border-white/5 py-4 my-4">
-                            "O véu final de proteção. Um escudo invisível que reflete a luz como diamante e mantém o perfume de Jasmim vivo por 48 horas. O melhor produto para o frizz."
-                        </div>
-
-                        <div class="text-2xl font-light mb-6 text-brand-gold dark:text-gold-metallic italic font-serif">R$ 248,40</div>
-                        <div class="text-[8px] text-green-500 font-bold uppercase tracking-widest mb-6"><i class="fas fa-undo mr-1"></i> Cashback R$ 124,20</div>
-                        <button onclick="addToCart('Baby Queen', 'https://wa.me/5549999954052?text=Ol%C3%A1!%20Quero%20comprar%20o%20Baby%20Queen%20(Redutor%20de%20Frizz)%20e%20pontuar%20no%20Cashback.')" class="btn-editorial w-full border-black dark:border-white/20 text-black dark:text-white bg-transparent hover:bg-brand-gold hover:text-white py-3 px-0 text-[10px] mt-auto">Adicionar</button>
-                    </div>
-                </div>
-
-            </div>
-            <div class="pb-32 md:pb-16 text-[8px] text-gray-400 uppercase tracking-widest opacity-50 mt-16">© 2026 Essência de Romã Hair.</div>
-        </section>
-    </div>
-
-    <!-- ####################################################### -->
-    <!-- ################ ATELIER VIEW (FULL RESTORED) ######### -->
-    <!-- ####################################################### -->
-    <div id="atelier-view-container" class="section-panel bg-white dark:bg-luxury-black min-h-screen pt-32 pb-40 px-6 transition-colors duration-500 text-black dark:text-white">
-        <section class="container mx-auto">
-            <div class="text-center mb-24 reveal">
-                <span class="text-brand-gold text-[10px] uppercase tracking-[0.6em] font-bold mb-4 block uppercase font-bold">Signature Protocols</span>
-                <h2 class="font-serif text-5xl md:text-7xl italic text-black dark:text-white uppercase leading-none">Maison Atelier</h2>
-                <p class="text-[11px] text-gray-600 dark:text-gray-400 uppercase tracking-widest max-w-2xl mx-auto mt-4 leading-relaxed italic">
-                    Coloração, Mechas e o Corte do Melhor Salão de Chapecó.
-                </p>
-            </div>
-            
-            <div class="grid gap-24 max-w-5xl mx-auto">
-                <!-- Protocolo 1: ILUMINAÇÃO COUTURE -->
-                <div class="p-12 border border-gray-100 dark:border-white/10 shadow-2xl grid md:grid-cols-2 gap-16 items-center bg-[#F9F9F9] dark:bg-[#0a0a0a] rounded-sm reveal group">
-                    <div class="overflow-hidden rounded-sm cursor-zoom-in" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image13.jpg?v=c257b396')">
-                        <img src="https://imagensagata.carrd.co/assets/images/image13.jpg?v=c257b396" class="w-full h-auto grayscale transition duration-1000 group-hover:grayscale-0 group-hover:scale-110" alt="Loiro Couture">
-                    </div>
-                    <div>
-                        <h3 class="font-serif text-4xl mb-8 uppercase italic leading-tight">Iluminação <br><span class="text-brand-gold">Couture</span></h3>
-                        <div class="cordinha-timeline ml-1 mb-10 space-y-6 border-brand-gold/30">
-                            <div><p class="text-[10px] font-bold text-black dark:text-white uppercase tracking-widest">Coloração e Mechas</p><p class="text-[9px] text-gray-500 dark:text-gray-400 uppercase tracking-widest leading-loose italic">Design de cor estudado para sua harmonia facial única.</p></div>
-                            <div><p class="text-[10px] font-bold text-black dark:text-white uppercase tracking-widest">Micro-Costura</p><p class="text-[9px] text-gray-500 dark:text-gray-400 uppercase tracking-widest leading-loose italic">Abertura de tom ultra-fina sem marcas de raiz para naturalidade absoluta.</p></div>
-                        </div>
-                        <span class="block text-2xl font-light mb-10 text-brand-gold italic font-serif">A partir de R$ 450</span>
-                        <a href="#" onclick="gtag_report_conversion('https://wa.me/5549999954052?text=Ol%C3%A1!%20Vi%20o%20Atelier%20no%20site.%20Gostaria%20de%20um%20diagn%C3%B3stico%20para%20Ilumina%C3%A7%C3%A3o%20Couture%20(Mechas).'); return false;" class="btn-editorial w-full">Agendar Diagnóstico</a>
-                    </div>
-                </div>
-
-                <!-- Protocolo 2: CORREÇÃO & NUANCE -->
-                <div class="p-12 border border-gray-100 dark:border-white/10 shadow-2xl grid md:grid-cols-2 gap-16 items-center bg-[#F9F9F9] dark:bg-[#0a0a0a] rounded-sm reveal group">
-                    <div class="order-2 md:order-1">
-                        <h3 class="font-serif text-4xl mb-8 uppercase italic leading-tight text-right md:text-left">Correção <br><span class="text-brand-gold">& Nuance</span></h3>
-                        <div class="cordinha-timeline ml-1 mb-10 space-y-6 border-brand-gold/30 text-right md:text-left">
-                            <div><p class="text-[10px] font-bold text-black dark:text-white uppercase tracking-widest">Neutralização</p><p class="text-[9px] text-gray-500 dark:text-gray-400 uppercase tracking-widest leading-loose italic text-right md:text-left">Remoção técnica de pigmentos indesejados e manchas residuais.</p></div>
-                            <div><p class="text-[10px] font-bold text-black dark:text-white uppercase tracking-widest">Equalização de Fibra</p><p class="text-[9px] text-gray-500 dark:text-gray-400 uppercase tracking-widest leading-loose italic text-right md:text-left">Uniformização global preservando a saúde estrutural do fio.</p></div>
-                        </div>
-                        <span class="block text-2xl font-light mb-10 text-brand-gold italic font-serif text-right md:text-left">Sob Diagnóstico</span>
-                        <a href="#" onclick="gtag_report_conversion('https://wa.me/5549999954052?text=Ol%C3%A1!%20Gostaria%20de%20uma%20avalia%C3%A7%C3%A3o%20para%20Corre%C3%A7%C3%A3o%20de%20Nuance." class="btn-editorial w-full">Reservar Avaliação</a>
-                    </div>
-                    <div class="order-1 md:order-2 overflow-hidden rounded-sm cursor-zoom-in" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image10.jpg?v=bc2296e1')">
-                        <img src="https://imagensagata.carrd.co/assets/images/image10.jpg?v=bc2296e1" class="w-full h-auto grayscale transition duration-1000 group-hover:grayscale-0 group-hover:scale-110" alt="Correção de Cor">
-                    </div>
-                </div>
-
-                <!-- Protocolo 3: BIO-RECONSTRUÇÃO (UTI) -->
-                <div class="p-12 border border-gray-100 dark:border-white/10 shadow-2xl grid md:grid-cols-2 gap-16 items-center bg-[#F9F9F9] dark:bg-[#0a0a0a] rounded-sm reveal group">
-                    <div class="overflow-hidden rounded-sm cursor-zoom-in" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image15.jpg?v=c257b396')">
-                        <img src="https://imagensagata.carrd.co/assets/images/image15.jpg?v=c257b396" class="w-full h-auto grayscale transition duration-1000 group-hover:grayscale-0 group-hover:scale-110" alt="Bio-Reconstrução">
-                    </div>
-                    <div>
-                        <h3 class="font-serif text-4xl mb-8 uppercase italic leading-tight">UTI <br><span class="text-brand-gold">Bio-Capilar</span></h3>
-                        <div class="cordinha-timeline ml-1 mb-10 space-y-6 border-brand-gold/30">
-                            <div><p class="text-[10px] font-bold text-black dark:text-white uppercase tracking-widest">Resgate de Córtex</p><p class="text-[9px] text-gray-500 dark:text-gray-400 uppercase tracking-widest leading-loose italic">Tratamento intensivo para cabelos elásticos ou emborrachados.</p></div>
-                            <div><p class="text-[10px] font-bold text-black dark:text-white uppercase tracking-widest">Injeção de Massa</p><p class="text-[9px] text-gray-500 uppercase tracking-widest leading-loose italic">Reposição profunda de aminoácidos e proteínas perdidas.</p></div>
-                        </div>
-                        <span class="block text-2xl font-light mb-10 text-brand-gold italic font-serif text-red-500">Urgência Técnica</span>
-                        <a href="#" onclick="gtag_report_conversion('https://wa.me/5549999954052?text=SOS!%20Meu%20cabelo%20precisa%20da%20UTI%20Bio-Capilar.%20Vi%20no%20site%20e%20quero%20resgatar%20a%20sa%C3%BAde%20dos%20fios.'); return false;" class="btn-editorial w-full border-red-500 text-red-500 hover:bg-red-500 hover:text-white transition-all">Resgatar Saúde</a>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-    </div>
-
-    <!-- MODAL DE PRIVACIDADE (FIXED POSITION) -->
-    <div id="erh-legal-modal-overlay" class="fixed inset-0 z-[1001] bg-black/90 backdrop-blur-md hidden items-center justify-center p-6 transition-all duration-300" onclick="closeModal()">
-        <div class="bg-white dark:bg-[#1a0505] p-10 max-w-2xl w-full border border-gray-200 dark:border-brand-gold/50 rounded-sm relative shadow-2xl" onclick="event.stopPropagation()">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-black dark:text-brand-gold text-xl hover:scale-110 transition"><i class="fas fa-times"></i></button>
-            <div id="content-privacy" style="display:none;">
-                <h2 class="text-2xl font-serif text-black dark:text-brand-gold mb-4 italic">Política de Privacidade</h2>
-                <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed uppercase tracking-widest text-justify font-bold">
-                    A Essência de Romã Hair respeita o sigilo absoluto dos seus dados. Informações de contato e biótipo capilar são utilizadas exclusivamente para a coordenação técnica e excelência dos seus protocolos.
-                </p>
-            </div>
-            <button onclick="closeModal()" class="mt-10 w-full btn-editorial border-black dark:border-white text-black dark:text-white bg-transparent hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black">Fechar</button>
-        </div>
-    </div>
+    </footer>
 
     <script>
-        // Função para exibir Toast Notification
-        function showToast(message, type) {
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            toast.className = 'toast';
-            if (type === 'success') toast.style.borderLeftColor = '#10B981'; // Green for success
-            toast.innerHTML = `<i class="fas fa-info-circle"></i> ${message}`;
-            container.appendChild(toast);
+        function switchPage(pageId) {
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+            const activeLink = document.querySelector(`[data-page="${pageId}"]`);
+            if(activeLink) activeLink.classList.add('active');
             
-            // Remove após 3 segundos
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                toast.style.transform = 'translateX(100%)';
-                setTimeout(() => toast.remove(), 300);
-            }, 3000);
-        }
-
-        let cartCount = 0;
-        function addToCart(item, url) {
-            cartCount++;
-            const badge = document.getElementById('cart-count-shop');
-            if(badge) {
-                badge.innerText = cartCount; badge.classList.remove('scale-0'); badge.classList.add('animate-bounce-short');
-                setTimeout(() => badge.classList.remove('animate-bounce-short'), 600);
-            }
-            if(typeof gtag_report_conversion === 'function') {
-                gtag_report_conversion(url);
-            } else {
-                window.open(url, '_blank');
+            document.querySelectorAll('.page-content').forEach(page => page.classList.remove('active'));
+            const activePage = document.getElementById(`page-${pageId}`);
+            if(activePage) {
+                activePage.classList.add('active');
+                activePage.scrollTop = 0;
             }
         }
 
-        function toggleTheme() {
-            const html = document.documentElement;
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark'); localStorage.theme = 'light'; updateThemeColor('light');
-            } else {
-                html.classList.add('dark'); localStorage.theme = 'dark'; updateThemeColor('dark');
-            }
-        }
-        
-        function updateThemeColor(theme) {
-            const meta = document.getElementById('theme-color-meta');
-            if(meta) meta.content = theme === 'dark' ? '#050101' : '#FFFFFF';
-        }
-
-        function navigate(sectionId) {
-            document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.dock-item').forEach(d => d.classList.remove('active'));
-            const target = document.getElementById(sectionId);
-            if(target) target.classList.add('active');
+        function switchCategory(catId) {
+            document.querySelectorAll('.boutique-link').forEach(link => link.classList.remove('active'));
+            document.getElementById(`btn-${catId}`).classList.add('active');
             
-            let navId = 'nav-home';
-            if(sectionId.includes('club')) navId = 'nav-clube';
-            if(sectionId.includes('agata')) navId = 'nav-agata';
-            if(sectionId.includes('atelier')) navId = 'nav-atelier';
-            if(sectionId.includes('liso')) navId = 'nav-liso';
-            
-            const navEl = document.getElementById(navId);
-            if(navEl) navEl.classList.add('active');
-            
-            if(sectionId === 'main-site-wrapper') {
-                const v = document.getElementById('heroVideoMain');
-                if(v) v.play().catch(e => {});
-            }
-            window.scrollTo({top: 0, behavior: 'instant'});
+            document.querySelectorAll('.category-content').forEach(content => content.classList.remove('active'));
+            document.getElementById(`cat-${catId}`).classList.add('active');
         }
 
-        function openLightbox(src) {
-            const lb = document.getElementById('lightbox'); const img = document.getElementById('lightbox-img');
-            img.src = src; lb.classList.remove('hidden'); lb.classList.add('flex');
-            document.body.style.overflow = 'hidden';
-        }
-        function closeLightbox() { 
-            const lb = document.getElementById('lightbox');
-            lb.classList.add('hidden'); lb.classList.remove('flex');
-            document.body.style.overflow = '';
-        }
-
-        function openModal(type) { 
-            const m = document.getElementById('erh-legal-modal-overlay'); 
-            m.classList.remove('hidden'); m.classList.add('flex');
-            if(type === 'privacy') document.getElementById('content-privacy').style.display = 'block';
-        }
-        function closeModal() { 
-            const m = document.getElementById('erh-legal-modal-overlay'); 
-            m.classList.add('hidden'); m.classList.remove('flex');
-            document.getElementById('content-privacy').style.display = 'none';
-        }
-
-        function updateScarcity() {
-            const today = new Date();
-            const dayIndex = today.getDay();
-            let min, max;
-            if (dayIndex === 1 || dayIndex === 2) { min = 68; max = 75; }
-            else if (dayIndex === 3 || dayIndex === 4) { min = 76; max = 89; }
-            else { min = 90; max = 99; }
-            let finalPercentage = Math.floor(Math.random() * (max - min + 1)) + min;
-            const barSlot = document.getElementById('slots-text');
-            const mobileSlot = document.getElementById('slots-text-mobile');
-            if(barSlot) barSlot.innerText = `${finalPercentage}% Ocupada`;
-            if(mobileSlot) {
-                mobileSlot.innerText = `Agenda ${finalPercentage}% Ocupada`;
-                if(finalPercentage > 89) {
-                    setTimeout(() => {
-                        const toast = document.getElementById('scarcity-toast');
-                        if(toast) {
-                            toast.classList.remove('opacity-0', 'translate-y-4');
-                            setTimeout(() => { toast.classList.add('opacity-0', 'translate-y-4'); }, 5000);
-                        }
-                    }, 2000);
-                }
-            }
-        }
-        
-        function selectService(selectedId) {
-            const cards = ['card-flash', 'card-liso', 'card-detox'];
-            cards.forEach(id => {
-                const el = document.getElementById(id);
-                if(el) {
-                    if(id === selectedId) {
-                        el.classList.add('card-active');
-                        el.scrollIntoView({behavior: 'smooth', block: 'center', inline: 'center'});
-                    } else {
-                        el.classList.remove('card-active');
-                    }
-                }
-            });
-        }
-        
-        // Nova Função de Prova Social Restaurada
-        function updateSocialProof() {
-            const now = new Date();
-            const hour = now.getHours();
-            const day = now.getDay();
-            let hourFactor = Math.max(0, hour - 8); 
-            let sublimeCount = 2 + Math.floor(hourFactor * 1.1) + (day === 5 || day === 6 ? 3 : 0);
-            let imperialCount = 1 + Math.floor(hourFactor * 0.7) + (day === 5 || day === 6 ? 2 : 0);
-            let absolutoCount = 0 + Math.floor(hourFactor * 0.4);
-            if (absolutoCount < 1 && hour >= 10) absolutoCount = 1;
-
-            const updateEl = (id, count) => {
-                const el = document.getElementById(id);
-                if (el) {
-                    const span = el.querySelector('.count');
-                    if (span) span.innerText = count;
-                    if (hour < 9) {
-                        el.innerHTML = '<i class="fas fa-clock mr-1"></i> Inscrições Abertas';
-                    } else {
-                        el.innerHTML = `<i class="fas fa-user-check mr-1"></i> ${count} entraram hoje`;
-                        if(id === 'sp-imperial') el.innerHTML = `<i class="fas fa-fire mr-1"></i> ${count} entraram hoje`;
-                    }
-                    el.classList.remove('opacity-0');
-                }
-            };
-            updateEl('sp-sublime', sublimeCount);
-            updateEl('sp-imperial', imperialCount);
-            updateEl('sp-absoluto', absolutoCount);
-        }
-
-        function checkReveal() {
-            document.querySelectorAll('.reveal').forEach(r => { if(r.getBoundingClientRect().top < window.innerHeight - 100) r.classList.add('active'); });
-        }
-
-        window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
-            setTimeout(() => { preloader.style.opacity = '0'; setTimeout(() => { preloader.style.display = 'none'; }, 1000); }, 1500); 
-            
-            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark'); updateThemeColor('dark');
-            } else {
-                document.documentElement.classList.remove('dark'); updateThemeColor('light');
-            }
-
-            updateScarcity();
-            updateSocialProof();
-
-            const hash = window.location.hash;
-            if(hash === '#clube') navigate('club-view-container');
-            else if(hash === '#agata') navigate('agata-view-container');
-            else if(hash === '#atelier') navigate('atelier-view-container');
-            else if(hash === '#liso') navigate('liso-view-container');
-            else navigate('main-site-wrapper');
-        });
-
-        window.addEventListener('scroll', () => {
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            const progressBar = document.getElementById('scroll-progress');
-            if(progressBar) progressBar.style.width = scrolled + "%";
-            checkReveal();
-        });
-        
-        document.addEventListener('DOMContentLoaded', () => {
-             if(typeof lucide !== 'undefined') lucide.createIcons();
-             selectService('card-liso');
-        });
+        window.onload = () => { switchPage('movie'); };
     </script>
 </body>
 </html>
