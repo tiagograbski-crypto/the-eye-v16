@@ -3,31 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>DG Holding | Cinema Premiere 2026</title>
+    <title>DG Holding | Cinema & Science Premiere 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --pink: #FF0080;
             --cyan: #00D1FF;
-            --emerald: #00FF8A;
             --obsidian: #010101;
             --gold: #D4AF37;
+            --emerald: #00FF8A;
             /* High-Res Cine Assets */
-            --img-hero: url('https://calcularodadd.carrd.co/assets/images/image22.jpg?v=7f6e78a6'); /* Ápice da Balada */
-            --img-beauty: url('https://calcularodadd.carrd.co/assets/images/image13.jpg?v=4c040d6e'); /* Rosinha */
-            --img-sleep: url('https://calcularodadd.carrd.co/assets/images/image20.jpg?v=7f6e78a6'); /* Sono Revigorante */
-            --img-focus: url('https://calcularodadd.carrd.co/assets/images/image21.jpg?v=7f6e78a6'); /* Foco */
+            --img-hero: url('https://calcularodadd.carrd.co/assets/images/image22.jpg?v=7f6e78a6'); /* Ápice */
+            --img-beauty: url('https://calcularodadd.carrd.co/assets/images/image15.jpg?v=7f6e78a6'); /* Suplementos */
+            --img-energy: url('https://calcularodadd.carrd.co/assets/images/image21.jpg?v=7f6e78a6'); /* Focco */
+            --img-sleep: url('https://calcularodadd.carrd.co/assets/images/image20.jpg?v=7f6e78a6'); /* Sono */
             --img-libido: url('https://calcularodadd.carrd.co/assets/images/image01.jpg?v=7f6e78a6'); /* Libido */
-            --img-macro: url('https://calcularodadd.carrd.co/assets/images/image14.jpg?v=4c040d6e');
+            --img-lx: url('https://calcularodadd.carrd.co/assets/images/image24.jpg?v=ccc755b2'); /* LX Master Teaser */
         }
         
-        * { 
-            scrollbar-width: none; 
-            -ms-overflow-style: none; 
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+        * { scrollbar-width: none; -ms-overflow-style: none; -webkit-font-smoothing: antialiased; }
         *::-webkit-scrollbar { display: none; }
         
         body { 
@@ -38,376 +33,290 @@
             width: 100vw;
         }
 
-        /* Navigation: Cinema Layout */
+        /* Navigation Cinema */
         .nav-cinema { 
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 20px 30px;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: center;
-            background: linear-gradient(to bottom, rgba(0,0,0,1) 30%, transparent 100%);
-            backdrop-filter: blur(15px);
+            position: fixed; top: 0; width: 100%; padding: 20px 30px; z-index: 1000;
+            display: flex; flex-direction: column; gap: 15px; align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,1) 40%, transparent 100%);
+            backdrop-filter: blur(12px);
         }
-        @media (min-width: 1024px) {
-            .nav-cinema { flex-direction: row; padding: 40px 60px; justify-content: space-between; }
-        }
+        @media (min-width: 1024px) { .nav-cinema { flex-direction: row; padding: 40px 60px; justify-content: space-between; } }
 
-        .nav-link { 
-            font-size: 9px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: rgba(255,255,255,0.4);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-        }
-        @media (min-width: 1024px) { .nav-link { font-size: 10px; letter-spacing: 5px; } }
+        .nav-link { font-size: 9px; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.4); transition: 0.5s ease; cursor: pointer; }
         .nav-link:hover, .nav-link.active { color: #fff; text-shadow: 0 0 15px rgba(255,255,255,0.8); }
 
-        /* Page Content Manager */
-        .page-content {
-            display: none;
-            min-height: 100vh;
-            width: 100vw;
-            overflow-y: auto;
-            overflow-x: hidden;
-            padding-bottom: 150px;
-        }
+        .page-content { display: none; min-height: 100vh; width: 100vw; overflow-y: auto; overflow-x: hidden; padding-bottom: 120px; }
         .page-content.active { display: block; animation: pageIn 1s ease-out; }
         @keyframes pageIn { from { opacity: 0; transform: scale(1.02); } to { opacity: 1; transform: scale(1); } }
 
         /* Cinema Hero */
         .hero-cinema {
-            height: 100vh;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background-size: cover;
-            background-position: center;
-            background-image: var(--img-hero);
-            padding: 20px;
+            height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            position: relative; background-size: cover; background-position: center; background-image: var(--img-hero); padding: 40px 20px;
         }
-        .cinema-overlay {
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle, transparent 0%, var(--obsidian) 92%);
-        }
+        .cinema-overlay { position: absolute; inset: 0; background: radial-gradient(circle, transparent 0%, var(--obsidian) 95%); }
 
         .cinema-title {
-            font-size: clamp(2.5rem, 15vw, 9rem);
-            font-weight: 200;
-            letter-spacing: -4px;
-            line-height: 0.9;
-            text-transform: uppercase;
-            z-index: 10;
-            opacity: 0;
-            animation: fadeInBlur 2.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
-            text-align: center;
-        }
-        @media (min-width: 1024px) { .cinema-title { letter-spacing: -10px; line-height: 0.8; } }
-
-        @keyframes fadeInBlur {
-            from { transform: scale(1.05); filter: blur(15px); opacity: 0; }
-            to { transform: scale(1); filter: blur(0); opacity: 1; }
-        }
-
-        /* Movie Poster Product Grid */
-        .movie-poster {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            height: 500px;
-            background: #050505;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
-            cursor: pointer;
-        }
-        @media (min-width: 1024px) { .movie-poster { height: 750px; } }
-        .movie-poster:hover { border-color: var(--gold); transform: translateY(-10px); }
-        .poster-img { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.4; transition: 2s ease; }
-        .movie-poster:hover .poster-img { opacity: 0.8; transform: scale(1.08); }
-        .poster-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 40px; background: linear-gradient(0deg, #000 20%, transparent 100%); }
-
-        /* Boutique Sections */
-        .boutique-nav {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            justify-content: center;
-            padding: 40px 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: clamp(2rem, 12vw, 8rem); font-weight: 200; letter-spacing: -4px; line-height: 0.9;
+            text-transform: uppercase; z-index: 10; opacity: 0; animation: fadeInBlur 2.5s ease forwards; text-align: center;
             margin-bottom: 60px;
         }
-        @media (min-width: 1024px) { .boutique-nav { flex-direction: row; gap: 60px; padding: 60px 0; } }
-        
+        @keyframes fadeInBlur { from { transform: scale(1.05); filter: blur(20px); opacity: 0; } to { transform: scale(1); filter: blur(0); opacity: 1; } }
+
+        /* Directing Cards */
+        .path-card {
+            position: relative; height: 350px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.8s cubic-bezier(0.165, 0.84, 0.44, 1); cursor: pointer;
+        }
+        @media (min-width: 1024px) { .path-card { height: 500px; } }
+        .path-card:hover { transform: scale(1.05); border-color: var(--pink); box-shadow: 0 0 50px rgba(255, 0, 128, 0.2); }
+        .path-img { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.55; transition: 1.5s ease; }
+        .path-card:hover .path-img { opacity: 0.85; transform: scale(1.1); }
+        .path-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 40px; background: linear-gradient(0deg, #000 15%, transparent 80%); }
+
+        /* Boutique Sections */
+        .boutique-nav { display: flex; flex-direction: column; gap: 15px; justify-content: center; padding: 30px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 40px; }
+        @media (min-width: 1024px) { .boutique-nav { flex-direction: row; gap: 60px; padding: 60px 0; margin-bottom: 80px; } }
         .boutique-link { font-size: 10px; font-weight: 900; color: #333; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: 0.5s; text-align: center; }
-        .boutique-link.active { color: #fff; border-bottom: 2px solid var(--pink); padding-bottom: 15px; }
+        .boutique-link.active { color: #fff; border-bottom: 2px solid var(--pink); padding-bottom: 10px; }
 
         .category-content { display: none; }
         .category-content.active { display: block; animation: movieFade 1.2s ease; }
         @keyframes movieFade { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Ritual Section Styles */
-        .ritual-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            padding: 40px;
-            transition: all 0.5s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .ritual-card:hover { border-color: var(--pink); background: rgba(255, 0, 128, 0.03); transform: translateY(-5px); }
-        .ritual-number { font-size: 60px; font-weight: 900; color: rgba(255,255,255,0.03); position: absolute; top: 10px; right: 20px; }
-        .ritual-script { font-family: 'Plus Jakarta Sans', sans-serif; border-left: 2px solid var(--pink); padding-left: 20px; margin-top: 20px; }
+        /* Pricing Table Luxury */
+        .pricing-table { width: 100%; border-collapse: collapse; margin-top: 30px; }
+        .pricing-table th { padding: 15px; text-align: left; font-size: 9px; color: #555; text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .pricing-table td { padding: 20px 15px; font-size: 12px; border-bottom: 1px solid rgba(255,255,255,0.03); }
+        .cost-label { color: var(--emerald); font-weight: 800; font-size: 10px; }
 
-        /* Footer: The Producers */
+        /* Teaser Pop-up (Jan 2027) */
+        #lx-modal {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9999;
+            display: none; align-items: center; justify-content: center; padding: 20px;
+            backdrop-filter: blur(20px);
+        }
+        .modal-content {
+            background: #050505; border: 1px solid rgba(255,255,255,0.1); border-radius: 24px;
+            width: 100%; max-width: 900px; display: grid; grid-template-columns: 1fr; overflow: hidden;
+            box-shadow: 0 0 100px rgba(0, 209, 255, 0.1); position: relative;
+            animation: modalIn 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        @media (min-width: 768px) { .modal-content { grid-template-columns: 1fr 1fr; } }
+        
+        @keyframes modalIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        .modal-img-side {
+            background-image: var(--img-lx); background-size: cover; background-position: center;
+            height: 300px;
+        }
+        @media (min-width: 768px) { .modal-img-side { height: 100%; } }
+
+        .modal-text-side { padding: 40px; display: flex; flex-direction: column; justify-content: center; text-align: left; }
+        
+        .lx-badge { background: var(--cyan); color: black; padding: 4px 12px; border-radius: 4px; font-size: 8px; font-weight: 900; text-transform: uppercase; margin-bottom: 20px; display: inline-block; }
+
+        .close-modal { position: absolute; top: 20px; right: 20px; font-size: 20px; color: #555; cursor: pointer; transition: 0.3s; z-index: 10; }
+        .close-modal:hover { color: #fff; transform: rotate(90deg); }
+
+        /* Footer Producers */
         .footer-premiere {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            min-height: 80px;
-            background: rgba(0,0,0,0.98);
-            backdrop-filter: blur(25px);
-            border-top: 1px solid rgba(255,255,255,0.03);
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 15px 0;
+            position: fixed; bottom: 0; width: 100%; min-height: 80px; background: rgba(0,0,0,0.98); backdrop-filter: blur(30px);
+            border-top: 1px solid rgba(255,255,255,0.03); z-index: 1000; padding: 20px 0; display: flex; align-items: center; justify-content: center;
         }
-        .footer-cast {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px 30px;
-            font-size: 7px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: #444;
-            padding: 0 20px;
-            justify-content: center;
-            max-width: 1200px;
-        }
-        @media (min-width: 1024px) { .footer-cast { gap: 60px; font-size: 9px; letter-spacing: 5px; } }
-        .cast-name { color: #fff; cursor: crosshair; transition: 0.4s ease; white-space: nowrap; }
-        .cast-name:hover { color: var(--pink); transform: translateY(-2px); }
+        .footer-cast { display: flex; flex-wrap: wrap; gap: 15px 30px; font-size: 7px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #444; justify-content: center; padding: 0 20px; }
+        @media (min-width: 1024px) { .footer-cast { gap: 60px; font-size: 8px; letter-spacing: 4px; } }
+        .cast-name { color: #fff; white-space: nowrap; transition: color 0.3s; }
+        .cast-name:hover { color: var(--pink); }
 
-        /* Generic Classes */
-        .section-tag { font-size: 9px; font-weight: 900; letter-spacing: 6px; color: var(--gold); text-transform: uppercase; margin-bottom: 20px; display: block; opacity: 0.6; }
-        .gold-title { color: var(--gold); text-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
+        .section-tag { font-size: 8px; font-weight: 900; letter-spacing: 5px; color: var(--gold); text-transform: uppercase; margin-bottom: 15px; display: block; opacity: 0.6; }
+        .gold-title { color: var(--gold); }
         .pink-title { color: var(--pink); }
-        .nutrition-row { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.03); padding: 12px 0; font-size: 11px; }
+        .price-highlight { font-size: 20px; font-weight: 900; font-style: italic; color: #fff; }
+
+        .flavor-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 12px; margin-top: 30px; }
+        .flavor-card { border-radius: 8px; overflow: hidden; height: 160px; border: 1px solid rgba(255,255,255,0.05); transition: 0.4s; }
+        .flavor-card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.65; }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- MASTER CINEMA NAVIGATION -->
+    <!-- TEASER MODAL (8 SECONDS DELAY) -->
+    <div id="lx-modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeTeaser()">✕</span>
+            <div class="modal-img-side"></div>
+            <div class="modal-text-side">
+                <span class="lx-badge">Scientific Teaser</span>
+                <h3 class="text-4xl font-extralight text-white uppercase italic leading-none mb-6">
+                    LX Master <br> <span class="text-cyan-400 font-bold">Evolution.</span>
+                </h3>
+                <p class="text-gray-400 text-sm italic font-light leading-relaxed mb-8">
+                    O próximo salto na biotecnologia capilar sistémica. <br>
+                    Desenvolvimento finalizado.
+                </p>
+                <div class="border-t border-white/5 pt-6">
+                    <span class="text-[10px] font-black uppercase text-white tracking-[6px]">Janeiro de 2027</span>
+                    <p class="text-[8px] text-gray-600 mt-2">Exclusive for Dias Grabski Private Hubs.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MASTER NAVIGATION -->
     <nav class="nav-cinema">
         <div class="flex items-center gap-4">
-            <div class="w-12 h-12 border border-white/10 flex items-center justify-center font-black text-white text-2xl">DG</div>
+            <div class="w-10 h-10 border border-white/10 flex items-center justify-center font-black text-white text-xl">DG</div>
             <div class="hidden sm:block leading-none text-left">
                 <span class="text-[11px] font-black tracking-[0.3em] uppercase text-white">Dias Grabski</span><br>
-                <span class="text-[7px] text-gray-700 uppercase tracking-[0.5em]">Holding Premiere</span>
+                <span class="text-[7px] text-gray-700 uppercase tracking-[0.4em]">Holding Premiere</span>
             </div>
         </div>
         <div class="flex gap-8 lg:gap-16">
             <a onclick="switchPage('movie')" class="nav-link active" data-page="movie">Opening</a>
             <a onclick="switchPage('shop')" class="nav-link" data-page="shop">The Boutique</a>
-            <a onclick="switchPage('factory')" class="nav-link" data-page="factory">Logistics</a>
             <a onclick="switchPage('ritual')" class="nav-link" data-page="ritual">Ritual.dg</a>
+            <a onclick="switchPage('factory')" class="nav-link" data-page="factory">Engineering</a>
         </div>
     </nav>
 
     <div class="wrapper">
         
-        <!-- MODULO: OPENING -->
+        <!-- MODULO: OPENING (DIRECIONAMENTO COM NOVOS NOMES) -->
         <main id="page-movie" class="page-content active">
             <section class="hero-cinema">
                 <div class="cinema-overlay"></div>
-                <span class="section-tag z-10">Private Collection 2026</span>
-                <h1 class="cinema-title text-white">Dias Grabski <br> <span class="italic gold-title font-bold">Holding.</span></h1>
-                <button onclick="switchPage('shop')" class="bg-white text-black px-12 py-5 font-black uppercase text-[10px] tracking-[6px] mt-12 z-10 hover:bg-pink-500 hover:text-white transition-all">Explore</button>
-            </section>
-
-            <!-- Cast Selection Posters -->
-            <section class="container mx-auto px-6 md:px-16 py-32 bg-black">
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="movie-poster" onclick="switchPage('shop')">
-                        <div class="poster-img" style="background-image: var(--img-focus)"></div>
-                        <div class="poster-content">
-                            <span class="text-white text-[8px] font-black uppercase tracking-[4px] block mb-2 opacity-40">Day Activation</span>
-                            <h4 class="text-4xl font-light text-white italic">Foco.</h4>
+                <div class="z-10 text-center mb-10 px-6">
+                    <span class="section-tag">Governance Hub 2026</span>
+                    <h1 class="cinema-title text-white">Dias Grabski <br> <span class="italic gold-title font-bold">Holding.</span></h1>
+                </div>
+                <!-- CARDS DE ENTRADA -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 z-20 w-full max-w-4xl px-6">
+                    <div class="path-card" onclick="goToShop('beauty')">
+                        <div class="path-img" style="background-image: var(--img-beauty)"></div>
+                        <div class="path-content">
+                            <h4 class="text-3xl md:text-5xl font-light text-white italic leading-tight">Suplementos.</h4>
+                            <p class="text-[10px] text-pink-500 uppercase font-black tracking-widest mt-2">Cabelo • Pele • Unha</p>
                         </div>
                     </div>
-                    <div class="movie-poster" onclick="switchPage('shop')">
-                        <div class="poster-img" style="background-image: var(--img-sleep)"></div>
-                        <div class="poster-content">
-                            <span class="text-white text-[8px] font-black uppercase tracking-[4px] block mb-2 opacity-40">Night Recovery</span>
-                            <h4 class="text-4xl font-light text-white italic leading-none">Sono <br>Revigorante.</h4>
-                        </div>
-                    </div>
-                    <div class="movie-poster" onclick="switchPage('shop')">
-                        <div class="poster-img" style="background-image: var(--img-libido)"></div>
-                        <div class="poster-content">
-                            <span class="text-white text-[8px] font-black uppercase tracking-[4px] block mb-2 opacity-40">Vitality Drive</span>
-                            <h4 class="text-4xl font-light pink-title italic">Libido.</h4>
-                        </div>
-                    </div>
-                    <div class="movie-poster" onclick="switchPage('shop')">
-                        <div class="poster-img" style="background-image: var(--img-hero)"></div>
-                        <div class="poster-content">
-                            <span class="text-white text-[8px] font-black uppercase tracking-[4px] block mb-2 opacity-40">Elite Only</span>
-                            <h4 class="text-4xl font-light gold-title italic leading-none">Ápice da <br>Balada.</h4>
+                    <div class="path-card" onclick="goToShop('performance')">
+                        <div class="path-img" style="background-image: var(--img-hero)"></div>
+                        <div class="path-content">
+                            <h4 class="text-3xl md:text-5xl font-light text-white italic leading-tight">Energéticos.</h4>
+                            <p class="text-[10px] text-gold uppercase font-black tracking-widest mt-2">Performance & Lifestyle</p>
                         </div>
                     </div>
                 </div>
             </section>
         </main>
 
-        <!-- MODULO: BOUTIQUE -->
+        <!-- MODULO: THE BOUTIQUE -->
         <main id="page-shop" class="page-content">
-            <div class="container mx-auto px-6 pt-48 lg:pt-64 max-w-7xl">
-                <h2 class="text-6xl lg:text-8xl font-extralight text-white uppercase italic text-center mb-16">The <span class="pink-title font-bold">Boutique.</span></h2>
+            <div class="container mx-auto px-6 md:px-16 pt-48 lg:pt-64 max-w-7xl text-center">
+                <h2 class="text-5xl lg:text-8xl font-extralight text-white uppercase italic mb-10" id="boutique-main-title">The <span class="pink-title font-bold">Boutique.</span></h2>
                 
                 <div class="boutique-nav">
-                    <a onclick="switchCategory('beauty')" class="boutique-link active" id="btn-beauty">I: Beauty (Cabelo • Pele • Unha)</a>
-                    <a onclick="switchCategory('performance')" class="boutique-link" id="btn-performance">II: Performance (Elite Energy)</a>
+                    <a onclick="switchCategory('beauty')" class="boutique-link active" id="btn-beauty">Linha Suplementos (Tratamento)</a>
+                    <a onclick="switchCategory('performance')" class="boutique-link" id="btn-performance">Linha Energéticos (Performance)</a>
                 </div>
 
+                <!-- CATEGORIA: SUPLEMENTOS -->
                 <div id="cat-beauty" class="category-content active">
-                    <div class="grid lg:grid-cols-2 gap-16 md:gap-32 items-center">
-                        <div class="movie-poster h-[450px] lg:h-[850px] border-pink-500/20">
-                            <div class="poster-img" style="background-image: var(--img-beauty); opacity: 0.95;"></div>
-                        </div>
-                        <div class="space-y-12 text-left">
-                            <span class="section-tag">Mantra Biológico</span>
-                            <h3 class="text-6xl lg:text-8xl font-bold italic text-white uppercase leading-none">Cabelo <br> Pele <br> Unha</h3>
-                            <div class="bg-white/[0.02] border border-white/5 p-10 rounded-2xl">
-                                <div class="nutrition-row"><span>Biotina B7 Pure</span><span class="text-pink-500 font-bold">100% VD</span></div>
-                                <div class="nutrition-row"><span>Colagénio Fibrilar</span><span class="text-white">Premium</span></div>
-                                <div class="nutrition-row"><span>Zinco Sistêmico</span><span class="text-white">Blindagem</span></div>
+                    <div class="grid lg:grid-cols-12 gap-12 text-left">
+                        <div class="lg:col-span-5">
+                            <div class="path-card h-[400px] lg:h-[600px] border-pink-500/20 cursor-default mb-8">
+                                <div class="path-img" style="background-image: var(--img-beauty); opacity: 0.95;"></div>
                             </div>
-                            <div class="flex justify-between items-center border-t border-white/10 pt-10">
-                                <div><p class="text-[9px] text-gray-500 uppercase font-black mb-2">Dose Unitária</p><span class="text-5xl font-black text-white italic tracking-tighter">R$ 19</span></div>
-                                <button class="bg-white text-black px-10 py-4 font-black uppercase text-[10px] tracking-widest">Order B2B</button>
+                            <span class="section-tag">Showcase de Sabores</span>
+                            <div class="flavor-grid">
+                                <div class="flavor-card"><img src="https://calcularodadd.carrd.co/assets/images/image06.jpg?v=8cbffaba"></div>
+                                <div class="flavor-card"><img src="https://calcularodadd.carrd.co/assets/images/image07.jpg?v=8cbffaba"></div>
+                                <div class="flavor-card"><img src="https://calcularodadd.carrd.co/assets/images/image08.jpg?v=8cbffaba"></div>
+                                <div class="flavor-card"><img src="https://calcularodadd.carrd.co/assets/images/image09.jpg?v=8cbffaba"></div>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-7 space-y-10">
+                            <div>
+                                <span class="section-tag">Governance & Pricing</span>
+                                <h3 class="text-4xl font-bold italic text-white uppercase mb-6 leading-none">Matriz Biológica <br> Suplementar</h3>
+                                <p class="text-gray-400 text-lg italic font-light">Tabela industrial para o Lote Piloto.</p>
+                            </div>
+                            <div class="bg-white/[0.01] border border-white/5 rounded-2xl overflow-hidden">
+                                <table class="pricing-table">
+                                    <thead><tr><th>Formato</th><th>Custo Fabril</th><th>Preço Venda</th><th>Margem DG</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Ritual Unitário</td><td class="cost-label">R$ 9,49</td><td class="price-highlight">R$ 19,00</td><td class="text-pink-500 font-bold italic">R$ 9,51</td></tr>
+                                        <tr><td>Kit 06 Unidades</td><td class="cost-label">R$ 56,94</td><td class="price-highlight">R$ 109,00</td><td class="text-pink-500 font-bold italic">R$ 52,06</td></tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
 
+                <!-- CATEGORIA: ENERGÉTICOS -->
                 <div id="cat-performance" class="category-content">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                        <div class="ritual-card border-white/10">
-                            <div class="movie-poster h-[350px] mb-8"><div class="poster-img" style="background-image: var(--img-focus); opacity: 0.9;"></div></div>
-                            <h4 class="text-3xl font-bold text-white uppercase italic">Foco Diurno</h4>
-                            <p class="text-lg text-gray-500 font-light italic mt-4 leading-relaxed">Alta performance cognitiva e ativação metabólica para dominar a jornada extraordinaria.</p>
-                            <span class="text-4xl font-black text-white mt-8 block">R$ 19</span>
+                    <div class="grid lg:grid-cols-12 gap-12 text-left">
+                        <div class="lg:col-span-7 space-y-8 order-2 lg:order-1">
+                            <span class="section-tag">Elite Performance Matrix</span>
+                            <h3 class="text-4xl font-bold italic text-white uppercase leading-none">Venda por <br> Desejo de Estado</h3>
+                            <div class="bg-white/[0.01] border border-white/5 rounded-2xl overflow-hidden">
+                                <table class="pricing-table">
+                                    <thead><tr><th>Produto</th><th>Custo Unit.</th><th>Preço Venda</th><th>Margem</th></tr></thead>
+                                    <tbody>
+                                        <tr><td><strong>Focco</strong> (Branca)</td><td class="cost-label">R$ 9,49</td><td class="price-highlight">R$ 19,00</td><td>R$ 9,51</td></tr>
+                                        <tr><td><strong>Sono Recuperador</strong> (Preta)</td><td class="cost-label">R$ 9,49</td><td class="price-highlight">R$ 19,00</td><td>R$ 9,51</td></tr>
+                                        <tr><td><strong>Libido Sophisticated</strong> (Red)</td><td class="cost-label">R$ 9,49</td><td class="price-highlight">R$ 19,00</td><td>R$ 9,51</td></tr>
+                                        <tr><td><strong>Noite da Balada</strong> (Gold)</td><td class="cost-label">R$ 14,50</td><td class="text-gold font-black italic text-2xl">R$ 45,00</td><td class="text-gold italic">R$ 30,50</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                        <div class="ritual-card border-pink-500/10">
-                            <div class="movie-poster h-[350px] mb-8"><div class="poster-img" style="background-image: var(--img-sleep); opacity: 0.9;"></div></div>
-                            <h4 class="text-3xl font-bold text-white uppercase italic">Sono Revigorante</h4>
-                            <p class="text-lg text-gray-500 font-light italic mt-4 leading-relaxed">Indução biológica ao sono profundo. Onde o reparo de <strong>Cabelo, Pele e Unha</strong> atinge o pico.</p>
-                            <span class="text-4xl font-black text-white mt-8 block">R$ 19</span>
+                        <div class="lg:col-span-5 order-1 lg:order-2">
+                             <div class="grid grid-cols-2 gap-4">
+                                <div class="path-card h-[250px] border-white/10"><div class="path-img" style="background-image: var(--img-energy)"></div><div class="path-content p-4"><p class="text-[8px] font-black italic text-cyan-400">FOCCO</p></div></div>
+                                <div class="path-card h-[250px] border-white/10"><div class="path-img" style="background-image: var(--img-sleep)"></div><div class="path-content p-4"><p class="text-[8px] font-black italic text-white">SONO RECUPERADOR</p></div></div>
+                                <div class="path-card h-[250px] border-pink-500/20"><div class="path-img" style="background-image: var(--img-libido)"></div><div class="path-content p-4"><p class="text-[8px] font-black italic text-pink-500">LIBIDO</p></div></div>
+                                <div class="path-card h-[250px] border-gold/30"><div class="path-img" style="background-image: var(--img-hero)"></div><div class="path-content p-4"><p class="text-[8px] font-black italic text-gold">NOITE DA BALADA</p></div></div>
+                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
 
-        <!-- MODULO: RITUAL (RESTAURAÇÃO TOTAL DOS 5 PILARES) -->
+        <!-- RITUAL & FACTORY -->
         <main id="page-ritual" class="page-content">
-            <div class="container mx-auto px-6 pt-48 lg:pt-64 max-w-7xl">
-                <div class="text-center mb-24">
-                    <span class="section-tag">The Doctrine</span>
-                    <h2 class="text-6xl lg:text-9xl font-extralight text-white uppercase italic leading-none">The <span class="pink-title font-bold">Ritual.</span></h2>
-                    <p class="text-gray-500 text-lg lg:text-2xl mt-10 max-w-4xl mx-auto italic font-light">
-                        Transformamos suplementação em uma etapa técnica obrigatória do serviço de luxo.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    
-                    <!-- 1. O Vocabulário -->
-                    <div class="ritual-card">
-                        <span class="ritual-number">01</span>
-                        <h5 class="text-[10px] font-black text-white uppercase tracking-[4px] mb-6">Vocabulário de Autoridade</h5>
-                        <p class="text-gray-500 text-sm italic leading-relaxed">Banim os termos "suco" ou "bebida". Tratamos como ciência aplicada.</p>
-                        <div class="ritual-script">
-                            <p class="text-[11px] text-white italic font-bold">"Fulana, estamos iniciando sua Bio-Construção Molecular gelada. Ela prepara seu folículo para o procedimento de hoje."</p>
-                        </div>
+            <div class="container mx-auto px-6 pt-48 lg:pt-64 max-w-7xl text-center">
+                <span class="section-tag">Ethical Doctrine</span>
+                <h2 class="text-6xl lg:text-9xl font-extralight text-white uppercase italic mb-20 leading-none">The <span class="pink-title font-bold">Ritual.</span></h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-left">
+                    <div class="bg-white/[0.01] border border-white/5 p-12 rounded-2xl border-l-4 border-l-pink-500">
+                        <h5 class="text-[10px] font-black text-white uppercase tracking-[4px] mb-6">Iniciação Ética</h5>
+                        <p class="text-[12px] text-white italic font-bold leading-relaxed">"Aceita este auxílio bebível tecnológico? Ele inicia a nutrição profunda que seu organismo usará para manter a força do seu Cabelo, Pele e Unha."</p>
                     </div>
-
-                    <!-- 2. Doutrinação Passiva -->
-                    <div class="ritual-card">
-                        <span class="ritual-number">02</span>
-                        <h5 class="text-[10px] font-black text-white uppercase tracking-[4px] mb-6">Doutrinação Passiva</h5>
-                        <p class="text-gray-500 text-sm italic leading-relaxed">A bancada ensina. Displays de acrílico DG com o Mantra da Tríade.</p>
-                        <div class="ritual-script">
-                            <p class="text-[11px] text-white italic font-bold">A cliente estuda a importância da Biotina B7 e do Colagénio enquanto aguarda a pausa química.</p>
-                        </div>
-                    </div>
-
-                    <!-- 3. Educação via QR Code -->
-                    <div class="ritual-card border-cyan-500/20">
-                        <span class="ritual-number">03</span>
-                        <h5 class="text-[10px] font-black text-white uppercase tracking-[4px] mb-6">QR Code Inside the Can</h5>
-                        <p class="text-gray-500 text-sm italic leading-relaxed">Educação técnica imersiva diretamente na palma da mão.</p>
-                        <div class="ritual-script">
-                            <p class="text-[11px] text-white italic font-bold">Ao escanear a lata, a cliente acede a um vídeo de 60s explicando por que cápsulas não funcionam no salão.</p>
-                        </div>
-                    </div>
-
-                    <!-- 4. Fechamento de Manutenção -->
-                    <div class="ritual-card border-pink-500/20">
-                        <span class="ritual-number">04</span>
-                        <h5 class="text-[10px] font-black text-white uppercase tracking-[4px] mb-6">Fechamento de Gap</h5>
-                        <p class="text-gray-500 text-sm italic leading-relaxed">Venda direta do Master Pack para manutenção domiciliar.</p>
-                        <div class="ritual-script">
-                            <p class="text-[11px] text-white italic font-bold">"Para o brilho do salão durar, você precisa levar a <strong>Sono Revigorante</strong> e manter o estímulo pelos próximos 6 dias."</p>
-                        </div>
-                    </div>
-
-                    <!-- 5. Gamificação Educativa -->
-                    <div class="ritual-card">
-                        <span class="ritual-number">05</span>
-                        <h5 class="text-[10px] font-black text-white uppercase tracking-[4px] mb-6">Gamificação dos Hubs</h5>
-                        <p class="text-gray-500 text-sm italic leading-relaxed">Ranking semanal de vendas entre as unidades da Holding.</p>
-                        <div class="ritual-script">
-                            <p class="text-[11px] text-white italic font-bold">Transparência digital. A sócia que mais vende compartilha o script de sucesso no grupo oficial.</p>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </main>
 
-        <!-- FACTORY LOGISTICS -->
         <main id="page-factory" class="page-content">
-            <div class="container mx-auto px-6 pt-48 lg:pt-64 max-w-6xl text-center">
-                <span class="section-tag">Logistics Engineering</span>
-                <h2 class="text-6xl lg:text-8xl font-extralight text-white mb-20 italic">The <span class="text-emerald-400 font-bold">Scale.</span></h2>
+            <div class="container mx-auto px-6 pt-52 max-w-6xl text-center">
+                <span class="section-tag">Industrial Logistics</span>
+                <h2 class="text-7xl font-extralight text-white mb-10 italic">The <span class="text-emerald-400 font-bold">Scale.</span></h2>
                 <div class="bg-white/[0.02] border border-white/5 p-16 lg:p-24 rounded-3xl shadow-2xl">
-                    <p class="text-2xl lg:text-4xl font-light italic text-white mb-6">700 Unidades • Lote Piloto • Março 2026</p>
-                    <p class="text-5xl lg:text-7xl font-black text-pink-500 italic tracking-tighter">R$ 6.643,00</p>
-                    <div class="mt-12 text-[10px] uppercase font-black tracking-[4px] text-gray-600">Produção Auditada Slok Chapecó</div>
+                    <p class="text-4xl lg:text-7xl font-black text-pink-500 italic tracking-tighter">R$ 6.643,00</p>
+                    <p class="text-xl lg:text-3xl font-light italic text-white mt-6">Aporte Total • Lote Piloto (700 Latas)</p>
                 </div>
             </div>
         </main>
 
     </div>
 
-    <!-- FOOTER: THE PRODUCERS (Oficial Fix) -->
+    <!-- FOOTER: THE PRODUCERS -->
     <footer class="footer-premiere">
         <div class="footer-cast">
             <span class="cast-name">Tiago Dias</span>
+            <span class="cast-name">Jo Manto</span>
             <span class="cast-name">Vera Dias</span>
             <span class="cast-name">Jéssica Dias</span>
             <span class="cast-name">Simone Dias</span>
@@ -424,10 +333,7 @@
             
             document.querySelectorAll('.page-content').forEach(page => page.classList.remove('active'));
             const activePage = document.getElementById(`page-${pageId}`);
-            if(activePage) {
-                activePage.classList.add('active');
-                activePage.scrollTop = 0;
-            }
+            if(activePage) { activePage.classList.add('active'); activePage.scrollTop = 0; }
         }
 
         function switchCategory(catId) {
@@ -438,9 +344,28 @@
             document.querySelectorAll('.category-content').forEach(content => content.classList.remove('active'));
             const cat = document.getElementById(`cat-${catId}`);
             if(cat) cat.classList.add('active');
+
+            const title = document.getElementById('boutique-main-title');
+            if(catId === 'beauty') {
+                title.innerHTML = 'Boutique: <span class="pink-title font-bold">Suplementos.</span>';
+            } else {
+                title.innerHTML = 'Boutique: <span class="gold-title font-bold">Energéticos.</span>';
+            }
         }
 
-        window.onload = () => { switchPage('movie'); };
+        function goToShop(catId) { switchPage('shop'); switchCategory(catId); }
+
+        function closeTeaser() {
+            document.getElementById('lx-modal').style.display = 'none';
+        }
+
+        window.onload = () => { 
+            switchPage('movie');
+            // Trigger teaser modal after 8 seconds
+            setTimeout(() => {
+                document.getElementById('lx-modal').style.display = 'flex';
+            }, 8000);
+        };
     </script>
 </body>
 </html>
