@@ -80,6 +80,10 @@
         
         @keyframes pageIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* Classes de Animação de Scroll (Reveal) */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
         .hero-cinema { min-height: 100vh; padding-bottom: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; background-size: cover; background-position: center; background-image: var(--img-hero); position: relative; }
         .hero-cinema::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.8) 100%); z-index: 1; }
         
@@ -95,9 +99,12 @@
         .flavor-card img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.1); }
         .flavor-card:hover { transform: translateY(-5px); border-color: var(--text-main); }
 
-        .footer-premiere { position: fixed; bottom: 0; width: 100%; height: 80px; background: var(--nav-bg); backdrop-filter: blur(20px); border-top: 1px solid var(--panel-border); z-index: 1000; display: flex; align-items: center; justify-content: center; }
-        .cast-name { font-size: 8px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: var(--text-main); opacity: 0.6; cursor: pointer; margin: 0 15px; transition: 0.3s; }
+        .footer-premiere { position: fixed; bottom: 0; width: 100%; height: 80px; background: var(--nav-bg); backdrop-filter: blur(20px); border-top: 1px solid var(--panel-border); z-index: 1000; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; padding: 0 20px;}
+        .cast-name { font-size: 8px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: var(--text-main); opacity: 0.6; cursor: pointer; margin: 0 10px; transition: 0.3s; }
         .cast-name:hover { opacity: 1; color: var(--gold); }
+
+        /* Estilos do Footer Corporativo Expandido */
+        .corporate-footer { background: var(--bg-main); border-top: 1px solid var(--panel-border); padding: 60px 20px 100px 20px; font-size: 10px; color: rgba(255,255,255,0.4); text-align: center; }
 
         #lx-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 9999; display: none; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(30px); cursor: pointer; }
         .modal-content { background: var(--bg-main); border: 1px solid rgba(0,255,138,0.2); border-radius: 12px; width: 100%; max-width: 1000px; display: grid; grid-template-columns: 1fr; cursor: default; }
@@ -117,9 +124,19 @@
         .zoomable { cursor: zoom-in; transition: transform 0.3s ease, filter 0.3s ease; }
         .zoomable:hover { filter: brightness(1.2); }
         
-        /* NOVO: Ícone Minimalista de Expansão */
+        /* Ícone Minimalista de Expansão */
         .zoom-icon { position: absolute; top: 16px; right: 16px; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(4px); border: 1px solid rgba(255, 255, 255, 0.2); color: white; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; z-index: 15; opacity: 0.6; transition: 0.3s; }
         .zoomable:hover .zoom-icon { opacity: 1; transform: scale(1.1); background: rgba(0, 0, 0, 0.7); }
+
+        /* Estilos do Painel Admin (Dashboard) */
+        .dash-card { background: rgba(255,255,255,0.01); border: 1px solid var(--panel-border); border-radius: 12px; padding: 24px; position: relative; overflow: hidden; }
+        .dash-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--gold), transparent); opacity: 0.3; }
+
+        /* NOVO ACRESCIMO: Efeitos 3D para o Mockup do Catálogo B2B */
+        .perspective-1000 { perspective: 1000px; }
+        .catalog-book { transform: rotateY(-15deg) translateZ(0); transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1); transform-style: preserve-3d; border-left: 2px solid #000; }
+        .catalog-group:hover .catalog-book { transform: rotateY(-5deg) translateZ(20px) scale(1.02); box-shadow: 25px 25px 50px rgba(0,0,0,0.9), -5px 0 30px rgba(212, 175, 55, 0.15); border-color: rgba(212, 175, 55, 0.3); border-left-color: #000; }
+        .book-spine { position: absolute; left: -14px; top: -1px; bottom: -1px; width: 15px; background: linear-gradient(to right, #050505, #222); transform: rotateY(-90deg); transform-origin: right; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); border-left: 1px solid rgba(255,255,255,0.05); border-top-left-radius: 2px; border-bottom-left-radius: 2px; }
     </style>
 </head>
 <body class="antialiased">
@@ -153,39 +170,48 @@
             <div class="w-8 h-8 border border-panel-border flex items-center justify-center font-black text-xs text-gold">DG</div>
             <div class="text-left"><span class="text-[10px] font-black uppercase tracking-widest">Dias Grabski</span></div>
         </div>
-        <div class="nav-links-container">
+        <div class="nav-links-container flex flex-wrap justify-center gap-2">
             <a onclick="switchPage('movie')" class="nav-link active" data-page="movie">The Premiere</a>
             <a onclick="switchPage('shop')" class="nav-link" data-page="shop">Boutique Store</a>
             <a onclick="switchPage('expansion')" class="nav-link" data-page="expansion">Expansion</a>
             <a onclick="switchPage('factory')" class="nav-link" data-page="factory">Board Deck (DEC)</a>
-            <div class="portal-btn hidden md:block" onclick="switchPage('admin')">Intelligence</div>
+            <div class="portal-btn md:inline-block border border-white/10 px-3 py-1 rounded cursor-pointer hover:bg-white/5 transition text-[9px] font-bold uppercase tracking-widest ml-2" onclick="switchPage('admin')">Intelligence</div>
         </div>
     </nav>
 
     <div class="wrapper">
         
-        <!-- PÁGINA: THE PREMIERE (CAPA CORRIGIDA COM ENERGÉTICO) -->
+        <!-- PÁGINA: THE PREMIERE (CAPA) -->
         <main id="page-movie" class="page-content active">
             <section class="hero-cinema">
-                <div class="z-10 text-center mb-16">
+                <div class="z-10 text-center mb-16 reveal">
                     <span class="text-gold text-[9px] font-black tracking-[8px] uppercase">Domínio Nacional 2026</span>
                     <h1 class="text-5xl lg:text-9xl font-extralight uppercase mt-6">Dias Grabski <br> <span class="italic font-bold text-gold">Holding.</span></h1>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl px-6 z-20">
-                    <div class="path-card h-[400px] lg:h-[600px]" onclick="goToShop('beauty')">
-                        <div class="path-img" style="background-image: var(--img-beauty)"></div>
-                        <div class="path-content">
-                            <h4 class="text-5xl font-light italic text-white">Suplementos.</h4>
-                            <p class="text-pink-500 text-[10px] font-black tracking-widest mt-4 uppercase">Farma Beauty Matriz</p>
+            <!-- O MANIFESTO DG (Dá peso e filosofia à marca logo na home) -->
+            <section class="max-w-4xl mx-auto px-6 py-32 text-center reveal">
+                <span class="text-white/30 text-[9px] font-black tracking-[8px] uppercase block mb-8">O Círculo de Ouro</span>
+                <h2 class="text-3xl md:text-5xl font-light italic leading-relaxed mb-10">
+                    "Nós não vendemos suplementos. Nós materializamos a <span class="text-gold font-bold">Biotecnologia da Autoestima</span> através da expertise dos maiores profissionais de beleza do Brasil."
+                </h2>
+                <div class="w-1px h-24 bg-gradient-to-b from-gold to-transparent mx-auto opacity-50"></div>
+            </section>
+
+            <!-- NOVO ACRESCIMO DOS ESPECIALISTAS: A CARTA DO FUNDADOR -->
+            <section class="max-w-5xl mx-auto px-6 pb-32 text-left reveal border-t border-panel-border pt-20">
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <span class="text-gold text-[9px] font-black tracking-[4px] uppercase mb-6 block">Vision Statement</span>
+                        <h3 class="text-4xl font-light italic text-white mb-6">A Origem da <span class="font-bold text-gold">Revolução.</span></h3>
+                        <p class="text-sm opacity-70 italic leading-relaxed text-gray-300 mb-6">"Quando olhei para o ecossistema de salões de beleza, percebi uma lacuna brutal. Profissionais de elite entregam resultados externos extraordinários, mas a cliente ia para casa sem um suporte interno à altura."</p>
+                        <p class="text-sm opacity-70 italic leading-relaxed text-gray-300 mb-6">"A DG Holding nasceu para ser a ponte biológica desse resultado. Ao unir o poder tecnológico das nossas formulações com a autoridade de quem transforma a mulher na cadeira, criámos um mercado onde não temos concorrentes."</p>
+                        <div class="mt-8 border-l-2 border-gold pl-4">
+                            <p class="text-xs font-black uppercase tracking-widest text-white">Tiago Dias</p>
+                            <p class="text-[9px] uppercase tracking-widest text-gold opacity-80 mt-1">CEO & Founder, DG Holding</p>
                         </div>
                     </div>
-                    <!-- CARD ENERGÉTICOS COM FOCCO (BRANCA) NA CAPA -->
-                    <div class="path-card h-[400px] lg:h-[600px]" onclick="goToShop('performance')">
-                        <div class="path-img" style="background-image: var(--img-energy-path)"></div>
-                        <div class="path-content">
-                            <h4 class="text-5xl font-light italic text-white">Energéticos.</h4>
-                            <p class="text-gold text-[10px] font-black tracking-widest mt-4 uppercase">Elite Performance</p>
-                        </div>
+                    <div class="h-[400px] border border-panel-border rounded-2xl relative overflow-hidden bg-[url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1632&q=80')] bg-cover bg-center opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent"></div>
+                        <div class="absolute bottom-6 left-6"><span class="text-[8px] uppercase tracking-widest text-white/50">Base de Operações • Chapecó, SC</span></div>
                     </div>
                 </div>
             </section>
@@ -194,7 +220,7 @@
         <!-- PÁGINA: BOUTIQUE STORE -->
         <main id="page-shop" class="page-content">
             <div class="container mx-auto px-6 max-w-7xl">
-                <div class="text-center mb-20">
+                <div class="text-center mb-20 reveal">
                     <h2 class="text-6xl lg:text-8xl font-extralight italic uppercase" id="boutique-main-title">Boutique <span class="text-pink-500 font-bold">Store.</span></h2>
                     <div class="flex flex-wrap justify-center gap-4 md:gap-8 mt-12 border-b border-panel-border pb-8">
                         <button onclick="switchCategory('beauty')" class="boutique-tab active" id="btn-beauty">Farma Beauty</button>
@@ -206,7 +232,7 @@
                 <div id="cat-beauty" class="category-content active">
                     
                     <!-- Cabeçalho de Revista -->
-                    <div class="flex flex-col md:flex-row justify-between items-end border-b border-panel-border pb-8 mb-12 text-left">
+                    <div class="flex flex-col md:flex-row justify-between items-end border-b border-panel-border pb-8 mb-12 text-left reveal">
                         <div>
                             <span class="text-pink-500 bg-pink-500/10 px-3 py-1 rounded text-[9px] font-black tracking-[4px] uppercase mb-6 inline-block">The Pink Issue • Março 2026</span>
                             <h3 class="text-5xl md:text-7xl font-light italic leading-none text-white">Editorial <br><span class="font-bold text-pink-500">Beauty.</span></h3>
@@ -216,8 +242,8 @@
                         </div>
                     </div>
 
-                    <!-- NOVO: FREEZER ESTRATÉGICO (PONTO DE CONTATO FÍSICO) -->
-                    <div class="mb-16 grid lg:grid-cols-12 gap-10 items-center border-b border-panel-border pb-16">
+                    <!-- FREEZER ESTRATÉGICO (PONTO DE CONTATO FÍSICO) -->
+                    <div class="mb-16 grid lg:grid-cols-12 gap-10 items-center border-b border-panel-border pb-16 reveal">
                         <div class="lg:col-span-5 flex flex-col justify-center text-left">
                             <span class="text-pink-500 bg-pink-500/10 px-4 py-2 rounded-full text-[9px] font-black tracking-[4px] uppercase mb-6 inline-block w-fit border border-pink-500/20">O Ponto de Contato</span>
                             <h4 class="text-4xl lg:text-5xl font-light italic text-white mb-6">Display <span class="font-bold text-pink-500">Estratégico.</span></h4>
@@ -229,6 +255,7 @@
                         </div>
                         <div class="lg:col-span-7">
                             <div class="path-card h-[350px] lg:h-[450px] zoomable border-pink-500/30 w-full group" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image26.jpg?v=295754d6', 'Freezer Estratégico DG Holding - Ponto de Venda')">
+                                <div class="zoom-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div>
                                 <div class="path-img" style="background-image: url('https://calcularodadd.carrd.co/assets/images/image26.jpg?v=295754d6'); opacity: 0.95; background-position: center;"></div>
                                 <div class="absolute bottom-6 right-6 z-10">
                                     <span class="bg-black/80 backdrop-blur-md border border-pink-500/30 text-pink-500 px-4 py-2 text-[9px] font-black uppercase tracking-[3px] rounded-sm shadow-xl">Hub Display Oficial</span>
@@ -237,8 +264,8 @@
                         </div>
                     </div>
 
-                    <!-- NOVO: FORMULAÇÃO E ATIVOS (DESTAQUE INICIAL) -->
-                    <div class="mb-16 bg-pink-500/5 border border-pink-500/20 rounded-2xl p-8 md:p-12 text-left relative overflow-hidden">
+                    <!-- FORMULAÇÃO E ATIVOS (DESTAQUE INICIAL) -->
+                    <div class="mb-16 bg-pink-500/5 border border-pink-500/20 rounded-2xl p-8 md:p-12 text-left relative overflow-hidden reveal">
                         <div class="absolute top-0 right-0 w-64 h-64 bg-pink-500/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
                         <div class="relative z-10 grid md:grid-cols-2 gap-10 items-center">
                             <div>
@@ -257,9 +284,10 @@
                     </div>
 
                     <!-- Grelha Editorial (Masonry) -->
-                    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 mb-20">
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 mb-20 reveal">
                         <!-- Imagem Principal (Cover) -->
                         <div class="md:col-span-8 h-[400px] md:h-[600px] path-card zoomable border-pink-500/30 relative" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image05.jpg?v=bc814582', 'The Pink Edition - Cover Story')">
+                            <div class="zoom-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div>
                             <div class="path-img" style="background-image: var(--img-pink-1); opacity: 0.95;"></div>
                             <div class="absolute top-6 left-6 z-10 md:top-8 md:left-8">
                                 <span class="bg-black/80 backdrop-blur border border-pink-500/50 text-pink-500 px-4 py-2 text-[8px] font-black uppercase tracking-[3px] rounded-sm shadow-2xl">Cover Story</span>
@@ -268,18 +296,20 @@
                         <!-- Imagens Secundárias (Detalhes) -->
                         <div class="md:col-span-4 flex flex-col gap-4 md:gap-6">
                             <div class="flex-1 min-h-[200px] md:min-h-[288px] path-card zoomable border-pink-500/10 relative" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image04.jpg?v=bc814582', 'Design e Textura Metálica')">
+                                <div class="zoom-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div>
                                 <div class="path-img" style="background-image: var(--img-pink-2); opacity: 0.85; background-position: top;"></div>
                                 <div class="absolute bottom-4 left-4 z-10"><span class="text-white text-[8px] uppercase tracking-widest font-black opacity-50 drop-shadow-md">Fig. 01 / Design</span></div>
                             </div>
                             <div class="flex-1 min-h-[200px] md:min-h-[288px] path-card zoomable border-pink-500/10 relative" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image03.jpg?v=bc814582', 'Detalhes do Rótulo Tradicional')">
+                                <div class="zoom-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div>
                                 <div class="path-img" style="background-image: var(--img-pink-3); opacity: 0.85; background-position: center;"></div>
                                 <div class="absolute bottom-4 left-4 z-10"><span class="text-white text-[8px] uppercase tracking-widest font-black opacity-50 drop-shadow-md">Fig. 02 / Rótulo</span></div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- NOVO: O RITUAL DE CONVERSÃO (WELCOME DRINK -> HOME CARE) -->
-                    <div class="mt-20 mb-20 border-t border-panel-border pt-20">
+                    <!-- O RITUAL DE CONVERSÃO (WELCOME DRINK -> HOME CARE) -->
+                    <div class="mt-20 mb-20 border-t border-panel-border pt-20 reveal">
                         <div class="text-center mb-16">
                             <span class="text-pink-500 bg-pink-500/10 px-4 py-2 rounded-full text-[9px] font-black tracking-[4px] uppercase mb-6 inline-block border border-pink-500/20">The Conversion Ritual</span>
                             <h3 class="text-4xl md:text-6xl font-light italic text-white">O Método <span class="font-bold text-pink-500">DG.</span></h3>
@@ -290,6 +320,7 @@
                             <!-- Passo 1: Welcome Drink -->
                             <div class="flex flex-col gap-6">
                                 <div class="path-card h-[350px] lg:h-[450px] zoomable border-pink-500/20 group" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image15.jpg?v=bc814582', 'Passo 01: A Degustação (Welcome Drink)')">
+                                    <div class="zoom-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div>
                                     <div class="path-img" style="background-image: var(--img-pink-4); opacity: 0.9;"></div>
                                     <div class="absolute bottom-6 left-6 z-10">
                                         <span class="bg-black/80 backdrop-blur-md border border-pink-500/30 text-pink-500 px-4 py-2 text-[9px] font-black uppercase tracking-[2px] rounded-sm shadow-xl">01. A Degustação</span>
@@ -304,6 +335,7 @@
                             <!-- Passo 2: Home Care -->
                             <div class="flex flex-col gap-6 md:mt-24">
                                 <div class="path-card h-[350px] lg:h-[450px] zoomable border-pink-500/20 group" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image14.jpg?v=bc814582', 'Passo 02: O Pack Home Care')">
+                                    <div class="zoom-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div>
                                     <div class="path-img" style="background-image: var(--img-pink-5); opacity: 0.9;"></div>
                                     <div class="absolute bottom-6 left-6 z-10">
                                         <span class="bg-black/80 backdrop-blur-md border border-pink-500/30 text-white px-4 py-2 text-[9px] font-black uppercase tracking-[2px] rounded-sm shadow-xl">02. A Continuidade</span>
@@ -317,8 +349,8 @@
                         </div>
                     </div>
 
-                    <!-- NOVO: MARKET INTELLIGENCE 2026 (A LATA BEAUTY VS MERCADO) -->
-                    <div class="mb-20 border-t border-panel-border pt-20 text-left">
+                    <!-- MARKET INTELLIGENCE 2026 (A LATA BEAUTY VS MERCADO) -->
+                    <div class="mb-20 border-t border-panel-border pt-20 text-left reveal">
                         <div class="text-center mb-16">
                             <span class="text-gold bg-gold/10 px-4 py-2 rounded-full text-[9px] font-black tracking-[4px] uppercase mb-6 inline-block border border-gold/20">Market Intelligence 2026</span>
                             <h3 class="text-4xl md:text-6xl font-light italic text-white">Porquê a <span class="font-bold text-pink-500">Lata Beauty?</span></h3>
@@ -351,7 +383,7 @@
                     </div>
 
                     <!-- Bloco de Conteúdo e Catálogo -->
-                    <div class="grid lg:grid-cols-12 gap-16 mb-20 text-left border-t border-panel-border pt-16">
+                    <div class="grid lg:grid-cols-12 gap-16 mb-20 text-left border-t border-panel-border pt-16 reveal">
                         <div class="lg:col-span-5 flex flex-col justify-center">
                             <span class="text-gold text-[9px] font-black tracking-widest mb-6 uppercase">O Ritual Farma Beauty</span>
                             <h3 class="text-4xl lg:text-5xl font-light italic mb-8">O Suporte Sistémico Perfeito.</h3>
@@ -373,12 +405,10 @@
                                     <div class="flavor-card border-zinc-500/30"><img src="https://calcularodadd.carrd.co/assets/images/image07.jpg?v=8cbffaba" alt="Cítricas" class="zoomable" onclick="openLightbox(this.src, 'Frutas Cítricas (Preta)')"></div>
                                     <p class="text-[9px] font-bold mt-3 uppercase text-zinc-400">Frutas Cítricas</p>
                                 </div>
-                                <!-- NOVO: Abacaxi com Hortelã (Amarela) -->
                                 <div class="flavor-item">
                                     <div class="flavor-card border-yellow-500/30"><img src="https://calcularodadd.carrd.co/assets/images/image09.jpg?v=bc814582" alt="Abacaxi com Hortelã" class="zoomable" onclick="openLightbox(this.src, 'Abacaxi & Hortelã (Amarela)')"></div>
                                     <p class="text-[9px] font-bold mt-3 uppercase text-yellow-500">Abacaxi & Hortelã</p>
                                 </div>
-                                <!-- NOVO: Maçã Verde (Verde Esmeralda) -->
                                 <div class="flavor-item">
                                     <div class="flavor-card border-emerald-500/30"><img src="https://calcularodadd.carrd.co/assets/images/image10.jpg?v=bc814582" alt="Maçã Verde" class="zoomable" onclick="openLightbox(this.src, 'Maçã Verde')"></div>
                                     <p class="text-[9px] font-bold mt-3 uppercase text-emerald-500">Maçã Verde</p>
@@ -388,20 +418,49 @@
                     </div>
                     
                     <!-- BANNER PANORÂMICO LINHA DE SABORES -->
-                    <div class="path-card h-[250px] lg:h-[350px] zoomable border-pink-500/20" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image13.jpg?v=bc814582', 'Coleção de Sabores - Farma Beauty')">
+                    <div class="path-card h-[250px] lg:h-[350px] zoomable border-pink-500/20 reveal" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image13.jpg?v=bc814582', 'Coleção de Sabores - Farma Beauty')">
+                        <div class="zoom-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div>
                         <div class="path-img" style="background-image: var(--img-flavors-banner); opacity: 0.7; background-position: center 30%;"></div>
                         <div class="path-content p-8 lg:p-12 text-center md:text-left">
                             <h4 class="text-3xl lg:text-5xl font-light italic text-white">Coleção de Sabores.</h4>
                             <p class="text-pink-500 text-[10px] font-black tracking-widest mt-3 uppercase">Experiência Sensorial Completa</p>
                         </div>
                     </div>
+
+                    <!-- NOVO ACRESCIMO DOS ESPECIALISTAS: TIMELINE CLÍNICA -->
+                    <div class="mt-20 border-t border-panel-border pt-20 text-left reveal">
+                        <div class="text-center mb-16">
+                            <span class="text-pink-500 bg-pink-500/10 px-4 py-2 rounded-full text-[9px] font-black tracking-[4px] uppercase mb-6 inline-block border border-pink-500/20">Cronograma Biológico</span>
+                            <h3 class="text-4xl md:text-5xl font-light italic text-white">O que a cliente <span class="font-bold text-pink-500">espera?</span></h3>
+                        </div>
+                        <div class="grid md:grid-cols-3 gap-6 relative">
+                            <!-- Conector Visual (Desktop) -->
+                            <div class="hidden md:block absolute top-1/2 left-10 right-10 h-px bg-panel-border -z-10 transform -translate-y-1/2"></div>
+                            
+                            <div class="bg-panel-bg border border-panel-border rounded-xl p-8 text-center relative hover:-translate-y-2 transition-transform duration-300">
+                                <div class="w-12 h-12 bg-black border border-pink-500/50 rounded-full flex items-center justify-center mx-auto mb-6 text-pink-500 font-black text-sm shadow-[0_0_15px_rgba(255,0,128,0.3)]">15D</div>
+                                <h4 class="text-lg font-bold text-white mb-3">Fixação & Viço</h4>
+                                <p class="text-xs text-gray-400 italic">Melhora percetível na textura da pele (homeostase celular) e aumento do brilho na fibra capilar processada no salão.</p>
+                            </div>
+                            <div class="bg-panel-bg border border-panel-border rounded-xl p-8 text-center relative hover:-translate-y-2 transition-transform duration-300">
+                                <div class="w-12 h-12 bg-black border border-pink-500 rounded-full flex items-center justify-center mx-auto mb-6 text-pink-500 font-black text-sm shadow-[0_0_15px_rgba(255,0,128,0.5)]">30D</div>
+                                <h4 class="text-lg font-bold text-white mb-3">Força Estrutural</h4>
+                                <p class="text-xs text-gray-400 italic">As unhas perdem o aspeto quebradiço. A derme retém mais hidratação. O cabelo responde melhor a químicas futuras.</p>
+                            </div>
+                            <div class="bg-panel-bg border border-panel-border rounded-xl p-8 text-center relative hover:-translate-y-2 transition-transform duration-300">
+                                <div class="w-12 h-12 bg-pink-500 border border-pink-500 rounded-full flex items-center justify-center mx-auto mb-6 text-black font-black text-sm shadow-[0_0_20px_rgba(255,0,128,0.8)]">90D</div>
+                                <h4 class="text-lg font-bold text-white mb-3">Regeneração Total</h4>
+                                <p class="text-xs text-gray-400 italic">Densidade capilar restaurada desde o bulbo. Redução drástica de queda que não seja genética. Status máximo de saúde estética.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- CATEGORIA: ENERGÉTICOS (DESIGN ESTRUTURADO & SEM DEGRADÊ GERAL) -->
+                <!-- CATEGORIA: ENERGÉTICOS -->
                 <div id="cat-performance" class="category-content">
                     
-                    <!-- NOVO: CAPA CINEMATOGRÁFICA DE ENERGÉTICOS (LANÇAMENTO DEZ 2026) -->
-                    <div class="w-full h-[400px] md:h-[500px] path-card zoomable border-gold/30 mb-16 relative group" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image22.jpg?v=bc814582', 'The Gold Edition - Lançamento Dezembro 2026')">
+                    <!-- CAPA CINEMATOGRÁFICA DE ENERGÉTICOS -->
+                    <div class="w-full h-[400px] md:h-[500px] path-card zoomable border-gold/30 mb-16 relative group reveal" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image22.jpg?v=bc814582', 'The Gold Edition - Lançamento Dezembro 2026')">
                         <div class="zoom-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div>
                         <div class="path-img" style="background-image: url('https://calcularodadd.carrd.co/assets/images/image22.jpg?v=bc814582'); opacity: 0.95; background-position: center 30%;"></div>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-0 pointer-events-none"></div>
@@ -412,7 +471,7 @@
                         </div>
                     </div>
 
-                    <div class="grid lg:grid-cols-2 gap-16">
+                    <div class="grid lg:grid-cols-2 gap-16 reveal">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             
                             <!-- FOCCO -->
@@ -481,8 +540,8 @@
                         </div>
                     </div>
                     
-                    <!-- NOVO: EDITORIAL BALADA (LANÇAMENTO DEZ 2026) -->
-                    <div class="mt-20 border-t border-panel-border pt-20 text-left">
+                    <!-- EDITORIAL BALADA (LANÇAMENTO DEZ 2026) -->
+                    <div class="mt-20 border-t border-panel-border pt-20 text-left reveal">
                         <div class="flex flex-col md:flex-row gap-10 lg:gap-16 items-center">
                             <div class="md:w-5/12">
                                 <span class="text-gold bg-gold/10 px-4 py-2 rounded-full text-[9px] font-black tracking-[4px] uppercase mb-6 inline-block border border-gold/20">Lançamento • Dezembro 2026</span>
@@ -501,7 +560,7 @@
                             </div>
                         </div>
                         
-                        <!-- NOVA: GALERIA DE DETALHES LATA GOLD -->
+                        <!-- GALERIA DE DETALHES LATA GOLD -->
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mt-6 md:mt-10">
                             <div class="path-card h-[250px] md:h-[350px] zoomable border-gold/20 group" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image27.jpg?v=9f1b6886', 'The Gold Edition - Acabamento Premium')">
                                 <div class="zoom-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div>
@@ -518,23 +577,207 @@
                         </div>
                     </div>
 
+                    <!-- NOVO ACRESCIMO DOS ESPECIALISTAS: NEURO-MATRIX (A CIÊNCIA DA ENERGIA) -->
+                    <div class="mt-20 mb-10 border-t border-panel-border pt-16 reveal">
+                        <div class="bg-black/60 border border-gold/20 rounded-3xl p-10 md:p-14 relative overflow-hidden">
+                            <div class="absolute -top-20 -left-20 w-64 h-64 bg-gold/5 rounded-full blur-[100px] pointer-events-none"></div>
+                            <span class="text-[9px] font-black tracking-[4px] uppercase text-gold block mb-4">A Formulação de Elite</span>
+                            <h3 class="text-3xl font-light italic text-white mb-10">Neuro-Matrix <span class="font-bold">Nootrópica.</span></h3>
+                            
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                                <div class="border-l border-white/10 pl-4">
+                                    <h4 class="text-white font-bold mb-1">Taurina Limpa</h4>
+                                    <p class="text-[10px] text-gray-400">Regulação osmótica celular e contração muscular eficiente sem o "crash" pós-treino.</p>
+                                </div>
+                                <div class="border-l border-white/10 pl-4">
+                                    <h4 class="text-white font-bold mb-1">Inositol</h4>
+                                    <p class="text-[10px] text-gray-400">Mensageiro intracelular que atua na sinalização neural, garantindo foco profundo (Laser Focus).</p>
+                                </div>
+                                <div class="border-l border-white/10 pl-4">
+                                    <h4 class="text-white font-bold mb-1">Cafeína Anidra</h4>
+                                    <p class="text-[10px] text-gray-400">Absorção gradual e sustentada. Bloqueia receptores de adenosina sem gerar ansiedade ou tremores.</p>
+                                </div>
+                                <div class="border-l border-white/10 pl-4">
+                                    <h4 class="text-gold font-bold mb-1">Coenzima Q10</h4>
+                                    <p class="text-[10px] text-gray-400">O selo de luxo da mitocôndria. Reparação celular avançada e energia primária duradoura.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </main>
 
-        <!-- PÁGINA: EXPANSÃO -->
+        <!-- NOVO CONTEÚDO: PÁGINA EXPANSÃO (ROBUSTA PARA INVESTIDORES/B2B) -->
         <main id="page-expansion" class="page-content">
-            <div class="container mx-auto px-6 max-w-7xl text-center">
+            <div class="container mx-auto px-6 max-w-7xl text-center reveal">
                 <span class="text-gold text-[9px] font-black tracking-[8px] uppercase">Oceano Azul DG</span>
                 <h2 class="text-6xl lg:text-9xl font-extralight uppercase italic mt-10">Expand <br> <span class="text-gold font-bold">Horizon.</span></h2>
-                <p class="max-w-2xl mx-auto mt-12 text-lg opacity-60 italic">Transforme a sua clínica num Hub de Autoridade.</p>
+                <p class="max-w-2xl mx-auto mt-12 text-lg opacity-60 italic">Transforme a sua clínica num Hub de Autoridade. Uma máquina previsível de aumento de ticket médio e retenção de luxo.</p>
             </div>
+
+            <!-- Proposta de Valor B2B -->
+            <div class="container mx-auto px-6 max-w-6xl mt-24 reveal">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-panel-bg border border-panel-border p-10 rounded-2xl text-left hover:border-gold/30 transition-colors">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mb-6 text-gold text-xl">01</div>
+                        <h4 class="text-xl font-bold italic mb-4">Zero Atrito Comercial</h4>
+                        <p class="text-sm opacity-60 italic leading-relaxed">Não é preciso "saber vender". O Método DG baseia-se no "Welcome Drink". A cliente experimenta o luxo na cadeira, e o produto vende-se pela experiência sensorial e biotecnológica.</p>
+                    </div>
+                    <div class="bg-panel-bg border border-panel-border p-10 rounded-2xl text-left hover:border-gold/30 transition-colors">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mb-6 text-gold text-xl">02</div>
+                        <h4 class="text-xl font-bold italic mb-4">Margem Blindada</h4>
+                        <p class="text-sm opacity-60 italic leading-relaxed">Rentabilidade de até 100% sobre o produto B2B. O salão transforma o tempo de pausa de uma coloração numa nova linha de faturação de altíssima margem líquida.</p>
+                    </div>
+                    <div class="bg-panel-bg border border-panel-border p-10 rounded-2xl text-left hover:border-gold/30 transition-colors">
+                        <div class="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center mb-6 text-gold text-xl">03</div>
+                        <h4 class="text-xl font-bold italic mb-4">Exclusividade Regional</h4>
+                        <p class="text-sm opacity-60 italic leading-relaxed">Protegemos os nossos Hubs. A aprovação para ser um parceiro DG exige crivo de qualidade e raio de proteção geográfica, garantindo o status de exclusividade no seu bairro ou cidade.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROI Estimator Visual -->
+            <div class="container mx-auto px-6 max-w-4xl mt-32 reveal">
+                <div class="bg-gradient-to-br from-panel-bg to-black border border-gold/20 p-12 rounded-3xl text-center relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-full h-full bg-gold/5 blur-3xl pointer-events-none"></div>
+                    <h3 class="text-3xl font-light italic mb-8 relative z-10">Projeção de Escalabilidade <span class="text-gold font-bold">(Hub Partner)</span></h3>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 relative z-10">
+                        <div class="border-r border-panel-border last:border-0">
+                            <p class="text-[10px] uppercase tracking-widest opacity-50 mb-2">Clientes/Dia</p>
+                            <p class="text-3xl font-black text-white">10</p>
+                        </div>
+                        <div class="border-r border-panel-border last:border-0 hidden md:block">
+                            <p class="text-[10px] uppercase tracking-widest opacity-50 mb-2">Conversão (Cadeira)</p>
+                            <p class="text-3xl font-black text-emerald-400">40%</p>
+                        </div>
+                        <div class="border-r border-panel-border last:border-0">
+                            <p class="text-[10px] uppercase tracking-widest opacity-50 mb-2">Venda Pack (6 un)</p>
+                            <p class="text-3xl font-black text-white">4</p>
+                        </div>
+                        <div class="border-r border-panel-border last:border-0">
+                            <p class="text-[10px] uppercase tracking-widest opacity-50 mb-2">Lucro Extra/Mês</p>
+                            <p class="text-3xl font-black text-gold">R$ 5.200</p>
+                        </div>
+                    </div>
+                    <p class="text-xs opacity-40 italic mt-8 relative z-10">*Simulação conservadora baseada num salão com 1 profissional atendendo 10 clientes por dia, vendendo 4 packs Home Care.</p>
+                </div>
+            </div>
+
+            <!-- NOVO ACRESCIMO DOS ESPECIALISTAS: JORNADA DO HUB (ONBOARDING) -->
+            <div class="container mx-auto px-6 max-w-5xl mt-32 mb-20 reveal">
+                <div class="text-center mb-16">
+                    <h3 class="text-3xl md:text-5xl font-light italic text-white">A Jornada do <span class="font-bold text-gold">Novo Hub.</span></h3>
+                    <p class="mt-4 opacity-60 text-sm italic">O nosso processo de homologação B2B garante a exclusividade e a correta execução do método.</p>
+                </div>
+                
+                <div class="relative border-l border-panel-border ml-4 md:ml-0 md:border-l-0 md:border-t pt-8 md:pt-16 md:flex justify-between text-left">
+                    <div class="mb-10 md:mb-0 relative pl-10 md:pl-0 md:w-1/4 pr-4">
+                        <div class="absolute left-[-5px] top-0 w-3 h-3 bg-gold rounded-full md:top-[-23px] md:left-0"></div>
+                        <p class="text-[10px] uppercase tracking-widest text-gold font-bold mb-2">Fase 01</p>
+                        <h4 class="text-white font-bold text-lg mb-2">Auditoria de Perfil</h4>
+                        <p class="text-xs text-gray-400 italic">Verificação do ticket médio do salão, presença digital e análise do raio de exclusividade regional.</p>
+                    </div>
+                    <div class="mb-10 md:mb-0 relative pl-10 md:pl-0 md:w-1/4 pr-4">
+                        <div class="absolute left-[-5px] top-0 w-3 h-3 bg-panel-border rounded-full md:top-[-23px] md:left-0"></div>
+                        <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-2">Fase 02</p>
+                        <h4 class="text-white font-bold text-lg mb-2">Setup Logístico</h4>
+                        <p class="text-xs text-gray-400 italic">Aprovação do Lote Piloto B2B. Envio do Freezer Oficial, Displays de Bancada e estoque inicial de latas.</p>
+                    </div>
+                    <div class="mb-10 md:mb-0 relative pl-10 md:pl-0 md:w-1/4 pr-4">
+                        <div class="absolute left-[-5px] top-0 w-3 h-3 bg-panel-border rounded-full md:top-[-23px] md:left-0"></div>
+                        <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-2">Fase 03</p>
+                        <h4 class="text-white font-bold text-lg mb-2">Treino de Método</h4>
+                        <p class="text-xs text-gray-400 italic">Capacitação online da equipa. A arte de servir o Welcome Drink sem gerar atrito ou parecer "vendedor".</p>
+                    </div>
+                    <div class="relative pl-10 md:pl-0 md:w-1/4 pr-4">
+                        <div class="absolute left-[-5px] top-0 w-3 h-3 bg-panel-border rounded-full md:top-[-23px] md:left-0"></div>
+                        <p class="text-[10px] uppercase tracking-widest text-gray-400 font-bold mb-2">Fase 04</p>
+                        <h4 class="text-white font-bold text-lg mb-2">Escala e Reposição</h4>
+                        <p class="text-xs text-gray-400 italic">Gestão via DG Analytics. Reposição automática "Just-in-Time" antes do Hub quebrar o estoque.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NOVO ACRESCIMO: PROGRAMA DE EMBAIXADORES E CATÁLOGO LUXUOSO 3D -->
+            <div class="container mx-auto px-6 max-w-6xl mt-32 mb-20 reveal">
+                <div class="border-t border-panel-border pt-20 grid md:grid-cols-2 gap-16 items-center text-left">
+                    <div>
+                        <span class="text-gold bg-gold/10 px-4 py-2 rounded-full text-[9px] font-black tracking-[4px] uppercase mb-6 inline-block border border-gold/20">Programa Executive</span>
+                        <h3 class="text-4xl md:text-5xl font-light italic text-white mb-6">A Doutrina B2B: <br><span class="font-bold text-gold">Representação de Elite.</span></h3>
+                        <p class="opacity-70 text-sm italic leading-relaxed text-gray-300 mb-8">Não entregamos panfletos; entregamos autoridade. Recrutamos e treinamos profissionais seletos (Closers) para visitarem as clínicas e salões de alto padrão na sua região. Armados com o nosso Catálogo Físico de Luxo, eles não vendem produtos, eles doutrinam os donos de salão no Método DG.</p>
+                        
+                        <ul class="space-y-4 mb-10">
+                            <li class="flex items-center gap-4">
+                                <div class="w-8 h-8 rounded-full bg-gold/10 text-gold flex items-center justify-center text-xs border border-gold/30 shrink-0">01</div>
+                                <div>
+                                    <span class="text-xs uppercase tracking-widest text-white/90 font-bold block mb-1">Visitas Presenciais (Closers)</span>
+                                    <span class="text-[10px] text-gray-400 italic block">Abordagem corpo a corpo com proprietários para expansão de novos Hubs na sua área de domínio.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <div class="w-8 h-8 rounded-full bg-gold/10 text-gold flex items-center justify-center text-xs border border-gold/30 shrink-0">02</div>
+                                <div>
+                                    <span class="text-xs uppercase tracking-widest text-white/90 font-bold block mb-1">O Catálogo de Luxo Físico</span>
+                                    <span class="text-[10px] text-gray-400 italic block">Um dossier impresso de alta gramatura com foil metálico, projetado para fechar negócios ao primeiro toque.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-center gap-4">
+                                <div class="w-8 h-8 rounded-full bg-gold/10 text-gold flex items-center justify-center text-xs border border-gold/30 shrink-0">03</div>
+                                <div>
+                                    <span class="text-xs uppercase tracking-widest text-white/90 font-bold block mb-1">Efeito de Escala Rápida</span>
+                                    <span class="text-[10px] text-gray-400 italic block">Multiplique os seus pontos de venda B2B locais terceirizando a doutrinação para representantes validados.</span>
+                                </div>
+                            </li>
+                        </ul>
+                        
+                        <button class="btn-national w-fit flex items-center gap-3">
+                            Solicitar Dossier B2B
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </button>
+                    </div>
+                    
+                    <!-- MOCKUP DO CATÁLOGO DE LUXO (CSS 3D) -->
+                    <div class="relative w-full h-[400px] md:h-[500px] flex items-center justify-center perspective-1000 catalog-group cursor-pointer">
+                        <!-- Brilho de Fundo -->
+                        <div class="absolute inset-0 bg-gold/5 blur-[80px] rounded-full z-0 transition-colors duration-700 catalog-group-hover:bg-gold/10 w-3/4 h-3/4 m-auto"></div>
+                        
+                        <!-- Livro/Catálogo Físico -->
+                        <div class="catalog-book relative w-[280px] md:w-[320px] h-[380px] md:h-[440px] bg-[#080808] rounded-r-xl shadow-[20px_20px_40px_rgba(0,0,0,0.9)] border border-white/10 z-10 flex flex-col justify-between overflow-hidden">
+                            <!-- Lombada do Livro (Efeito 3D) -->
+                            <div class="book-spine"></div>
+                            
+                            <!-- Gradiente de Luz (Página curva) -->
+                            <div class="absolute inset-0 bg-gradient-to-r from-white/10 via-transparent to-black/40 rounded-r-xl pointer-events-none z-20"></div>
+                            
+                            <!-- Conteúdo da Capa -->
+                            <div class="relative z-30 p-10 h-full flex flex-col justify-between items-center text-center">
+                                <div class="mt-8">
+                                    <div class="w-14 h-14 border border-gold/40 flex items-center justify-center font-black text-xl text-gold mx-auto mb-8 shadow-[0_0_20px_rgba(212,175,55,0.15)] bg-black/50 backdrop-blur-sm">DG</div>
+                                    <h4 class="text-2xl font-light italic text-white tracking-[6px] uppercase leading-relaxed">The Executive <br><span class="font-bold text-gold">Dossier.</span></h4>
+                                </div>
+                                
+                                <div class="w-full">
+                                    <div class="w-full h-px bg-gradient-to-r from-transparent via-gold/50 to-transparent mb-6"></div>
+                                    <p class="text-[8px] text-gold uppercase tracking-[5px] font-black">Private Catalog • Vol. 1</p>
+                                    <p class="text-[7px] text-white/40 uppercase tracking-[3px] mt-3">Para Uso Exclusivo de Embaixadores</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Sombra Base -->
+                        <div class="absolute bottom-[20px] w-[220px] h-[10px] bg-black/80 blur-xl rounded-full z-0 transform translate-x-4"></div>
+                    </div>
+                </div>
+            </div>
+            
         </main>
 
         <!-- PÁGINA: BOARD DECK (DEC) COM MELHORIAS EXECUTIVAS -->
         <main id="page-factory" class="page-content">
             <div class="container mx-auto px-6 max-w-6xl">
-                <div class="text-center mb-16 relative">
+                <div class="text-center mb-16 relative reveal">
                     <span class="absolute top-0 right-0 hidden md:inline-block bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-[3px] animate-pulse">
                         Veredito: Strong Buy
                     </span>
@@ -543,7 +786,7 @@
                     <p class="opacity-50 italic mt-8 max-w-2xl mx-auto">Documento oficial de Governança e Realinhamento Estratégico. Auditoria baseada no Master Plan 2026.</p>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 reveal">
                     <!-- CARD GOVERNANÇA COM BARRA VISUAL -->
                     <div class="dec-card border-t-gold relative overflow-hidden group">
                         <div class="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -591,6 +834,10 @@
                                 <span class="bg-panel-border px-2 py-1 rounded text-[8px] uppercase tracking-widest">Planeado</span>
                             </li>
                             <li class="flex justify-between items-center opacity-60">
+                                <span>• DEZ 2026: The Gold Edition</span>
+                                <span class="bg-panel-border px-2 py-1 rounded text-[8px] uppercase tracking-widest">Roadmap</span>
+                            </li>
+                            <li class="flex justify-between items-center opacity-60">
                                 <span>• JAN 2027: Chimarrão Pro (Verde)</span>
                                 <span class="bg-panel-border px-2 py-1 rounded text-[8px] uppercase tracking-widest">Roadmap</span>
                             </li>
@@ -599,7 +846,7 @@
                 </div>
 
                 <!-- MATRIZ FINANCEIRA MELHORADA -->
-                <div class="bg-panel-bg border border-panel-border rounded-2xl p-10 mb-16 shadow-2xl relative overflow-hidden">
+                <div class="bg-panel-bg border border-panel-border rounded-2xl p-10 mb-16 shadow-2xl relative overflow-hidden reveal">
                     <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl -mr-20 -mt-20"></div>
                     
                     <h4 class="text-xs font-black uppercase tracking-widest mb-10 text-center relative z-10">Matriz de Investimento (Auditoria V1)</h4>
@@ -613,6 +860,7 @@
                         <div class="p-6 bg-black/40 rounded-xl border border-white/5">
                             <p class="text-[9px] uppercase tracking-widest opacity-50 mb-3">Lote Piloto</p>
                             <p class="text-4xl font-black italic text-white">700 un</p>
+                            <p class="text-[10px] text-gray-400 mt-3">Produção Inicial (Março/26)</p>
                         </div>
                         <div class="p-6 bg-black/40 rounded-xl border border-white/5">
                             <p class="text-[9px] uppercase tracking-widest opacity-50 mb-3">Marketing Ads</p>
@@ -654,28 +902,200 @@
                         </table>
                     </div>
                 </div>
+
+                <!-- NOVO ACRESCIMO DOS ESPECIALISTAS: COMPLIANCE E BLINDAGEM OPERACIONAL -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 reveal">
+                    <div class="bg-gradient-to-br from-panel-bg to-black border border-white/10 rounded-2xl p-8 flex items-start gap-6">
+                        <div class="w-14 h-14 bg-emerald-500/10 rounded-full flex items-center justify-center shrink-0">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-emerald-400"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-black uppercase tracking-widest text-white mb-2">Compliance & Regulatório</h4>
+                            <p class="text-xs italic text-gray-400 leading-relaxed">Blindagem Jurídica Total. Todos os produtos da DG Holding são produzidos sob os mais estritos protocolos de qualidade (Slok) e possuem rigorosa conformidade com as normas da ANVISA e registo oficial no MAPA (Ministério da Agricultura).</p>
+                        </div>
+                    </div>
+                    <div class="bg-gradient-to-br from-panel-bg to-black border border-white/10 rounded-2xl p-8 flex items-start gap-6">
+                        <div class="w-14 h-14 bg-cyan-500/10 rounded-full flex items-center justify-center shrink-0">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-cyan-400"><path d="M2 12h4l2-9 5 18 2-9h5"></path></svg>
+                        </div>
+                        <div>
+                            <h4 class="text-sm font-black uppercase tracking-widest text-white mb-2">Logística JIT (Just-in-Time)</h4>
+                            <p class="text-xs italic text-gray-400 leading-relaxed">Zero capital imobilizado. A operação B2B Nacional usará o modelo Just-in-Time, mitigando o risco de "dead stock" (estoque parado) e garantindo que o dinheiro dos investidores seja alocado apenas na produção já absorvida pela demanda.</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </main>
 
-        <!-- PÁGINA: ADMIN -->
+        <!-- NOVO CONTEÚDO: PÁGINA ADMIN (DASHBOARD CRM) -->
         <main id="page-admin" class="page-content">
-            <div class="container mx-auto px-6 max-w-7xl text-center">
-                <h2 class="text-6xl font-extralight italic uppercase">Intelligence <span class="text-gold font-bold">Panel.</span></h2>
+            <div class="container mx-auto px-6 max-w-7xl">
+                <div class="text-center mb-16 reveal">
+                    <span class="text-cyan-400 text-[9px] font-black tracking-[8px] uppercase">DG Analytics</span>
+                    <h2 class="text-6xl font-extralight italic uppercase mt-6">Intelligence <span class="text-white font-bold">Panel.</span></h2>
+                    <p class="mt-4 opacity-50 italic">Área Restrita: Monitoramento Financeiro e Conversão de Hubs em tempo real.</p>
+                </div>
+
+                <!-- Métricas Globais (Mockup) -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12 reveal">
+                    <div class="dash-card">
+                        <span class="text-[9px] uppercase tracking-widest text-gray-400 mb-2 block">Caixa Holding <strong class="text-gold">(Projeção Gross Revenue)</strong></span>
+                        <h4 class="text-3xl font-black italic text-white counter">R$ 84.500</h4>
+                        <span class="text-emerald-400 text-xs font-bold mt-2 block">+12.4% vs Mês Anterior</span>
+                        <!-- NOVO ACRÉSCIMO EXPLICATIVO (Sem excluir nada) -->
+                        <p class="text-[8.5px] text-gray-400 mt-4 leading-relaxed border-t border-white/10 pt-3"><strong>O QUE SIGNIFICA?</strong> Estimativa de faturamento bruto (Gross Revenue) somando a liquidação total do Lote Piloto (700 un) com as reservas de pré-venda B2B do próximo lote nacional. Representa o capital em conversão ativa do Método DG.</p>
+                    </div>
+                    <div class="dash-card border-pink-500/30">
+                        <span class="text-[9px] uppercase tracking-widest text-pink-500 mb-2 block">Reserva de Fabrico: Lote Piloto (700)</span>
+                        <h4 class="text-3xl font-black italic text-white counter">100%</h4>
+                        <div class="w-full bg-white/10 h-1 mt-3 rounded overflow-hidden"><div class="bg-pink-500 h-full w-[100%]"></div></div>
+                        <span class="text-gray-400 text-xs mt-2 block">Concentrado na Matriz</span>
+                        <!-- NOVO ACRÉSCIMO EXPLICATIVO (Sem excluir nada) -->
+                        <p class="text-[8.5px] text-gray-400 mt-4 leading-relaxed border-t border-pink-500/20 pt-3"><strong>O QUE SIGNIFICA?</strong> O arsenal de guerra está 100% alocado e blindado na sede (Hub Chapecó). É o combustível inicial obrigatório que validará a aceitação do cliente antes de autorizar o repasse físico às sócias.</p>
+                    </div>
+                    <div class="dash-card">
+                        <span class="text-[9px] uppercase tracking-widest text-gray-400 mb-2 block">Poder de Venda: Conversão B2B Cadeira</span>
+                        <h4 class="text-3xl font-black italic text-white counter">41.3%</h4>
+                        <span class="text-emerald-400 text-xs font-bold mt-2 block">Meta: 35% (Alcançada)</span>
+                        <!-- NOVO ACRÉSCIMO EXPLICATIVO (Sem excluir nada) -->
+                        <p class="text-[8.5px] text-gray-400 mt-4 leading-relaxed border-t border-white/10 pt-3"><strong>O QUE SIGNIFICA?</strong> A Métrica de Ouro. Mostra a percentagem exata de clientes de alto padrão que recebem o Welcome Drink (cortesia na cadeira) e finalizam a visita comprando o Pack Home Care.</p>
+                    </div>
+                    <div class="dash-card border-cyan-500/30">
+                        <span class="text-[9px] uppercase tracking-widest text-cyan-400 mb-2 block">Custo de Domínio: CAC Médio (Tráfego)</span>
+                        <h4 class="text-3xl font-black italic text-white counter">R$ 14,20</h4>
+                        <span class="text-emerald-400 text-xs font-bold mt-2 block">Retorno sobre Ad (ROAS): 7x</span>
+                        <!-- NOVO ACRÉSCIMO EXPLICATIVO (Sem excluir nada) -->
+                        <p class="text-[8.5px] text-gray-400 mt-4 leading-relaxed border-t border-cyan-500/20 pt-3"><strong>O QUE SIGNIFICA?</strong> Custo de Aquisição de Cliente. Reflete a eficiência clínica dos R$ 3.357 investidos na blitz de anúncios para atrair novas clínicas e salões de beleza para o nosso ecossistema parceiro.</p>
+                    </div>
+                </div>
+
+                <!-- Tabela de Hubs (Performance) -->
+                <div class="bg-panel-bg border border-panel-border rounded-xl p-8 reveal">
+                    <div class="flex justify-between items-center mb-8 border-b border-panel-border pb-4">
+                        <h4 class="text-sm font-black uppercase tracking-widest text-white">Ranking de Hubs (YTD)</h4>
+                        <span class="bg-emerald-500/20 text-emerald-400 px-3 py-1 rounded text-[9px] uppercase tracking-widest">Live Sync</span>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="pricing-table w-full text-left">
+                            <thead>
+                                <tr>
+                                    <th class="text-gray-500">Unidade (Hub)</th>
+                                    <th class="text-gray-500">Gestão</th>
+                                    <th class="text-gray-500 text-center">Volume Movimentado</th>
+                                    <th class="text-gray-500 text-right">Status Reposição</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="hover:bg-white/5 transition">
+                                    <td class="font-bold text-white">Hub Chapecó (Sede)</td>
+                                    <td class="opacity-70">Tiago Dias</td>
+                                    <td class="text-center font-bold text-gold">700 un</td>
+                                    <td class="text-right"><span class="text-emerald-400 text-[10px] uppercase font-bold tracking-wider">Estoque Central</span></td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition opacity-50">
+                                    <td class="font-bold text-white">Hub Caxias do Sul</td>
+                                    <td class="opacity-70">Vera Dias / Samara</td>
+                                    <td class="text-center font-bold">0 un</td>
+                                    <td class="text-right"><span class="text-gray-500 text-[10px] uppercase font-bold tracking-wider">Aguardando Repasse</span></td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition opacity-50">
+                                    <td class="font-bold text-white">Hub Capão da Canoa</td>
+                                    <td class="opacity-70">Andreia / Simone</td>
+                                    <td class="text-center font-bold">0 un</td>
+                                    <td class="text-right"><span class="text-gray-500 text-[10px] uppercase font-bold tracking-wider">Aguardando Repasse</span></td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition opacity-50">
+                                    <td class="font-bold text-white">Hub Lages</td>
+                                    <td class="opacity-70">Jessica Grabski</td>
+                                    <td class="text-center font-bold">0 un</td>
+                                    <td class="text-right"><span class="text-gray-500 text-[10px] uppercase font-bold tracking-wider">Aguardando Repasse</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- NOVO ACRESCIMO DOS ESPECIALISTAS: MÉTRICAS AVANÇADAS (LTV e PREVISÃO) -->
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 reveal">
+                    <div class="bg-panel-bg border border-panel-border rounded-xl p-6 relative">
+                        <span class="absolute top-6 right-6 text-cyan-500/50">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        </span>
+                        <p class="text-[10px] uppercase tracking-widest text-gray-400 mb-1">Previsão Analítica (A.I.)</p>
+                        <h4 class="text-lg font-bold text-white mb-4">LTV (Lifetime Value) Estimado</h4>
+                        <p class="text-3xl font-black text-cyan-400 mb-2">R$ 1.308,00</p>
+                        <p class="text-xs text-gray-500 italic">Ticket médio projetado por cliente fidelizada no período de 12 meses (Compra recorrente de 1 Pack a cada 30 dias).</p>
+                    </div>
+                    <div class="bg-panel-bg border border-panel-border rounded-xl p-6 relative">
+                        <span class="absolute top-6 right-6 text-alert/50">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                        </span>
+                        <p class="text-[10px] uppercase tracking-widest text-gray-400 mb-1">Radar de Risco (Holding)</p>
+                        <h4 class="text-lg font-bold text-white mb-4">Índice de Abandono (Churn)</h4>
+                        <p class="text-3xl font-black text-white mb-2">&lt; 15%</p>
+                        <p class="text-xs text-gray-500 italic">Meta de cancelamento máximo tolerado. Se um salão B2B não repõe stock em 60 dias, o CRM aciona protocolo de recuperação.</p>
+                    </div>
+                </div>
+
             </div>
         </main>
 
     </div>
 
-    <!-- RODAPÉ DOS HUBS -->
-    <footer class="footer-premiere">
-        <div class="footer-cast">
+    <!-- RODAPÉ CORPORATIVO COMPLETO -->
+    <footer class="corporate-footer">
+        <div class="container mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-4 gap-10 text-left mb-12">
+            <div>
+                <div class="w-8 h-8 border border-white/20 flex items-center justify-center font-black text-xs text-gold mb-4">DG</div>
+                <p class="text-[10px] uppercase tracking-widest font-bold text-white mb-2">Dias Grabski Holding</p>
+                <p class="leading-relaxed opacity-60">A biotecnologia sistémica que está a revolucionar o ecossistema de salões de alto padrão no Brasil.</p>
+            </div>
+            <div>
+                <p class="text-[10px] uppercase tracking-widest font-bold text-white mb-4">Governança</p>
+                <ul class="space-y-2 opacity-60">
+                    <li class="hover:text-gold cursor-pointer transition">Apresentação Executiva (DEC)</li>
+                    <li class="hover:text-gold cursor-pointer transition">Portal de Investidores</li>
+                    <li class="hover:text-gold cursor-pointer transition">Acordo de Aliança Familiar</li>
+                </ul>
+            </div>
+            <div>
+                <p class="text-[10px] uppercase tracking-widest font-bold text-white mb-4">Operações B2B</p>
+                <ul class="space-y-2 opacity-60">
+                    <li class="hover:text-gold cursor-pointer transition">Seja um Hub Parceiro</li>
+                    <li class="hover:text-gold cursor-pointer transition">Catálogo Farma Beauty</li>
+                    <li class="hover:text-gold cursor-pointer transition">Elite Energy Matrix</li>
+                </ul>
+            </div>
+            <div>
+                <p class="text-[10px] uppercase tracking-widest font-bold text-white mb-4">Sede Administrativa</p>
+                <ul class="space-y-2 opacity-60">
+                    <li>Chapecó - Santa Catarina</li>
+                    <li>Sul do Brasil</li>
+                    <li class="mt-4 pt-4 border-t border-white/10 text-gold">CEO: Tiago Dias</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="border-t border-panel-border pt-8 flex flex-col md:flex-row justify-between items-center opacity-40 text-[9px] uppercase tracking-widest">
+            <p>© 2026 Dias Grabski Holding. Todos os direitos reservados.</p>
+            <div class="flex gap-4 mt-4 md:mt-0">
+                <span class="hover:text-white cursor-pointer transition">Termos de Uso</span>
+                <span class="hover:text-white cursor-pointer transition">Política de Privacidade</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- RODAPÉ DOS HUBS (FIXO) -->
+    <div class="footer-premiere">
+        <div class="footer-cast flex flex-wrap justify-center">
             <span class="cast-name" data-hub="CEO | Hub Chapecó">Tiago Dias</span>
             <span class="cast-name" data-hub="Hub Caxias">Vera Dias</span>
             <span class="cast-name" data-hub="Hub Lages">Jessica Dias</span>
             <span class="cast-name" data-hub="Hub Capão">Andreia Dias</span>
             <span class="cast-name" data-hub="Hub Capão">Simone Dias</span>
         </div>
-    </footer>
+    </div>
 
     <script>
         // Função limpa e sem erros de sintaxe
@@ -686,14 +1106,21 @@
             
             document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
             const page = document.getElementById(`page-${pageId}`);
-            if(page) page.classList.add('active');
+            if(page) {
+                page.classList.add('active');
+                // Re-trigger scroll animations on page switch
+                setTimeout(revealElements, 100);
+            }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function switchCategory(catId) {
             document.querySelectorAll('.category-content').forEach(c => c.classList.remove('active'));
             const cat = document.getElementById(`cat-${catId}`);
-            if(cat) cat.classList.add('active');
+            if(cat) {
+                cat.classList.add('active');
+                setTimeout(revealElements, 50);
+            }
             
             document.querySelectorAll('.boutique-tab').forEach(btn => btn.classList.remove('active'));
             const activeBtn = document.getElementById(`btn-${catId}`);
@@ -752,7 +1179,24 @@
             document.body.classList.toggle('light-mode'); 
         }
 
+        // --- MOTOR DE ANIMAÇÃO SCROLL (REVEAL) ---
+        function revealElements() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 50; // Quão cedo a animação dispara
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", revealElements);
+
+        // Inicialização Global
         window.onload = () => {
+            revealElements(); // Dispara animações iniciais
             setTimeout(() => { 
                 const modal = document.getElementById('lx-modal');
                 if(modal) {
