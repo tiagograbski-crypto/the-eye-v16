@@ -28,9 +28,22 @@
             --img-sleep: url('https://calcularodadd.carrd.co/assets/images/image20.jpg?v=7f6e78a6');
             --img-libido: url('https://calcularodadd.carrd.co/assets/images/image01.jpg?v=7f6e78a6');
             --img-chimarrao: url('https://calcularodadd.carrd.co/assets/images/image24.jpg?v=bc814582');
+            --img-flavors-banner: url('https://calcularodadd.carrd.co/assets/images/image13.jpg?v=bc814582'); /* NOVO: Banner Linha de Sabores */
             --img-morango: 'https://calcularodadd.carrd.co/assets/images/image06.jpg?v=bc814582';
             --img-uva: 'https://calcularodadd.carrd.co/assets/images/image08.jpg?v=8cbffaba';
             --img-citricas: 'https://calcularodadd.carrd.co/assets/images/image07.jpg?v=8cbffaba';
+            
+            /* Assets Editorial Beauty (Lançamento Rosa) */
+            --img-pink-1: url('https://calcularodadd.carrd.co/assets/images/image05.jpg?v=bc814582');
+            --img-pink-2: url('https://calcularodadd.carrd.co/assets/images/image04.jpg?v=bc814582');
+            --img-pink-3: url('https://calcularodadd.carrd.co/assets/images/image03.jpg?v=bc814582');
+            --img-pink-4: url('https://calcularodadd.carrd.co/assets/images/image15.jpg?v=bc814582'); /* Welcome Drink */
+            --img-pink-5: url('https://calcularodadd.carrd.co/assets/images/image14.jpg?v=bc814582'); /* Home Care */
+            
+            /* NOVO: Assets Elite Gold (Balada) */
+            --img-gold-1: url('https://calcularodadd.carrd.co/assets/images/image27.jpg?v=9f1b6886');
+            --img-gold-2: url('https://calcularodadd.carrd.co/assets/images/image29.jpg?v=9f1b6886');
+            --img-gold-3: url('https://calcularodadd.carrd.co/assets/images/image28.jpg?v=9f1b6886');
         }
 
         body.light-mode {
@@ -51,6 +64,12 @@
 
         .nav-link { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px; color: var(--text-main); opacity: 0.4; transition: 0.4s ease; cursor: pointer; padding: 8px 5px; }
         .nav-link.active, .nav-link:hover { opacity: 1; text-shadow: 0 0 20px var(--gold); }
+
+        /* NOVO: Tabs de Navegação da Boutique Store */
+        .boutique-tab { padding: 12px 24px; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; border-radius: 30px; border: 1px solid var(--panel-border); color: var(--text-main); opacity: 0.5; transition: all 0.4s ease; cursor: pointer; background: transparent; }
+        .boutique-tab:hover { opacity: 1; }
+        .boutique-tab.active#btn-beauty { background: rgba(255, 0, 128, 0.1); border-color: var(--pink); color: var(--pink); opacity: 1; box-shadow: 0 0 20px rgba(255, 0, 128, 0.2); }
+        .boutique-tab.active#btn-performance { background: rgba(212, 175, 55, 0.1); border-color: var(--gold); color: var(--gold); opacity: 1; box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); }
 
         .page-content { display: none; min-height: 100vh; width: 100vw; padding-top: 180px; padding-bottom: 150px; }
         .page-content.active { display: block; animation: pageIn 0.8s ease forwards; }
@@ -93,9 +112,26 @@
 
         .btn-national { background: var(--gold); color: #000; padding: 15px 30px; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; border-radius: 4px; cursor: pointer; transition: 0.4s; border: 1px solid transparent; }
         .btn-national:hover { background: transparent; color: var(--gold); border-color: var(--gold); }
+
+        /* Utilitário para expansão de imagem */
+        .zoomable { cursor: zoom-in; transition: transform 0.3s ease, filter 0.3s ease; }
+        .zoomable:hover { filter: brightness(1.2); }
+        
+        /* NOVO: Ícone Minimalista de Expansão */
+        .zoom-icon { position: absolute; top: 16px; right: 16px; background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(4px); border: 1px solid rgba(255, 255, 255, 0.2); color: white; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; z-index: 15; opacity: 0.6; transition: 0.3s; }
+        .zoomable:hover .zoom-icon { opacity: 1; transform: scale(1.1); background: rgba(0, 0, 0, 0.7); }
     </style>
 </head>
 <body class="antialiased">
+
+    <!-- LIGHTBOX MODAL (EXPANSÃO DE IMAGENS) -->
+    <div id="lightbox-modal" class="fixed inset-0 bg-black/95 z-[10000] hidden items-center justify-center p-4 backdrop-blur-md cursor-pointer" onclick="closeLightbox()">
+        <span class="absolute top-6 right-6 lg:top-8 lg:right-8 text-white/50 hover:text-white text-3xl cursor-pointer transition-colors z-50 w-12 h-12 flex items-center justify-center bg-white/5 rounded-full" onclick="closeLightbox()">✕</span>
+        <div class="relative max-w-4xl w-full max-h-[90vh] flex flex-col items-center justify-center cursor-default" onclick="event.stopPropagation()">
+            <img id="lightbox-img" src="" alt="Expanded Image" class="max-w-full max-h-[80vh] object-contain rounded-xl shadow-2xl border border-white/10">
+            <p id="lightbox-caption" class="text-gold font-black uppercase tracking-[4px] text-[12px] mt-6 text-center"></p>
+        </div>
+    </div>
 
     <!-- MODAL PREMIERE CHIMARRÃO (FECHA AO CLICAR FORA) -->
     <div id="lx-modal" onclick="closeOutside(event)">
@@ -160,62 +196,328 @@
             <div class="container mx-auto px-6 max-w-7xl">
                 <div class="text-center mb-20">
                     <h2 class="text-6xl lg:text-8xl font-extralight italic uppercase" id="boutique-main-title">Boutique <span class="text-pink-500 font-bold">Store.</span></h2>
-                    <div class="flex justify-center gap-8 mt-12 border-b border-panel-border pb-8">
-                        <a onclick="switchCategory('beauty')" class="nav-link active" id="btn-beauty">Farma Beauty</a>
-                        <a onclick="switchCategory('performance')" class="nav-link" id="btn-performance">Elite Energy</a>
+                    <div class="flex flex-wrap justify-center gap-4 md:gap-8 mt-12 border-b border-panel-border pb-8">
+                        <button onclick="switchCategory('beauty')" class="boutique-tab active" id="btn-beauty">Farma Beauty</button>
+                        <button onclick="switchCategory('performance')" class="boutique-tab" id="btn-performance">Elite Energy</button>
                     </div>
                 </div>
 
-                <!-- CATEGORIA: SUPLEMENTOS (MORANGO, UVA E CÍTRICAS) -->
+                <!-- CATEGORIA: SUPLEMENTOS (EDITORIAL MAGAZINE) -->
                 <div id="cat-beauty" class="category-content active">
-                    <div class="grid lg:grid-cols-2 gap-16">
+                    
+                    <!-- Cabeçalho de Revista -->
+                    <div class="flex flex-col md:flex-row justify-between items-end border-b border-panel-border pb-8 mb-12 text-left">
                         <div>
-                            <div class="path-card h-[400px] mb-8 relative">
-                                <div class="path-img" style="background-image: var(--img-beauty); opacity: 0.9;"></div>
-                                <div class="absolute bottom-8 left-8">
-                                    <span class="bg-pink-500 text-black px-4 py-1 text-[10px] font-black uppercase mb-4 inline-block">Lançamento Março 2026</span>
-                                    <h3 class="text-4xl font-bold italic">Morango Tradicional</h3>
-                                </div>
+                            <span class="text-pink-500 bg-pink-500/10 px-3 py-1 rounded text-[9px] font-black tracking-[4px] uppercase mb-6 inline-block">The Pink Issue • Março 2026</span>
+                            <h3 class="text-5xl md:text-7xl font-light italic leading-none text-white">Editorial <br><span class="font-bold text-pink-500">Beauty.</span></h3>
+                        </div>
+                        <div class="mt-8 md:mt-0 max-w-sm">
+                            <p class="text-sm opacity-60 italic leading-relaxed border-l-2 border-pink-500 pl-4">A primeira edição da suplementação de luxo. Desenvolvida exclusivamente para elevar o ticket médio do ecossistema de salões de alto padrão.</p>
+                        </div>
+                    </div>
+
+                    <!-- NOVO: FREEZER ESTRATÉGICO (PONTO DE CONTATO FÍSICO) -->
+                    <div class="mb-16 grid lg:grid-cols-12 gap-10 items-center border-b border-panel-border pb-16">
+                        <div class="lg:col-span-5 flex flex-col justify-center text-left">
+                            <span class="text-pink-500 bg-pink-500/10 px-4 py-2 rounded-full text-[9px] font-black tracking-[4px] uppercase mb-6 inline-block w-fit border border-pink-500/20">O Ponto de Contato</span>
+                            <h4 class="text-4xl lg:text-5xl font-light italic text-white mb-6">Display <span class="font-bold text-pink-500">Estratégico.</span></h4>
+                            <p class="text-sm opacity-80 italic leading-relaxed text-gray-300 mb-8">A experiência sensorial começa aqui. O nosso freezer oficial posiciona a biotecnologia DG como um item de luxo e desejo dentro do seu salão. A temperatura perfeita para o Welcome Drink que inicia o ritual de conversão orgânica.</p>
+                            <div class="flex gap-4">
+                                <span class="border border-white/10 px-4 py-2 rounded text-[9px] uppercase tracking-widest opacity-60">Design Minimalista</span>
+                                <span class="border border-white/10 px-4 py-2 rounded text-[9px] uppercase tracking-widest opacity-60">Temperatura Ideal</span>
                             </div>
-                            <div class="flavor-grid">
-                                <div class="flavor-item">
-                                    <div class="flavor-card border-pink-500/50"><img src="https://calcularodadd.carrd.co/assets/images/image06.jpg?v=bc814582" alt="Morango"></div>
-                                    <p class="text-[9px] font-bold mt-2 uppercase text-pink-500">Morango (Rosa)</p>
-                                </div>
-                                <div class="flavor-item">
-                                    <div class="flavor-card border-purple-500/30"><img src="https://calcularodadd.carrd.co/assets/images/image08.jpg?v=8cbffaba" alt="Uva"></div>
-                                    <p class="text-[9px] font-bold mt-2 uppercase text-purple-400">Uva (Roxa)</p>
-                                </div>
-                                <div class="flavor-item">
-                                    <div class="flavor-card border-zinc-500/30"><img src="https://calcularodadd.carrd.co/assets/images/image07.jpg?v=8cbffaba" alt="Cítricas"></div>
-                                    <p class="text-[9px] font-bold mt-2 uppercase text-zinc-400">Frutas Cítricas</p>
+                        </div>
+                        <div class="lg:col-span-7">
+                            <div class="path-card h-[350px] lg:h-[450px] zoomable border-pink-500/30 w-full group" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image26.jpg?v=295754d6', 'Freezer Estratégico DG Holding - Ponto de Venda')">
+                                <div class="path-img" style="background-image: url('https://calcularodadd.carrd.co/assets/images/image26.jpg?v=295754d6'); opacity: 0.95; background-position: center;"></div>
+                                <div class="absolute bottom-6 right-6 z-10">
+                                    <span class="bg-black/80 backdrop-blur-md border border-pink-500/30 text-pink-500 px-4 py-2 text-[9px] font-black uppercase tracking-[3px] rounded-sm shadow-xl">Hub Display Oficial</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="flex flex-col justify-center">
+                    </div>
+
+                    <!-- NOVO: FORMULAÇÃO E ATIVOS (DESTAQUE INICIAL) -->
+                    <div class="mb-16 bg-pink-500/5 border border-pink-500/20 rounded-2xl p-8 md:p-12 text-left relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-64 h-64 bg-pink-500/10 rounded-full blur-3xl -mr-20 -mt-20 pointer-events-none"></div>
+                        <div class="relative z-10 grid md:grid-cols-2 gap-10 items-center">
+                            <div>
+                                <span class="text-[10px] font-black uppercase tracking-widest text-pink-500 block mb-4">A Fórmula DG</span>
+                                <h4 class="text-3xl font-light italic text-white mb-6">A Ciência da <span class="font-bold">Beleza.</span></h4>
+                                <p class="text-sm opacity-80 italic leading-relaxed text-gray-300">Através da ação dos peptídeos de colágeno, biotina e nosso blend de vitaminas, essa bebida da beleza contribui no fortalecimento de cabelos, unhas, articulações e manutenção da elasticidade e firmeza da pele.</p>
+                            </div>
+                            <div class="flex flex-wrap gap-3 md:justify-end">
+                                <span class="bg-[#2A2A2A] border border-white/10 text-white px-6 py-3 rounded-md text-[11px] font-bold tracking-widest uppercase shadow-lg hover:border-pink-500 transition-colors">Colágeno</span>
+                                <span class="bg-[#2A2A2A] border border-white/10 text-white px-6 py-3 rounded-md text-[11px] font-bold tracking-widest uppercase shadow-lg hover:border-pink-500 transition-colors">Biotina</span>
+                                <span class="bg-[#2A2A2A] border border-white/10 text-white px-6 py-3 rounded-md text-[11px] font-bold tracking-widest uppercase shadow-lg hover:border-pink-500 transition-colors">Vitamina E</span>
+                                <span class="bg-[#2A2A2A] border border-white/10 text-white px-6 py-3 rounded-md text-[11px] font-bold tracking-widest uppercase shadow-lg hover:border-pink-500 transition-colors">Zinco</span>
+                                <span class="bg-[#2A2A2A] border border-white/10 text-white px-6 py-3 rounded-md text-[11px] font-bold tracking-widest uppercase shadow-lg hover:border-pink-500 transition-colors">Ferro</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Grelha Editorial (Masonry) -->
+                    <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6 mb-20">
+                        <!-- Imagem Principal (Cover) -->
+                        <div class="md:col-span-8 h-[400px] md:h-[600px] path-card zoomable border-pink-500/30 relative" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image05.jpg?v=bc814582', 'The Pink Edition - Cover Story')">
+                            <div class="path-img" style="background-image: var(--img-pink-1); opacity: 0.95;"></div>
+                            <div class="absolute top-6 left-6 z-10 md:top-8 md:left-8">
+                                <span class="bg-black/80 backdrop-blur border border-pink-500/50 text-pink-500 px-4 py-2 text-[8px] font-black uppercase tracking-[3px] rounded-sm shadow-2xl">Cover Story</span>
+                            </div>
+                        </div>
+                        <!-- Imagens Secundárias (Detalhes) -->
+                        <div class="md:col-span-4 flex flex-col gap-4 md:gap-6">
+                            <div class="flex-1 min-h-[200px] md:min-h-[288px] path-card zoomable border-pink-500/10 relative" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image04.jpg?v=bc814582', 'Design e Textura Metálica')">
+                                <div class="path-img" style="background-image: var(--img-pink-2); opacity: 0.85; background-position: top;"></div>
+                                <div class="absolute bottom-4 left-4 z-10"><span class="text-white text-[8px] uppercase tracking-widest font-black opacity-50 drop-shadow-md">Fig. 01 / Design</span></div>
+                            </div>
+                            <div class="flex-1 min-h-[200px] md:min-h-[288px] path-card zoomable border-pink-500/10 relative" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image03.jpg?v=bc814582', 'Detalhes do Rótulo Tradicional')">
+                                <div class="path-img" style="background-image: var(--img-pink-3); opacity: 0.85; background-position: center;"></div>
+                                <div class="absolute bottom-4 left-4 z-10"><span class="text-white text-[8px] uppercase tracking-widest font-black opacity-50 drop-shadow-md">Fig. 02 / Rótulo</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- NOVO: O RITUAL DE CONVERSÃO (WELCOME DRINK -> HOME CARE) -->
+                    <div class="mt-20 mb-20 border-t border-panel-border pt-20">
+                        <div class="text-center mb-16">
+                            <span class="text-pink-500 bg-pink-500/10 px-4 py-2 rounded-full text-[9px] font-black tracking-[4px] uppercase mb-6 inline-block border border-pink-500/20">The Conversion Ritual</span>
+                            <h3 class="text-4xl md:text-6xl font-light italic text-white">O Método <span class="font-bold text-pink-500">DG.</span></h3>
+                            <p class="mt-6 opacity-60 text-sm max-w-xl mx-auto italic">Como a autoridade do profissional e a degustação estratégica geram conversão imediata e previsível em todos os Hubs parceiros.</p>
+                        </div>
+                        
+                        <div class="grid md:grid-cols-2 gap-10 lg:gap-16 items-start">
+                            <!-- Passo 1: Welcome Drink -->
+                            <div class="flex flex-col gap-6">
+                                <div class="path-card h-[350px] lg:h-[450px] zoomable border-pink-500/20 group" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image15.jpg?v=bc814582', 'Passo 01: A Degustação (Welcome Drink)')">
+                                    <div class="path-img" style="background-image: var(--img-pink-4); opacity: 0.9;"></div>
+                                    <div class="absolute bottom-6 left-6 z-10">
+                                        <span class="bg-black/80 backdrop-blur-md border border-pink-500/30 text-pink-500 px-4 py-2 text-[9px] font-black uppercase tracking-[2px] rounded-sm shadow-xl">01. A Degustação</span>
+                                    </div>
+                                </div>
+                                <div class="pl-4 border-l-2 border-pink-500/50">
+                                    <h4 class="text-2xl font-bold italic mb-3 text-white">A Primeira Lata (Cortesia)</h4>
+                                    <p class="text-sm opacity-70 italic leading-relaxed text-gray-300">Durante o procedimento no salão, a primeira lata é servida como um <strong>Welcome Drink de Luxo</strong>. Esta cortesia estratégica ativa o paladar da cliente e introduz a biotecnologia DG de forma orgânica, sem pressão de venda.</p>
+                                </div>
+                            </div>
+
+                            <!-- Passo 2: Home Care -->
+                            <div class="flex flex-col gap-6 md:mt-24">
+                                <div class="path-card h-[350px] lg:h-[450px] zoomable border-pink-500/20 group" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image14.jpg?v=bc814582', 'Passo 02: O Pack Home Care')">
+                                    <div class="path-img" style="background-image: var(--img-pink-5); opacity: 0.9;"></div>
+                                    <div class="absolute bottom-6 left-6 z-10">
+                                        <span class="bg-black/80 backdrop-blur-md border border-pink-500/30 text-white px-4 py-2 text-[9px] font-black uppercase tracking-[2px] rounded-sm shadow-xl">02. A Continuidade</span>
+                                    </div>
+                                </div>
+                                <div class="pl-4 border-l-2 border-white/30">
+                                    <h4 class="text-2xl font-bold italic mb-3 text-white">Pack Home Care (Manutenção)</h4>
+                                    <p class="text-sm opacity-70 italic leading-relaxed text-gray-300">Após a imersão sensorial, a cliente compreende o valor da renovação celular. É o momento exato em que o profissional apresenta o <strong>Pack Home Care</strong>, garantindo a continuidade do tratamento em casa e multiplicando o ticket médio da cadeira.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- NOVO: MARKET INTELLIGENCE 2026 (A LATA BEAUTY VS MERCADO) -->
+                    <div class="mb-20 border-t border-panel-border pt-20 text-left">
+                        <div class="text-center mb-16">
+                            <span class="text-gold bg-gold/10 px-4 py-2 rounded-full text-[9px] font-black tracking-[4px] uppercase mb-6 inline-block border border-gold/20">Market Intelligence 2026</span>
+                            <h3 class="text-4xl md:text-6xl font-light italic text-white">Porquê a <span class="font-bold text-pink-500">Lata Beauty?</span></h3>
+                            <p class="mt-6 opacity-60 text-sm max-w-2xl mx-auto italic">A mulher de alto padrão mudou. Entenda por que os formatos tradicionais perderam o poder de consumo no ecossistema de luxo.</p>
+                        </div>
+
+                        <div class="grid md:grid-cols-3 gap-8">
+                            <!-- Cápsulas -->
+                            <div class="bg-panel-bg border border-panel-border p-8 rounded-2xl opacity-60 hover:opacity-100 transition-opacity">
+                                <span class="text-[10px] font-black uppercase tracking-widest text-gray-400 block mb-4">O Passado Satura</span>
+                                <h4 class="text-2xl font-bold italic text-white mb-4">Encapsulados</h4>
+                                <p class="text-sm italic leading-relaxed"><strong>Método antigo e ultrapassado.</strong> Mercado saturado e "prostituído". A cliente já consome dezenas de pílulas no dia a dia e não vê mais valor financeiro nem estético em mais um frasco comum. Baixa adesão e zero experiência sensorial.</p>
+                            </div>
+                            
+                            <!-- Gomas -->
+                            <div class="bg-panel-bg border border-panel-border p-8 rounded-2xl opacity-60 hover:opacity-100 transition-opacity">
+                                <span class="text-[10px] font-black uppercase tracking-widest text-alert block mb-4">A Falsa Tendência</span>
+                                <h4 class="text-2xl font-bold italic text-white mb-4">Gomas (Balinhas)</h4>
+                                <p class="text-sm italic leading-relaxed">Apesar da fama, a mulher de luxo rejeita-as. O motivo? Alto teor de açúcar, textura artificial e perceção de "doce infantil". Não transmite a seriedade clínica ou o status exigido por um nutricosmético de alto padrão.</p>
+                            </div>
+                            
+                            <!-- Lata Beauty -->
+                            <div class="bg-pink-500/10 border border-pink-500/40 p-8 rounded-2xl transform md:-translate-y-4 shadow-[0_15px_40px_rgba(255,0,128,0.15)] relative overflow-hidden group">
+                                <div class="absolute top-0 right-0 w-32 h-32 bg-pink-500/20 rounded-full blur-3xl -mr-10 -mt-10 group-hover:bg-pink-500/30 transition-colors"></div>
+                                <span class="text-[10px] font-black uppercase tracking-widest text-pink-500 block mb-4 relative z-10">O Padrão Ouro 2026</span>
+                                <h4 class="text-2xl font-bold italic text-white mb-4 relative z-10">A Lata Beauty</h4>
+                                <p class="text-sm italic leading-relaxed text-white/90 relative z-10">Absolutamente <strong>mais eficaz</strong>. Uma nova tendência global <strong>com registro oficial</strong>, atuando como uma verdadeira <strong>prescrição médica</strong> de altíssima absorção líquida, entregue em formato de luxo na cadeira do salão.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bloco de Conteúdo e Catálogo -->
+                    <div class="grid lg:grid-cols-12 gap-16 mb-20 text-left border-t border-panel-border pt-16">
+                        <div class="lg:col-span-5 flex flex-col justify-center">
                             <span class="text-gold text-[9px] font-black tracking-widest mb-6 uppercase">O Ritual Farma Beauty</span>
-                            <h3 class="text-5xl font-light italic mb-8">Nutrição Sistémica de Luxo.</h3>
-                            <p class="opacity-60 text-lg font-light leading-relaxed mb-10 italic">O Sabor Tradicional chega em Março como o primeiro auxílio sistémico oficial para o cronograma capilar.</p>
+                            <h3 class="text-4xl lg:text-5xl font-light italic mb-8">O Suporte Sistémico Perfeito.</h3>
+                            <p class="opacity-60 text-base font-light leading-relaxed mb-10 italic">A lata rosa sela o início da nossa jornada em Março. O Sabor Morango Tradicional não é apenas uma bebida, é a prescrição biológica que a cliente levará para casa após a cadeira do salão.</p>
                             <button class="btn-national w-fit">Ver Tabela de Franquia</button>
                         </div>
+                        <div class="lg:col-span-7">
+                            <span class="text-xs font-black tracking-[4px] uppercase border-b border-panel-border pb-4 mb-8 block text-white/50">Catálogo Completo B2B</span>
+                            <div class="flavor-grid">
+                                <div class="flavor-item">
+                                    <div class="flavor-card border-pink-500/50"><img src="https://calcularodadd.carrd.co/assets/images/image06.jpg?v=bc814582" alt="Morango" class="zoomable" onclick="openLightbox(this.src, 'Morango Tradicional (Rosa)')"></div>
+                                    <p class="text-[9px] font-bold mt-3 uppercase text-pink-500">Morango (Rosa)</p>
+                                </div>
+                                <div class="flavor-item">
+                                    <div class="flavor-card border-purple-500/30"><img src="https://calcularodadd.carrd.co/assets/images/image08.jpg?v=8cbffaba" alt="Uva" class="zoomable" onclick="openLightbox(this.src, 'Uva Grape (Roxa)')"></div>
+                                    <p class="text-[9px] font-bold mt-3 uppercase text-purple-400">Uva (Roxa)</p>
+                                </div>
+                                <div class="flavor-item">
+                                    <div class="flavor-card border-zinc-500/30"><img src="https://calcularodadd.carrd.co/assets/images/image07.jpg?v=8cbffaba" alt="Cítricas" class="zoomable" onclick="openLightbox(this.src, 'Frutas Cítricas (Preta)')"></div>
+                                    <p class="text-[9px] font-bold mt-3 uppercase text-zinc-400">Frutas Cítricas</p>
+                                </div>
+                                <!-- NOVO: Abacaxi com Hortelã (Amarela) -->
+                                <div class="flavor-item">
+                                    <div class="flavor-card border-yellow-500/30"><img src="https://calcularodadd.carrd.co/assets/images/image09.jpg?v=bc814582" alt="Abacaxi com Hortelã" class="zoomable" onclick="openLightbox(this.src, 'Abacaxi & Hortelã (Amarela)')"></div>
+                                    <p class="text-[9px] font-bold mt-3 uppercase text-yellow-500">Abacaxi & Hortelã</p>
+                                </div>
+                                <!-- NOVO: Maçã Verde (Verde Esmeralda) -->
+                                <div class="flavor-item">
+                                    <div class="flavor-card border-emerald-500/30"><img src="https://calcularodadd.carrd.co/assets/images/image10.jpg?v=bc814582" alt="Maçã Verde" class="zoomable" onclick="openLightbox(this.src, 'Maçã Verde')"></div>
+                                    <p class="text-[9px] font-bold mt-3 uppercase text-emerald-500">Maçã Verde</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- BANNER PANORÂMICO LINHA DE SABORES -->
+                    <div class="path-card h-[250px] lg:h-[350px] zoomable border-pink-500/20" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image13.jpg?v=bc814582', 'Coleção de Sabores - Farma Beauty')">
+                        <div class="path-img" style="background-image: var(--img-flavors-banner); opacity: 0.7; background-position: center 30%;"></div>
+                        <div class="path-content p-8 lg:p-12 text-center md:text-left">
+                            <h4 class="text-3xl lg:text-5xl font-light italic text-white">Coleção de Sabores.</h4>
+                            <p class="text-pink-500 text-[10px] font-black tracking-widest mt-3 uppercase">Experiência Sensorial Completa</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- CATEGORIA: ENERGÉTICOS (REMOVIDO FRUTAS, MORANGO E UVA) -->
+                <!-- CATEGORIA: ENERGÉTICOS (DESIGN ESTRUTURADO & SEM DEGRADÊ GERAL) -->
                 <div id="cat-performance" class="category-content">
+                    
+                    <!-- NOVO: CAPA CINEMATOGRÁFICA DE ENERGÉTICOS (LANÇAMENTO DEZ 2026) -->
+                    <div class="w-full h-[400px] md:h-[500px] path-card zoomable border-gold/30 mb-16 relative group" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image22.jpg?v=bc814582', 'The Gold Edition - Lançamento Dezembro 2026')">
+                        <div class="zoom-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div>
+                        <div class="path-img" style="background-image: url('https://calcularodadd.carrd.co/assets/images/image22.jpg?v=bc814582'); opacity: 0.95; background-position: center 30%;"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-0 pointer-events-none"></div>
+                        <div class="absolute bottom-10 left-8 md:bottom-12 md:left-12 z-10 text-left">
+                            <span class="text-gold border border-gold/40 bg-black/60 backdrop-blur-md px-4 py-2 rounded-sm text-[9px] font-black uppercase tracking-[4px] mb-6 inline-block shadow-2xl">Lançamento Dezembro 2026</span>
+                            <h3 class="text-5xl md:text-7xl font-light italic leading-none text-white">The Gold <br><span class="font-bold text-gold">Edition.</span></h3>
+                            <p class="text-white/60 text-xs font-black tracking-[5px] mt-4 uppercase">O Ápice da Alta Performance</p>
+                        </div>
+                    </div>
+
                     <div class="grid lg:grid-cols-2 gap-16">
-                        <div class="grid grid-cols-2 gap-6">
-                            <div class="path-card h-[250px]"><div class="path-img" style="background-image: var(--img-energy)"></div><div class="path-content p-4"><p class="text-[8px] font-black text-cyan-400">FOCCO (BRANCA)</p></div></div>
-                            <div class="path-card h-[250px]"><div class="path-img" style="background-image: var(--img-sleep)"></div><div class="path-content p-4"><p class="text-[8px] font-black text-white">SONO (PRETA)</p></div></div>
-                            <div class="path-card h-[250px]"><div class="path-img" style="background-image: var(--img-libido)"></div><div class="path-content p-4"><p class="text-[8px] font-black text-pink-500">LIBIDO (VERMELHA)</p></div></div>
-                            <div class="path-card h-[250px]"><div class="path-img" style="background-image: var(--img-chimarrao)"></div><div class="path-content p-4"><p class="text-[8px] font-black text-emerald-400">MATE (VERDE)</p></div></div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            
+                            <!-- FOCCO -->
+                            <div class="path-card h-[320px] lg:h-[380px] zoomable group border-cyan-500/20 hover:border-cyan-400" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image21.jpg?v=7f6e78a6', 'Focco Energy')">
+                                <div class="zoom-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div>
+                                <div class="path-img" style="background-image: var(--img-energy)"></div>
+                                <div class="absolute bottom-4 left-4 right-4 z-10 text-left">
+                                    <div class="bg-black/80 backdrop-blur-md p-5 rounded-xl border border-white/10 transform translate-y-1 group-hover:translate-y-0 transition-transform duration-500 shadow-2xl">
+                                        <p class="text-[10px] font-black text-cyan-400 tracking-widest mb-2 uppercase">Focco</p>
+                                        <p class="text-[11px] text-white/70 italic leading-relaxed">Clareza mental e foco absoluto. A ativação cognitiva perfeita para o alto desempenho diário.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SONO -->
+                            <div class="path-card h-[320px] lg:h-[380px] zoomable group border-white/10 hover:border-white" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image20.jpg?v=7f6e78a6', 'Sono Recuperador')">
+                                <div class="zoom-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div>
+                                <div class="path-img" style="background-image: var(--img-sleep)"></div>
+                                <div class="absolute bottom-4 left-4 right-4 z-10 text-left">
+                                    <div class="bg-black/80 backdrop-blur-md p-5 rounded-xl border border-white/10 transform translate-y-1 group-hover:translate-y-0 transition-transform duration-500 shadow-2xl">
+                                        <p class="text-[10px] font-black text-white tracking-widest mb-2 uppercase">Sono</p>
+                                        <p class="text-[11px] text-white/70 italic leading-relaxed">Reparação celular profunda. O descanso luxuoso que o seu corpo e mente exigem.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- LIBIDO -->
+                            <div class="path-card h-[320px] lg:h-[380px] zoomable group border-pink-500/20 hover:border-pink-500" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image01.jpg?v=7f6e78a6', 'Libido Sophisticated')">
+                                <div class="zoom-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div>
+                                <div class="path-img" style="background-image: var(--img-libido)"></div>
+                                <div class="absolute bottom-4 left-4 right-4 z-10 text-left">
+                                    <div class="bg-black/80 backdrop-blur-md p-5 rounded-xl border border-pink-500/20 transform translate-y-1 group-hover:translate-y-0 transition-transform duration-500 shadow-2xl">
+                                        <p class="text-[10px] font-black text-pink-500 tracking-widest mb-2 uppercase">Libido</p>
+                                        <p class="text-[11px] text-white/70 italic leading-relaxed">Vitalidade e energia primária. Um blend sofisticado para despertar a intensidade dos sentidos.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- MATE CHIMARRÃO -->
+                            <div class="path-card h-[320px] lg:h-[380px] zoomable group border-emerald-500/20 hover:border-emerald-500" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image24.jpg?v=bc814582', 'Mate Chimarrão Pro')">
+                                <div class="zoom-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div>
+                                <div class="path-img" style="background-image: var(--img-chimarrao)"></div>
+                                <div class="absolute bottom-4 left-4 right-4 z-10 text-left">
+                                    <div class="bg-black/80 backdrop-blur-md p-5 rounded-xl border border-emerald-500/20 transform translate-y-1 group-hover:translate-y-0 transition-transform duration-500 shadow-2xl">
+                                        <p class="text-[10px] font-black text-emerald-400 tracking-widest mb-2 uppercase">Mate</p>
+                                        <p class="text-[11px] text-white/70 italic leading-relaxed">A energia limpa da biotecnologia. A tradição elevada à máxima potência metabólica.</p>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="flex flex-col justify-center">
                             <span class="text-gold text-[9px] font-black tracking-widest mb-6 uppercase">Elite Matrix Store</span>
                             <h3 class="text-5xl font-light italic mb-8">Alta Performance Cognitive.</h3>
                             <p class="opacity-60 text-lg font-light leading-relaxed mb-10 italic">Fórmulas limpas para o cérebro e o corpo. Focco, Sono e a exclusiva Biotecnologia do Mate Chimarrão Pro.</p>
+                            <div class="flex gap-4">
+                                <div class="bg-panel-border p-4 rounded-lg flex-1">
+                                    <p class="text-gold font-bold text-xl italic">R$ 45,00</p>
+                                    <p class="text-[8px] uppercase opacity-50">Lata Gold (Balada)</p>
+                                </div>
+                                <div class="bg-panel-border p-4 rounded-lg flex-1">
+                                    <p class="text-white font-bold text-xl italic">R$ 19,00</p>
+                                    <p class="text-[8px] uppercase opacity-50">Linha Performance</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    
+                    <!-- NOVO: EDITORIAL BALADA (LANÇAMENTO DEZ 2026) -->
+                    <div class="mt-20 border-t border-panel-border pt-20 text-left">
+                        <div class="flex flex-col md:flex-row gap-10 lg:gap-16 items-center">
+                            <div class="md:w-5/12">
+                                <span class="text-gold bg-gold/10 px-4 py-2 rounded-full text-[9px] font-black tracking-[4px] uppercase mb-6 inline-block border border-gold/20">Lançamento • Dezembro 2026</span>
+                                <h3 class="text-4xl md:text-6xl font-light italic text-white mb-4">A Elite da <span class="font-bold text-gold">Balada.</span></h3>
+                                <h4 class="text-xl text-white/50 font-bold uppercase tracking-widest mb-8 border-l-2 border-gold pl-4">Editorial Família DG</h4>
+                                <p class="opacity-70 text-sm italic leading-relaxed text-gray-300 mb-8">O ecossistema noturno redefinido. A Lata Gold não é apenas uma bebida energética; é um passaporte de status, exclusividade e poder na vida noturna de alto padrão. Uma fusão de luxo e performance extrema para quem domina a noite.</p>
+                            </div>
+                            <div class="md:w-7/12 w-full">
+                                <div class="path-card h-[400px] lg:h-[550px] zoomable border-gold/30 group" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image25.jpg?v=295754d6', 'Família DG - Editorial Balada (Dez 2026)')">
+                                    <div class="zoom-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div>
+                                    <div class="path-img" style="background-image: url('https://calcularodadd.carrd.co/assets/images/image25.jpg?v=295754d6'); opacity: 0.9; background-position: center;"></div>
+                                    <div class="absolute bottom-6 left-6 z-10">
+                                        <span class="bg-black/80 backdrop-blur-md border border-gold/30 text-gold px-4 py-2 text-[9px] font-black uppercase tracking-[3px] rounded-sm shadow-xl">Nightlife Experience</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- NOVA: GALERIA DE DETALHES LATA GOLD -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 mt-6 md:mt-10">
+                            <div class="path-card h-[250px] md:h-[350px] zoomable border-gold/20 group" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image27.jpg?v=9f1b6886', 'The Gold Edition - Acabamento Premium')">
+                                <div class="zoom-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div>
+                                <div class="path-img" style="background-image: var(--img-gold-1); opacity: 0.9; background-position: center;"></div>
+                            </div>
+                            <div class="path-card h-[250px] md:h-[350px] zoomable border-gold/20 group" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image29.jpg?v=9f1b6886', 'The Gold Edition - Design de Luxo')">
+                                <div class="zoom-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div>
+                                <div class="path-img" style="background-image: var(--img-gold-2); opacity: 0.9; background-position: center;"></div>
+                            </div>
+                            <div class="path-card h-[250px] md:h-[350px] zoomable border-gold/20 group" onclick="openLightbox('https://calcularodadd.carrd.co/assets/images/image28.jpg?v=9f1b6886', 'The Gold Edition - Status e Poder')">
+                                <div class="zoom-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg></div>
+                                <div class="path-img" style="background-image: var(--img-gold-3); opacity: 0.9; background-position: center;"></div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </main>
@@ -254,16 +556,24 @@
                             </div>
                         </div>
 
-                        <ul class="space-y-4 opacity-90 text-sm italic relative z-10">
-                            <li class="flex justify-between items-center border-b border-panel-border pb-3">
-                                <span><strong class="text-gold text-lg mr-2">51%</strong> Thiago Dias</span> 
-                                <span class="text-[8px] bg-white/5 px-2 py-1 rounded uppercase tracking-widest opacity-60">CEO / Tech</span>
+                        <ul class="space-y-5 opacity-90 text-sm relative z-10">
+                            <li class="border-b border-panel-border pb-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span><strong class="text-gold text-lg mr-2">51%</strong> Tiago Dias</span> 
+                                    <span class="text-[8px] bg-gold/20 text-gold border border-gold/30 px-2 py-1 rounded uppercase tracking-widest">CEO / Founder</span>
+                                </div>
+                                <p class="text-[11px] italic opacity-70 leading-relaxed"><strong class="text-white">Aporte Exclusivo:</strong> Custeio 100% integral do Lote Piloto da Lata Rosa (Morango Tradicional).<br><strong class="text-white">Ativos & Deveres:</strong> Propriedade intelectual, estratégia de marketing, desenvolvimento de todo o ecossistema digital (sites e TI), gestão técnica e branding nacional.</p>
                             </li>
-                            <li class="flex justify-between items-center border-b border-panel-border pb-3">
-                                <span><strong class="text-white text-lg mr-2">49%</strong> Hubs (Sócias)</span> 
-                                <span class="text-[8px] bg-white/5 px-2 py-1 rounded uppercase tracking-widest opacity-60">Operação</span>
+                            <li class="border-b border-panel-border pb-4">
+                                <div class="flex justify-between items-center mb-2">
+                                    <span><strong class="text-white text-lg mr-2">49%</strong> Sócias Investidoras</span> 
+                                    <span class="text-[8px] bg-white/10 px-2 py-1 rounded uppercase tracking-widest opacity-80">Conselho / Hubs</span>
+                                </div>
+                                <p class="text-[11px] italic opacity-70 leading-relaxed"><strong class="text-white">Aporte Financeiro:</strong> Investimento de capital nas rodadas de expansão.<br><strong class="text-white">Deveres de Operação:</strong> Execução rigorosa do "Método DG" e Ritual Farma Beauty nas cadeiras, validação comercial, escoamento do produto nos Hubs e captação de prova social.</p>
                             </li>
-                            <li class="pt-2 text-xs text-emerald-400 font-medium">↳ Poder de Veto: Requer 75% de aprovação (Essência da Marca).</li>
+                            <li class="pt-1 text-[10px] text-emerald-400 font-bold tracking-wide uppercase">
+                                ↳ Poder de Veto Master: Requer 75% de aprovação da aliança.
+                            </li>
                         </ul>
                     </div>
 
@@ -303,7 +613,6 @@
                         <div class="p-6 bg-black/40 rounded-xl border border-white/5">
                             <p class="text-[9px] uppercase tracking-widest opacity-50 mb-3">Lote Piloto</p>
                             <p class="text-4xl font-black italic text-white">700 un</p>
-                            <p class="text-[10px] text-gray-400 mt-3">Esgotamento: 7 a 10 dias</p>
                         </div>
                         <div class="p-6 bg-black/40 rounded-xl border border-white/5">
                             <p class="text-[9px] uppercase tracking-widest opacity-50 mb-3">Marketing Ads</p>
@@ -386,9 +695,9 @@
             const cat = document.getElementById(`cat-${catId}`);
             if(cat) cat.classList.add('active');
             
-            document.querySelectorAll('#page-shop .nav-link').forEach(l => l.classList.remove('active'));
-            const btn = document.getElementById(`btn-${catId}`);
-            if(btn) btn.classList.add('active');
+            document.querySelectorAll('.boutique-tab').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById(`btn-${catId}`);
+            if(activeBtn) activeBtn.classList.add('active');
 
             const title = document.getElementById('boutique-main-title');
             if(title) {
@@ -415,6 +724,29 @@
                 closeTeaser();
             }
         }
+
+        // --- SISTEMA DE LIGHTBOX (EXPANSÃO DE IMAGENS) ---
+        function openLightbox(imgSrc, captionText) {
+            const modal = document.getElementById('lightbox-modal');
+            const img = document.getElementById('lightbox-img');
+            const caption = document.getElementById('lightbox-caption');
+            
+            img.src = imgSrc;
+            caption.innerText = captionText || '';
+            modal.style.display = 'flex';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox-modal').style.display = 'none';
+        }
+
+        // Fechar modals com a tecla ESC para melhor UX
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeTeaser();
+                closeLightbox();
+            }
+        });
 
         function toggleTheme() { 
             document.body.classList.toggle('light-mode'); 
