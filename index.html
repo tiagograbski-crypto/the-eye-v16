@@ -3,367 +3,429 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>DG Holding | Cinema & Science Premiere 2026</title>
+    <meta name="description" content="Dias Grabski Holding - A Revolução da Biotecnologia Sistémica e Farma Beauty.">
+    <title>DG Holding | National Premiere 2026</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
+            --bg-main: #010101;
+            --text-main: #FFFFFF;
+            --panel-bg: rgba(255, 255, 255, 0.02);
+            --panel-border: rgba(255, 255, 255, 0.05);
+            --nav-bg: rgba(0, 0, 0, 0.85);
             --pink: #FF0080;
             --cyan: #00D1FF;
-            --obsidian: #010101;
             --gold: #D4AF37;
             --emerald: #00FF8A;
-            /* High-Res Cine Assets */
-            --img-hero: url('https://calcularodadd.carrd.co/assets/images/image22.jpg?v=7f6e78a6'); /* Ápice */
-            --img-beauty: url('https://calcularodadd.carrd.co/assets/images/image15.jpg?v=7f6e78a6'); /* Suplementos */
-            --img-energy: url('https://calcularodadd.carrd.co/assets/images/image21.jpg?v=7f6e78a6'); /* Focco */
-            --img-sleep: url('https://calcularodadd.carrd.co/assets/images/image20.jpg?v=7f6e78a6'); /* Sono */
-            --img-libido: url('https://calcularodadd.carrd.co/assets/images/image01.jpg?v=7f6e78a6'); /* Libido */
-            --img-lx: url('https://calcularodadd.carrd.co/assets/images/image24.jpg?v=ccc755b2'); /* LX Master Teaser */
+            --alert: #FF3B30;
+            
+            /* Assets Imagens Oficiais */
+            --img-hero: url('https://calcularodadd.carrd.co/assets/images/image22.jpg?v=7f6e78a6');
+            --img-beauty: url('https://calcularodadd.carrd.co/assets/images/image15.jpg?v=7f6e78a6');
+            --img-energy-path: url('https://calcularodadd.carrd.co/assets/images/image21.jpg?v=7f6e78a6'); /* Focco na Capa */
+            --img-energy: url('https://calcularodadd.carrd.co/assets/images/image21.jpg?v=7f6e78a6');
+            --img-sleep: url('https://calcularodadd.carrd.co/assets/images/image20.jpg?v=7f6e78a6');
+            --img-libido: url('https://calcularodadd.carrd.co/assets/images/image01.jpg?v=7f6e78a6');
+            --img-chimarrao: url('https://calcularodadd.carrd.co/assets/images/image24.jpg?v=bc814582');
+            --img-morango: 'https://calcularodadd.carrd.co/assets/images/image06.jpg?v=bc814582';
+            --img-uva: 'https://calcularodadd.carrd.co/assets/images/image08.jpg?v=8cbffaba';
+            --img-citricas: 'https://calcularodadd.carrd.co/assets/images/image07.jpg?v=8cbffaba';
+        }
+
+        body.light-mode {
+            --bg-main: #FBFBFA;
+            --text-main: #121212;
+            --panel-bg: rgba(0, 0, 0, 0.02);
+            --panel-border: rgba(0, 0, 0, 0.06);
+            --nav-bg: rgba(255, 255, 255, 0.95);
         }
         
-        * { scrollbar-width: none; -ms-overflow-style: none; -webkit-font-smoothing: antialiased; }
+        * { scrollbar-width: none; -ms-overflow-style: none; -webkit-font-smoothing: antialiased; box-sizing: border-box; }
         *::-webkit-scrollbar { display: none; }
         
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: var(--obsidian);
-            color: #FFFFFF;
-            overflow-x: hidden;
-            width: 100vw;
-        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg-main); color: var(--text-main); overflow-x: hidden; margin: 0; }
 
-        /* Navigation Cinema */
-        .nav-cinema { 
-            position: fixed; top: 0; width: 100%; padding: 20px 30px; z-index: 1000;
-            display: flex; flex-direction: column; gap: 15px; align-items: center;
-            background: linear-gradient(to bottom, rgba(0,0,0,1) 40%, transparent 100%);
-            backdrop-filter: blur(12px);
-        }
-        @media (min-width: 1024px) { .nav-cinema { flex-direction: row; padding: 40px 60px; justify-content: space-between; } }
+        .nav-cinema { position: fixed; top: 0; width: 100%; padding: 15px 20px; z-index: 1000; display: flex; flex-direction: column; gap: 15px; align-items: center; background: var(--nav-bg); backdrop-filter: blur(20px); border-bottom: 1px solid var(--panel-border); }
+        @media (min-width: 1024px) { .nav-cinema { flex-direction: row; padding: 25px 60px; justify-content: space-between; } }
 
-        .nav-link { font-size: 9px; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.4); transition: 0.5s ease; cursor: pointer; }
-        .nav-link:hover, .nav-link.active { color: #fff; text-shadow: 0 0 15px rgba(255,255,255,0.8); }
+        .nav-link { font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: 2.5px; color: var(--text-main); opacity: 0.4; transition: 0.4s ease; cursor: pointer; padding: 8px 5px; }
+        .nav-link.active, .nav-link:hover { opacity: 1; text-shadow: 0 0 20px var(--gold); }
 
-        .page-content { display: none; min-height: 100vh; width: 100vw; overflow-y: auto; overflow-x: hidden; padding-bottom: 120px; }
-        .page-content.active { display: block; animation: pageIn 1s ease-out; }
-        @keyframes pageIn { from { opacity: 0; transform: scale(1.02); } to { opacity: 1; transform: scale(1); } }
-
-        /* Cinema Hero */
-        .hero-cinema {
-            height: 100vh; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            position: relative; background-size: cover; background-position: center; background-image: var(--img-hero); padding: 40px 20px;
-        }
-        .cinema-overlay { position: absolute; inset: 0; background: radial-gradient(circle, transparent 0%, var(--obsidian) 95%); }
-
-        .cinema-title {
-            font-size: clamp(2rem, 12vw, 8rem); font-weight: 200; letter-spacing: -4px; line-height: 0.9;
-            text-transform: uppercase; z-index: 10; opacity: 0; animation: fadeInBlur 2.5s ease forwards; text-align: center;
-            margin-bottom: 60px;
-        }
-        @keyframes fadeInBlur { from { transform: scale(1.05); filter: blur(20px); opacity: 0; } to { transform: scale(1); filter: blur(0); opacity: 1; } }
-
-        /* Directing Cards */
-        .path-card {
-            position: relative; height: 350px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);
-            transition: 0.8s cubic-bezier(0.165, 0.84, 0.44, 1); cursor: pointer;
-        }
-        @media (min-width: 1024px) { .path-card { height: 500px; } }
-        .path-card:hover { transform: scale(1.05); border-color: var(--pink); box-shadow: 0 0 50px rgba(255, 0, 128, 0.2); }
-        .path-img { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.55; transition: 1.5s ease; }
-        .path-card:hover .path-img { opacity: 0.85; transform: scale(1.1); }
-        .path-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 40px; background: linear-gradient(0deg, #000 15%, transparent 80%); }
-
-        /* Boutique Sections */
-        .boutique-nav { display: flex; flex-direction: column; gap: 15px; justify-content: center; padding: 30px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); margin-bottom: 40px; }
-        @media (min-width: 1024px) { .boutique-nav { flex-direction: row; gap: 60px; padding: 60px 0; margin-bottom: 80px; } }
-        .boutique-link { font-size: 10px; font-weight: 900; color: #333; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; transition: 0.5s; text-align: center; }
-        .boutique-link.active { color: #fff; border-bottom: 2px solid var(--pink); padding-bottom: 10px; }
-
-        .category-content { display: none; }
-        .category-content.active { display: block; animation: movieFade 1.2s ease; }
-        @keyframes movieFade { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Pricing Table Luxury */
-        .pricing-table { width: 100%; border-collapse: collapse; margin-top: 30px; }
-        .pricing-table th { padding: 15px; text-align: left; font-size: 9px; color: #555; text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .pricing-table td { padding: 20px 15px; font-size: 12px; border-bottom: 1px solid rgba(255,255,255,0.03); }
-        .cost-label { color: var(--emerald); font-weight: 800; font-size: 10px; }
-
-        /* Teaser Pop-up (Jan 2027) */
-        #lx-modal {
-            position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 9999;
-            display: none; align-items: center; justify-content: center; padding: 20px;
-            backdrop-filter: blur(20px);
-        }
-        .modal-content {
-            background: #050505; border: 1px solid rgba(255,255,255,0.1); border-radius: 24px;
-            width: 100%; max-width: 900px; display: grid; grid-template-columns: 1fr; overflow: hidden;
-            box-shadow: 0 0 100px rgba(0, 209, 255, 0.1); position: relative;
-            animation: modalIn 0.8s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-        @media (min-width: 768px) { .modal-content { grid-template-columns: 1fr 1fr; } }
+        .page-content { display: none; min-height: 100vh; width: 100vw; padding-top: 180px; padding-bottom: 150px; }
+        .page-content.active { display: block; animation: pageIn 0.8s ease forwards; }
         
-        @keyframes modalIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-
-        .modal-img-side {
-            background-image: var(--img-lx); background-size: cover; background-position: center;
-            height: 300px;
-        }
-        @media (min-width: 768px) { .modal-img-side { height: 100%; } }
-
-        .modal-text-side { padding: 40px; display: flex; flex-direction: column; justify-content: center; text-align: left; }
+        /* Separação Visual das Categorias da Loja */
+        .category-content { display: none; animation: pageIn 0.6s ease forwards; }
+        .category-content.active { display: block; }
         
-        .lx-badge { background: var(--cyan); color: black; padding: 4px 12px; border-radius: 4px; font-size: 8px; font-weight: 900; text-transform: uppercase; margin-bottom: 20px; display: inline-block; }
+        @keyframes pageIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .close-modal { position: absolute; top: 20px; right: 20px; font-size: 20px; color: #555; cursor: pointer; transition: 0.3s; z-index: 10; }
-        .close-modal:hover { color: #fff; transform: rotate(90deg); }
+        .hero-cinema { min-height: 100vh; padding-bottom: 100px; display: flex; flex-direction: column; align-items: center; justify-content: center; background-size: cover; background-position: center; background-image: var(--img-hero); position: relative; }
+        .hero-cinema::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.8) 100%); z-index: 1; }
+        
+        .path-card { position: relative; border-radius: 24px; overflow: hidden; border: 1px solid var(--panel-border); transition: 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); cursor: pointer; background: var(--bg-main); }
+        .path-card:hover { transform: translateY(-10px); border-color: var(--gold); box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
+        .path-img { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.6; transition: 1.5s; filter: contrast(1.1); }
+        .path-card:hover .path-img { opacity: 0.9; transform: scale(1.05); }
 
-        /* Footer Producers */
-        .footer-premiere {
-            position: fixed; bottom: 0; width: 100%; min-height: 80px; background: rgba(0,0,0,0.98); backdrop-filter: blur(30px);
-            border-top: 1px solid rgba(255,255,255,0.03); z-index: 1000; padding: 20px 0; display: flex; align-items: center; justify-content: center;
-        }
-        .footer-cast { display: flex; flex-wrap: wrap; gap: 15px 30px; font-size: 7px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #444; justify-content: center; padding: 0 20px; }
-        @media (min-width: 1024px) { .footer-cast { gap: 60px; font-size: 8px; letter-spacing: 4px; } }
-        .cast-name { color: #fff; white-space: nowrap; transition: color 0.3s; }
-        .cast-name:hover { color: var(--pink); }
+        .path-content { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 40px; background: linear-gradient(0deg, var(--bg-main) 10%, transparent 80%); z-index: 5; }
 
-        .section-tag { font-size: 8px; font-weight: 900; letter-spacing: 5px; color: var(--gold); text-transform: uppercase; margin-bottom: 15px; display: block; opacity: 0.6; }
-        .gold-title { color: var(--gold); }
-        .pink-title { color: var(--pink); }
-        .price-highlight { font-size: 20px; font-weight: 900; font-style: italic; color: #fff; }
+        .flavor-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; margin-top: 30px; }
+        .flavor-card { border-radius: 12px; overflow: hidden; height: 160px; border: 1px solid var(--panel-border); transition: 0.4s; position: relative; }
+        .flavor-card img { width: 100%; height: 100%; object-fit: cover; filter: contrast(1.1); }
+        .flavor-card:hover { transform: translateY(-5px); border-color: var(--text-main); }
 
-        .flavor-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 12px; margin-top: 30px; }
-        .flavor-card { border-radius: 8px; overflow: hidden; height: 160px; border: 1px solid rgba(255,255,255,0.05); transition: 0.4s; }
-        .flavor-card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.65; }
+        .footer-premiere { position: fixed; bottom: 0; width: 100%; height: 80px; background: var(--nav-bg); backdrop-filter: blur(20px); border-top: 1px solid var(--panel-border); z-index: 1000; display: flex; align-items: center; justify-content: center; }
+        .cast-name { font-size: 8px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: var(--text-main); opacity: 0.6; cursor: pointer; margin: 0 15px; transition: 0.3s; }
+        .cast-name:hover { opacity: 1; color: var(--gold); }
+
+        #lx-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 9999; display: none; align-items: center; justify-content: center; padding: 20px; backdrop-filter: blur(30px); cursor: pointer; }
+        .modal-content { background: var(--bg-main); border: 1px solid rgba(0,255,138,0.2); border-radius: 12px; width: 100%; max-width: 1000px; display: grid; grid-template-columns: 1fr; cursor: default; }
+        @media (min-width: 768px) { .modal-content { grid-template-columns: 1.2fr 1fr; min-height: 550px; } }
+        
+        .table-wrapper { width: 100%; overflow-x: auto; }
+        .pricing-table { width: 100%; border-collapse: collapse; }
+        .pricing-table th { padding: 15px; text-align: left; font-size: 8px; color: #555; text-transform: uppercase; border-bottom: 1px solid var(--panel-border); }
+        .pricing-table td { padding: 15px; font-size: 12px; border-bottom: 1px solid var(--panel-border); }
+
+        .dec-card { background: var(--panel-bg); border: 1px solid var(--panel-border); border-radius: 16px; padding: 30px; border-top: 4px solid var(--gold); }
+
+        .btn-national { background: var(--gold); color: #000; padding: 15px 30px; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; border-radius: 4px; cursor: pointer; transition: 0.4s; border: 1px solid transparent; }
+        .btn-national:hover { background: transparent; color: var(--gold); border-color: var(--gold); }
     </style>
 </head>
 <body class="antialiased">
 
-    <!-- TEASER MODAL (8 SECONDS DELAY) -->
-    <div id="lx-modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeTeaser()">✕</span>
-            <div class="modal-img-side"></div>
-            <div class="modal-text-side">
-                <span class="lx-badge">Scientific Teaser</span>
-                <h3 class="text-4xl font-extralight text-white uppercase italic leading-none mb-6">
-                    LX Master <br> <span class="text-cyan-400 font-bold">Evolution.</span>
-                </h3>
-                <p class="text-gray-400 text-sm italic font-light leading-relaxed mb-8">
-                    O próximo salto na biotecnologia capilar sistémica. <br>
-                    Desenvolvimento finalizado.
-                </p>
-                <div class="border-t border-white/5 pt-6">
-                    <span class="text-[10px] font-black uppercase text-white tracking-[6px]">Janeiro de 2027</span>
-                    <p class="text-[8px] text-gray-600 mt-2">Exclusive for Dias Grabski Private Hubs.</p>
-                </div>
+    <!-- MODAL PREMIERE CHIMARRÃO (FECHA AO CLICAR FORA) -->
+    <div id="lx-modal" onclick="closeOutside(event)">
+        <div class="modal-content relative" onclick="event.stopPropagation()">
+            <span class="absolute top-6 right-6 text-gray-400 cursor-pointer text-2xl z-20 hover:text-white transition-all" onclick="closeTeaser()">✕</span>
+            <div class="h-[300px] md:h-auto" style="background: var(--img-chimarrao) center/cover; filter: contrast(1.1);"></div>
+            <div class="p-10 lg:p-16 flex flex-col justify-center text-left">
+                <span class="text-emerald-400 border border-emerald-500/30 px-3 py-1 rounded-sm text-[8px] font-black uppercase mb-6 inline-block w-fit">Lançamento Janeiro 2027</span>
+                <h3 class="text-4xl lg:text-5xl font-extralight uppercase italic mb-8">Sabor Mate <br> <span class="text-emerald-400 font-bold">Chimarrão Pro.</span></h3>
+                <p class="opacity-60 text-sm italic font-light mb-10 leading-relaxed">A tradição do Sul transformada em biotecnologia sistêmica para o ritual de salão.</p>
+                <div class="border-t border-panel-border pt-8"><span class="text-[9px] font-black uppercase tracking-[10px] text-emerald-500">The Green Edition</span></div>
             </div>
         </div>
     </div>
 
-    <!-- MASTER NAVIGATION -->
+    <!-- NAVEGAÇÃO MASTER -->
     <nav class="nav-cinema">
         <div class="flex items-center gap-4">
-            <div class="w-10 h-10 border border-white/10 flex items-center justify-center font-black text-white text-xl">DG</div>
-            <div class="hidden sm:block leading-none text-left">
-                <span class="text-[11px] font-black tracking-[0.3em] uppercase text-white">Dias Grabski</span><br>
-                <span class="text-[7px] text-gray-700 uppercase tracking-[0.4em]">Holding Premiere</span>
-            </div>
+            <div class="w-8 h-8 border border-panel-border flex items-center justify-center font-black text-xs text-gold">DG</div>
+            <div class="text-left"><span class="text-[10px] font-black uppercase tracking-widest">Dias Grabski</span></div>
         </div>
-        <div class="flex gap-8 lg:gap-16">
-            <a onclick="switchPage('movie')" class="nav-link active" data-page="movie">Opening</a>
-            <a onclick="switchPage('shop')" class="nav-link" data-page="shop">The Boutique</a>
-            <a onclick="switchPage('ritual')" class="nav-link" data-page="ritual">Ritual.dg</a>
-            <a onclick="switchPage('factory')" class="nav-link" data-page="factory">Engineering</a>
+        <div class="nav-links-container">
+            <a onclick="switchPage('movie')" class="nav-link active" data-page="movie">The Premiere</a>
+            <a onclick="switchPage('shop')" class="nav-link" data-page="shop">Boutique Store</a>
+            <a onclick="switchPage('expansion')" class="nav-link" data-page="expansion">Expansion</a>
+            <a onclick="switchPage('factory')" class="nav-link" data-page="factory">Board Deck (DEC)</a>
+            <div class="portal-btn hidden md:block" onclick="switchPage('admin')">Intelligence</div>
         </div>
     </nav>
 
     <div class="wrapper">
         
-        <!-- MODULO: OPENING (DIRECIONAMENTO COM NOVOS NOMES) -->
+        <!-- PÁGINA: THE PREMIERE (CAPA CORRIGIDA COM ENERGÉTICO) -->
         <main id="page-movie" class="page-content active">
             <section class="hero-cinema">
-                <div class="cinema-overlay"></div>
-                <div class="z-10 text-center mb-10 px-6">
-                    <span class="section-tag">Governance Hub 2026</span>
-                    <h1 class="cinema-title text-white">Dias Grabski <br> <span class="italic gold-title font-bold">Holding.</span></h1>
+                <div class="z-10 text-center mb-16">
+                    <span class="text-gold text-[9px] font-black tracking-[8px] uppercase">Domínio Nacional 2026</span>
+                    <h1 class="text-5xl lg:text-9xl font-extralight uppercase mt-6">Dias Grabski <br> <span class="italic font-bold text-gold">Holding.</span></h1>
                 </div>
-                <!-- CARDS DE ENTRADA -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 z-20 w-full max-w-4xl px-6">
-                    <div class="path-card" onclick="goToShop('beauty')">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-6xl px-6 z-20">
+                    <div class="path-card h-[400px] lg:h-[600px]" onclick="goToShop('beauty')">
                         <div class="path-img" style="background-image: var(--img-beauty)"></div>
                         <div class="path-content">
-                            <h4 class="text-3xl md:text-5xl font-light text-white italic leading-tight">Suplementos.</h4>
-                            <p class="text-[10px] text-pink-500 uppercase font-black tracking-widest mt-2">Cabelo • Pele • Unha</p>
+                            <h4 class="text-5xl font-light italic text-white">Suplementos.</h4>
+                            <p class="text-pink-500 text-[10px] font-black tracking-widest mt-4 uppercase">Farma Beauty Matriz</p>
                         </div>
                     </div>
-                    <div class="path-card" onclick="goToShop('performance')">
-                        <div class="path-img" style="background-image: var(--img-hero)"></div>
+                    <!-- CARD ENERGÉTICOS COM FOCCO (BRANCA) NA CAPA -->
+                    <div class="path-card h-[400px] lg:h-[600px]" onclick="goToShop('performance')">
+                        <div class="path-img" style="background-image: var(--img-energy-path)"></div>
                         <div class="path-content">
-                            <h4 class="text-3xl md:text-5xl font-light text-white italic leading-tight">Energéticos.</h4>
-                            <p class="text-[10px] text-gold uppercase font-black tracking-widest mt-2">Performance & Lifestyle</p>
+                            <h4 class="text-5xl font-light italic text-white">Energéticos.</h4>
+                            <p class="text-gold text-[10px] font-black tracking-widest mt-4 uppercase">Elite Performance</p>
                         </div>
                     </div>
                 </div>
             </section>
         </main>
 
-        <!-- MODULO: THE BOUTIQUE -->
+        <!-- PÁGINA: BOUTIQUE STORE -->
         <main id="page-shop" class="page-content">
-            <div class="container mx-auto px-6 md:px-16 pt-48 lg:pt-64 max-w-7xl text-center">
-                <h2 class="text-5xl lg:text-8xl font-extralight text-white uppercase italic mb-10" id="boutique-main-title">The <span class="pink-title font-bold">Boutique.</span></h2>
-                
-                <div class="boutique-nav">
-                    <a onclick="switchCategory('beauty')" class="boutique-link active" id="btn-beauty">Linha Suplementos (Tratamento)</a>
-                    <a onclick="switchCategory('performance')" class="boutique-link" id="btn-performance">Linha Energéticos (Performance)</a>
+            <div class="container mx-auto px-6 max-w-7xl">
+                <div class="text-center mb-20">
+                    <h2 class="text-6xl lg:text-8xl font-extralight italic uppercase" id="boutique-main-title">Boutique <span class="text-pink-500 font-bold">Store.</span></h2>
+                    <div class="flex justify-center gap-8 mt-12 border-b border-panel-border pb-8">
+                        <a onclick="switchCategory('beauty')" class="nav-link active" id="btn-beauty">Farma Beauty</a>
+                        <a onclick="switchCategory('performance')" class="nav-link" id="btn-performance">Elite Energy</a>
+                    </div>
                 </div>
 
-                <!-- CATEGORIA: SUPLEMENTOS -->
+                <!-- CATEGORIA: SUPLEMENTOS (MORANGO, UVA E CÍTRICAS) -->
                 <div id="cat-beauty" class="category-content active">
-                    <div class="grid lg:grid-cols-12 gap-12 text-left">
-                        <div class="lg:col-span-5">
-                            <div class="path-card h-[400px] lg:h-[600px] border-pink-500/20 cursor-default mb-8">
-                                <div class="path-img" style="background-image: var(--img-beauty); opacity: 0.95;"></div>
+                    <div class="grid lg:grid-cols-2 gap-16">
+                        <div>
+                            <div class="path-card h-[400px] mb-8 relative">
+                                <div class="path-img" style="background-image: var(--img-beauty); opacity: 0.9;"></div>
+                                <div class="absolute bottom-8 left-8">
+                                    <span class="bg-pink-500 text-black px-4 py-1 text-[10px] font-black uppercase mb-4 inline-block">Lançamento Março 2026</span>
+                                    <h3 class="text-4xl font-bold italic">Morango Tradicional</h3>
+                                </div>
                             </div>
-                            <span class="section-tag">Showcase de Sabores</span>
                             <div class="flavor-grid">
-                                <div class="flavor-card"><img src="https://calcularodadd.carrd.co/assets/images/image06.jpg?v=8cbffaba"></div>
-                                <div class="flavor-card"><img src="https://calcularodadd.carrd.co/assets/images/image07.jpg?v=8cbffaba"></div>
-                                <div class="flavor-card"><img src="https://calcularodadd.carrd.co/assets/images/image08.jpg?v=8cbffaba"></div>
-                                <div class="flavor-card"><img src="https://calcularodadd.carrd.co/assets/images/image09.jpg?v=8cbffaba"></div>
+                                <div class="flavor-item">
+                                    <div class="flavor-card border-pink-500/50"><img src="https://calcularodadd.carrd.co/assets/images/image06.jpg?v=bc814582" alt="Morango"></div>
+                                    <p class="text-[9px] font-bold mt-2 uppercase text-pink-500">Morango (Rosa)</p>
+                                </div>
+                                <div class="flavor-item">
+                                    <div class="flavor-card border-purple-500/30"><img src="https://calcularodadd.carrd.co/assets/images/image08.jpg?v=8cbffaba" alt="Uva"></div>
+                                    <p class="text-[9px] font-bold mt-2 uppercase text-purple-400">Uva (Roxa)</p>
+                                </div>
+                                <div class="flavor-item">
+                                    <div class="flavor-card border-zinc-500/30"><img src="https://calcularodadd.carrd.co/assets/images/image07.jpg?v=8cbffaba" alt="Cítricas"></div>
+                                    <p class="text-[9px] font-bold mt-2 uppercase text-zinc-400">Frutas Cítricas</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="lg:col-span-7 space-y-10">
-                            <div>
-                                <span class="section-tag">Governance & Pricing</span>
-                                <h3 class="text-4xl font-bold italic text-white uppercase mb-6 leading-none">Matriz Biológica <br> Suplementar</h3>
-                                <p class="text-gray-400 text-lg italic font-light">Tabela industrial para o Lote Piloto.</p>
-                            </div>
-                            <div class="bg-white/[0.01] border border-white/5 rounded-2xl overflow-hidden">
-                                <table class="pricing-table">
-                                    <thead><tr><th>Formato</th><th>Custo Fabril</th><th>Preço Venda</th><th>Margem DG</th></tr></thead>
-                                    <tbody>
-                                        <tr><td>Ritual Unitário</td><td class="cost-label">R$ 9,49</td><td class="price-highlight">R$ 19,00</td><td class="text-pink-500 font-bold italic">R$ 9,51</td></tr>
-                                        <tr><td>Kit 06 Unidades</td><td class="cost-label">R$ 56,94</td><td class="price-highlight">R$ 109,00</td><td class="text-pink-500 font-bold italic">R$ 52,06</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div class="flex flex-col justify-center">
+                            <span class="text-gold text-[9px] font-black tracking-widest mb-6 uppercase">O Ritual Farma Beauty</span>
+                            <h3 class="text-5xl font-light italic mb-8">Nutrição Sistémica de Luxo.</h3>
+                            <p class="opacity-60 text-lg font-light leading-relaxed mb-10 italic">O Sabor Tradicional chega em Março como o primeiro auxílio sistémico oficial para o cronograma capilar.</p>
+                            <button class="btn-national w-fit">Ver Tabela de Franquia</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- CATEGORIA: ENERGÉTICOS -->
+                <!-- CATEGORIA: ENERGÉTICOS (REMOVIDO FRUTAS, MORANGO E UVA) -->
                 <div id="cat-performance" class="category-content">
-                    <div class="grid lg:grid-cols-12 gap-12 text-left">
-                        <div class="lg:col-span-7 space-y-8 order-2 lg:order-1">
-                            <span class="section-tag">Elite Performance Matrix</span>
-                            <h3 class="text-4xl font-bold italic text-white uppercase leading-none">Venda por <br> Desejo de Estado</h3>
-                            <div class="bg-white/[0.01] border border-white/5 rounded-2xl overflow-hidden">
-                                <table class="pricing-table">
-                                    <thead><tr><th>Produto</th><th>Custo Unit.</th><th>Preço Venda</th><th>Margem</th></tr></thead>
-                                    <tbody>
-                                        <tr><td><strong>Focco</strong> (Branca)</td><td class="cost-label">R$ 9,49</td><td class="price-highlight">R$ 19,00</td><td>R$ 9,51</td></tr>
-                                        <tr><td><strong>Sono Recuperador</strong> (Preta)</td><td class="cost-label">R$ 9,49</td><td class="price-highlight">R$ 19,00</td><td>R$ 9,51</td></tr>
-                                        <tr><td><strong>Libido Sophisticated</strong> (Red)</td><td class="cost-label">R$ 9,49</td><td class="price-highlight">R$ 19,00</td><td>R$ 9,51</td></tr>
-                                        <tr><td><strong>Noite da Balada</strong> (Gold)</td><td class="cost-label">R$ 14,50</td><td class="text-gold font-black italic text-2xl">R$ 45,00</td><td class="text-gold italic">R$ 30,50</td></tr>
-                                    </tbody>
-                                </table>
+                    <div class="grid lg:grid-cols-2 gap-16">
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="path-card h-[250px]"><div class="path-img" style="background-image: var(--img-energy)"></div><div class="path-content p-4"><p class="text-[8px] font-black text-cyan-400">FOCCO (BRANCA)</p></div></div>
+                            <div class="path-card h-[250px]"><div class="path-img" style="background-image: var(--img-sleep)"></div><div class="path-content p-4"><p class="text-[8px] font-black text-white">SONO (PRETA)</p></div></div>
+                            <div class="path-card h-[250px]"><div class="path-img" style="background-image: var(--img-libido)"></div><div class="path-content p-4"><p class="text-[8px] font-black text-pink-500">LIBIDO (VERMELHA)</p></div></div>
+                            <div class="path-card h-[250px]"><div class="path-img" style="background-image: var(--img-chimarrao)"></div><div class="path-content p-4"><p class="text-[8px] font-black text-emerald-400">MATE (VERDE)</p></div></div>
+                        </div>
+                        <div class="flex flex-col justify-center">
+                            <span class="text-gold text-[9px] font-black tracking-widest mb-6 uppercase">Elite Matrix Store</span>
+                            <h3 class="text-5xl font-light italic mb-8">Alta Performance Cognitive.</h3>
+                            <p class="opacity-60 text-lg font-light leading-relaxed mb-10 italic">Fórmulas limpas para o cérebro e o corpo. Focco, Sono e a exclusiva Biotecnologia do Mate Chimarrão Pro.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- PÁGINA: EXPANSÃO -->
+        <main id="page-expansion" class="page-content">
+            <div class="container mx-auto px-6 max-w-7xl text-center">
+                <span class="text-gold text-[9px] font-black tracking-[8px] uppercase">Oceano Azul DG</span>
+                <h2 class="text-6xl lg:text-9xl font-extralight uppercase italic mt-10">Expand <br> <span class="text-gold font-bold">Horizon.</span></h2>
+                <p class="max-w-2xl mx-auto mt-12 text-lg opacity-60 italic">Transforme a sua clínica num Hub de Autoridade.</p>
+            </div>
+        </main>
+
+        <!-- PÁGINA: BOARD DECK (DEC) COM MELHORIAS EXECUTIVAS -->
+        <main id="page-factory" class="page-content">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <div class="text-center mb-16 relative">
+                    <span class="absolute top-0 right-0 hidden md:inline-block bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 px-4 py-2 rounded-full text-[9px] font-black uppercase tracking-[3px] animate-pulse">
+                        Veredito: Strong Buy
+                    </span>
+                    <span class="text-gold text-[9px] font-black tracking-[8px] uppercase">Apresentação Executiva</span>
+                    <h2 class="text-6xl lg:text-9xl font-extralight italic uppercase mt-6">Board <span class="font-bold">Deck.</span></h2>
+                    <p class="opacity-50 italic mt-8 max-w-2xl mx-auto">Documento oficial de Governança e Realinhamento Estratégico. Auditoria baseada no Master Plan 2026.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+                    <!-- CARD GOVERNANÇA COM BARRA VISUAL -->
+                    <div class="dec-card border-t-gold relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <h4 class="text-xs font-black uppercase tracking-widest mb-6 relative z-10">Governança Familiar (51/49)</h4>
+                        
+                        <div class="flex items-center gap-2 mb-6 relative z-10">
+                            <div class="flex-1 bg-panel-border h-2 rounded-full overflow-hidden flex">
+                                <div class="bg-gold h-full" style="width: 51%"></div>
+                                <div class="bg-white/30 h-full" style="width: 49%"></div>
                             </div>
                         </div>
-                        <div class="lg:col-span-5 order-1 lg:order-2">
-                             <div class="grid grid-cols-2 gap-4">
-                                <div class="path-card h-[250px] border-white/10"><div class="path-img" style="background-image: var(--img-energy)"></div><div class="path-content p-4"><p class="text-[8px] font-black italic text-cyan-400">FOCCO</p></div></div>
-                                <div class="path-card h-[250px] border-white/10"><div class="path-img" style="background-image: var(--img-sleep)"></div><div class="path-content p-4"><p class="text-[8px] font-black italic text-white">SONO RECUPERADOR</p></div></div>
-                                <div class="path-card h-[250px] border-pink-500/20"><div class="path-img" style="background-image: var(--img-libido)"></div><div class="path-content p-4"><p class="text-[8px] font-black italic text-pink-500">LIBIDO</p></div></div>
-                                <div class="path-card h-[250px] border-gold/30"><div class="path-img" style="background-image: var(--img-hero)"></div><div class="path-content p-4"><p class="text-[8px] font-black italic text-gold">NOITE DA BALADA</p></div></div>
-                             </div>
+
+                        <ul class="space-y-4 opacity-90 text-sm italic relative z-10">
+                            <li class="flex justify-between items-center border-b border-panel-border pb-3">
+                                <span><strong class="text-gold text-lg mr-2">51%</strong> Thiago Dias</span> 
+                                <span class="text-[8px] bg-white/5 px-2 py-1 rounded uppercase tracking-widest opacity-60">CEO / Tech</span>
+                            </li>
+                            <li class="flex justify-between items-center border-b border-panel-border pb-3">
+                                <span><strong class="text-white text-lg mr-2">49%</strong> Hubs (Sócias)</span> 
+                                <span class="text-[8px] bg-white/5 px-2 py-1 rounded uppercase tracking-widest opacity-60">Operação</span>
+                            </li>
+                            <li class="pt-2 text-xs text-emerald-400 font-medium">↳ Poder de Veto: Requer 75% de aprovação (Essência da Marca).</li>
+                        </ul>
+                    </div>
+
+                    <!-- CARD ROADMAP COM STATUS TAGS -->
+                    <div class="dec-card border-t-pink-500 relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <h4 class="text-xs font-black uppercase tracking-widest mb-6 relative z-10">Roadmap de Lançamento</h4>
+                        <ul class="space-y-5 text-sm italic relative z-10">
+                            <li class="flex justify-between items-center text-pink-500 font-bold border-b border-pink-500/20 pb-3">
+                                <span>• MAR 2026: Morango (Rosa)</span>
+                                <span class="bg-pink-500/20 text-pink-400 border border-pink-500/30 px-2 py-1 rounded text-[8px] uppercase tracking-widest animate-pulse">Em Produção</span>
+                            </li>
+                            <li class="flex justify-between items-center opacity-60 border-b border-panel-border pb-3">
+                                <span>• JUN 2026: Expansão Nacional B2B</span>
+                                <span class="bg-panel-border px-2 py-1 rounded text-[8px] uppercase tracking-widest">Planeado</span>
+                            </li>
+                            <li class="flex justify-between items-center opacity-60">
+                                <span>• JAN 2027: Chimarrão Pro (Verde)</span>
+                                <span class="bg-panel-border px-2 py-1 rounded text-[8px] uppercase tracking-widest">Roadmap</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- MATRIZ FINANCEIRA MELHORADA -->
+                <div class="bg-panel-bg border border-panel-border rounded-2xl p-10 mb-16 shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl -mr-20 -mt-20"></div>
+                    
+                    <h4 class="text-xs font-black uppercase tracking-widest mb-10 text-center relative z-10">Matriz de Investimento (Auditoria V1)</h4>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center mb-10 relative z-10">
+                        <div class="p-6 bg-black/40 rounded-xl border border-white/5">
+                            <p class="text-[9px] uppercase tracking-widest opacity-50 mb-3">Capital Semente</p>
+                            <p class="text-4xl font-black italic text-white">R$ 10.000</p>
+                            <p class="text-[10px] text-emerald-400 font-bold mt-3">Valor por 1%: R$ 204,08</p>
+                        </div>
+                        <div class="p-6 bg-black/40 rounded-xl border border-white/5">
+                            <p class="text-[9px] uppercase tracking-widest opacity-50 mb-3">Lote Piloto</p>
+                            <p class="text-4xl font-black italic text-white">700 un</p>
+                            <p class="text-[10px] text-gray-400 mt-3">Esgotamento: 7 a 10 dias</p>
+                        </div>
+                        <div class="p-6 bg-black/40 rounded-xl border border-white/5">
+                            <p class="text-[9px] uppercase tracking-widest opacity-50 mb-3">Marketing Ads</p>
+                            <p class="text-4xl font-black italic text-pink-500">R$ 3.357</p>
+                            <p class="text-[10px] text-pink-400 mt-3">Burn Rate Inicial (Ads Blitz)</p>
                         </div>
                     </div>
-                </div>
-            </div>
-        </main>
 
-        <!-- RITUAL & FACTORY -->
-        <main id="page-ritual" class="page-content">
-            <div class="container mx-auto px-6 pt-48 lg:pt-64 max-w-7xl text-center">
-                <span class="section-tag">Ethical Doctrine</span>
-                <h2 class="text-6xl lg:text-9xl font-extralight text-white uppercase italic mb-20 leading-none">The <span class="pink-title font-bold">Ritual.</span></h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-left">
-                    <div class="bg-white/[0.01] border border-white/5 p-12 rounded-2xl border-l-4 border-l-pink-500">
-                        <h5 class="text-[10px] font-black text-white uppercase tracking-[4px] mb-6">Iniciação Ética</h5>
-                        <p class="text-[12px] text-white italic font-bold leading-relaxed">"Aceita este auxílio bebível tecnológico? Ele inicia a nutrição profunda que seu organismo usará para manter a força do seu Cabelo, Pele e Unha."</p>
+                    <div class="table-wrapper border-t border-panel-border pt-8 relative z-10">
+                        <table class="pricing-table w-full">
+                            <thead>
+                                <tr>
+                                    <th class="text-left">Produto (Piloto)</th>
+                                    <th class="text-center">Custo Fabril</th>
+                                    <th class="text-center">PVP Sugerido</th>
+                                    <th class="text-right">Margem Líquida</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="hover:bg-white/5 transition-colors">
+                                    <td class="text-left font-bold text-white">Dose Ritual (Salão)</td>
+                                    <td class="text-center opacity-70">R$ 9,49</td>
+                                    <td class="text-center font-bold">R$ 19,00</td>
+                                    <td class="text-right text-emerald-500 font-bold">R$ 9,51</td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition-colors">
+                                    <td class="text-left font-bold text-white">Pack Home Care (06)</td>
+                                    <td class="text-center opacity-70">R$ 56,94</td>
+                                    <td class="text-center font-bold">R$ 109,00</td>
+                                    <td class="text-right text-emerald-500 font-bold">R$ 52,06</td>
+                                </tr>
+                                <tr class="hover:bg-gold/10 transition-colors bg-gold/5">
+                                    <td class="text-left font-bold text-gold">The Elite Gold (Balada)</td>
+                                    <td class="text-center text-gold opacity-50">R$ 14,50</td>
+                                    <td class="text-center text-gold font-bold">R$ 45,00</td>
+                                    <td class="text-right text-gold font-black">R$ 30,50</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </main>
 
-        <main id="page-factory" class="page-content">
-            <div class="container mx-auto px-6 pt-52 max-w-6xl text-center">
-                <span class="section-tag">Industrial Logistics</span>
-                <h2 class="text-7xl font-extralight text-white mb-10 italic">The <span class="text-emerald-400 font-bold">Scale.</span></h2>
-                <div class="bg-white/[0.02] border border-white/5 p-16 lg:p-24 rounded-3xl shadow-2xl">
-                    <p class="text-4xl lg:text-7xl font-black text-pink-500 italic tracking-tighter">R$ 6.643,00</p>
-                    <p class="text-xl lg:text-3xl font-light italic text-white mt-6">Aporte Total • Lote Piloto (700 Latas)</p>
-                </div>
+        <!-- PÁGINA: ADMIN -->
+        <main id="page-admin" class="page-content">
+            <div class="container mx-auto px-6 max-w-7xl text-center">
+                <h2 class="text-6xl font-extralight italic uppercase">Intelligence <span class="text-gold font-bold">Panel.</span></h2>
             </div>
         </main>
 
     </div>
 
-    <!-- FOOTER: THE PRODUCERS -->
+    <!-- RODAPÉ DOS HUBS -->
     <footer class="footer-premiere">
         <div class="footer-cast">
-            <span class="cast-name">Tiago Dias</span>
-            <span class="cast-name">Jo Manto</span>
-            <span class="cast-name">Vera Dias</span>
-            <span class="cast-name">Jéssica Dias</span>
-            <span class="cast-name">Simone Dias</span>
-            <span class="cast-name">Andreia Dias</span>
-            <span class="cast-name">Samara Dias</span>
+            <span class="cast-name" data-hub="CEO | Hub Chapecó">Tiago Dias</span>
+            <span class="cast-name" data-hub="Hub Caxias">Vera Dias</span>
+            <span class="cast-name" data-hub="Hub Lages">Jessica Dias</span>
+            <span class="cast-name" data-hub="Hub Capão">Andreia Dias</span>
+            <span class="cast-name" data-hub="Hub Capão">Simone Dias</span>
         </div>
     </footer>
 
     <script>
+        // Função limpa e sem erros de sintaxe
         function switchPage(pageId) {
-            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
-            const activeLink = document.querySelector(`[data-page="${pageId}"]`);
-            if(activeLink) activeLink.classList.add('active');
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            const link = document.querySelector(`.nav-link[data-page="${pageId}"]`);
+            if(link) link.classList.add('active');
             
-            document.querySelectorAll('.page-content').forEach(page => page.classList.remove('active'));
-            const activePage = document.getElementById(`page-${pageId}`);
-            if(activePage) { activePage.classList.add('active'); activePage.scrollTop = 0; }
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+            const page = document.getElementById(`page-${pageId}`);
+            if(page) page.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function switchCategory(catId) {
-            document.querySelectorAll('.boutique-link').forEach(link => link.classList.remove('active'));
-            const btn = document.getElementById(`btn-${catId}`);
-            if(btn) btn.classList.add('active');
-            
-            document.querySelectorAll('.category-content').forEach(content => content.classList.remove('active'));
+            document.querySelectorAll('.category-content').forEach(c => c.classList.remove('active'));
             const cat = document.getElementById(`cat-${catId}`);
             if(cat) cat.classList.add('active');
+            
+            document.querySelectorAll('#page-shop .nav-link').forEach(l => l.classList.remove('active'));
+            const btn = document.getElementById(`btn-${catId}`);
+            if(btn) btn.classList.add('active');
 
             const title = document.getElementById('boutique-main-title');
-            if(catId === 'beauty') {
-                title.innerHTML = 'Boutique: <span class="pink-title font-bold">Suplementos.</span>';
-            } else {
-                title.innerHTML = 'Boutique: <span class="gold-title font-bold">Energéticos.</span>';
+            if(title) {
+                if(catId === 'beauty') {
+                    title.innerHTML = 'Boutique <span class="text-pink-500 font-bold">Store.</span>';
+                } else {
+                    title.innerHTML = 'Boutique <span class="text-gold font-bold">Store.</span>';
+                }
             }
         }
 
         function goToShop(catId) { switchPage('shop'); switchCategory(catId); }
-
-        function closeTeaser() {
-            document.getElementById('lx-modal').style.display = 'none';
+        
+        function closeTeaser() { 
+            const modal = document.getElementById('lx-modal');
+            if(modal) {
+                modal.style.display = 'none';
+            }
         }
 
-        window.onload = () => { 
-            switchPage('movie');
-            // Trigger teaser modal after 8 seconds
-            setTimeout(() => {
-                document.getElementById('lx-modal').style.display = 'flex';
+        function closeOutside(event) {
+            const modal = document.getElementById('lx-modal');
+            if (event.target === modal) {
+                closeTeaser();
+            }
+        }
+
+        function toggleTheme() { 
+            document.body.classList.toggle('light-mode'); 
+        }
+
+        window.onload = () => {
+            setTimeout(() => { 
+                const modal = document.getElementById('lx-modal');
+                if(modal) {
+                    modal.style.display = 'flex'; 
+                }
             }, 8000);
         };
     </script>
