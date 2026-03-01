@@ -7,22 +7,19 @@
     
     <!-- 
         ================================================================================
-        PROJETO: ESSÊNCIA DE ROMÃ HAIR | PLATAFORMA DIGITAL 2026 (MASTER FINAL v128.0)
+        PROJETO: ESSÊNCIA DE ROMÃ HAIR | PLATAFORMA DIGITAL 2026 (MASTER FINAL v129.0)
         ARQUITETURA: SINGLE PAGE APPLICATION (SPA) HÍBRIDA - FULL EXPANDED SOURCE
         GITHUB REPOSITORY: Master Production Branch
         
-        [AUDITORIA V128.0: OMNIPRESENCE & THE ABSOLUTE GOLDEN RULE]
+        [AUDITORIA V129.0: THE ELEGANCE & SCALE UPDATE - ABSOLUTE GOLDEN RULE]
         1. REGRA DE OURO MÁXIMA: Código 100% integral. Nenhuma tag minimizada ou ocultada.
-        2. ACESSIBILIDADE DO PORTAL GL PRO: Inserido um Banner Cinemático gigante na 
-           Home Page e um novo ícone na Glass Dock Mobile para garantir que o utilizador 
-           encontra o Portal B2C/B2B imediatamente.
-        3. PORTAL GL PRO B2B: Dual Sliders (Liso 8K vs Glass) + International Division 
-           (Sovereign Protocol Rituais 01 e 02) + Máquina de Leads (Top 2).
-        4. MAISON ACADEMY: Cursos, Mentorias e Auditoria de Salão B2B integrados.
-        5. B2C TRUST & UX: Trust Bar (0% Formol), Gamificação Home Care (Step 1,2,3) 
-           e Floating Concierge Desktop totalmente preservados.
-        6. RESTAURAÇÃO DE BLOCOS: Ciência Híbrida (Liso), Tabela Real (Liso), 
-           Matemática do Luxo (Clube), Jornada 30-60-90 (Clube).
+        2. ESCALA DE LUXO (REDUÇÃO ESTRATÉGICA): Adicionadas classes `max-w-md`, `max-w-sm` 
+           e `mx-auto` em todas as imagens principais (Liso 8K, Glass, Atelier, Home) para 
+           evitar o efeito "gigante" em Desktop e criar Negative Space (Respiro).
+        3. DELICADEZA NA BOUTIQUE: Imagens de produtos B2C reduzidas de `h-64` para `h-48`.
+        4. OMNIPRESENCE & B2B ECOSYSTEM: Mantidos intactos o Portal GL Pro B2B 
+           (Dual Sliders, Sovereign Protocol, Máquina de Leads Top 2), a Maison Academy, 
+           o Trust Bar e o Floating Concierge Desktop.
         ================================================================================
     -->
 
@@ -175,7 +172,7 @@
             --glass-border: rgba(255, 255, 255, 0.05);
         }
 
-        /* UX Selection Highlight (Auditoria UX) */
+        /* UX Selection Highlight */
         ::selection { 
             background: #D4AF37; 
             color: #000; 
@@ -278,7 +275,7 @@
             color: #C5A059; 
         }
 
-        /* BUTTONS LUXURY SYSTEM (Hover Audit Fix - text-black on hover) */
+        /* BUTTONS LUXURY SYSTEM */
         .btn-luxury-cta {
             background: linear-gradient(135deg, #8A6D3B 0%, #C5A059 40%, #F2E2BA 50%, #C5A059 60%, #8A6D3B 100%);
             background-size: 200% auto; 
@@ -468,7 +465,7 @@
             animation: fadeToggle 6s infinite; 
         }
         
-        /* FAQ STYLING (Auditoria UX Touch Targets) */
+        /* FAQ STYLING */
         details > summary { 
             list-style: none; 
             outline: none; 
@@ -702,7 +699,7 @@
                         ⭐ Liso Absoluto
                     </div>
                     <div class="relative h-full w-full p-8 pt-12 flex flex-col items-center text-center">
-                        <div class="w-full aspect-[4/5] rounded-sm overflow-hidden mb-6 border border-gray-100 dark:border-brand-gold/30 shadow-lg mt-2 relative atelier-frame">
+                        <div class="w-full max-w-[280px] md:max-w-sm mx-auto aspect-[4/5] rounded-sm overflow-hidden mb-6 border border-gray-100 dark:border-brand-gold/30 shadow-lg mt-2 relative atelier-frame">
                             <img src="https://testeessencia.carrd.co/assets/images/image22.jpg?v=820a894a" loading="lazy" class="absolute inset-0 w-full h-full object-cover" alt="Depois">
                             <img src="https://testeessencia.carrd.co/assets/images/image21.jpg?v=820a894a" loading="lazy" class="absolute inset-0 w-full h-full object-cover" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);" id="home-liso-peek-clip" alt="Antes">
                             <input type="range" min="0" max="100" value="50" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20" oninput="updatePeekSlider(this, 'home-liso-peek-clip', 'home-liso-peek-line')" onclick="event.stopPropagation()">
@@ -730,7 +727,7 @@
                         🧊 Controle Total do Frizz
                     </div>
                     <div class="relative h-full w-full p-8 pt-12 flex flex-col items-center text-center">
-                        <div class="w-full aspect-[4/5] rounded-sm overflow-hidden mb-6 border border-gray-100 dark:border-white/10 shadow-lg mt-2 relative atelier-frame">
+                        <div class="w-full max-w-[280px] md:max-w-sm mx-auto aspect-[4/5] rounded-sm overflow-hidden mb-6 border border-gray-100 dark:border-white/10 shadow-lg mt-2 relative atelier-frame">
                             <img src="https://testeessencia.carrd.co/assets/images/image28.jpg?v=5278beb3" loading="lazy" class="absolute inset-0 w-full h-full object-cover" alt="Depois Glass">
                             <img src="https://testeessencia.carrd.co/assets/images/image24.jpg?v=5278beb3" loading="lazy" class="absolute inset-0 w-full h-full object-cover" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);" id="home-glass-peek-clip" alt="Antes Glass">
                             <input type="range" min="0" max="100" value="50" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20" oninput="updatePeekSlider(this, 'home-glass-peek-clip', 'home-glass-peek-line')" onclick="event.stopPropagation()">
@@ -755,7 +752,7 @@
                 <!-- CARD 3: MAISON ATELIER -->
                 <div class="mobile-snap-item w-[82vw] md:w-full bg-white dark:bg-white/5 rounded-sm p-1 relative group overflow-hidden flex flex-col transition-all duration-500 border border-gray-200 dark:border-white/10 cursor-pointer hover:border-brand-gold" onclick="navigate('atelier-view-container')">
                     <div class="relative h-full w-full p-8 flex flex-col items-center text-center">
-                         <div class="w-full aspect-[4/5] rounded-sm overflow-hidden mb-6 border border-gray-100 dark:border-white/10 shadow-lg relative atelier-frame">
+                         <div class="w-full max-w-[280px] md:max-w-sm mx-auto aspect-[4/5] rounded-sm overflow-hidden mb-6 border border-gray-100 dark:border-white/10 shadow-lg relative atelier-frame">
                              <img src="https://imagensagata.carrd.co/assets/images/image13.jpg?v=c257b396" loading="lazy" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" alt="Cor">
                          </div>
                          <h4 class="text-black dark:text-white font-serif text-2xl mb-2 uppercase">Maison Atelier</h4>
@@ -966,7 +963,7 @@
         <section class="container mx-auto max-w-7xl px-6">
             <!-- BLOCO 1: SLIDER LISO -->
             <div class="grid lg:grid-cols-2 gap-12 md:gap-20 items-center mb-24 md:mb-40 reveal">
-                <div class="relative w-full aspect-[4/5] rounded-sm shadow-2xl overflow-hidden atelier-frame group">
+                <div class="relative w-full max-w-md mx-auto aspect-[4/5] rounded-sm shadow-2xl overflow-hidden atelier-frame group">
                     <img src="https://testeessencia.carrd.co/assets/images/image22.jpg?v=820a894a" class="absolute inset-0 w-full h-full object-cover" alt="Depois">
                     <img src="https://testeessencia.carrd.co/assets/images/image21.jpg?v=820a894a" class="absolute inset-0 w-full h-full object-cover" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);" id="liso-inner-clip" alt="Antes">
                     <input type="range" min="0" max="100" value="50" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20" oninput="updatePeekSlider(this, 'liso-inner-clip', 'liso-inner-line')">
@@ -1012,7 +1009,7 @@
                         <i class="fab fa-whatsapp mr-2"></i> Agendar Agora
                     </button>
                 </div>
-                <div class="atelier-frame aspect-[4/5] max-h-[650px] rounded-sm shadow-2xl order-1 lg:order-2 cursor-zoom-in" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image23.jpg?v=028e4c90')">
+                <div class="atelier-frame w-full max-w-md mx-auto aspect-[4/5] rounded-sm shadow-2xl order-1 lg:order-2 cursor-zoom-in" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image23.jpg?v=028e4c90')">
                     <img src="https://testeessencia.carrd.co/assets/images/image23.jpg?v=028e4c90" loading="lazy" class="atelier-img" alt="Tabela Visual">
                 </div>
             </div>
@@ -1055,7 +1052,7 @@
                      <span class="text-brand-gold-dark dark:text-brand-gold text-[10px] md:text-xs uppercase tracking-[0.5em] block mb-4 font-bold">Investimento Real</span>
                      <h3 class="font-serif text-3xl md:text-6xl italic uppercase leading-none text-black dark:text-white">Tabela de Referência</h3>
                 </div>
-                <div class="max-w-2xl mx-auto p-2 bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-sm shadow-2xl cursor-zoom-in" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image30.jpg?v=7df5bc80')">
+                <div class="max-w-xl mx-auto p-2 bg-white dark:bg-white/5 border border-gray-100 dark:border-white/10 rounded-sm shadow-2xl cursor-zoom-in" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image30.jpg?v=7df5bc80')">
                     <img src="https://testeessencia.carrd.co/assets/images/image30.jpg?v=7df5bc80" loading="lazy" class="w-full h-auto object-cover rounded-sm hover:scale-[1.01] transition-transform duration-700" alt="Tabela Preço Liso">
                 </div>
             </div>
@@ -1153,7 +1150,7 @@
                         <i class="fab fa-whatsapp text-lg mr-2"></i> Agendar Tratamento
                     </button>
                 </div>
-                <div class="relative w-full aspect-[4/5] max-h-[650px] rounded-sm shadow-2xl overflow-hidden atelier-frame group order-1 lg:order-2">
+                <div class="relative w-full max-w-md mx-auto aspect-[4/5] rounded-sm shadow-2xl overflow-hidden atelier-frame group order-1 lg:order-2">
                     <img src="https://testeessencia.carrd.co/assets/images/image28.jpg?v=5278beb3" class="absolute inset-0 w-full h-full object-cover" alt="Depois Glass">
                     <img src="https://testeessencia.carrd.co/assets/images/image24.jpg?v=5278beb3" class="absolute inset-0 w-full h-full object-cover" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);" id="glass-inner-clip" alt="Antes Glass">
                     <input type="range" min="0" max="100" value="50" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20" oninput="updatePeekSlider(this, 'glass-inner-clip', 'glass-inner-line')">
@@ -1221,7 +1218,7 @@
                         <i class="fas fa-cut mr-2"></i> Agendar Visagismo
                     </button>
                 </div>
-                <div class="atelier-frame aspect-[4/5] max-h-[550px] cursor-zoom-in mx-auto w-full order-1 lg:order-2" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image14.jpg?v=c257b396')">
+                <div class="atelier-frame aspect-[4/5] max-w-sm md:max-w-md cursor-zoom-in mx-auto w-full order-1 lg:order-2" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image14.jpg?v=c257b396')">
                     <img src="https://imagensagata.carrd.co/assets/images/image14.jpg?v=c257b396" loading="lazy" class="atelier-img" alt="Corte">
                 </div>
             </div>
@@ -1231,7 +1228,7 @@
                  <h4 class="text-center text-[12px] uppercase tracking-[0.4em] text-brand-gold-dark dark:text-brand-gold mb-12 font-bold italic text-black dark:text-white">Curadoria: Tendências Curtos</h4>
                  <div class="mobile-snap-x px-6 -mx-6 md:px-0 md:mx-0 reveal">
                     <div class="mobile-snap-item w-[55vw] md:w-full flex flex-col bg-white dark:bg-[#111] p-4 rounded-sm border border-gray-100 dark:border-white/5 shadow-lg group/trend">
-                        <div class="relative aspect-[3/4] overflow-hidden rounded-sm mb-4 atelier-frame cursor-zoom-in" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image14.jpg?v=9dbab930')">
+                        <div class="relative w-full max-w-[240px] mx-auto aspect-[3/4] overflow-hidden rounded-sm mb-4 atelier-frame cursor-zoom-in" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image14.jpg?v=9dbab930')">
                             <img src="https://testeessencia.carrd.co/assets/images/image14.jpg?v=9dbab930" loading="lazy" class="w-full h-full object-cover grayscale group-hover/trend:grayscale-0 transition duration-1000 transform group-hover/trend:scale-110" alt="Bob">
                         </div>
                         <h5 class="text-center text-[10px] md:text-xs font-bold uppercase text-black dark:text-white mb-2 leading-tight">Bob Clássico</h5>
@@ -1243,7 +1240,7 @@
                         </button>
                     </div>
                     <div class="mobile-snap-item w-[55vw] md:w-full flex flex-col bg-white dark:bg-[#111] p-4 rounded-sm border border-gray-100 dark:border-white/5 shadow-lg group/trend">
-                        <div class="relative aspect-[3/4] overflow-hidden rounded-sm mb-4 atelier-frame cursor-zoom-in" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image17.jpg?v=9dbab930')">
+                        <div class="relative w-full max-w-[240px] mx-auto aspect-[3/4] overflow-hidden rounded-sm mb-4 atelier-frame cursor-zoom-in" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image17.jpg?v=9dbab930')">
                             <img src="https://testeessencia.carrd.co/assets/images/image17.jpg?v=9dbab930" loading="lazy" class="w-full h-full object-cover grayscale group-hover/trend:grayscale-0 transition duration-1000 transform group-hover/trend:scale-110" alt="Pixie">
                         </div>
                         <h5 class="text-center text-[10px] md:text-xs font-bold uppercase text-black dark:text-white mb-2 leading-tight">Pixie Moderno</h5>
@@ -1255,7 +1252,7 @@
                         </button>
                     </div>
                     <div class="mobile-snap-item w-[55vw] md:w-full flex flex-col bg-white dark:bg-[#111] p-4 rounded-sm border border-gray-100 dark:border-white/5 shadow-lg group/trend">
-                        <div class="relative aspect-[3/4] overflow-hidden rounded-sm mb-4 atelier-frame cursor-zoom-in" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image18.jpg?v=9dbab930')">
+                        <div class="relative w-full max-w-[240px] mx-auto aspect-[3/4] overflow-hidden rounded-sm mb-4 atelier-frame cursor-zoom-in" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image18.jpg?v=9dbab930')">
                             <img src="https://testeessencia.carrd.co/assets/images/image18.jpg?v=9dbab930" loading="lazy" class="w-full h-full object-cover grayscale group-hover/trend:grayscale-0 transition duration-1000 transform group-hover/trend:scale-110" alt="Soft Lob">
                         </div>
                         <h5 class="text-center text-[10px] md:text-xs font-bold uppercase text-black dark:text-white mb-2 leading-tight">Soft Lob</h5>
@@ -1288,7 +1285,7 @@
                         <i class="fab fa-whatsapp mr-2"></i> Agendar Diagnóstico
                     </button>
                 </div>
-                <div class="atelier-frame aspect-[4/5] max-h-[550px] cursor-zoom-in mx-auto w-full" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image13.jpg?v=c257b396')">
+                <div class="atelier-frame aspect-[4/5] max-w-sm md:max-w-md cursor-zoom-in mx-auto w-full" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image13.jpg?v=c257b396')">
                     <img src="https://imagensagata.carrd.co/assets/images/image13.jpg?v=c257b396" loading="lazy" class="atelier-img" alt="Iluminação">
                 </div>
             </div>
@@ -1298,7 +1295,7 @@
                  <h4 class="text-center text-[12px] uppercase tracking-[0.4em] text-brand-gold-dark dark:text-brand-gold mb-12 font-bold italic">Curadoria: Tendências Mechas</h4>
                  <div class="mobile-snap-x px-6 -mx-6 md:px-0 md:mx-0 reveal">
                     <div class="mobile-snap-item w-[55vw] md:w-full flex flex-col bg-white dark:bg-[#111] p-4 rounded-sm shadow-lg group/trend">
-                        <div class="relative aspect-[3/4] overflow-hidden rounded-sm mb-4 atelier-frame cursor-zoom-in" onclick="openLightbox(['https://testeessencia.carrd.co/assets/images/image29.jpg?v=5278beb3', 'https://testeessencia.carrd.co/assets/images/image30.jpg?v=5278beb3'])">
+                        <div class="relative w-full max-w-[240px] mx-auto aspect-[3/4] overflow-hidden rounded-sm mb-4 atelier-frame cursor-zoom-in" onclick="openLightbox(['https://testeessencia.carrd.co/assets/images/image29.jpg?v=5278beb3', 'https://testeessencia.carrd.co/assets/images/image30.jpg?v=5278beb3'])">
                             <img src="https://testeessencia.carrd.co/assets/images/image29.jpg?v=5278beb3" loading="lazy" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/trend:grayscale-0 transition duration-1000 transform group-hover/trend:scale-110" alt="Blonde 1">
                             <img src="https://testeessencia.carrd.co/assets/images/image30.jpg?v=5278beb3" loading="lazy" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/trend:grayscale-0 transition duration-1000 transform group-hover/trend:scale-110 animate-fade-toggle" alt="Blonde 2">
                         </div>
@@ -1311,7 +1308,7 @@
                         </button>
                     </div>
                     <div class="mobile-snap-item w-[55vw] md:w-full flex flex-col bg-white dark:bg-[#111] p-4 rounded-sm shadow-lg group/trend">
-                        <div class="relative aspect-[3/4] overflow-hidden rounded-sm mb-4 atelier-frame cursor-zoom-in" onclick="openLightbox(['https://testeessencia.carrd.co/assets/images/image31.jpg?v=5278beb3', 'https://testeessencia.carrd.co/assets/images/image32.jpg?v=5278beb3'])">
+                        <div class="relative w-full max-w-[240px] mx-auto aspect-[3/4] overflow-hidden rounded-sm mb-4 atelier-frame cursor-zoom-in" onclick="openLightbox(['https://testeessencia.carrd.co/assets/images/image31.jpg?v=5278beb3', 'https://testeessencia.carrd.co/assets/images/image32.jpg?v=5278beb3'])">
                             <img src="https://testeessencia.carrd.co/assets/images/image31.jpg?v=5278beb3" loading="lazy" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/trend:grayscale-0 transition duration-1000 transform group-hover/trend:scale-110" alt="Morena 1">
                             <img src="https://testeessencia.carrd.co/assets/images/image32.jpg?v=5278beb3" loading="lazy" class="absolute inset-0 w-full h-full object-cover grayscale group-hover/trend:grayscale-0 transition duration-1000 transform group-hover/trend:scale-110 animate-fade-toggle" alt="Morena 2">
                         </div>
@@ -1324,7 +1321,7 @@
                         </button>
                     </div>
                     <div class="mobile-snap-item w-[55vw] md:w-full flex flex-col bg-white dark:bg-[#111] p-4 rounded-sm shadow-lg group/trend">
-                        <div class="relative aspect-[3/4] overflow-hidden rounded-sm mb-4 atelier-frame cursor-zoom-in" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image34.jpg?v=54c1a12e')">
+                        <div class="relative w-full max-w-[240px] mx-auto aspect-[3/4] overflow-hidden rounded-sm mb-4 atelier-frame cursor-zoom-in" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image34.jpg?v=54c1a12e')">
                             <img src="https://testeessencia.carrd.co/assets/images/image34.jpg?v=54c1a12e" loading="lazy" class="w-full h-full object-cover grayscale group-hover/trend:grayscale-0 transition duration-1000 transform group-hover/trend:scale-110" alt="Contorno">
                         </div>
                         <h5 class="text-center text-[10px] md:text-xs font-bold uppercase text-black dark:text-white mb-2 leading-tight">Contorno Express</h5>
@@ -1357,7 +1354,7 @@
                         <i class="fab fa-whatsapp mr-2"></i> Reservar Avaliação
                     </button>
                 </div>
-                <div class="atelier-frame aspect-[4/5] max-h-[550px] cursor-zoom-in mx-auto w-full order-1 lg:order-2" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image10.jpg?v=bc2296e1')">
+                <div class="atelier-frame aspect-[4/5] max-w-sm md:max-w-md cursor-zoom-in mx-auto w-full order-1 lg:order-2" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image10.jpg?v=bc2296e1')">
                     <img src="https://imagensagata.carrd.co/assets/images/image10.jpg?v=bc2296e1" loading="lazy" class="atelier-img" alt="Coloração">
                 </div>
             </div>
@@ -1367,7 +1364,7 @@
                  <h4 class="text-center text-[12px] uppercase tracking-[0.4em] text-brand-gold-dark dark:text-brand-gold mb-12 font-bold italic">Menu de Especialidades em Cor</h4>
                  <div class="mobile-snap-x px-6 -mx-6 md:px-0 md:mx-0 reveal">
                     <div class="mobile-snap-item w-[55vw] md:w-full flex flex-col bg-white dark:bg-[#111] p-4 rounded-sm shadow-lg group/trend">
-                        <div class="atelier-frame aspect-[3/4] mb-4 cursor-zoom-in" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image35.jpg?v=dca81c03')">
+                        <div class="relative w-full max-w-[240px] mx-auto aspect-[3/4] mb-4 atelier-frame cursor-zoom-in" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image35.jpg?v=dca81c03')">
                             <img src="https://testeessencia.carrd.co/assets/images/image35.jpg?v=dca81c03" loading="lazy" class="w-full h-full object-cover grayscale group-hover/trend:grayscale-0 transition duration-1000 transform group-hover/trend:scale-110" alt="Raiz">
                         </div>
                         <h5 class="text-center text-[10px] md:text-xs font-bold uppercase text-black dark:text-white mb-2 leading-tight">Coloração de Raiz</h5>
@@ -1379,7 +1376,7 @@
                         </button>
                     </div>
                     <div class="mobile-snap-item w-[55vw] md:w-full flex flex-col bg-white dark:bg-[#111] p-4 rounded-sm shadow-lg group/trend">
-                        <div class="atelier-frame aspect-[3/4] mb-4 cursor-zoom-in" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image31.jpg?v=dca81c03')">
+                        <div class="relative w-full max-w-[240px] mx-auto aspect-[3/4] mb-4 atelier-frame cursor-zoom-in" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image31.jpg?v=dca81c03')">
                             <img src="https://testeessencia.carrd.co/assets/images/image31.jpg?v=dca81c03" loading="lazy" class="w-full h-full object-cover grayscale group-hover/trend:grayscale-0 transition duration-1000 transform group-hover/trend:scale-110" alt="Ombre">
                         </div>
                         <h5 class="text-center text-[10px] md:text-xs font-bold uppercase text-black dark:text-white mb-2 leading-tight">Ombré Hair</h5>
@@ -1391,7 +1388,7 @@
                         </button>
                     </div>
                     <div class="mobile-snap-item w-[55vw] md:w-full flex flex-col bg-white dark:bg-[#111] p-4 rounded-sm shadow-lg group/trend">
-                        <div class="atelier-frame aspect-[3/4] mb-4 cursor-zoom-in" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image36.jpg?v=dca81c03')">
+                        <div class="relative w-full max-w-[240px] mx-auto aspect-[3/4] mb-4 atelier-frame cursor-zoom-in" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image36.jpg?v=dca81c03')">
                             <img src="https://testeessencia.carrd.co/assets/images/image36.jpg?v=dca81c03" loading="lazy" class="w-full h-full object-cover grayscale group-hover/trend:grayscale-0 transition duration-1000 transform group-hover/trend:scale-110" alt="Completa">
                         </div>
                         <h5 class="text-center text-[10px] md:text-xs font-bold uppercase text-black dark:text-white mb-2 leading-tight">Coloração Completa</h5>
@@ -1424,7 +1421,7 @@
                         <i class="fas fa-heartbeat mr-2"></i> Socorro Imediato
                     </button>
                 </div>
-                <div class="atelier-frame aspect-[4/5] max-h-[550px] cursor-zoom-in mx-auto w-full" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image15.jpg?v=c257b396')">
+                <div class="atelier-frame aspect-[4/5] max-w-sm md:max-w-md cursor-zoom-in mx-auto w-full" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image15.jpg?v=c257b396')">
                     <img src="https://imagensagata.carrd.co/assets/images/image15.jpg?v=c257b396" loading="lazy" class="atelier-img" alt="UTI">
                 </div>
             </div>
@@ -1434,7 +1431,7 @@
                  <h4 class="text-center text-[12px] uppercase tracking-[0.4em] text-brand-gold-dark dark:text-brand-gold mb-12 font-bold italic">Arsenal de Recuperação</h4>
                  <div class="mobile-snap-x px-6 -mx-6 md:px-0 md:mx-0 reveal">
                     <div class="mobile-snap-item w-[55vw] md:w-auto-override flex flex-col bg-white dark:bg-[#111] p-4 shadow-lg group/trend">
-                        <div class="atelier-frame aspect-square mb-4 cursor-zoom-in" onclick="openLightbox('https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=600&q=80')">
+                        <div class="relative w-full max-w-[240px] mx-auto aspect-square mb-4 atelier-frame cursor-zoom-in" onclick="openLightbox('https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=600&q=80')">
                             <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=600&q=80" loading="lazy" class="w-full h-full object-cover grayscale group-hover/trend:grayscale-0 transition duration-1000 transform group-hover/trend:scale-110" alt="Booster">
                         </div>
                         <h5 class="text-center text-[10px] md:text-xs font-bold uppercase text-black dark:text-white mb-2 leading-tight">Booster Nutrição</h5>
@@ -1444,7 +1441,7 @@
                         <button onclick="event.stopPropagation(); gtag_report_conversion('https://wa.me/5549999954052?text=Olá! Me interessei pelo Booster de Nutrição da UTI.');" class="btn-luxury-cta w-full py-2.5 text-[10px] text-black font-bold uppercase active:scale-95 mt-4">Solicitar</button>
                     </div>
                     <div class="mobile-snap-item w-[55vw] md:w-auto-override flex flex-col bg-white dark:bg-[#111] p-4 shadow-lg group/trend">
-                        <div class="atelier-frame aspect-square mb-4 cursor-zoom-in" onclick="openLightbox('https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=600&q=80')">
+                        <div class="relative w-full max-w-[240px] mx-auto aspect-square mb-4 atelier-frame cursor-zoom-in" onclick="openLightbox('https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=600&q=80')">
                             <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=600&q=80" loading="lazy" class="w-full h-full object-cover grayscale group-hover/trend:grayscale-0 transition duration-1000 transform group-hover/trend:scale-110" alt="Ampola">
                         </div>
                         <h5 class="text-center text-[10px] md:text-xs font-bold uppercase text-black dark:text-white mb-2 leading-tight">Ampola Reconstrução</h5>
@@ -1454,7 +1451,7 @@
                         <button onclick="event.stopPropagation(); gtag_report_conversion('https://wa.me/5549999954052?text=Olá! Me interessei pela Ampola de Reconstrução da UTI.');" class="btn-luxury-cta w-full py-2.5 text-[10px] text-black font-bold uppercase active:scale-95 mt-4">Solicitar</button>
                     </div>
                     <div class="mobile-snap-item w-[55vw] md:w-auto-override flex flex-col bg-white dark:bg-[#111] p-4 shadow-lg group/trend">
-                        <div class="atelier-frame aspect-square mb-4 cursor-zoom-in" onclick="openLightbox('https://images.unsplash.com/photo-1559599101-f09722fb4948?auto=format&fit=crop&w=600&q=80')">
+                        <div class="relative w-full max-w-[240px] mx-auto aspect-square mb-4 atelier-frame cursor-zoom-in" onclick="openLightbox('https://images.unsplash.com/photo-1559599101-f09722fb4948?auto=format&fit=crop&w=600&q=80')">
                             <img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?auto=format&fit=crop&w=600&q=80" loading="lazy" class="w-full h-full object-cover grayscale group-hover/trend:grayscale-0 transition duration-1000 transform group-hover/trend:scale-110" alt="Ampola">
                         </div>
                         <h5 class="text-center text-[10px] md:text-xs font-bold uppercase text-black dark:text-white mb-2 leading-tight">Ampola Hidratação</h5>
@@ -1464,7 +1461,7 @@
                         <button onclick="event.stopPropagation(); gtag_report_conversion('https://wa.me/5549999954052?text=Olá! Me interessei pela Ampola de Hidratação da UTI.');" class="btn-luxury-cta w-full py-2.5 text-[10px] text-black font-bold uppercase active:scale-95 mt-4">Solicitar</button>
                     </div>
                     <div class="mobile-snap-item w-[55vw] md:w-auto-override flex flex-col bg-white dark:bg-[#111] p-4 shadow-lg group/trend">
-                        <div class="atelier-frame aspect-square mb-4 cursor-zoom-in" onclick="openLightbox('https://images.unsplash.com/photo-1615397323758-1f1ce54f3b14?auto=format&fit=crop&w=600&q=80')">
+                        <div class="relative w-full max-w-[240px] mx-auto aspect-square mb-4 atelier-frame cursor-zoom-in" onclick="openLightbox('https://images.unsplash.com/photo-1615397323758-1f1ce54f3b14?auto=format&fit=crop&w=600&q=80')">
                             <img src="https://images.unsplash.com/photo-1615397323758-1f1ce54f3b14?auto=format&fit=crop&w=600&q=80" loading="lazy" class="w-full h-full object-cover grayscale group-hover/trend:grayscale-0 transition duration-1000 transform group-hover/trend:scale-110" alt="Ampola">
                         </div>
                         <h5 class="text-center text-[10px] md:text-xs font-bold uppercase text-black dark:text-white mb-2 leading-tight">Ampola Brilho</h5>
@@ -1474,7 +1471,7 @@
                         <button onclick="event.stopPropagation(); gtag_report_conversion('https://wa.me/5549999954052?text=Olá! Me interessei pela Ampola de Brilho da UTI.');" class="btn-luxury-cta w-full py-2.5 text-[10px] text-black font-bold uppercase active:scale-95 mt-4">Solicitar</button>
                     </div>
                     <div class="mobile-snap-item w-[55vw] md:w-auto-override flex flex-col bg-white dark:bg-[#111] p-4 shadow-lg group/trend">
-                        <div class="atelier-frame aspect-square mb-4 cursor-zoom-in" onclick="openLightbox('https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=600&q=80')">
+                        <div class="relative w-full max-w-[240px] mx-auto aspect-square mb-4 atelier-frame cursor-zoom-in" onclick="openLightbox('https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=600&q=80')">
                             <img src="https://images.unsplash.com/photo-1598440947619-2c35fc9aa908?auto=format&fit=crop&w=600&q=80" loading="lazy" class="w-full h-full object-cover grayscale group-hover/trend:grayscale-0 transition duration-1000 transform group-hover/trend:scale-110" alt="Massa">
                         </div>
                         <h5 class="text-center text-[10px] md:text-xs font-bold uppercase text-black dark:text-white mb-2 leading-tight">Repositor Massa</h5>
@@ -1531,7 +1528,7 @@
                 <span class="text-brand-gold-dark dark:text-brand-gold text-[10px] md:text-xs uppercase tracking-[0.5em] font-bold block mb-4">Vantagem Exclusiva</span>
                 <h3 class="font-serif text-3xl md:text-5xl italic text-black dark:text-white mb-8 font-bold">A Matemática do <span class="text-brand-gold-dark dark:text-brand-gold uppercase">Luxo</span></h3>
                 <p class="text-[10px] text-gray-600 dark:text-gray-400 uppercase tracking-widest mb-12 font-bold">Compare o investimento de salão tradicional com os benefícios absolutos de ser um Membro VIP do nosso Clube.</p>
-                <div class="overflow-hidden rounded-sm shadow-2xl border border-brand-gold/30 cursor-zoom-in group" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image33.jpg?v=a0274bad')">
+                <div class="overflow-hidden rounded-sm shadow-2xl border border-brand-gold/30 cursor-zoom-in group max-w-xl mx-auto" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image33.jpg?v=a0274bad')">
                     <img src="https://testeessencia.carrd.co/assets/images/image33.jpg?v=a0274bad" loading="lazy" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700" alt="Tabela Comparativa Clube">
                 </div>
             </div>
@@ -1716,7 +1713,7 @@
                     <p class="text-xs text-gray-600 dark:text-gray-400 leading-relaxed italic mb-8 uppercase tracking-wider flex-grow">
                         O segredo do brilho vítreo e da manutenção 8K na palma da sua mão.
                     </p>
-                    <span class="border-b border-gray-400 pb-1 text-black dark:text-white text-[10px] uppercase font-bold tracking-widest mt-auto">Aceder à Vitrine <i class="fas fa-arrow-right ml-2"></i></span>
+                    <span class="border-b border-gray-400 pb-1 text-black dark:text-white text-[10px] uppercase font-bold tracking-widest mt-auto">Acessar Portal <i class="fas fa-arrow-right ml-2"></i></span>
                 </div>
                 <!-- CARD PROFISSIONAL -->
                 <div class="glass-silver-ui rounded-sm p-12 text-center flex flex-col items-center cursor-pointer group" onclick="revealBoutiqueView('pro')">
@@ -1762,76 +1759,76 @@
                 <!-- KIT TRINDADE -->
                 <div class="glass-silver-ui p-8 group overflow-hidden flex flex-col h-full rounded-sm relative">
                     <div class="absolute top-4 right-4 bg-black text-brand-gold border border-brand-gold/30 text-[8px] px-3 py-1 uppercase font-bold tracking-widest z-10 shadow-lg">THE FULL SYSTEM</div>
-                    <div class="cursor-zoom-in relative mb-6" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image05.jpg?v=4b8919f9')">
-                        <img src="https://imagensagata.carrd.co/assets/images/image05.jpg?v=4b8919f9" loading="lazy" class="w-full h-64 object-contain transform group-hover:scale-105 transition duration-1500" alt="Kit Trindade">
+                    <div class="cursor-zoom-in relative mb-6 w-full flex justify-center" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image05.jpg?v=4b8919f9')">
+                        <img src="https://imagensagata.carrd.co/assets/images/image05.jpg?v=4b8919f9" loading="lazy" class="h-48 w-auto object-contain transform group-hover:scale-105 transition duration-1500" alt="Kit Trindade">
                     </div>
                     <h4 class="font-serif text-xl md:text-2xl mb-2 text-black dark:text-white text-center uppercase font-bold">Kit Trindade</h4>
-                    <p class="text-[9px] text-brand-gold-dark dark:text-brand-gold uppercase tracking-widest font-bold mb-4 text-center">A Sinergia 8K</p>
+                    <p class="text-[9px] text-brand-gold-dark dark:text-brand-gold uppercase tracking-widest font-bold mb-4 text-center">A Sinergia 8K Completa</p>
                     
                     <div class="text-[10px] text-gray-600 dark:text-gray-400 text-left w-full space-y-3 mb-6 flex-grow border-l-2 border-gray-400/50 pl-3 italic font-light leading-relaxed">
                         <p><strong class="font-bold text-black dark:text-white uppercase not-italic text-[9px] tracking-widest">Informação do Rótulo:</strong> [COLE AQUI A DESCRIÇÃO EXATA DO KIT TRINDADE DO RÓTULO]</p>
                     </div>
                     
                     <div class="text-3xl text-gray-800 dark:text-gray-300 italic font-serif text-center font-bold mb-6 mt-auto">R$ 688,10</div>
-                    <button onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Quero comprar o Kit Trindade.');" class="btn-luxury-cta w-full py-4 text-xs text-black font-bold active:scale-95">
-                        <i class="fab fa-whatsapp mr-2 text-lg"></i> Comprar Kit
+                    <button onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Quero comprar o Kit Trindade Completo.');" class="btn-luxury-cta w-full py-4 text-xs text-black font-bold active:scale-95 uppercase font-bold">
+                        <i class="fab fa-whatsapp mr-1 text-lg"></i> Comprar Kit
                     </button>
                 </div>
                 
                 <!-- BAINHO REPAIR -->
                 <div class="glass-silver-ui p-8 group overflow-hidden flex flex-col h-full rounded-sm relative">
                     <div class="absolute top-4 right-4 bg-gray-200 dark:bg-white/10 text-gray-800 dark:text-gray-300 text-[8px] px-3 py-1 uppercase font-bold tracking-widest z-10">STEP 01</div>
-                    <div class="cursor-zoom-in relative mb-6" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image07.jpg?v=c257b396')">
-                        <img src="https://imagensagata.carrd.co/assets/images/image07.jpg?v=c257b396" loading="lazy" class="w-full h-64 object-contain transform group-hover:scale-105 transition duration-1500" alt="Bainho Repair">
+                    <div class="cursor-zoom-in relative mb-6 w-full flex justify-center" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image07.jpg?v=c257b396')">
+                        <img src="https://imagensagata.carrd.co/assets/images/image07.jpg?v=c257b396" loading="lazy" class="h-48 w-auto object-contain transform group-hover:scale-105 transition duration-1500" alt="Bainho Repair">
                     </div>
                     <h4 class="font-serif text-xl md:text-2xl mb-2 text-black dark:text-white text-center uppercase font-bold">Bainho Repair</h4>
-                    <p class="text-[9px] text-brand-gold-dark dark:text-brand-gold uppercase tracking-widest font-bold mb-4 text-center">Step 01: Purificação</p>
+                    <p class="text-[9px] text-brand-gold-dark dark:text-brand-gold uppercase tracking-widest font-bold mb-4 text-center">Purificação Profunda</p>
 
                     <div class="text-[10px] text-gray-600 dark:text-gray-400 text-left w-full space-y-3 mb-6 flex-grow border-l-2 border-gray-400/50 pl-3 italic font-light leading-relaxed">
                         <p><strong class="font-bold text-black dark:text-white uppercase not-italic text-[9px] tracking-widest">Informação do Rótulo:</strong> [COLE AQUI A FUNÇÃO E ATIVOS EXATOS DO BAINHO DO RÓTULO]</p>
                     </div>
 
                     <div class="text-3xl text-gray-800 dark:text-gray-300 italic font-serif text-center font-bold mb-6 mt-auto">R$ 149,90</div>
-                    <button onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Quero o Bainho Repair.');" class="btn-luxury-cta w-full py-4 text-xs text-black font-bold active:scale-95">
-                        <i class="fab fa-whatsapp mr-2 text-lg"></i> Comprar
+                    <button onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Quero o Bainho Repair.');" class="btn-luxury-cta w-full py-4 text-xs text-black font-bold active:scale-95 uppercase font-bold">
+                        <i class="fab fa-whatsapp mr-1 text-lg"></i> Comprar
                     </button>
                 </div>
 
                 <!-- GOLD FUSION -->
                 <div class="glass-silver-ui p-8 group overflow-hidden flex flex-col h-full rounded-sm relative">
                     <div class="absolute top-4 right-4 bg-gray-200 dark:bg-white/10 text-gray-800 dark:text-gray-300 text-[8px] px-3 py-1 uppercase font-bold tracking-widest z-10">STEP 02</div>
-                    <div class="cursor-zoom-in relative mb-6" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image09.jpg?v=4b8919f9')">
-                        <img src="https://imagensagata.carrd.co/assets/images/image09.jpg?v=4b8919f9" loading="lazy" class="w-full h-64 object-contain transform group-hover:scale-105 transition duration-1500" alt="Gold Fusion">
+                    <div class="cursor-zoom-in relative mb-6 w-full flex justify-center" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image09.jpg?v=4b8919f9')">
+                        <img src="https://imagensagata.carrd.co/assets/images/image09.jpg?v=4b8919f9" loading="lazy" class="h-48 w-auto object-contain transform group-hover:scale-105 transition duration-1500" alt="Gold Fusion">
                     </div>
                     <h4 class="font-serif text-xl md:text-2xl mb-2 text-black dark:text-white text-center uppercase font-bold">Gold Fusion</h4>
-                    <p class="text-[9px] text-brand-gold-dark dark:text-brand-gold uppercase tracking-widest font-bold mb-4 text-center">Step 02: Nutrição Lipídica</p>
+                    <p class="text-[9px] text-brand-gold-dark dark:text-brand-gold uppercase tracking-widest font-bold mb-4 text-center">Nutrição Lipídica</p>
 
                     <div class="text-[10px] text-gray-600 dark:text-gray-400 text-left w-full space-y-3 mb-6 flex-grow border-l-2 border-gray-400/50 pl-3 italic font-light leading-relaxed">
                         <p><strong class="font-bold text-black dark:text-white uppercase not-italic text-[9px] tracking-widest">Informação do Rótulo:</strong> [COLE AQUI A FUNÇÃO E ATIVOS EXATOS DO GOLD FUSION]</p>
                     </div>
 
                     <div class="text-3xl text-gray-800 dark:text-gray-300 italic font-serif text-center font-bold mb-6 mt-auto">R$ 289,80</div>
-                    <button onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Quero comprar o Gold Fusion.');" class="btn-luxury-cta w-full py-4 text-xs text-black font-bold active:scale-95">
-                        <i class="fab fa-whatsapp mr-2 text-lg"></i> Comprar
+                    <button onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Quero comprar o Gold Fusion.');" class="btn-luxury-cta w-full py-4 text-xs text-black font-bold active:scale-95 uppercase font-bold">
+                        <i class="fab fa-whatsapp mr-1 text-lg"></i> Comprar
                     </button>
                 </div>
 
                 <!-- BABY QUEEN -->
                 <div class="glass-silver-ui p-8 group overflow-hidden flex flex-col h-full rounded-sm relative">
                     <div class="absolute top-4 right-4 bg-gray-200 dark:bg-white/10 text-gray-800 dark:text-gray-300 text-[8px] px-3 py-1 uppercase font-bold tracking-widest z-10">STEP 03</div>
-                    <div class="cursor-zoom-in relative mb-6" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image08.jpg?v=c257b396')">
-                        <img src="https://imagensagata.carrd.co/assets/images/image08.jpg?v=c257b396" loading="lazy" class="w-full h-64 object-contain transform group-hover:scale-105 transition duration-1500" alt="Baby Queen">
+                    <div class="cursor-zoom-in relative mb-6 w-full flex justify-center" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image08.jpg?v=c257b396')">
+                        <img src="https://imagensagata.carrd.co/assets/images/image08.jpg?v=c257b396" loading="lazy" class="h-48 w-auto object-contain transform group-hover:scale-105 transition duration-1500" alt="Baby Queen">
                     </div>
                     <h4 class="font-serif text-xl md:text-2xl mb-2 text-black dark:text-white text-center uppercase font-bold">Baby Queen</h4>
-                    <p class="text-[9px] text-brand-gold-dark dark:text-brand-gold uppercase tracking-widest font-bold mb-4 text-center">Step 03: Blindagem</p>
+                    <p class="text-[9px] text-brand-gold-dark dark:text-brand-gold uppercase tracking-widest font-bold mb-4 text-center">Blindagem Final</p>
 
                     <div class="text-[10px] text-gray-600 dark:text-gray-400 text-left w-full space-y-3 mb-6 flex-grow border-l-2 border-gray-400/50 pl-3 italic font-light leading-relaxed">
                         <p><strong class="font-bold text-black dark:text-white uppercase not-italic text-[9px] tracking-widest">Informação do Rótulo:</strong> [COLE AQUI A FUNÇÃO E ATIVOS EXATOS DO BABY QUEEN]</p>
                     </div>
 
                     <div class="text-3xl text-gray-800 dark:text-gray-300 italic font-serif text-center font-bold mb-6 mt-auto">R$ 248,40</div>
-                    <button onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Quero comprar o Baby Queen.');" class="btn-luxury-cta w-full py-4 text-xs text-black font-bold active:scale-95">
-                        <i class="fab fa-whatsapp mr-2 text-lg"></i> Comprar
+                    <button onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Quero comprar o Baby Queen.');" class="btn-luxury-cta w-full py-4 text-xs text-black font-bold active:scale-95 uppercase font-bold">
+                        <i class="fab fa-whatsapp mr-1 text-lg"></i> Comprar
                     </button>
                 </div>
             </div>
@@ -1862,7 +1859,7 @@
                     <div class="w-full md:w-5/12 p-8 flex flex-col justify-center items-center border-r border-gray-200 dark:border-white/5">
                         <!-- Imagem do Produto -->
                         <div class="cursor-zoom-in group mb-8 relative w-full flex justify-center" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image50.jpg?v=29373404')">
-                            <img src="https://testeessencia.carrd.co/assets/images/image50.jpg?v=29373404" loading="lazy" class="w-3/4 md:w-full h-auto object-contain filter drop-shadow-[0_0_20px_rgba(200,200,200,0.2)] transition-transform duration-700 group-hover:scale-105" alt="Plástica 1L">
+                            <img src="https://testeessencia.carrd.co/assets/images/image50.jpg?v=29373404" loading="lazy" class="w-3/4 md:w-48 h-auto object-contain filter drop-shadow-[0_0_20px_rgba(200,200,200,0.2)] transition-transform duration-700 group-hover:scale-105" alt="Plástica 1L">
                         </div>
                         
                         <!-- Status de Venda -->
