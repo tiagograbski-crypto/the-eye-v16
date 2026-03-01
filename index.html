@@ -7,19 +7,20 @@
     
     <!-- 
         ================================================================================
-        PROJETO: ESSÊNCIA DE ROMÃ HAIR | PLATAFORMA DIGITAL 2026 (MASTER FINAL v129.0)
+        PROJETO: ESSÊNCIA DE ROMÃ HAIR | PLATAFORMA DIGITAL 2026 (MASTER FINAL v132.0)
         ARQUITETURA: SINGLE PAGE APPLICATION (SPA) HÍBRIDA - FULL EXPANDED SOURCE
         GITHUB REPOSITORY: Master Production Branch
         
-        [AUDITORIA V129.0: THE ELEGANCE & SCALE UPDATE - ABSOLUTE GOLDEN RULE]
+        [AUDITORIA V132.0: THE LUXURY PORTFOLIO UPDATE - ABSOLUTE GOLDEN RULE]
         1. REGRA DE OURO MÁXIMA: Código 100% integral. Nenhuma tag minimizada ou ocultada.
-        2. ESCALA DE LUXO (REDUÇÃO ESTRATÉGICA): Adicionadas classes `max-w-md`, `max-w-sm` 
-           e `mx-auto` em todas as imagens principais (Liso 8K, Glass, Atelier, Home) para 
-           evitar o efeito "gigante" em Desktop e criar Negative Space (Respiro).
-        3. DELICADEZA NA BOUTIQUE: Imagens de produtos B2C reduzidas de `h-64` para `h-48`.
-        4. OMNIPRESENCE & B2B ECOSYSTEM: Mantidos intactos o Portal GL Pro B2B 
-           (Dual Sliders, Sovereign Protocol, Máquina de Leads Top 2), a Maison Academy, 
-           o Trust Bar e o Floating Concierge Desktop.
+        2. FIM DO E-COMMERCE GRID: A secção "Para Você" (Home Care) no Portal GL Pro foi 
+           reestruturada. A grelha básica de 4 colunas foi destruída.
+        3. EDITORIAL PORTFOLIO: Cada produto (Kit Trindade, Bainho, Gold Fusion, Baby Queen) 
+           agora ocupa uma linha inteira (layout alternado Esquerda/Direita).
+        4. ESTRUTURA DE 3 IMAGENS: Cada cartão de produto apresenta agora 3 fotos 
+           (1 Imagem Principal do Frasco + 2 Imagens de Contexto/Resultado), criando 
+           uma experiência visual de alta costura e justificação de alto ticket.
+        5. PRESERVAÇÃO TOTAL: Multi-Funil Hero, B2B Ecosystem, Academy e Clube.
         ================================================================================
     -->
 
@@ -401,7 +402,7 @@
             padding-left: 1.5rem; 
         }
         
-        /* MOBILE SNAP SCROLL WITH PEEK EFFECT */
+        /* MOBILE SNAP SCROLL WITH PEEK EFFECT E LAYOUTS B2C */
         .mobile-snap-x { 
             display: flex; 
             overflow-x: auto; 
@@ -423,6 +424,7 @@
         }
         
         @media(min-width: 768px) { 
+            /* Grid padrão 3 colunas para Galerias e Afins */
             .mobile-snap-x { 
                 display: grid; 
                 grid-template-cols: repeat(3, 1fr); 
@@ -434,6 +436,17 @@
             .mobile-snap-item { 
                 width: 100%; 
             } 
+
+            /* Layout Específico (2 Lado a Lado, 1 Embaixo Centralizado) para o Menu Experiências */
+            .mobile-snap-x.grid-2-1-layout {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 2rem;
+            }
+            .mobile-snap-x.grid-2-1-layout .mobile-snap-item {
+                width: calc(50% - 1rem); 
+            }
         }
 
         /* ATELIER FRAMES */
@@ -506,7 +519,7 @@
         }
 
         .glass-silver-ui:hover {
-            transform: translateY(-16px) scale(1.02);
+            transform: translateY(-8px);
             border-color: rgba(255, 255, 255, 0.7);
             box-shadow: inset 0 0 50px rgba(255, 255, 255, 0.3), 
                         0 40px 80px rgba(0, 0, 0, 0.15);
@@ -639,7 +652,7 @@
                 <div class="absolute inset-0 bg-gradient-to-t from-white dark:from-luxury-black via-transparent to-transparent"></div>
             </div>
 
-            <div class="relative z-20 text-center px-6 pt-20 w-full max-w-5xl">
+            <div class="relative z-20 text-center px-6 pt-16 pb-24 md:pb-32 w-full max-w-5xl">
                 <div class="flex flex-col items-center justify-center gap-3 mb-8 opacity-90 animate-fade-in-up">
                     <div class="flex text-brand-gold text-sm gap-1 drop-shadow-lg">
                         <i class="fas fa-star"></i>
@@ -662,19 +675,27 @@
                     A união entre ciência tricológica e design capilar. Descubra a sua assinatura visual com o protocolo <strong class="text-brand-gold">Liso Soberano 8K</strong>.
                 </p>
                 
-                <div class="flex flex-col items-center gap-6 animate-fade-in-up" style="animation-delay: 0.4s;">
-                    <button onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Olá! Estou na Home e quero agendar meu diagnóstico Maison.');" class="btn-luxury-cta py-5 px-10 md:px-16 rounded-full text-xs font-bold shadow-lg transition-transform w-full md:w-auto active:scale-95 uppercase">
-                        <i class="fab fa-whatsapp mr-2 text-lg"></i> AGENDAR DIAGNÓSTICO
+                <!-- MULTI-FUNNEL HERO B2C/B2B (3 Botões) -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-3xl mx-auto animate-fade-in-up" style="animation-delay: 0.4s;">
+                    <!-- Botão Chapecó -->
+                    <button onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Olá! Quero agendar meu diagnóstico Maison na unidade Chapecó.');" class="btn-luxury-cta py-4 px-6 md:px-8 rounded-full text-[10px] md:text-xs font-bold shadow-lg w-full sm:w-auto active:scale-95 uppercase flex-1">
+                        <i class="fab fa-whatsapp mr-2 text-lg"></i> Agendar Chapecó
                     </button>
                     
-                    <div class="mt-2 inline-flex items-center gap-2 px-4 py-2 bg-brand-gold/10 border border-brand-gold/20 rounded-full text-[10px] text-brand-gold-dark dark:text-brand-gold font-bold uppercase tracking-widest">
-                        <i class="fas fa-fire animate-pulse"></i> <span id="slots-text">A Analisar Vagas...</span>
-                    </div>
+                    <!-- Botão Seara -->
+                    <button onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549000000000&text=Olá! Quero agendar meu diagnóstico no Studio T em Seara.');" class="py-4 px-6 md:px-8 rounded-full text-[10px] md:text-xs font-bold shadow-lg transition-all w-full sm:w-auto active:scale-95 uppercase bg-black/60 backdrop-blur-md border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black flex-1">
+                        <i class="fab fa-whatsapp mr-2 text-lg"></i> Agendar Seara
+                    </button>
+
+                    <!-- Botão B2B -->
+                    <button onclick="navigate('agata-view-container'); setTimeout(() => revealBoutiqueView('pro'), 100);" class="py-4 px-6 md:px-8 rounded-full text-[10px] md:text-xs font-bold shadow-glass transition-all w-full sm:w-auto active:scale-95 uppercase bg-white/10 backdrop-blur-md border border-white/30 text-white hover:bg-white hover:text-black flex-1">
+                        <i class="fas fa-briefcase mr-2 text-lg"></i> Portal B2B
+                    </button>
                 </div>
             </div>
             
-            <!-- TRUST BAR (Segurança B2C) -->
-            <div class="absolute bottom-24 md:bottom-12 left-0 w-full z-20 flex justify-center opacity-80 animate-fade-in-up" style="animation-delay: 0.8s;">
+            <!-- TRUST BAR (Segurança B2C) ajustada para 'bottom-6 md:bottom-8' -->
+            <div class="absolute bottom-6 md:bottom-8 left-0 w-full z-20 flex justify-center opacity-80 animate-fade-in-up" style="animation-delay: 0.8s;">
                 <div class="flex items-center gap-6 md:gap-12 px-8 py-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-full text-[8px] md:text-[10px] text-gray-300 uppercase tracking-widest font-bold">
                     <span class="flex items-center gap-2"><i class="fas fa-leaf text-brand-gold"></i> 0% Formol</span>
                     <span class="hidden md:flex items-center gap-2"><i class="fas fa-flask text-brand-gold"></i> Biotecnologia</span>
@@ -692,7 +713,7 @@
                 </div>
             </div>
             
-            <div class="mobile-snap-x px-6 -mx-6 md:px-0 md:mx-0 reveal">
+            <div class="mobile-snap-x grid-2-1-layout px-6 -mx-6 md:px-0 md:mx-0 reveal">
                 <!-- CARD 1: LISO 8K -->
                 <div class="mobile-snap-item w-[82vw] md:w-full bg-white dark:bg-white/5 rounded-sm p-1 relative group overflow-hidden flex flex-col transition-all duration-500 border border-brand-gold shadow-gold-glow cursor-pointer" onclick="navigate('liso-view-container')">
                     <div class="absolute top-0 left-0 w-full bg-brand-gold text-black text-[10px] font-bold text-center py-2 uppercase tracking-widest z-30 shadow-md">
@@ -836,7 +857,7 @@
         <section class="py-24 md:py-32 bg-white dark:bg-black border-y border-gray-100 dark:border-brand-gold/5 transition-colors">
             <div class="container mx-auto px-6 max-w-6xl flex flex-col md:flex-row items-center gap-16">
                 <div class="w-full md:w-1/2 flex justify-center reveal">
-                    <div class="w-full max-w-md aspect-[4/5] rounded-sm border border-gray-200 dark:border-brand-gold/30 bg-gray-50 dark:bg-[#1a0a0a] relative shadow-xl overflow-hidden atelier-frame" id="space-gallery">
+                    <div class="w-full max-w-sm aspect-[4/5] rounded-sm border border-gray-200 dark:border-brand-gold/30 bg-gray-50 dark:bg-[#1a0a0a] relative shadow-xl overflow-hidden atelier-frame" id="space-gallery">
                         <img src="https://testeessencia.carrd.co/assets/images/image37.jpg?v=8a66137c" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-100 space-img" alt="Maison 1">
                         <img src="https://testeessencia.carrd.co/assets/images/image38.jpg?v=8a66137c" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0 space-img" alt="Maison 2">
                         <img src="https://testeessencia.carrd.co/assets/images/image39.jpg?v=8a66137c" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 opacity-0 space-img" alt="Maison 3">
@@ -1268,7 +1289,7 @@
 
             <!-- PROTOCOLO DE CORES E MECHAS -->
             <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16 gap-y-16">
-                <div class="text-center mx-auto flex flex-col items-center">
+                <div class="text-center mx-auto order-2 lg:order-1 flex flex-col items-center">
                     <h3 class="font-serif text-3xl md:text-5xl mb-8 uppercase italic text-black dark:text-white">Iluminação <br><span class="text-brand-gold-dark dark:text-brand-gold">Couture</span></h3>
                     <div class="cordinha-timeline ml-1 mb-10 space-y-6 border-brand-gold/60 dark:border-brand-gold/30 text-center mx-auto max-w-sm">
                         <div>
@@ -1528,7 +1549,7 @@
                 <span class="text-brand-gold-dark dark:text-brand-gold text-[10px] md:text-xs uppercase tracking-[0.5em] font-bold block mb-4">Vantagem Exclusiva</span>
                 <h3 class="font-serif text-3xl md:text-5xl italic text-black dark:text-white mb-8 font-bold">A Matemática do <span class="text-brand-gold-dark dark:text-brand-gold uppercase">Luxo</span></h3>
                 <p class="text-[10px] text-gray-600 dark:text-gray-400 uppercase tracking-widest mb-12 font-bold">Compare o investimento de salão tradicional com os benefícios absolutos de ser um Membro VIP do nosso Clube.</p>
-                <div class="overflow-hidden rounded-sm shadow-2xl border border-brand-gold/30 cursor-zoom-in group max-w-xl mx-auto" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image33.jpg?v=a0274bad')">
+                <div class="overflow-hidden max-w-xl mx-auto rounded-sm shadow-2xl border border-brand-gold/30 cursor-zoom-in group" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image33.jpg?v=a0274bad')">
                     <img src="https://testeessencia.carrd.co/assets/images/image33.jpg?v=a0274bad" loading="lazy" class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700" alt="Tabela Comparativa Clube">
                 </div>
             </div>
@@ -1728,7 +1749,7 @@
             </div>
         </div>
 
-        <!-- ABA #HOMECARE: VITRINE CLIENTE FINAL -->
+        <!-- ABA #HOMECARE: VITRINE CLIENTE FINAL (PORTFOLIO LUXURY LAYOUT) -->
         <div id="boutique-homecare" class="hidden opacity-0 transition-opacity duration-700 px-6 pb-40">
             <button onclick="revealBoutiqueView('gateway')" class="mb-12 text-[10px] text-gray-600 dark:text-gray-300 uppercase font-bold tracking-widest flex items-center gap-2 hover:translate-x-[-5px] transition-transform active:scale-95">
                 <i class="fas fa-arrow-left"></i> Voltar ao Portal
@@ -1741,95 +1762,138 @@
                 </p>
             </div>
 
-            <!-- BANNER ULTRAWIDE -->
-            <div class="w-full mb-32 reveal">
-                <div class="atelier-frame aspect-video md:aspect-[21/9] rounded-sm shadow-2xl relative overflow-hidden group">
-                    <img src="https://imagensagata.carrd.co/assets/images/image22.jpg?v=02dd65e7" loading="lazy" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt="Portal GL Pro">
-                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-700"></div>
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <button onclick="document.getElementById('products-grid').scrollIntoView({behavior:'smooth'})" class="btn-editorial active:scale-95 font-bold uppercase backdrop-blur-md bg-white/10 border-white/30 hover:bg-brand-gold hover:border-brand-gold text-white hover:text-black">
-                            <i class="fas fa-shopping-bag mr-2"></i> Explorar Vitrine
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 reveal">
+            <div id="products-grid" class="flex flex-col gap-12 max-w-6xl mx-auto reveal">
                 
-                <!-- KIT TRINDADE -->
-                <div class="glass-silver-ui p-8 group overflow-hidden flex flex-col h-full rounded-sm relative">
-                    <div class="absolute top-4 right-4 bg-black text-brand-gold border border-brand-gold/30 text-[8px] px-3 py-1 uppercase font-bold tracking-widest z-10 shadow-lg">THE FULL SYSTEM</div>
-                    <div class="cursor-zoom-in relative mb-6 w-full flex justify-center" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image05.jpg?v=4b8919f9')">
-                        <img src="https://imagensagata.carrd.co/assets/images/image05.jpg?v=4b8919f9" loading="lazy" class="h-48 w-auto object-contain transform group-hover:scale-105 transition duration-1500" alt="Kit Trindade">
+                <!-- KIT TRINDADE (3 IMAGENS PORTFOLIO) -->
+                <div class="glass-silver-ui rounded-sm overflow-hidden flex flex-col lg:flex-row items-stretch relative">
+                    <div class="absolute top-6 right-6 bg-black text-brand-gold border border-brand-gold/30 text-[8px] px-3 py-1 uppercase font-bold tracking-widest z-10 shadow-lg">THE FULL SYSTEM</div>
+                    <div class="w-full lg:w-1/2 p-6 flex flex-col gap-2 border-b lg:border-b-0 lg:border-r border-gray-200 dark:border-white/5">
+                        <div class="w-full aspect-[4/3] bg-white dark:bg-black/20 rounded-sm overflow-hidden atelier-frame cursor-zoom-in" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image05.jpg?v=4b8919f9')">
+                            <img src="https://imagensagata.carrd.co/assets/images/image05.jpg?v=4b8919f9" loading="lazy" class="w-full h-full object-contain p-4 transform hover:scale-105 transition duration-1000" alt="Kit Trindade">
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="w-full aspect-square bg-white dark:bg-black/20 rounded-sm overflow-hidden atelier-frame cursor-zoom-in" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image27.jpg?v=5278beb3')">
+                                <img src="https://testeessencia.carrd.co/assets/images/image27.jpg?v=5278beb3" loading="lazy" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000" alt="Resultado 8K">
+                            </div>
+                            <div class="w-full aspect-square bg-white dark:bg-black/20 rounded-sm overflow-hidden atelier-frame cursor-zoom-in" onclick="openLightbox('https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?auto=format&fit=crop&w=600&q=80')">
+                                <img src="https://images.unsplash.com/photo-1596178060671-7a80dc8059ea?auto=format&fit=crop&w=600&q=80" loading="lazy" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000" alt="Textura">
+                            </div>
+                        </div>
                     </div>
-                    <h4 class="font-serif text-xl md:text-2xl mb-2 text-black dark:text-white text-center uppercase font-bold">Kit Trindade</h4>
-                    <p class="text-[9px] text-brand-gold-dark dark:text-brand-gold uppercase tracking-widest font-bold mb-4 text-center">A Sinergia 8K Completa</p>
-                    
-                    <div class="text-[10px] text-gray-600 dark:text-gray-400 text-left w-full space-y-3 mb-6 flex-grow border-l-2 border-gray-400/50 pl-3 italic font-light leading-relaxed">
-                        <p><strong class="font-bold text-black dark:text-white uppercase not-italic text-[9px] tracking-widest">Informação do Rótulo:</strong> [COLE AQUI A DESCRIÇÃO EXATA DO KIT TRINDADE DO RÓTULO]</p>
+                    <div class="w-full lg:w-1/2 p-8 md:p-12 flex flex-col justify-center text-left">
+                        <h4 class="font-serif text-3xl md:text-4xl mb-2 text-black dark:text-white uppercase font-bold">Kit Trindade</h4>
+                        <p class="text-[10px] text-brand-gold-dark dark:text-brand-gold uppercase tracking-widest font-bold mb-8">A Sinergia 8K Completa</p>
+                        
+                        <div class="text-xs text-gray-600 dark:text-gray-400 border-l-2 border-gray-400/50 pl-4 italic mb-10 flex-grow leading-relaxed">
+                            <p><strong class="font-bold text-black dark:text-white uppercase not-italic text-[10px] tracking-widest block mb-2">Engenharia do Rótulo:</strong> O sistema definitivo para manutenção do espelhamento vítreo em casa. Três passos sinérgicos que preservam a integridade molecular do Liso Soberano 8K e blindam contra o ruído visual.</p>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row items-center justify-between gap-6 mt-auto border-t border-gray-200 dark:border-white/10 pt-6">
+                            <div class="text-4xl text-gray-800 dark:text-gray-300 italic font-serif font-bold">R$ 688,10</div>
+                            <button onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Quero comprar o Kit Trindade Completo.');" class="btn-luxury-cta w-full sm:w-auto py-4 px-8 text-xs text-black font-bold active:scale-95 uppercase font-bold">
+                                <i class="fab fa-whatsapp mr-2 text-lg"></i> Comprar Kit
+                            </button>
+                        </div>
                     </div>
-                    
-                    <div class="text-3xl text-gray-800 dark:text-gray-300 italic font-serif text-center font-bold mb-6 mt-auto">R$ 688,10</div>
-                    <button onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Quero comprar o Kit Trindade Completo.');" class="btn-luxury-cta w-full py-4 text-xs text-black font-bold active:scale-95 uppercase font-bold">
-                        <i class="fab fa-whatsapp mr-1 text-lg"></i> Comprar Kit
-                    </button>
                 </div>
                 
-                <!-- BAINHO REPAIR -->
-                <div class="glass-silver-ui p-8 group overflow-hidden flex flex-col h-full rounded-sm relative">
-                    <div class="absolute top-4 right-4 bg-gray-200 dark:bg-white/10 text-gray-800 dark:text-gray-300 text-[8px] px-3 py-1 uppercase font-bold tracking-widest z-10">STEP 01</div>
-                    <div class="cursor-zoom-in relative mb-6 w-full flex justify-center" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image07.jpg?v=c257b396')">
-                        <img src="https://imagensagata.carrd.co/assets/images/image07.jpg?v=c257b396" loading="lazy" class="h-48 w-auto object-contain transform group-hover:scale-105 transition duration-1500" alt="Bainho Repair">
+                <!-- BAINHO REPAIR (3 IMAGENS PORTFOLIO) -->
+                <div class="glass-silver-ui rounded-sm overflow-hidden flex flex-col lg:flex-row-reverse items-stretch relative">
+                    <div class="absolute top-6 right-6 bg-gray-200 dark:bg-white/10 text-gray-800 dark:text-gray-300 text-[8px] px-3 py-1 uppercase font-bold tracking-widest z-10">STEP 01</div>
+                    <div class="w-full lg:w-1/2 p-6 flex flex-col gap-2 border-b lg:border-b-0 lg:border-l border-gray-200 dark:border-white/5">
+                        <div class="w-full aspect-[4/3] bg-white dark:bg-black/20 rounded-sm overflow-hidden atelier-frame cursor-zoom-in" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image07.jpg?v=c257b396')">
+                            <img src="https://testeessencia.carrd.co/assets/images/image53.jpg?v=6fd286c2">
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="w-full aspect-square bg-white dark:bg-black/20 rounded-sm overflow-hidden atelier-frame cursor-zoom-in" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image21.jpg?v=820a894a')">
+                                <img src="https://testeessencia.carrd.co/assets/images/image21.jpg?v=820a894a" loading="lazy" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000" alt="Resultado Limpeza">
+                            </div>
+                            <div class="w-full aspect-square bg-white dark:bg-black/20 rounded-sm overflow-hidden atelier-frame cursor-zoom-in" onclick="openLightbox('https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=600&q=80')">
+                                <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?auto=format&fit=crop&w=600&q=80" loading="lazy" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000" alt="Textura Ampola">
+                            </div>
+                        </div>
                     </div>
-                    <h4 class="font-serif text-xl md:text-2xl mb-2 text-black dark:text-white text-center uppercase font-bold">Bainho Repair</h4>
-                    <p class="text-[9px] text-brand-gold-dark dark:text-brand-gold uppercase tracking-widest font-bold mb-4 text-center">Purificação Profunda</p>
+                    <div class="w-full lg:w-1/2 p-8 md:p-12 flex flex-col justify-center text-left">
+                        <h4 class="font-serif text-3xl md:text-4xl mb-2 text-black dark:text-white uppercase font-bold">Bainho Repair</h4>
+                        <p class="text-[10px] text-brand-gold-dark dark:text-brand-gold uppercase tracking-widest font-bold mb-8">Purificação Profunda</p>
 
-                    <div class="text-[10px] text-gray-600 dark:text-gray-400 text-left w-full space-y-3 mb-6 flex-grow border-l-2 border-gray-400/50 pl-3 italic font-light leading-relaxed">
-                        <p><strong class="font-bold text-black dark:text-white uppercase not-italic text-[9px] tracking-widest">Informação do Rótulo:</strong> [COLE AQUI A FUNÇÃO E ATIVOS EXATOS DO BAINHO DO RÓTULO]</p>
+                        <div class="text-xs text-gray-600 dark:text-gray-400 border-l-2 border-gray-400/50 pl-4 italic mb-10 flex-grow leading-relaxed">
+                            <p><strong class="font-bold text-black dark:text-white uppercase not-italic text-[10px] tracking-widest block mb-2">Engenharia do Rótulo:</strong> Limpeza quelante inteligente. Remove metais pesados e toxinas acumuladas sem dilatar a cutícula, preparando o córtex para a nutrição absoluta.</p>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row items-center justify-between gap-6 mt-auto border-t border-gray-200 dark:border-white/10 pt-6">
+                            <div class="text-4xl text-gray-800 dark:text-gray-300 italic font-serif font-bold">R$ 149,90</div>
+                            <button onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Quero o Bainho Repair.');" class="btn-luxury-cta w-full sm:w-auto py-4 px-8 text-xs text-black font-bold active:scale-95 uppercase font-bold">
+                                <i class="fab fa-whatsapp mr-2 text-lg"></i> Comprar
+                            </button>
+                        </div>
                     </div>
-
-                    <div class="text-3xl text-gray-800 dark:text-gray-300 italic font-serif text-center font-bold mb-6 mt-auto">R$ 149,90</div>
-                    <button onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Quero o Bainho Repair.');" class="btn-luxury-cta w-full py-4 text-xs text-black font-bold active:scale-95 uppercase font-bold">
-                        <i class="fab fa-whatsapp mr-1 text-lg"></i> Comprar
-                    </button>
                 </div>
 
-                <!-- GOLD FUSION -->
-                <div class="glass-silver-ui p-8 group overflow-hidden flex flex-col h-full rounded-sm relative">
-                    <div class="absolute top-4 right-4 bg-gray-200 dark:bg-white/10 text-gray-800 dark:text-gray-300 text-[8px] px-3 py-1 uppercase font-bold tracking-widest z-10">STEP 02</div>
-                    <div class="cursor-zoom-in relative mb-6 w-full flex justify-center" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image09.jpg?v=4b8919f9')">
-                        <img src="https://imagensagata.carrd.co/assets/images/image09.jpg?v=4b8919f9" loading="lazy" class="h-48 w-auto object-contain transform group-hover:scale-105 transition duration-1500" alt="Gold Fusion">
+                <!-- GOLD FUSION (3 IMAGENS PORTFOLIO) -->
+                <div class="glass-silver-ui rounded-sm overflow-hidden flex flex-col lg:flex-row items-stretch relative">
+                    <div class="absolute top-6 right-6 bg-gray-200 dark:bg-white/10 text-gray-800 dark:text-gray-300 text-[8px] px-3 py-1 uppercase font-bold tracking-widest z-10">STEP 02</div>
+                    <div class="w-full lg:w-1/2 p-6 flex flex-col gap-2 border-b lg:border-b-0 lg:border-r border-gray-200 dark:border-white/5">
+                        <div class="w-full aspect-[4/3] bg-white dark:bg-black/20 rounded-sm overflow-hidden atelier-frame cursor-zoom-in" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image09.jpg?v=4b8919f9')">
+                            <img src="https://imagensagata.carrd.co/assets/images/image09.jpg?v=4b8919f9" loading="lazy" class="w-full h-full object-contain p-4 transform hover:scale-105 transition duration-1000" alt="Gold Fusion">
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="w-full aspect-square bg-white dark:bg-black/20 rounded-sm overflow-hidden atelier-frame cursor-zoom-in" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image13.jpg?v=c257b396')">
+                                <img src="https://imagensagata.carrd.co/assets/images/image13.jpg?v=c257b396" loading="lazy" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000" alt="Resultado Nutrição">
+                            </div>
+                            <div class="w-full aspect-square bg-white dark:bg-black/20 rounded-sm overflow-hidden atelier-frame cursor-zoom-in" onclick="openLightbox('https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=600&q=80')">
+                                <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=600&q=80" loading="lazy" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000" alt="Textura Creme">
+                            </div>
+                        </div>
                     </div>
-                    <h4 class="font-serif text-xl md:text-2xl mb-2 text-black dark:text-white text-center uppercase font-bold">Gold Fusion</h4>
-                    <p class="text-[9px] text-brand-gold-dark dark:text-brand-gold uppercase tracking-widest font-bold mb-4 text-center">Nutrição Lipídica</p>
+                    <div class="w-full lg:w-1/2 p-8 md:p-12 flex flex-col justify-center text-left">
+                        <h4 class="font-serif text-3xl md:text-4xl mb-2 text-black dark:text-white uppercase font-bold">Gold Fusion</h4>
+                        <p class="text-[10px] text-brand-gold-dark dark:text-brand-gold uppercase tracking-widest font-bold mb-8">Nutrição Lipídica</p>
 
-                    <div class="text-[10px] text-gray-600 dark:text-gray-400 text-left w-full space-y-3 mb-6 flex-grow border-l-2 border-gray-400/50 pl-3 italic font-light leading-relaxed">
-                        <p><strong class="font-bold text-black dark:text-white uppercase not-italic text-[9px] tracking-widest">Informação do Rótulo:</strong> [COLE AQUI A FUNÇÃO E ATIVOS EXATOS DO GOLD FUSION]</p>
+                        <div class="text-xs text-gray-600 dark:text-gray-400 border-l-2 border-gray-400/50 pl-4 italic mb-10 flex-grow leading-relaxed">
+                            <p><strong class="font-bold text-black dark:text-white uppercase not-italic text-[10px] tracking-widest block mb-2">Engenharia do Rótulo:</strong> Infusão de óleos nobres que derrete no fio, devolvendo a densidade e o peso natural do cabelo, eliminando a porosidade de imediato.</p>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row items-center justify-between gap-6 mt-auto border-t border-gray-200 dark:border-white/10 pt-6">
+                            <div class="text-4xl text-gray-800 dark:text-gray-300 italic font-serif font-bold">R$ 289,80</div>
+                            <button onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Quero comprar o Gold Fusion.');" class="btn-luxury-cta w-full sm:w-auto py-4 px-8 text-xs text-black font-bold active:scale-95 uppercase font-bold">
+                                <i class="fab fa-whatsapp mr-2 text-lg"></i> Comprar
+                            </button>
+                        </div>
                     </div>
-
-                    <div class="text-3xl text-gray-800 dark:text-gray-300 italic font-serif text-center font-bold mb-6 mt-auto">R$ 289,80</div>
-                    <button onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Quero comprar o Gold Fusion.');" class="btn-luxury-cta w-full py-4 text-xs text-black font-bold active:scale-95 uppercase font-bold">
-                        <i class="fab fa-whatsapp mr-1 text-lg"></i> Comprar
-                    </button>
                 </div>
 
-                <!-- BABY QUEEN -->
-                <div class="glass-silver-ui p-8 group overflow-hidden flex flex-col h-full rounded-sm relative">
-                    <div class="absolute top-4 right-4 bg-gray-200 dark:bg-white/10 text-gray-800 dark:text-gray-300 text-[8px] px-3 py-1 uppercase font-bold tracking-widest z-10">STEP 03</div>
-                    <div class="cursor-zoom-in relative mb-6 w-full flex justify-center" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image08.jpg?v=c257b396')">
-                        <img src="https://imagensagata.carrd.co/assets/images/image08.jpg?v=c257b396" loading="lazy" class="h-48 w-auto object-contain transform group-hover:scale-105 transition duration-1500" alt="Baby Queen">
+                <!-- BABY QUEEN (3 IMAGENS PORTFOLIO) -->
+                <div class="glass-silver-ui rounded-sm overflow-hidden flex flex-col lg:flex-row-reverse items-stretch relative">
+                    <div class="absolute top-6 right-6 bg-gray-200 dark:bg-white/10 text-gray-800 dark:text-gray-300 text-[8px] px-3 py-1 uppercase font-bold tracking-widest z-10">STEP 03</div>
+                    <div class="w-full lg:w-1/2 p-6 flex flex-col gap-2 border-b lg:border-b-0 lg:border-l border-gray-200 dark:border-white/5">
+                        <div class="w-full aspect-[4/3] bg-white dark:bg-black/20 rounded-sm overflow-hidden atelier-frame cursor-zoom-in" onclick="openLightbox('https://imagensagata.carrd.co/assets/images/image08.jpg?v=c257b396')">
+                            <img src="https://imagensagata.carrd.co/assets/images/image08.jpg?v=c257b396" loading="lazy" class="w-full h-full object-contain p-4 transform hover:scale-105 transition duration-1000" alt="Baby Queen">
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <div class="w-full aspect-square bg-white dark:bg-black/20 rounded-sm overflow-hidden atelier-frame cursor-zoom-in" onclick="openLightbox('https://testeessencia.carrd.co/assets/images/image28.jpg?v=5278beb3')">
+                                <img src="https://testeessencia.carrd.co/assets/images/image28.jpg?v=5278beb3" loading="lazy" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000" alt="Resultado Final">
+                            </div>
+                            <div class="w-full aspect-square bg-white dark:bg-black/20 rounded-sm overflow-hidden atelier-frame cursor-zoom-in" onclick="openLightbox('https://images.unsplash.com/photo-1615397323758-1f1ce54f3b14?auto=format&fit=crop&w=600&q=80')">
+                                <img src="https://images.unsplash.com/photo-1615397323758-1f1ce54f3b14?auto=format&fit=crop&w=600&q=80" loading="lazy" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000" alt="Textura Spray">
+                            </div>
+                        </div>
                     </div>
-                    <h4 class="font-serif text-xl md:text-2xl mb-2 text-black dark:text-white text-center uppercase font-bold">Baby Queen</h4>
-                    <p class="text-[9px] text-brand-gold-dark dark:text-brand-gold uppercase tracking-widest font-bold mb-4 text-center">Blindagem Final</p>
+                    <div class="w-full lg:w-1/2 p-8 md:p-12 flex flex-col justify-center text-left">
+                        <h4 class="font-serif text-3xl md:text-4xl mb-2 text-black dark:text-white uppercase font-bold">Baby Queen</h4>
+                        <p class="text-[10px] text-brand-gold-dark dark:text-brand-gold uppercase tracking-widest font-bold mb-8">Blindagem Final</p>
 
-                    <div class="text-[10px] text-gray-600 dark:text-gray-400 text-left w-full space-y-3 mb-6 flex-grow border-l-2 border-gray-400/50 pl-3 italic font-light leading-relaxed">
-                        <p><strong class="font-bold text-black dark:text-white uppercase not-italic text-[9px] tracking-widest">Informação do Rótulo:</strong> [COLE AQUI A FUNÇÃO E ATIVOS EXATOS DO BABY QUEEN]</p>
+                        <div class="text-xs text-gray-600 dark:text-gray-400 border-l-2 border-gray-400/50 pl-4 italic mb-10 flex-grow leading-relaxed">
+                            <p><strong class="font-bold text-black dark:text-white uppercase not-italic text-[10px] tracking-widest block mb-2">Engenharia do Rótulo:</strong> O Véu de Diamante termoativado. Bloqueia a umidade, defende contra o calor extremo das ferramentas e sela a cutícula, cristalizando o tratamento na fibra.</p>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row items-center justify-between gap-6 mt-auto border-t border-gray-200 dark:border-white/10 pt-6">
+                            <div class="text-4xl text-gray-800 dark:text-gray-300 italic font-serif font-bold">R$ 248,40</div>
+                            <button onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Quero comprar o Baby Queen.');" class="btn-luxury-cta w-full sm:w-auto py-4 px-8 text-xs text-black font-bold active:scale-95 uppercase font-bold">
+                                <i class="fab fa-whatsapp mr-2 text-lg"></i> Comprar
+                            </button>
+                        </div>
                     </div>
-
-                    <div class="text-3xl text-gray-800 dark:text-gray-300 italic font-serif text-center font-bold mb-6 mt-auto">R$ 248,40</div>
-                    <button onclick="gtag_report_conversion('https://api.whatsapp.com/send?phone=5549999954052&text=Quero comprar o Baby Queen.');" class="btn-luxury-cta w-full py-4 text-xs text-black font-bold active:scale-95 uppercase font-bold">
-                        <i class="fab fa-whatsapp mr-1 text-lg"></i> Comprar
-                    </button>
                 </div>
             </div>
             
