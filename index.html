@@ -1941,32 +1941,26 @@ aria-label="Galeria da Experiência Maison"
     <!-- 🟢 VIEW: LISO SOBERANO 8K -->
     <section 
         id="liso-view-container" 
-        class="section-panel bg-white dark:bg-luxury-black min-h-screen pt-32 transition-colors duration-500" 
+        class="section-panel bg-white dark:bg-luxury-black min-h-screen pt-32 transition-colors duration-500 uppercase font-bold" 
         aria-label="Protocolo Liso Soberano 8K"
     >
         <div 
-            class="max-w-7xl mx-auto border-b border-gray-100 dark:border-white/10 pb-8 mb-24 px-6 flex flex-col md:flex-row justify-between items-end gap-6"
+            class="max-w-7xl mx-auto border-b border-gray-200 dark:border-white/10 pb-8 mb-24 px-6 flex flex-col md:flex-row justify-between items-end gap-6"
         >
              <div>
                 <span 
-                    class="text-[#8A6D3B] dark:text-brand-gold text-[10px] tracking-[0.5em] block mb-4 font-serif italic"
-                >
-                    Engineering Phase
-                </span>
+                    class="text-[#8A6D3B] dark:text-brand-gold text-xs tracking-[0.5em] block mb-4 font-serif italic uppercase font-bold"
+                >Engineering Phase</span>
                 <h2 
-                    class="font-serif text-4xl md:text-7xl italic text-black dark:text-white"
-                >
-                    Liso Soberano <span class="text-brand-gold">8K</span>
-                </h2>
+                    class="font-serif text-4xl md:text-7xl italic text-gray-900 dark:text-white font-bold"
+                >Liso Soberano <span class="text-[#8A6D3B] dark:text-brand-gold">8K</span></h2>
              </div>
              <div 
                 class="text-left md:text-right"
              >
                 <span 
-                    class="bg-brand-gold text-black px-6 py-3 text-[10px] md:text-xs shadow-gold-glow rounded-sm"
-                >
-                    Campanha: Preço Congelado
-                </span>
+                    class="bg-[#8A6D3B] dark:bg-brand-gold text-white dark:text-black px-6 py-3 text-xs md:text-sm shadow-gold-glow rounded-sm font-bold tracking-widest uppercase"
+                >Campanha: Preço Congelado</span>
              </div>
         </div>
         
@@ -1974,396 +1968,140 @@ aria-label="Galeria da Experiência Maison"
             class="container mx-auto px-6 max-w-7xl"
         >
             <div 
-                class="grid lg:grid-cols-2 gap-24 items-start mb-24 reveal"
+                class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start mb-24 reveal"
             >
+                <!-- ============================================================================
+                     COLUNA ESQUERDA: GALERIA E TABELA DE PREÇOS
+                     ============================================================================ -->
                 <div 
-                    class="flex flex-col gap-6 w-full max-w-md mx-auto"
+                    class="flex flex-col gap-16 w-full"
                 >
+                    <!-- GALERIA DE IMAGENS -->
                     <div 
-                        id="liso-main-stage" 
-                        class="relative w-full aspect-[4/5] rounded-sm shadow-2xl overflow-hidden atelier-frame bg-black"
+                        class="flex flex-col gap-6 w-full max-w-md mx-auto"
                     >
                         <div 
-                            id="liso-slider-container" 
-                            class="w-full h-full relative"
+                            id="liso-main-stage" 
+                            class="relative w-full aspect-[4/5] rounded-sm shadow-2xl overflow-hidden atelier-frame bg-black"
                         >
-                            <img 
-                                src="https://testeessencia.carrd.co/assets/images/image22.jpg?v=820a894a" 
-                                class="absolute inset-0 w-full h-full object-cover z-10" 
-                                alt="Depois Liso 8K"
-                                loading="lazy"
-                            >
-                            
-                            <img 
-                                src="https://testeessencia.carrd.co/assets/images/image21.jpg?v=820a894a" 
-                                class="absolute inset-0 w-full h-full object-cover z-10" 
-                                style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);" 
-                                id="liso-inner-clip-final" 
-                                alt="Antes Liso 8K"
-                                loading="lazy"
-                            >
-                            
-                            <input 
-                                type="range" 
-                                min="0" 
-                                max="100" 
-                                value="50" 
-                                class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20" 
-                                oninput="MaisonApp.ui.updateSlider(this, 'liso-inner-clip-final', 'liso-inner-line-final')"
-                                aria-label="Slider Antes e Depois"
-                            >
-                            
                             <div 
-                                class="absolute top-0 bottom-0 left-[50%] w-0.5 bg-brand-gold pointer-events-none z-10" 
-                                id="liso-inner-line-final"
+                                id="liso-slider-container" 
+                                class="w-full h-full relative"
                             >
-                                <div 
-                                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white border-2 border-brand-gold rounded-full flex items-center justify-center shadow-lg"
+                                <img 
+                                    src="https://testeessencia.carrd.co/assets/images/image22.jpg?v=820a894a" 
+                                    class="absolute inset-0 w-full h-full object-cover z-10" 
+                                    alt="Depois Liso 8K" 
+                                    loading="lazy"
                                 >
-                                    <i 
-                                        class="fas fa-arrows-alt-h text-[#8A6D3B] dark:text-brand-gold-dark text-sm"
-                                    ></i>
+                                <img 
+                                    src="https://testeessencia.carrd.co/assets/images/image21.jpg?v=820a894a" 
+                                    class="absolute inset-0 w-full h-full object-cover z-10" 
+                                    style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);" 
+                                    id="liso-inner-clip-final" 
+                                    alt="Antes Liso 8K" 
+                                    loading="lazy"
+                                >
+                                <input 
+                                    type="range" 
+                                    min="0" 
+                                    max="100" 
+                                    value="50" 
+                                    class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20" 
+                                    oninput="MaisonApp.ui.updateSlider(this, 'liso-inner-clip-final', 'liso-inner-line-final')" 
+                                    aria-label="Slider Antes e Depois"
+                                >
+                                <div 
+                                    class="absolute top-0 bottom-0 left-[50%] w-0.5 bg-brand-gold pointer-events-none z-10" 
+                                    id="liso-inner-line-final"
+                                >
+                                    <div 
+                                        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white border-2 border-brand-gold rounded-full flex items-center justify-center shadow-lg"
+                                    >
+                                        <i 
+                                            class="fas fa-arrows-alt-h text-[#8A6D3B] dark:text-brand-gold-dark text-sm"
+                                            aria-hidden="true"
+                                        ></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div 
-                        class="mini-carousel-x"
-                        role="tablist"
-                        aria-label="Galeria de Mídia do Liso 8K"
-                    >
-                        <button 
-                            class="mini-thumb active border-brand-gold border-2" 
-                            onclick="MaisonApp.ui.switchLisoMedia('slider', null, this, 'liso-main-stage')"
-                            role="tab"
-                        >
-                            <img 
-                                src="https://testeessencia.carrd.co/assets/images/image21.jpg?v=820a894a" 
-                                class="w-full h-full object-cover" 
-                                loading="lazy"
-                            >
-                            <i 
-                                class="fas fa-arrows-alt-h text-xs" 
-                                aria-hidden="true"
-                            ></i>
-                        </button>
                         
-                        <button 
-                            class="mini-thumb" 
-                            onclick="MaisonApp.ui.switchLisoMedia('image', 'https://testeessencia.carrd.co/assets/images/image23.jpg', this, 'liso-main-stage')"
-                            role="tab"
-                        >
-                            <img 
-                                src="https://testeessencia.carrd.co/assets/images/image23.jpg" 
-                                class="w-full h-full object-cover" 
-                                loading="lazy"
-                            >
-                        </button>
-
-                        <button 
-                            class="mini-thumb" 
-                            onclick="MaisonApp.ui.switchLisoMedia('video', 'https://imagensagata.carrd.co/assets/videos/video04.mp4', this, 'liso-main-stage')"
-                            role="tab"
-                        >
-                            <video 
-                                class="w-full h-full object-cover" 
-                                muted loop playsinline
-                            >
-                                <source src="https://imagensagata.carrd.co/assets/videos/video04.mp4" type="video/mp4">
-                            </video>
-                            <i 
-                                class="fas fa-play text-xs" 
-                                aria-hidden="true"
-                            ></i>
-                        </button>
-
-                        <button 
-                            class="mini-thumb" 
-                            onclick="MaisonApp.ui.switchLisoMedia('video', 'https://imagensagata.carrd.co/assets/videos/video06.mp4?v=83fac04c', this, 'liso-main-stage')"
-                            role="tab"
-                        >
-                            <video 
-                                class="w-full h-full object-cover" 
-                                muted loop playsinline
-                            >
-                                <source src="https://imagensagata.carrd.co/assets/videos/video06.mp4?v=83fac04c" type="video/mp4">
-                            </video>
-                            <i 
-                                class="fas fa-play text-xs" 
-                                aria-hidden="true"
-                            ></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <div 
-                    class="flex flex-col"
-                >
-                    <h3 
-                        class="font-serif text-3xl md:text-5xl mb-8 italic leading-tight text-black dark:text-white"
-                    >
-                        O Liso de <br><span class="text-brand-gold">Alta Costura</span>
-                    </h3>
-
-                    <p 
-                        class="text-xs text-gray-700 dark:text-gray-300 leading-relaxed font-light mb-10 text-justify tracking-wider"
-                    >
-                        Esqueça o conceito de "progressivas agressivas". O Liso Soberano 8K é uma verdadeira engenharia de arquitetura capilar. Através da nossa biotecnologia livre de formol, reorganizamos as pontes estruturais do seu cabelo de dentro para fora, entregando um caimento luxuoso, balanço natural e o cobiçado espelhamento vítreo tridimensional. O fim absoluto do uso diário da chapinha.
-                    </p>
-
-                    <!-- SELOS DE AUTORIDADE -->
-                    <div 
-                        class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10"
-                    >
                         <div 
-                            class="flex items-center gap-3 p-4 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-sm shadow-sm"
+                            class="mini-carousel-x" 
+                            role="tablist" 
+                            aria-label="Galeria de Mídia do Liso 8K"
                         >
-                            <i 
-                                class="fas fa-leaf text-brand-gold text-2xl"
-                                aria-hidden="true"
-                            ></i>
-                            <div 
-                                class="flex flex-col"
-                            >
-                                <span 
-                                    class="text-[10px] uppercase font-bold text-black dark:text-white tracking-widest"
-                                >
-                                    Orgânico
-                                </span>
-                                <span 
-                                    class="text-[8px] text-gray-600 dark:text-gray-400 uppercase tracking-widest"
-                                >
-                                    100% Sem Formol
-                                </span>
-                            </div>
-                        </div>
-                        <div 
-                            class="flex items-center gap-3 p-4 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-sm shadow-sm"
-                        >
-                            <i 
-                                class="fas fa-wind text-brand-gold text-2xl"
-                                aria-hidden="true"
-                            ></i>
-                            <div 
-                                class="flex flex-col"
-                            >
-                                <span 
-                                    class="text-[10px] uppercase font-bold text-black dark:text-white tracking-widest"
-                                >
-                                    Conforto
-                                </span>
-                                <span 
-                                    class="text-[8px] text-gray-600 dark:text-gray-400 uppercase tracking-widest"
-                                >
-                                    Sem Cheiro Forte
-                                </span>
-                            </div>
-                        </div>
-                        <div 
-                            class="flex items-center gap-3 p-4 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-sm shadow-sm"
-                        >
-                            <i 
-                                class="fas fa-shield-alt text-brand-gold text-2xl"
-                                aria-hidden="true"
-                            ></i>
-                            <div 
-                                class="flex flex-col"
-                            >
-                                <span 
-                                    class="text-[10px] uppercase font-bold text-black dark:text-white tracking-widest"
-                                >
-                                    Anvisa
-                                </span>
-                                <span 
-                                    class="text-[8px] text-gray-600 dark:text-gray-400 uppercase tracking-widest"
-                                >
-                                    Registro Oficial
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- MÓDULO DO PRODUTO UTILIZADO -->
-                    <div 
-                        class="bg-gray-100 dark:bg-[#0a0202] p-8 rounded-sm border border-brand-gold/20 mb-12 shadow-inner"
-                    >
-                        <div 
-                            class="flex flex-col md:flex-row items-center gap-8 mb-8 border-b border-gray-300 dark:border-white/10 pb-8"
-                        >
-                            <div 
-                                class="w-24 h-32 flex-shrink-0 relative overflow-hidden rounded-sm border border-brand-gold/30 bg-black"
+                            <button 
+                                class="mini-thumb active border-brand-gold border-2" 
+                                onclick="MaisonApp.ui.switchLisoMedia('slider', null, this, 'liso-main-stage')" 
+                                role="tab"
                             >
                                 <img 
-                                    src="https://testeessencia.carrd.co/assets/images/image50.jpg?v=7b294510" 
-                                    class="w-full h-full object-contain p-2" 
-                                    alt="Plástica Híbrida Gloss Premium 1L"
+                                    src="https://testeessencia.carrd.co/assets/images/image21.jpg?v=820a894a" 
+                                    class="w-full h-full object-cover" 
                                     loading="lazy"
                                 >
-                            </div>
-                            <div 
-                                class="flex flex-col"
+                                <i 
+                                    class="fas fa-arrows-alt-h text-sm" 
+                                    aria-hidden="true"
+                                ></i>
+                            </button>
+                            <button 
+                                class="mini-thumb" 
+                                onclick="MaisonApp.ui.switchLisoMedia('image', 'https://testeessencia.carrd.co/assets/images/image23.jpg', this, 'liso-main-stage')" 
+                                role="tab"
                             >
-                                <span 
-                                    class="text-brand-gold text-[8px] uppercase tracking-widest mb-2 font-serif font-black"
+                                <img 
+                                    src="https://testeessencia.carrd.co/assets/images/image23.jpg" 
+                                    class="w-full h-full object-cover" 
+                                    loading="lazy"
                                 >
-                                    A Base Tecnológica
-                                </span>
-                                <h4 
-                                    class="text-black dark:text-white font-serif text-xl italic mb-3"
-                                >
-                                    Plástica Híbrida Gloss Premium
-                                </h4>
-                                <p 
-                                    class="text-[9px] text-gray-700 dark:text-gray-400 tracking-wider leading-relaxed font-light"
-                                >
-                                    O Liso 8K não é magia, é química de alta performance. Utilizamos o nosso produto Híbrido Premium para garantir segurança total.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div 
-                            class="grid grid-cols-1 sm:grid-cols-2 gap-6"
-                        >
-                            <div 
-                                class="flex flex-col"
+                            </button>
+                            <button 
+                                class="mini-thumb" 
+                                onclick="MaisonApp.ui.switchLisoMedia('video', 'https://imagensagata.carrd.co/assets/videos/video04.mp4', this, 'liso-main-stage')" 
+                                role="tab"
                             >
-                                <span 
-                                    class="text-brand-gold text-[10px] uppercase font-bold mb-2 tracking-widest"
+                                <video 
+                                    class="w-full h-full object-cover" 
+                                    muted loop playsinline
                                 >
-                                    <i 
-                                        class="fas fa-flask mr-2" 
-                                        aria-hidden="true"
-                                    ></i> Ativos
-                                </span>
-                                <ul 
-                                    class="text-[9px] text-gray-700 dark:text-gray-400 space-y-2 tracking-wider"
-                                >
-                                    <li>• Ácido Molecular Reticulado</li>
-                                    <li>• Proteína de Trigo (Anti-quebra)</li>
-                                    <li>• Blend Lipídico de Uva</li>
-                                </ul>
-                            </div>
-                            <div 
-                                class="flex flex-col"
+                                    <source 
+                                        src="https://imagensagata.carrd.co/assets/videos/video04.mp4" 
+                                        type="video/mp4"
+                                    >
+                                </video>
+                                <i 
+                                    class="fas fa-play text-sm" 
+                                    aria-hidden="true"
+                                ></i>
+                            </button>
+                            <button 
+                                class="mini-thumb" 
+                                onclick="MaisonApp.ui.switchLisoMedia('video', 'https://imagensagata.carrd.co/assets/videos/video06.mp4?v=83fac04c', this, 'liso-main-stage')" 
+                                role="tab"
                             >
-                                <span 
-                                    class="text-brand-gold text-[10px] uppercase font-bold mb-2 tracking-widest"
+                                <video 
+                                    class="w-full h-full object-cover" 
+                                    muted loop playsinline
                                 >
-                                    <i 
-                                        class="fas fa-star mr-2" 
-                                        aria-hidden="true"
-                                    ></i> Benefícios
-                                </span>
-                                <ul 
-                                    class="text-[9px] text-gray-700 dark:text-gray-400 space-y-2 tracking-wider"
-                                >
-                                    <li>• Alisamento Definitivo Seguro</li>
-                                    <li>• Brilho Vítreo Espelhado</li>
-                                    <li>• Fim absoluto da Chapinha Diária</li>
-                                </ul>
-                            </div>
+                                    <source 
+                                        src="https://imagensagata.carrd.co/assets/videos/video06.mp4?v=83fac04c" 
+                                        type="video/mp4"
+                                    >
+                                </video>
+                                <i 
+                                    class="fas fa-play text-sm" 
+                                    aria-hidden="true"
+                                ></i>
+                            </button>
                         </div>
                     </div>
 
-                    <!-- MÓDULO: O PROTOCOLO PASSO A PASSO -->
+                    <!-- MATRIZ DE INVESTIMENTO ESTRATÉGICA (ANCORAGEM LISO 8K) MOVIDA -->
                     <div 
-                        class="p-8 border border-gray-200 dark:border-white/10 rounded-sm relative overflow-hidden mb-12"
-                    >
-                        <div 
-                            class="absolute top-0 right-0 bg-brand-gold text-black px-4 py-1 text-[8px] uppercase tracking-widest font-black"
-                        >
-                            O Processo
-                        </div>
-                        <h4 
-                            class="font-serif text-2xl text-black dark:text-white italic mb-8"
-                        >
-                            Protocolo de <span class="text-brand-gold">Aplicação</span>
-                        </h4>
-                        
-                        <div 
-                            class="relative border-l border-brand-gold/60 dark:border-brand-gold/30 pl-6 space-y-8"
-                        >
-                            <div class="relative">
-                                <div class="absolute -left-[31px] top-1 w-3 h-3 bg-brand-gold rounded-full shadow-[0_0_10px_rgba(212,175,55,0.8)]"></div>
-                                <h5 class="text-black dark:text-white text-[11px] uppercase tracking-widest font-bold mb-1">1. Identificação do Fio</h5>
-                                <p class="text-[9px] text-gray-700 dark:text-gray-400 tracking-wider">Diagnóstico rigoroso de estrutura e resistência antes de qualquer química.</p>
-                            </div>
-                            <div class="relative">
-                                <div class="absolute -left-[31px] top-1 w-3 h-3 bg-black dark:bg-white border border-brand-gold rounded-full"></div>
-                                <h5 class="text-black dark:text-white text-[11px] uppercase tracking-widest font-bold mb-1">2. Higienização Correta</h5>
-                                <p class="text-[9px] text-gray-700 dark:text-gray-400 tracking-wider">Lavagem profunda para preparar e desobstruir as cutículas do cabelo.</p>
-                            </div>
-                            <div class="relative">
-                                <div class="absolute -left-[31px] top-1 w-3 h-3 bg-black dark:bg-white border border-brand-gold rounded-full"></div>
-                                <h5 class="text-black dark:text-white text-[11px] uppercase tracking-widest font-bold mb-1">3. Aplicação do Liso 8K</h5>
-                                <p class="text-[9px] text-gray-700 dark:text-gray-400 tracking-wider">Infusão milimétrica da Plástica Híbrida Gloss Premium mecha a mecha.</p>
-                            </div>
-                            <div class="relative">
-                                <div class="absolute -left-[31px] top-1 w-3 h-3 bg-brand-gold/50 border border-brand-gold rounded-full animate-pulse"></div>
-                                <h5 class="text-[#8A6D3B] dark:text-brand-gold text-[11px] uppercase tracking-widest font-bold mb-1">4. Tempo de Ação</h5>
-                                <p class="text-[9px] text-gray-700 dark:text-gray-400 tracking-wider font-bold">Pausa milimétrica de 40 a 60 minutos estipulada conforme a estrutura do seu fio.</p>
-                            </div>
-                            <div class="relative">
-                                <div class="absolute -left-[31px] top-1 w-3 h-3 bg-black dark:bg-white border border-brand-gold rounded-full"></div>
-                                <h5 class="text-black dark:text-white text-[11px] uppercase tracking-widest font-bold mb-1">5. Lavatório (Enxágue)</h5>
-                                <p class="text-[9px] text-gray-700 dark:text-gray-400 tracking-wider">Remoção precisa do produto para garantir leveza e zero resíduos.</p>
-                            </div>
-                            <div class="relative">
-                                <div class="absolute -left-[31px] top-1 w-3 h-3 bg-black dark:bg-white border border-brand-gold rounded-full"></div>
-                                <h5 class="text-black dark:text-white text-[11px] uppercase tracking-widest font-bold mb-1">6. Aplicação de Sérum</h5>
-                                <p class="text-[9px] text-gray-700 dark:text-gray-400 tracking-wider">Uso do Sérum Fortalecedor para blindagem térmica.</p>
-                            </div>
-                            <div class="relative">
-                                <div class="absolute -left-[31px] top-1 w-3 h-3 bg-black dark:bg-white border border-brand-gold rounded-full"></div>
-                                <h5 class="text-black dark:text-white text-[11px] uppercase tracking-widest font-bold mb-1">7. Secagem Profissional</h5>
-                                <p class="text-[9px] text-gray-700 dark:text-gray-400 tracking-wider">Alinhamento hídrico com secador, preparando a fibra.</p>
-                            </div>
-                            <div class="relative">
-                                <div class="absolute -left-[31px] top-1 w-3 h-3 bg-brand-gold rounded-full shadow-[0_0_10px_rgba(212,175,55,0.8)]"></div>
-                                <h5 class="text-[#8A6D3B] dark:text-brand-gold text-[11px] uppercase tracking-widest font-black mb-1">8. Finalização com Chapinha</h5>
-                                <p class="text-[9px] text-gray-700 dark:text-gray-400 tracking-wider font-bold">O selo definitivo 8K. Pranchamento em mechas finas para cristalizar o ácido molecular no córtex.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div 
-                        class="flex items-center gap-4 mb-10 text-[10px] uppercase font-bold tracking-widest text-[#8A6D3B] dark:text-brand-gold border border-brand-gold/30 p-4 bg-brand-gold/5 rounded-sm"
-                    >
-                        <i 
-                            class="far fa-calendar-check text-xl"
-                            aria-hidden="true"
-                        ></i>
-                        <span>
-                            Durabilidade: Definitivo no comprimento. Retoque de raiz recomendado entre 3 a 5 meses.
-                        </span>
-                    </div>
-
-                    <!-- MÓDULO MACRO (BOLHAS ANTES/DEPOIS) -->
-                    <div 
-                        class="flex items-center justify-center gap-6 sm:gap-10 my-12 p-8 border border-gray-300 dark:border-white/5 rounded-sm bg-white dark:bg-black/20" 
-                        aria-label="Comparação Macro da Fibra Capilar"
-                    >
-                        <div class="flex flex-col items-center gap-4">
-                            <div class="w-20 h-20 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-gray-300 dark:border-gray-600 shadow-md">
-                                <img src="https://testeessencia.carrd.co/assets/images/image26.jpg" class="w-full h-full object-cover filter grayscale opacity-80" alt="Fio Poroso Antes" loading="lazy" decoding="async">
-                            </div>
-                            <span class="text-[10px] uppercase tracking-widest text-gray-700 dark:text-gray-400 font-bold">Fio Antes</span>
-                        </div>
-                        <i class="fas fa-arrow-right text-[#8A6D3B] dark:text-brand-gold text-xl sm:text-3xl opacity-50 animate-pulse" aria-hidden="true"></i>
-                        <div class="flex flex-col items-center gap-4">
-                            <div class="w-20 h-20 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-[#8A6D3B] dark:border-brand-gold shadow-[0_0_25px_rgba(138,109,59,0.3)] dark:shadow-[0_0_25px_rgba(212,175,55,0.5)]">
-                                <img src="https://testeessencia.carrd.co/assets/images/image27.jpg" class="w-full h-full object-cover" alt="Fio Selado Depois" loading="lazy" decoding="async">
-                            </div>
-                            <span class="text-[10px] uppercase tracking-widest text-[#8A6D3B] dark:text-brand-gold font-bold">Fio Selado 8K</span>
-                        </div>
-                    </div>
-                    
-                    <!-- ============================================================================
-                         MATRIZ DE INVESTIMENTO ESTRATÉGICA (ANCORAGEM LISO 8K)
-                         ============================================================================ -->
-                    <div 
-                        class="mb-16 reveal w-full"
+                        class="w-full reveal"
                     >
                         <div 
                             class="text-center mb-10"
@@ -2785,6 +2523,403 @@ aria-label="Galeria da Experiência Maison"
                             </div>
                         </div>
                     </div>
+                </div>
+                
+                <!-- ============================================================================
+                     COLUNA DIREITA: PROTOCOLOS, ATIVOS E BOTÕES
+                     ============================================================================ -->
+                <div 
+                    class="flex flex-col"
+                >
+                    <h3 
+                        class="font-serif text-3xl md:text-5xl mb-8 italic leading-tight text-gray-900 dark:text-white"
+                    >
+                        O Liso de <br><span class="text-[#8A6D3B] dark:text-brand-gold">Alta Costura</span>
+                    </h3>
+
+                    <p 
+                        class="text-sm md:text-base text-gray-800 dark:text-gray-300 leading-relaxed mb-10 text-justify tracking-wide"
+                    >
+                        Esqueça o conceito de "progressivas agressivas". O Liso Soberano 8K é uma verdadeira engenharia de arquitetura capilar. Através da nossa biotecnologia livre de formol, reorganizamos as pontes estruturais do seu cabelo de dentro para fora, entregando um caimento luxuoso, balanço natural e o cobiçado espelhamento vítreo tridimensional. O fim absoluto do uso diário da chapinha.
+                    </p>
+
+                    <!-- SELOS DE AUTORIDADE -->
+                    <div 
+                        class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10"
+                    >
+                        <div 
+                            class="flex items-center gap-3 p-4 bg-gray-100 dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-sm shadow-sm"
+                        >
+                            <i 
+                                class="fas fa-leaf text-[#8A6D3B] dark:text-brand-gold text-2xl" 
+                                aria-hidden="true"
+                            ></i>
+                            <div 
+                                class="flex flex-col"
+                            >
+                                <span 
+                                    class="text-xs uppercase font-bold text-gray-900 dark:text-white tracking-widest"
+                                >
+                                    Orgânico
+                                </span>
+                                <span 
+                                    class="text-[10px] md:text-xs text-gray-700 dark:text-gray-400 uppercase tracking-widest"
+                                >
+                                    100% Sem Formol
+                                </span>
+                            </div>
+                        </div>
+                        <div 
+                            class="flex items-center gap-3 p-4 bg-gray-100 dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-sm shadow-sm"
+                        >
+                            <i 
+                                class="fas fa-wind text-[#8A6D3B] dark:text-brand-gold text-2xl" 
+                                aria-hidden="true"
+                            ></i>
+                            <div 
+                                class="flex flex-col"
+                            >
+                                <span 
+                                    class="text-xs uppercase font-bold text-gray-900 dark:text-white tracking-widest"
+                                >
+                                    Conforto
+                                </span>
+                                <span 
+                                    class="text-[10px] md:text-xs text-gray-700 dark:text-gray-400 uppercase tracking-widest"
+                                >
+                                    Sem Cheiro Forte
+                                </span>
+                            </div>
+                        </div>
+                        <div 
+                            class="flex items-center gap-3 p-4 bg-gray-100 dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-sm shadow-sm"
+                        >
+                            <i 
+                                class="fas fa-shield-alt text-[#8A6D3B] dark:text-brand-gold text-2xl" 
+                                aria-hidden="true"
+                            ></i>
+                            <div 
+                                class="flex flex-col"
+                            >
+                                <span 
+                                    class="text-xs uppercase font-bold text-gray-900 dark:text-white tracking-widest"
+                                >
+                                    Anvisa
+                                </span>
+                                <span 
+                                    class="text-[10px] md:text-xs text-gray-700 dark:text-gray-400 uppercase tracking-widest"
+                                >
+                                    Registro Oficial
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MÓDULO DO PRODUTO UTILIZADO -->
+                    <div 
+                        class="bg-gray-100 dark:bg-[#0a0202] p-8 rounded-sm border border-gray-300 dark:border-brand-gold/20 mb-12 shadow-inner"
+                    >
+                        <div 
+                            class="flex flex-col md:flex-row items-center gap-8 mb-8 border-b border-gray-300 dark:border-white/10 pb-8"
+                        >
+                            <div 
+                                class="w-24 h-32 flex-shrink-0 relative overflow-hidden rounded-sm border border-brand-gold/30 bg-black"
+                            >
+                                <img 
+                                    src="https://testeessencia.carrd.co/assets/images/image52.jpg" 
+                                    class="w-full h-full object-contain p-2" 
+                                    alt="Plástica Híbrida Gloss Premium 1L" 
+                                    loading="lazy"
+                                >
+                            </div>
+                            <div 
+                                class="flex flex-col"
+                            >
+                                <span 
+                                    class="text-[#8A6D3B] dark:text-brand-gold text-[11px] md:text-xs uppercase tracking-widest mb-2 font-serif font-bold"
+                                >
+                                    A Base Tecnológica
+                                </span>
+                                <h4 
+                                    class="text-gray-900 dark:text-white font-serif text-2xl italic mb-3"
+                                >
+                                    Plástica Híbrida Gloss Premium
+                                </h4>
+                                <p 
+                                    class="text-sm text-gray-800 dark:text-gray-300 tracking-wider leading-relaxed"
+                                >
+                                    O Liso 8K não é magia, é química de alta performance. Utilizamos o nosso produto Híbrido Premium para garantir segurança total.
+                                </p>
+                            </div>
+                        </div>
+                        <div 
+                            class="grid grid-cols-1 sm:grid-cols-2 gap-6"
+                        >
+                            <div 
+                                class="flex flex-col"
+                            >
+                                <span 
+                                    class="text-[#8A6D3B] dark:text-brand-gold text-xs uppercase font-bold mb-2 tracking-widest"
+                                >
+                                    <i 
+                                        class="fas fa-flask mr-2" 
+                                        aria-hidden="true"
+                                    ></i> Ativos
+                                </span>
+                                <ul 
+                                    class="text-sm text-gray-800 dark:text-gray-300 space-y-2 tracking-wider"
+                                >
+                                    <li>• Ácido Molecular Reticulado</li>
+                                    <li>• Proteína de Trigo (Anti-quebra)</li>
+                                    <li>• Blend Lipídico de Uva</li>
+                                </ul>
+                            </div>
+                            <div 
+                                class="flex flex-col"
+                            >
+                                <span 
+                                    class="text-[#8A6D3B] dark:text-brand-gold text-xs uppercase font-bold mb-2 tracking-widest"
+                                >
+                                    <i 
+                                        class="fas fa-star mr-2" 
+                                        aria-hidden="true"
+                                    ></i> Benefícios
+                                </span>
+                                <ul 
+                                    class="text-sm text-gray-800 dark:text-gray-300 space-y-2 tracking-wider"
+                                >
+                                    <li>• Alisamento Definitivo Seguro</li>
+                                    <li>• Brilho Vítreo Espelhado</li>
+                                    <li>• Fim absoluto da Chapinha Diária</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MÓDULO: O PROTOCOLO PASSO A PASSO -->
+                    <div 
+                        class="p-8 border border-gray-300 dark:border-white/10 rounded-sm relative overflow-hidden mb-12 bg-white dark:bg-transparent"
+                    >
+                        <div 
+                            class="absolute top-0 right-0 bg-[#8A6D3B] dark:bg-brand-gold text-white dark:text-black px-4 py-1 text-[11px] md:text-xs uppercase tracking-widest font-black"
+                        >
+                            O Processo
+                        </div>
+                        <h4 
+                            class="font-serif text-3xl text-gray-900 dark:text-white italic mb-8"
+                        >
+                            Protocolo de <span class="text-[#8A6D3B] dark:text-brand-gold">Aplicação</span>
+                        </h4>
+                        <div 
+                            class="relative border-l border-gray-300 dark:border-brand-gold/30 pl-6 space-y-8"
+                        >
+                            <div 
+                                class="relative"
+                            >
+                                <div 
+                                    class="absolute -left-[31px] top-1 w-3 h-3 bg-[#8A6D3B] dark:bg-brand-gold rounded-full shadow-[0_0_10px_rgba(138,109,59,0.8)] dark:shadow-[0_0_10px_rgba(212,175,55,0.8)]"
+                                ></div>
+                                <h5 
+                                    class="text-gray-900 dark:text-white text-sm uppercase tracking-widest font-bold mb-1"
+                                >
+                                    1. Identificação do Fio
+                                </h5>
+                                <p 
+                                    class="text-sm text-gray-800 dark:text-gray-300 tracking-wider"
+                                >
+                                    Diagnóstico rigoroso de estrutura e resistência antes de qualquer química.
+                                </p>
+                            </div>
+                            <div 
+                                class="relative"
+                            >
+                                <div 
+                                    class="absolute -left-[31px] top-1 w-3 h-3 bg-gray-200 dark:bg-white border border-[#8A6D3B] dark:border-brand-gold rounded-full"
+                                ></div>
+                                <h5 
+                                    class="text-gray-900 dark:text-white text-sm uppercase tracking-widest font-bold mb-1"
+                                >
+                                    2. Higienização Correta
+                                </h5>
+                                <p 
+                                    class="text-sm text-gray-800 dark:text-gray-300 tracking-wider"
+                                >
+                                    Lavagem profunda para preparar e desobstruir as cutículas do cabelo.
+                                </p>
+                            </div>
+                            <div 
+                                class="relative"
+                            >
+                                <div 
+                                    class="absolute -left-[31px] top-1 w-3 h-3 bg-gray-200 dark:bg-white border border-[#8A6D3B] dark:border-brand-gold rounded-full"
+                                ></div>
+                                <h5 
+                                    class="text-gray-900 dark:text-white text-sm uppercase tracking-widest font-bold mb-1"
+                                >
+                                    3. Aplicação do Liso 8K
+                                </h5>
+                                <p 
+                                    class="text-sm text-gray-800 dark:text-gray-300 tracking-wider"
+                                >
+                                    Infusão milimétrica da Plástica Híbrida Gloss Premium mecha a mecha.
+                                </p>
+                            </div>
+                            <div 
+                                class="relative"
+                            >
+                                <div 
+                                    class="absolute -left-[31px] top-1 w-3 h-3 bg-[#8A6D3B]/50 dark:bg-brand-gold/50 border border-[#8A6D3B] dark:border-brand-gold rounded-full animate-pulse"
+                                ></div>
+                                <h5 
+                                    class="text-[#8A6D3B] dark:text-brand-gold text-sm uppercase tracking-widest font-bold mb-1"
+                                >
+                                    4. Tempo de Ação
+                                </h5>
+                                <p 
+                                    class="text-sm md:text-base text-gray-900 dark:text-gray-200 tracking-wider font-bold"
+                                >
+                                    Pausa milimétrica de 40 a 60 minutos estipulada conforme a estrutura do seu fio.
+                                </p>
+                            </div>
+                            <div 
+                                class="relative"
+                            >
+                                <div 
+                                    class="absolute -left-[31px] top-1 w-3 h-3 bg-gray-200 dark:bg-white border border-[#8A6D3B] dark:border-brand-gold rounded-full"
+                                ></div>
+                                <h5 
+                                    class="text-gray-900 dark:text-white text-sm uppercase tracking-widest font-bold mb-1"
+                                >
+                                    5. Lavatório (Enxágue)
+                                </h5>
+                                <p 
+                                    class="text-sm text-gray-800 dark:text-gray-300 tracking-wider"
+                                >
+                                    Remoção precisa do produto para garantir leveza e zero resíduos.
+                                </p>
+                            </div>
+                            <div 
+                                class="relative"
+                            >
+                                <div 
+                                    class="absolute -left-[31px] top-1 w-3 h-3 bg-gray-200 dark:bg-white border border-[#8A6D3B] dark:border-brand-gold rounded-full"
+                                ></div>
+                                <h5 
+                                    class="text-gray-900 dark:text-white text-sm uppercase tracking-widest font-bold mb-1"
+                                >
+                                    6. Aplicação de Sérum
+                                </h5>
+                                <p 
+                                    class="text-sm text-gray-800 dark:text-gray-300 tracking-wider"
+                                >
+                                    Uso do Sérum Fortalecedor para blindagem térmica.
+                                </p>
+                            </div>
+                            <div 
+                                class="relative"
+                            >
+                                <div 
+                                    class="absolute -left-[31px] top-1 w-3 h-3 bg-gray-200 dark:bg-white border border-[#8A6D3B] dark:border-brand-gold rounded-full"
+                                ></div>
+                                <h5 
+                                    class="text-gray-900 dark:text-white text-sm uppercase tracking-widest font-bold mb-1"
+                                >
+                                    7. Secagem Profissional
+                                </h5>
+                                <p 
+                                    class="text-sm text-gray-800 dark:text-gray-300 tracking-wider"
+                                >
+                                    Alinhamento hídrico com secador, preparando a fibra.
+                                </p>
+                            </div>
+                            <div 
+                                class="relative"
+                            >
+                                <div 
+                                    class="absolute -left-[31px] top-1 w-3 h-3 bg-[#8A6D3B] dark:bg-brand-gold rounded-full shadow-[0_0_10px_rgba(138,109,59,0.8)] dark:shadow-[0_0_10px_rgba(212,175,55,0.8)]"
+                                ></div>
+                                <h5 
+                                    class="text-[#8A6D3B] dark:text-brand-gold text-sm uppercase tracking-widest font-bold mb-1"
+                                >
+                                    8. Finalização com Chapinha
+                                </h5>
+                                <p 
+                                    class="text-sm md:text-base text-gray-900 dark:text-gray-200 tracking-wider font-bold"
+                                >
+                                    O selo definitivo 8K. Pranchamento em mechas finas para cristalizar o ácido molecular no córtex.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div 
+                        class="flex items-center gap-4 mb-10 text-xs md:text-sm uppercase font-bold tracking-widest text-[#8A6D3B] dark:text-brand-gold border border-gray-300 dark:border-brand-gold/30 p-4 bg-gray-100 dark:bg-brand-gold/5 rounded-sm"
+                    >
+                        <i 
+                            class="far fa-calendar-check text-xl" 
+                            aria-hidden="true"
+                        ></i>
+                        <span>
+                            Durabilidade: Definitivo no comprimento. Retoque de raiz recomendado entre 3 a 5 meses.
+                        </span>
+                    </div>
+
+                    <!-- MÓDULO MACRO (BOLHAS ANTES/DEPOIS) - RESTAURADO & EXPANDIDO -->
+                    <div 
+                        class="flex items-center justify-center gap-6 sm:gap-10 mb-12 p-8 border border-gray-300 dark:border-white/5 rounded-sm bg-white dark:bg-black/20" 
+                        aria-label="Comparação Macro da Fibra Capilar"
+                        data-testid="macro-comparison-liso"
+                        role="region"
+                    >
+                        <div 
+                            class="flex flex-col items-center gap-4"
+                        >
+                            <div 
+                                class="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 border-gray-300 dark:border-gray-600 shadow-md"
+                            >
+                                <img 
+                                    src="https://testeessencia.carrd.co/assets/images/image26.jpg" 
+                                    class="w-full h-full object-cover filter grayscale opacity-80" 
+                                    alt="Fio Poroso Antes" 
+                                    loading="lazy" 
+                                    decoding="async"
+                                    data-state="before"
+                                >
+                            </div>
+                            <span 
+                                class="text-[11px] md:text-xs uppercase tracking-widest text-gray-700 dark:text-gray-400 font-bold"
+                            >
+                                Fio Antes
+                            </span>
+                        </div>
+                        
+                        <i 
+                            class="fas fa-arrow-right text-[#8A6D3B] dark:text-brand-gold text-2xl sm:text-4xl opacity-50 animate-pulse" 
+                            aria-hidden="true"
+                        ></i>
+                        
+                        <div 
+                            class="flex flex-col items-center gap-4"
+                        >
+                            <div 
+                                class="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 border-[#8A6D3B] dark:border-brand-gold shadow-[0_0_25px_rgba(138,109,59,0.3)] dark:shadow-[0_0_25px_rgba(212,175,55,0.5)]"
+                            >
+                                <img 
+                                    src="https://testeessencia.carrd.co/assets/images/image27.jpg" 
+                                    class="w-full h-full object-cover" 
+                                    alt="Fio Selado Depois" 
+                                    loading="lazy" 
+                                    decoding="async"
+                                    data-state="after"
+                                >
+                            </div>
+                            <span 
+                                class="text-[11px] md:text-xs uppercase tracking-widest text-[#8A6D3B] dark:text-brand-gold font-bold"
+                            >
+                                Fio Selado 8K
+                            </span>
+                        </div>
+                    </div>
                     
                     <!-- BOTÕES DUPLOS (CHAPECÓ E SEARA) -->
                     <div 
@@ -2792,21 +2927,23 @@ aria-label="Galeria da Experiência Maison"
                     >
                         <button 
                             onclick="gtag_report_conversion('https://wa.me/5549999954052?text=Desejo reservar o meu diagnóstico para o Liso Soberano 8K em Chapecó.');" 
-                            class="btn-luxury-cta py-5 px-6 text-[10px] font-bold active:scale-95 font-serif w-full hover:text-black"
+                            class="btn-luxury-cta py-5 px-6 text-xs md:text-sm font-bold active:scale-95 font-serif w-full hover:text-black uppercase"
                         >
                             <i 
                                 class="fab fa-whatsapp text-lg mr-2" 
                                 aria-hidden="true"
-                            ></i> Agendar em Chapecó
+                            ></i> 
+                            Agendar em Chapecó
                         </button>
                         <button 
                             onclick="gtag_report_conversion('https://wa.me/5549000000000?text=Desejo reservar o meu diagnóstico para o Liso Soberano 8K no Studio T em Seara.');" 
-                            class="btn-editorial py-5 px-6 text-[10px] font-bold active:scale-95 font-serif w-full border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black"
+                            class="btn-editorial py-5 px-6 text-xs md:text-sm font-bold active:scale-95 font-serif w-full border-gray-900 dark:border-brand-gold text-gray-900 dark:text-brand-gold hover:bg-[#8A6D3B] dark:hover:bg-brand-gold hover:text-white dark:hover:text-black uppercase"
                         >
                             <i 
                                 class="fab fa-whatsapp text-lg mr-2" 
                                 aria-hidden="true"
-                            ></i> Agendar em Seara
+                            ></i> 
+                            Agendar em Seara
                         </button>
                     </div>
                 </div>
