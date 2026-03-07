@@ -1633,32 +1633,41 @@
                     <!-- CARROSSEL CINEMÁTICO 4:5 (ACENDE NO SCROLL) -->
                     <div 
                         class="w-full max-w-5xl aspect-video rounded-sm border border-gray-300 dark:border-brand-gold/30 relative shadow-2xl overflow-hidden atelier-frame z-10 bg-black"
-aria-label="Galeria da Experiência Maison"
+                        aria-label="Galeria da Experiência Maison"
                     >
+                        
+                        <!-- FILTRO FUMÊ (90 GRAUS / 90% OPACIDADE) -->
+                        <div 
+                            class="absolute inset-0 z-20 pointer-events-none mix-blend-multiply dark:mix-blend-normal transition-all duration-1000"
+                            style="background: linear-gradient(90deg, rgba(5,1,1,0.9) 0%, rgba(5,1,1,0.2) 100%);"
+                            aria-hidden="true"
+                        ></div>
+
+                        <!-- IMAGENS DO CARROSSEL (BUG CORRIGIDO: OPACITY-0 INICIAL) -->
                         <img 
                             src="https://testeessencia.carrd.co/assets/images/image38.jpg?v=b7e964c1" 
-                            class="absolute inset-0 w-full h-full object-cover filter grayscale transition-all duration-1000 group-[.active]:grayscale-0 md:group-hover:grayscale-0 animate-crossfade-1" 
+                            class="absolute inset-0 w-full h-full object-cover filter grayscale transition-all duration-1000 group-[.active]:grayscale-0 md:group-hover:grayscale-0 animate-crossfade-1 opacity-0" 
                             alt="Interior Maison Salão" 
                             loading="lazy" 
                             decoding="async"
                         >
                         <img 
                             src="https://testeessencia.carrd.co/assets/images/image40.jpg?v=b7e964c1" 
-                            class="absolute inset-0 w-full h-full object-cover filter grayscale transition-all duration-1000 group-[.active]:grayscale-0 md:group-hover:grayscale-0 animate-crossfade-2" 
+                            class="absolute inset-0 w-full h-full object-cover filter grayscale transition-all duration-1000 group-[.active]:grayscale-0 md:group-hover:grayscale-0 animate-crossfade-2 opacity-0" 
                             alt="Lounge de Espera VIP" 
                             loading="lazy" 
                             decoding="async"
                         >
                         <img 
                             src="https://testeessencia.carrd.co/assets/images/image41.jpg?v=b7e964c1" 
-                            class="absolute inset-0 w-full h-full object-cover filter grayscale transition-all duration-1000 group-[.active]:grayscale-0 md:group-hover:grayscale-0 animate-crossfade-3" 
+                            class="absolute inset-0 w-full h-full object-cover filter grayscale transition-all duration-1000 group-[.active]:grayscale-0 md:group-hover:grayscale-0 animate-crossfade-3 opacity-0" 
                             alt="Cozinha Gourmet Maison" 
                             loading="lazy" 
                             decoding="async"
                         >
                         <img 
                             src="https://testeessencia.carrd.co/assets/images/image39.jpg?v=b7e964c1" 
-                            class="absolute inset-0 w-full h-full object-cover filter grayscale transition-all duration-1000 group-[.active]:grayscale-0 md:group-hover:grayscale-0 animate-crossfade-4" 
+                            class="absolute inset-0 w-full h-full object-cover filter grayscale transition-all duration-1000 group-[.active]:grayscale-0 md:group-hover:grayscale-0 animate-crossfade-4 opacity-0" 
                             alt="A Experiência Definitiva" 
                             loading="lazy" 
                             decoding="async"
@@ -1671,22 +1680,37 @@ aria-label="Galeria da Experiência Maison"
                 >
                     <span 
                         class="text-[#8A6D3B] dark:text-brand-gold text-[10px] md:text-xs tracking-[0.4em] block mb-6 font-serif"
-                    >A Experiência Definitiva</span>
+                    >
+                        A Experiência Definitiva
+                    </span>
                     <h3 
                         class="font-serif text-3xl md:text-5xl text-gray-900 dark:text-white mb-8 italic leading-tight font-bold"
-                    >Mais que um Salão, <br><span class="font-light text-gray-500 italic">uma Filosofia de Cuidado.</span></h3>
+                    >
+                        Mais que um Salão, <br>
+                        <span 
+                            class="font-light text-gray-500 italic"
+                        >
+                            uma Filosofia de Cuidado.
+                        </span>
+                    </h3>
                     <p 
                         class="text-gray-700 dark:text-gray-400 text-sm md:text-base leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-10 tracking-wider text-justify font-normal"
-                    >Somos especialistas em <strong>Progressivas e Tratamentos de Alto Impacto</strong>. Acreditamos que o liso perfeito não é sobre química pesada, mas sobre respeito absoluto à integridade do fio. Nossa metodologia une a precisão técnica com ativos biotecnológicos para entregar resultados que não apenas embelezam, mas tratam profundamente.</p>
+                    >
+                        Somos especialistas em <strong>Progressivas e Tratamentos de Alto Impacto</strong>. Acreditamos que o liso perfeito não é sobre química pesada, mas sobre respeito absoluto à integridade do fio. Nossa metodologia une a precisão técnica com ativos biotecnológicos para entregar resultados que não apenas embelezam, mas tratam profundamente.
+                    </p>
                     <div 
                         class="inline-block border-l-2 border-brand-gold pl-6 py-2 text-left"
                     >
                         <span 
                             class="font-serif text-xl md:text-2xl text-black dark:text-white tracking-widest block"
-                        >Essência de Romã</span>
+                        >
+                            Essência de Romã
+                        </span>
                         <span 
                             class="text-[10px] text-[#8A6D3B] dark:text-brand-gold tracking-[0.3em]"
-                        >Haute Coiffure • Chapecó</span>
+                        >
+                            Haute Coiffure • Chapecó
+                        </span>
                     </div>
                 </div>
             </div>
@@ -1950,17 +1974,23 @@ aria-label="Galeria da Experiência Maison"
              <div>
                 <span 
                     class="text-[#8A6D3B] dark:text-brand-gold text-xs tracking-[0.5em] block mb-4 font-serif italic uppercase font-bold"
-                >Engineering Phase</span>
+                >
+                    Engineering Phase
+                </span>
                 <h2 
                     class="font-serif text-4xl md:text-7xl italic text-gray-900 dark:text-white font-bold"
-                >Liso Soberano <span class="text-[#8A6D3B] dark:text-brand-gold">8K</span></h2>
+                >
+                    Liso Soberano <span class="text-[#8A6D3B] dark:text-brand-gold">8K</span>
+                </h2>
              </div>
              <div 
                 class="text-left md:text-right"
              >
                 <span 
                     class="bg-[#8A6D3B] dark:bg-brand-gold text-white dark:text-black px-6 py-3 text-xs md:text-sm shadow-gold-glow rounded-sm font-bold tracking-widest uppercase"
-                >Campanha: Preço Congelado</span>
+                >
+                    Campanha: Preço Congelado
+                </span>
              </div>
         </div>
         
@@ -1971,10 +2001,10 @@ aria-label="Galeria da Experiência Maison"
                 class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start mb-24 reveal"
             >
                 <!-- ============================================================================
-                     COLUNA ESQUERDA: GALERIA E TABELA DE PREÇOS
+                     COLUNA ESQUERDA: GALERIA -> PRODUTO SLIM -> PROTOCOLO SLIM -> TABELA
                      ============================================================================ -->
                 <div 
-                    class="flex flex-col gap-16 w-full"
+                    class="flex flex-col gap-12 w-full order-2 lg:order-1"
                 >
                     <!-- GALERIA DE IMAGENS -->
                     <div 
@@ -2099,7 +2129,240 @@ aria-label="Galeria da Experiência Maison"
                         </div>
                     </div>
 
-                    <!-- MATRIZ DE INVESTIMENTO ESTRATÉGICA (ANCORAGEM LISO 8K) MOVIDA -->
+                    <!-- MÓDULO DO PRODUTO: SLIM & ALONGADO -->
+                    <div 
+                        class="w-full bg-gray-100 dark:bg-[#0a0202] border border-gray-300 dark:border-brand-gold/20 rounded-sm flex flex-row items-center p-4 md:p-6 gap-6 shadow-sm reveal"
+                    >
+                        <div 
+                            class="w-16 h-24 md:w-20 md:h-28 flex-shrink-0 bg-black rounded-sm border border-brand-gold/30 overflow-hidden p-1.5"
+                        >
+                            <img 
+                                src="https://testeessencia.carrd.co/assets/images/image52.jpg" 
+                                class="w-full h-full object-contain" 
+                                alt="Plástica Híbrida Gloss Premium 1L" 
+                                loading="lazy"
+                            >
+                        </div>
+                        <div 
+                            class="flex flex-col flex-grow text-left"
+                        >
+                            <span 
+                                class="text-[9px] md:text-[10px] text-[#8A6D3B] dark:text-brand-gold uppercase tracking-widest font-bold font-serif mb-1"
+                            >
+                                Complexo Molecular Híbrido
+                            </span>
+                            <h4 
+                                class="text-sm md:text-base font-serif italic text-gray-900 dark:text-white mb-2 font-bold"
+                            >
+                                Plástica Híbrida Gloss Premium
+                            </h4>
+                            <div 
+                                class="text-[9px] md:text-xs text-gray-700 dark:text-gray-400 tracking-wider leading-relaxed flex flex-wrap gap-x-4 gap-y-1 font-bold"
+                            >
+                                <span 
+                                    class="flex items-center"
+                                >
+                                    <i 
+                                        class="fas fa-check text-[#8A6D3B] dark:text-brand-gold mr-1 text-[8px]" 
+                                        aria-hidden="true"
+                                    ></i> 
+                                    Ácido Molecular
+                                </span>
+                                <span 
+                                    class="flex items-center"
+                                >
+                                    <i 
+                                        class="fas fa-check text-[#8A6D3B] dark:text-brand-gold mr-1 text-[8px]" 
+                                        aria-hidden="true"
+                                    ></i> 
+                                    Proteína de Trigo
+                                </span>
+                                <span 
+                                    class="flex items-center"
+                                >
+                                    <i 
+                                        class="fas fa-check text-[#8A6D3B] dark:text-brand-gold mr-1 text-[8px]" 
+                                        aria-hidden="true"
+                                    ></i> 
+                                    Lipídios de Uva
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MÓDULO PROTOCOLO: SLIM (GRID 2 COLUNAS) -->
+                    <div 
+                        class="w-full border border-gray-300 dark:border-white/10 rounded-sm p-6 md:p-8 bg-white dark:bg-transparent reveal"
+                    >
+                        <div 
+                            class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 border-b border-gray-200 dark:border-white/5 pb-4 gap-4"
+                        >
+                            <h4 
+                                class="font-serif text-2xl md:text-3xl text-gray-900 dark:text-white italic font-bold"
+                            >
+                                Protocolo de <span class="text-[#8A6D3B] dark:text-brand-gold">Aplicação</span>
+                            </h4>
+                            <span 
+                                class="text-[9px] md:text-[10px] bg-[#8A6D3B] dark:bg-brand-gold text-white dark:text-black px-4 py-1 uppercase tracking-widest font-black rounded-sm"
+                            >
+                                O Processo
+                            </span>
+                        </div>
+                        
+                        <div 
+                            class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6"
+                        >
+                            <!-- Coluna Esquerda (Passos 1-4) -->
+                            <div 
+                                class="relative border-l border-gray-300 dark:border-brand-gold/30 pl-5 space-y-6"
+                            >
+                                <div 
+                                    class="relative"
+                                >
+                                    <div 
+                                        class="absolute -left-[25px] top-1 w-2 h-2 bg-[#8A6D3B] dark:bg-brand-gold rounded-full shadow-[0_0_8px_rgba(212,175,55,0.8)]"
+                                    ></div>
+                                    <h5 
+                                        class="text-[11px] md:text-xs text-gray-900 dark:text-white uppercase tracking-widest font-bold mb-0.5"
+                                    >
+                                        1. Identificação do Fio
+                                    </h5>
+                                    <p 
+                                        class="text-[10px] text-gray-700 dark:text-gray-400 tracking-wider font-normal leading-relaxed"
+                                    >
+                                        Diagnóstico de resistência e estrutura.
+                                    </p>
+                                </div>
+                                <div 
+                                    class="relative"
+                                >
+                                    <div 
+                                        class="absolute -left-[25px] top-1 w-2 h-2 bg-gray-300 dark:bg-white rounded-full"
+                                    ></div>
+                                    <h5 
+                                        class="text-[11px] md:text-xs text-gray-900 dark:text-white uppercase tracking-widest font-bold mb-0.5"
+                                    >
+                                        2. Higienização
+                                    </h5>
+                                    <p 
+                                        class="text-[10px] text-gray-700 dark:text-gray-400 tracking-wider font-normal leading-relaxed"
+                                    >
+                                        Desobstrução cuticular sem agressão.
+                                    </p>
+                                </div>
+                                <div 
+                                    class="relative"
+                                >
+                                    <div 
+                                        class="absolute -left-[25px] top-1 w-2 h-2 bg-gray-300 dark:bg-white rounded-full"
+                                    ></div>
+                                    <h5 
+                                        class="text-[11px] md:text-xs text-gray-900 dark:text-white uppercase tracking-widest font-bold mb-0.5"
+                                    >
+                                        3. Infusão Híbrida
+                                    </h5>
+                                    <p 
+                                        class="text-[10px] text-gray-700 dark:text-gray-400 tracking-wider font-normal leading-relaxed"
+                                    >
+                                        Aplicação milimétrica da Plástica 8K.
+                                    </p>
+                                </div>
+                                <div 
+                                    class="relative"
+                                >
+                                    <div 
+                                        class="absolute -left-[25px] top-1 w-2 h-2 bg-[#8A6D3B]/50 dark:bg-brand-gold/50 rounded-full animate-pulse"
+                                    ></div>
+                                    <h5 
+                                        class="text-[11px] md:text-xs text-[#8A6D3B] dark:text-brand-gold uppercase tracking-widest font-bold mb-0.5"
+                                    >
+                                        4. Pausa de Ação
+                                    </h5>
+                                    <p 
+                                        class="text-[10px] text-gray-900 dark:text-gray-200 tracking-wider font-bold leading-relaxed"
+                                    >
+                                        Ação entre 40 a 60 minutos (por afinidade).
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Coluna Direita (Passos 5-8) -->
+                            <div 
+                                class="relative border-l border-gray-300 dark:border-brand-gold/30 pl-5 space-y-6"
+                            >
+                                <div 
+                                    class="relative"
+                                >
+                                    <div 
+                                        class="absolute -left-[25px] top-1 w-2 h-2 bg-gray-300 dark:bg-white rounded-full"
+                                    ></div>
+                                    <h5 
+                                        class="text-[11px] md:text-xs text-gray-900 dark:text-white uppercase tracking-widest font-bold mb-0.5"
+                                    >
+                                        5. Remoção Leve
+                                    </h5>
+                                    <p 
+                                        class="text-[10px] text-gray-700 dark:text-gray-400 tracking-wider font-normal leading-relaxed"
+                                    >
+                                        Enxágue preciso para evitar peso residual.
+                                    </p>
+                                </div>
+                                <div 
+                                    class="relative"
+                                >
+                                    <div 
+                                        class="absolute -left-[25px] top-1 w-2 h-2 bg-gray-300 dark:bg-white rounded-full"
+                                    ></div>
+                                    <h5 
+                                        class="text-[11px] md:text-xs text-gray-900 dark:text-white uppercase tracking-widest font-bold mb-0.5"
+                                    >
+                                        6. Blindagem Térmica
+                                    </h5>
+                                    <p 
+                                        class="text-[10px] text-gray-700 dark:text-gray-400 tracking-wider font-normal leading-relaxed"
+                                    >
+                                        Aplicação de Sérum de proteção de calor.
+                                    </p>
+                                </div>
+                                <div 
+                                    class="relative"
+                                >
+                                    <div 
+                                        class="absolute -left-[25px] top-1 w-2 h-2 bg-gray-300 dark:bg-white rounded-full"
+                                    ></div>
+                                    <h5 
+                                        class="text-[11px] md:text-xs text-gray-900 dark:text-white uppercase tracking-widest font-bold mb-0.5"
+                                    >
+                                        7. Alinhamento Hídrico
+                                    </h5>
+                                    <p 
+                                        class="text-[10px] text-gray-700 dark:text-gray-400 tracking-wider font-normal leading-relaxed"
+                                    >
+                                        Secagem profissional direcional.
+                                    </p>
+                                </div>
+                                <div 
+                                    class="relative"
+                                >
+                                    <div 
+                                        class="absolute -left-[25px] top-1 w-2 h-2 bg-[#8A6D3B] dark:bg-brand-gold rounded-full shadow-[0_0_8px_rgba(212,175,55,0.8)]"
+                                    ></div>
+                                    <h5 
+                                        class="text-[11px] md:text-xs text-[#8A6D3B] dark:text-brand-gold uppercase tracking-widest font-black mb-0.5"
+                                    >
+                                        8. Selamento 8K
+                                    </h5>
+                                    <p 
+                                        class="text-[10px] text-gray-900 dark:text-gray-200 tracking-wider font-bold leading-relaxed"
+                                    >
+                                        Cristalização fina com prancha de alta definição.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MATRIZ DE INVESTIMENTO ESTRATÉGICA -->
                     <div 
                         class="w-full reveal"
                     >
@@ -2526,26 +2789,26 @@ aria-label="Galeria da Experiência Maison"
                 </div>
                 
                 <!-- ============================================================================
-                     COLUNA DIREITA: PROTOCOLOS, ATIVOS E BOTÕES
+                     COLUNA DIREITA: TEXTO EDITORIAL -> SELOS -> MACRO -> CTAs
                      ============================================================================ -->
                 <div 
-                    class="flex flex-col"
+                    class="flex flex-col gap-8 w-full order-1 lg:order-2"
                 >
                     <h3 
-                        class="font-serif text-3xl md:text-5xl mb-8 italic leading-tight text-gray-900 dark:text-white"
+                        class="font-serif text-3xl md:text-5xl mb-2 italic leading-tight text-gray-900 dark:text-white"
                     >
                         O Liso de <br><span class="text-[#8A6D3B] dark:text-brand-gold">Alta Costura</span>
                     </h3>
 
                     <p 
-                        class="text-sm md:text-base text-gray-800 dark:text-gray-300 leading-relaxed mb-10 text-justify tracking-wide"
+                        class="text-sm md:text-base text-gray-800 dark:text-gray-300 leading-relaxed text-justify tracking-wide font-normal"
                     >
                         Esqueça o conceito de "progressivas agressivas". O Liso Soberano 8K é uma verdadeira engenharia de arquitetura capilar. Através da nossa biotecnologia livre de formol, reorganizamos as pontes estruturais do seu cabelo de dentro para fora, entregando um caimento luxuoso, balanço natural e o cobiçado espelhamento vítreo tridimensional. O fim absoluto do uso diário da chapinha.
                     </p>
 
                     <!-- SELOS DE AUTORIDADE -->
                     <div 
-                        class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10"
+                        class="grid grid-cols-1 sm:grid-cols-3 gap-4"
                     >
                         <div 
                             class="flex items-center gap-3 p-4 bg-gray-100 dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-sm shadow-sm"
@@ -2563,7 +2826,7 @@ aria-label="Galeria da Experiência Maison"
                                     Orgânico
                                 </span>
                                 <span 
-                                    class="text-[10px] md:text-xs text-gray-700 dark:text-gray-400 uppercase tracking-widest"
+                                    class="text-[10px] md:text-xs text-gray-700 dark:text-gray-400 uppercase tracking-widest font-normal"
                                 >
                                     100% Sem Formol
                                 </span>
@@ -2585,7 +2848,7 @@ aria-label="Galeria da Experiência Maison"
                                     Conforto
                                 </span>
                                 <span 
-                                    class="text-[10px] md:text-xs text-gray-700 dark:text-gray-400 uppercase tracking-widest"
+                                    class="text-[10px] md:text-xs text-gray-700 dark:text-gray-400 uppercase tracking-widest font-normal"
                                 >
                                     Sem Cheiro Forte
                                 </span>
@@ -2607,7 +2870,7 @@ aria-label="Galeria da Experiência Maison"
                                     Anvisa
                                 </span>
                                 <span 
-                                    class="text-[10px] md:text-xs text-gray-700 dark:text-gray-400 uppercase tracking-widest"
+                                    class="text-[10px] md:text-xs text-gray-700 dark:text-gray-400 uppercase tracking-widest font-normal"
                                 >
                                     Registro Oficial
                                 </span>
@@ -2615,245 +2878,8 @@ aria-label="Galeria da Experiência Maison"
                         </div>
                     </div>
 
-                    <!-- MÓDULO DO PRODUTO UTILIZADO -->
                     <div 
-                        class="bg-gray-100 dark:bg-[#0a0202] p-8 rounded-sm border border-gray-300 dark:border-brand-gold/20 mb-12 shadow-inner"
-                    >
-                        <div 
-                            class="flex flex-col md:flex-row items-center gap-8 mb-8 border-b border-gray-300 dark:border-white/10 pb-8"
-                        >
-                            <div 
-                                class="w-24 h-32 flex-shrink-0 relative overflow-hidden rounded-sm border border-brand-gold/30 bg-black"
-                            >
-                                <img 
-                                    src="https://testeessencia.carrd.co/assets/images/image52.jpg" 
-                                    class="w-full h-full object-contain p-2" 
-                                    alt="Plástica Híbrida Gloss Premium 1L" 
-                                    loading="lazy"
-                                >
-                            </div>
-                            <div 
-                                class="flex flex-col"
-                            >
-                                <span 
-                                    class="text-[#8A6D3B] dark:text-brand-gold text-[11px] md:text-xs uppercase tracking-widest mb-2 font-serif font-bold"
-                                >
-                                    A Base Tecnológica
-                                </span>
-                                <h4 
-                                    class="text-gray-900 dark:text-white font-serif text-2xl italic mb-3"
-                                >
-                                    Plástica Híbrida Gloss Premium
-                                </h4>
-                                <p 
-                                    class="text-sm text-gray-800 dark:text-gray-300 tracking-wider leading-relaxed"
-                                >
-                                    O Liso 8K não é magia, é química de alta performance. Utilizamos o nosso produto Híbrido Premium para garantir segurança total.
-                                </p>
-                            </div>
-                        </div>
-                        <div 
-                            class="grid grid-cols-1 sm:grid-cols-2 gap-6"
-                        >
-                            <div 
-                                class="flex flex-col"
-                            >
-                                <span 
-                                    class="text-[#8A6D3B] dark:text-brand-gold text-xs uppercase font-bold mb-2 tracking-widest"
-                                >
-                                    <i 
-                                        class="fas fa-flask mr-2" 
-                                        aria-hidden="true"
-                                    ></i> Ativos
-                                </span>
-                                <ul 
-                                    class="text-sm text-gray-800 dark:text-gray-300 space-y-2 tracking-wider"
-                                >
-                                    <li>• Ácido Molecular Reticulado</li>
-                                    <li>• Proteína de Trigo (Anti-quebra)</li>
-                                    <li>• Blend Lipídico de Uva</li>
-                                </ul>
-                            </div>
-                            <div 
-                                class="flex flex-col"
-                            >
-                                <span 
-                                    class="text-[#8A6D3B] dark:text-brand-gold text-xs uppercase font-bold mb-2 tracking-widest"
-                                >
-                                    <i 
-                                        class="fas fa-star mr-2" 
-                                        aria-hidden="true"
-                                    ></i> Benefícios
-                                </span>
-                                <ul 
-                                    class="text-sm text-gray-800 dark:text-gray-300 space-y-2 tracking-wider"
-                                >
-                                    <li>• Alisamento Definitivo Seguro</li>
-                                    <li>• Brilho Vítreo Espelhado</li>
-                                    <li>• Fim absoluto da Chapinha Diária</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- MÓDULO: O PROTOCOLO PASSO A PASSO -->
-                    <div 
-                        class="p-8 border border-gray-300 dark:border-white/10 rounded-sm relative overflow-hidden mb-12 bg-white dark:bg-transparent"
-                    >
-                        <div 
-                            class="absolute top-0 right-0 bg-[#8A6D3B] dark:bg-brand-gold text-white dark:text-black px-4 py-1 text-[11px] md:text-xs uppercase tracking-widest font-black"
-                        >
-                            O Processo
-                        </div>
-                        <h4 
-                            class="font-serif text-3xl text-gray-900 dark:text-white italic mb-8"
-                        >
-                            Protocolo de <span class="text-[#8A6D3B] dark:text-brand-gold">Aplicação</span>
-                        </h4>
-                        <div 
-                            class="relative border-l border-gray-300 dark:border-brand-gold/30 pl-6 space-y-8"
-                        >
-                            <div 
-                                class="relative"
-                            >
-                                <div 
-                                    class="absolute -left-[31px] top-1 w-3 h-3 bg-[#8A6D3B] dark:bg-brand-gold rounded-full shadow-[0_0_10px_rgba(138,109,59,0.8)] dark:shadow-[0_0_10px_rgba(212,175,55,0.8)]"
-                                ></div>
-                                <h5 
-                                    class="text-gray-900 dark:text-white text-sm uppercase tracking-widest font-bold mb-1"
-                                >
-                                    1. Identificação do Fio
-                                </h5>
-                                <p 
-                                    class="text-sm text-gray-800 dark:text-gray-300 tracking-wider"
-                                >
-                                    Diagnóstico rigoroso de estrutura e resistência antes de qualquer química.
-                                </p>
-                            </div>
-                            <div 
-                                class="relative"
-                            >
-                                <div 
-                                    class="absolute -left-[31px] top-1 w-3 h-3 bg-gray-200 dark:bg-white border border-[#8A6D3B] dark:border-brand-gold rounded-full"
-                                ></div>
-                                <h5 
-                                    class="text-gray-900 dark:text-white text-sm uppercase tracking-widest font-bold mb-1"
-                                >
-                                    2. Higienização Correta
-                                </h5>
-                                <p 
-                                    class="text-sm text-gray-800 dark:text-gray-300 tracking-wider"
-                                >
-                                    Lavagem profunda para preparar e desobstruir as cutículas do cabelo.
-                                </p>
-                            </div>
-                            <div 
-                                class="relative"
-                            >
-                                <div 
-                                    class="absolute -left-[31px] top-1 w-3 h-3 bg-gray-200 dark:bg-white border border-[#8A6D3B] dark:border-brand-gold rounded-full"
-                                ></div>
-                                <h5 
-                                    class="text-gray-900 dark:text-white text-sm uppercase tracking-widest font-bold mb-1"
-                                >
-                                    3. Aplicação do Liso 8K
-                                </h5>
-                                <p 
-                                    class="text-sm text-gray-800 dark:text-gray-300 tracking-wider"
-                                >
-                                    Infusão milimétrica da Plástica Híbrida Gloss Premium mecha a mecha.
-                                </p>
-                            </div>
-                            <div 
-                                class="relative"
-                            >
-                                <div 
-                                    class="absolute -left-[31px] top-1 w-3 h-3 bg-[#8A6D3B]/50 dark:bg-brand-gold/50 border border-[#8A6D3B] dark:border-brand-gold rounded-full animate-pulse"
-                                ></div>
-                                <h5 
-                                    class="text-[#8A6D3B] dark:text-brand-gold text-sm uppercase tracking-widest font-bold mb-1"
-                                >
-                                    4. Tempo de Ação
-                                </h5>
-                                <p 
-                                    class="text-sm md:text-base text-gray-900 dark:text-gray-200 tracking-wider font-bold"
-                                >
-                                    Pausa milimétrica de 40 a 60 minutos estipulada conforme a estrutura do seu fio.
-                                </p>
-                            </div>
-                            <div 
-                                class="relative"
-                            >
-                                <div 
-                                    class="absolute -left-[31px] top-1 w-3 h-3 bg-gray-200 dark:bg-white border border-[#8A6D3B] dark:border-brand-gold rounded-full"
-                                ></div>
-                                <h5 
-                                    class="text-gray-900 dark:text-white text-sm uppercase tracking-widest font-bold mb-1"
-                                >
-                                    5. Lavatório (Enxágue)
-                                </h5>
-                                <p 
-                                    class="text-sm text-gray-800 dark:text-gray-300 tracking-wider"
-                                >
-                                    Remoção precisa do produto para garantir leveza e zero resíduos.
-                                </p>
-                            </div>
-                            <div 
-                                class="relative"
-                            >
-                                <div 
-                                    class="absolute -left-[31px] top-1 w-3 h-3 bg-gray-200 dark:bg-white border border-[#8A6D3B] dark:border-brand-gold rounded-full"
-                                ></div>
-                                <h5 
-                                    class="text-gray-900 dark:text-white text-sm uppercase tracking-widest font-bold mb-1"
-                                >
-                                    6. Aplicação de Sérum
-                                </h5>
-                                <p 
-                                    class="text-sm text-gray-800 dark:text-gray-300 tracking-wider"
-                                >
-                                    Uso do Sérum Fortalecedor para blindagem térmica.
-                                </p>
-                            </div>
-                            <div 
-                                class="relative"
-                            >
-                                <div 
-                                    class="absolute -left-[31px] top-1 w-3 h-3 bg-gray-200 dark:bg-white border border-[#8A6D3B] dark:border-brand-gold rounded-full"
-                                ></div>
-                                <h5 
-                                    class="text-gray-900 dark:text-white text-sm uppercase tracking-widest font-bold mb-1"
-                                >
-                                    7. Secagem Profissional
-                                </h5>
-                                <p 
-                                    class="text-sm text-gray-800 dark:text-gray-300 tracking-wider"
-                                >
-                                    Alinhamento hídrico com secador, preparando a fibra.
-                                </p>
-                            </div>
-                            <div 
-                                class="relative"
-                            >
-                                <div 
-                                    class="absolute -left-[31px] top-1 w-3 h-3 bg-[#8A6D3B] dark:bg-brand-gold rounded-full shadow-[0_0_10px_rgba(138,109,59,0.8)] dark:shadow-[0_0_10px_rgba(212,175,55,0.8)]"
-                                ></div>
-                                <h5 
-                                    class="text-[#8A6D3B] dark:text-brand-gold text-sm uppercase tracking-widest font-bold mb-1"
-                                >
-                                    8. Finalização com Chapinha
-                                </h5>
-                                <p 
-                                    class="text-sm md:text-base text-gray-900 dark:text-gray-200 tracking-wider font-bold"
-                                >
-                                    O selo definitivo 8K. Pranchamento em mechas finas para cristalizar o ácido molecular no córtex.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div 
-                        class="flex items-center gap-4 mb-10 text-xs md:text-sm uppercase font-bold tracking-widest text-[#8A6D3B] dark:text-brand-gold border border-gray-300 dark:border-brand-gold/30 p-4 bg-gray-100 dark:bg-brand-gold/5 rounded-sm"
+                        class="flex items-center gap-4 text-xs md:text-sm uppercase font-bold tracking-widest text-[#8A6D3B] dark:text-brand-gold border border-gray-300 dark:border-brand-gold/30 p-4 bg-gray-100 dark:bg-brand-gold/5 rounded-sm"
                     >
                         <i 
                             class="far fa-calendar-check text-xl" 
@@ -2864,9 +2890,9 @@ aria-label="Galeria da Experiência Maison"
                         </span>
                     </div>
 
-                    <!-- MÓDULO MACRO (BOLHAS ANTES/DEPOIS) - RESTAURADO & EXPANDIDO -->
+                    <!-- MÓDULO MACRO (BOLHAS ANTES/DEPOIS) - GIGANTE RESTAURADO -->
                     <div 
-                        class="flex items-center justify-center gap-6 sm:gap-10 mb-12 p-8 border border-gray-300 dark:border-white/5 rounded-sm bg-white dark:bg-black/20" 
+                        class="flex items-center justify-center gap-6 sm:gap-10 p-8 border border-gray-300 dark:border-white/5 rounded-sm bg-white dark:bg-black/20" 
                         aria-label="Comparação Macro da Fibra Capilar"
                         data-testid="macro-comparison-liso"
                         role="region"
@@ -2921,9 +2947,9 @@ aria-label="Galeria da Experiência Maison"
                         </div>
                     </div>
                     
-                    <!-- BOTÕES DUPLOS (CHAPECÓ E SEARA) -->
+                    <!-- BOTÕES DUPLOS (CHAPECÓ E SEARA) NO FIM DA COLUNA DIREITA -->
                     <div 
-                        class="flex flex-col sm:flex-row gap-4 w-full"
+                        class="flex flex-col sm:flex-row gap-4 w-full mt-4"
                     >
                         <button 
                             onclick="gtag_report_conversion('https://wa.me/5549999954052?text=Desejo reservar o meu diagnóstico para o Liso Soberano 8K em Chapecó.');" 
@@ -2958,18 +2984,18 @@ aria-label="Galeria da Experiência Maison"
         aria-label="Terapia Glass Molecular"
     >
         <div 
-            class="max-w-7xl mx-auto border-b border-gray-100 dark:border-white/10 pb-8 mb-24 px-6 flex flex-col md:flex-row justify-between items-end gap-6"
+            class="max-w-7xl mx-auto border-b border-gray-200 dark:border-white/10 pb-8 mb-24 px-6 flex flex-col md:flex-row justify-between items-end gap-6"
         >
              <div>
                 <span 
-                    class="text-[#8A6D3B] dark:text-brand-gold text-[10px] block mb-4 font-serif tracking-[0.5em] italic"
+                    class="text-[#8A6D3B] dark:text-brand-gold text-[11px] block mb-4 font-serif tracking-[0.5em] italic uppercase font-bold"
                 >
                     Refractive Index
                 </span>
                 <h2 
-                    class="font-serif text-4xl md:text-7xl italic text-black dark:text-white"
+                    class="font-serif text-4xl md:text-7xl italic text-gray-900 dark:text-white font-bold"
                 >
-                    Glass <span class="text-brand-gold">Molecular</span>
+                    Glass <span class="text-[#8A6D3B] dark:text-brand-gold">Molecular</span>
                 </h2>
              </div>
         </div>
@@ -2978,264 +3004,470 @@ aria-label="Galeria da Experiência Maison"
             class="container mx-auto px-6 max-w-7xl"
         >
             <div 
-                class="grid lg:grid-cols-2 gap-24 items-start mb-40 reveal"
+                class="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start mb-40 reveal"
             >
+                <!-- ============================================================================
+                     COLUNA ESQUERDA (GLASS): GALERIA -> PRODUTO SLIM -> PROTOCOLO SLIM
+                     ============================================================================ -->
                 <div 
-                    class="flex flex-col order-2 lg:order-1"
+                    class="flex flex-col gap-12 w-full order-2 lg:order-1"
+                >
+                    <!-- GALERIA DE IMAGENS -->
+                    <div 
+                        class="flex flex-col gap-6 w-full max-w-md mx-auto"
+                    >
+                        <div 
+                            id="glass-main-stage-final" 
+                            class="relative w-full aspect-[4/5] rounded-sm shadow-2xl overflow-hidden atelier-frame"
+                        >
+                            <img 
+                                src="https://testeessencia.carrd.co/assets/images/image28.jpg" 
+                                class="absolute inset-0 w-full h-full object-cover animate-fade-in-up" 
+                                alt="Cabelo após Glass"
+                                loading="lazy"
+                            >
+                        </div>
+                        
+                        <div 
+                            class="mini-carousel-x"
+                        >
+                            <button 
+                                class="mini-thumb active border-brand-gold border-2" 
+                                onclick="MaisonApp.ui.switchGlassMedia('https://testeessencia.carrd.co/assets/images/image28.jpg', this, 'glass-main-stage-final')"
+                            >
+                                <img 
+                                    src="https://testeessencia.carrd.co/assets/images/image28.jpg" 
+                                    class="w-full h-full object-cover" 
+                                    loading="lazy"
+                                >
+                            </button>
+                            <button 
+                                class="mini-thumb" 
+                                onclick="MaisonApp.ui.switchGlassMedia('https://testeessencia.carrd.co/assets/images/image24.jpg', this, 'glass-main-stage-final')"
+                            >
+                                <img 
+                                    src="https://testeessencia.carrd.co/assets/images/image24.jpg" 
+                                    class="w-full h-full object-cover" 
+                                    loading="lazy"
+                                >
+                            </button>
+                            <button 
+                                class="mini-thumb" 
+                                onclick="MaisonApp.ui.switchGlassMedia('https://testeessencia.carrd.co/assets/images/image26.jpg', this, 'glass-main-stage-final')"
+                            >
+                                <img 
+                                    src="https://testeessencia.carrd.co/assets/images/image26.jpg" 
+                                    class="w-full h-full object-cover" 
+                                    loading="lazy"
+                                >
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- MÓDULO DO PRODUTO: SLIM & ALONGADO (GLASS) -->
+                    <div 
+                        class="w-full bg-gray-100 dark:bg-[#0a0202] border border-gray-300 dark:border-brand-gold/20 rounded-sm flex flex-row items-center p-4 md:p-6 gap-6 shadow-sm reveal"
+                    >
+                        <div 
+                            class="w-16 h-24 md:w-20 md:h-28 flex-shrink-0 bg-black rounded-sm border border-gray-400 dark:border-brand-gold/30 overflow-hidden p-1.5"
+                        >
+                            <img 
+                                src="https://testeessencia.carrd.co/assets/images/image52.jpg" 
+                                class="w-full h-full object-contain" 
+                                alt="Ácido Molecular Híbrido 1L" 
+                                loading="lazy"
+                            >
+                        </div>
+                        <div 
+                            class="flex flex-col flex-grow text-left"
+                        >
+                            <span 
+                                class="text-[9px] md:text-[10px] text-[#8A6D3B] dark:text-brand-gold uppercase tracking-widest font-bold font-serif mb-1"
+                            >
+                                A Base Tecnológica
+                            </span>
+                            <h4 
+                                class="text-sm md:text-base font-serif italic text-gray-900 dark:text-white mb-2 font-bold"
+                            >
+                                Ácido Molecular (Híbrido)
+                            </h4>
+                            <div 
+                                class="text-[9px] md:text-xs text-gray-700 dark:text-gray-400 tracking-wider leading-relaxed flex flex-wrap gap-x-4 gap-y-1 font-bold"
+                            >
+                                <span 
+                                    class="flex items-center"
+                                >
+                                    <i 
+                                        class="fas fa-check text-[#8A6D3B] dark:text-brand-gold mr-1 text-[8px]" 
+                                        aria-hidden="true"
+                                    ></i> 
+                                    Ácido Molecular
+                                </span>
+                                <span 
+                                    class="flex items-center"
+                                >
+                                    <i 
+                                        class="fas fa-check text-[#8A6D3B] dark:text-brand-gold mr-1 text-[8px]" 
+                                        aria-hidden="true"
+                                    ></i> 
+                                    Lipídios Nobres
+                                </span>
+                                <span 
+                                    class="flex items-center"
+                                >
+                                    <i 
+                                        class="fas fa-check text-[#8A6D3B] dark:text-brand-gold mr-1 text-[8px]" 
+                                        aria-hidden="true"
+                                    ></i> 
+                                    Proteína da Seda
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MÓDULO PROTOCOLO: SLIM (GRID 2 COLUNAS) -->
+                    <div 
+                        class="w-full border border-gray-300 dark:border-white/10 rounded-sm p-6 md:p-8 bg-white dark:bg-transparent reveal"
+                    >
+                        <div 
+                            class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 border-b border-gray-200 dark:border-white/5 pb-4 gap-4"
+                        >
+                            <h4 
+                                class="font-serif text-2xl md:text-3xl text-gray-900 dark:text-white italic font-bold"
+                            >
+                                Protocolo de <span class="text-[#8A6D3B] dark:text-brand-gold">Aplicação</span>
+                            </h4>
+                            <span 
+                                class="text-[9px] md:text-[10px] bg-[#8A6D3B] dark:bg-brand-gold text-white dark:text-black px-4 py-1 uppercase tracking-widest font-black rounded-sm"
+                            >
+                                O Processo
+                            </span>
+                        </div>
+                        
+                        <div 
+                            class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6"
+                        >
+                            <!-- Coluna Esquerda (Passos 1-4) -->
+                            <div 
+                                class="relative border-l border-gray-300 dark:border-brand-gold/30 pl-5 space-y-6"
+                            >
+                                <div 
+                                    class="relative"
+                                >
+                                    <div 
+                                        class="absolute -left-[25px] top-1 w-2 h-2 bg-[#8A6D3B] dark:bg-brand-gold rounded-full shadow-[0_0_8px_rgba(212,175,55,0.8)]"
+                                    ></div>
+                                    <h5 
+                                        class="text-[11px] md:text-xs text-gray-900 dark:text-white uppercase tracking-widest font-bold mb-0.5"
+                                    >
+                                        1. Mapeamento
+                                    </h5>
+                                    <p 
+                                        class="text-[10px] text-gray-700 dark:text-gray-400 tracking-wider font-normal leading-relaxed"
+                                    >
+                                        Análise de porosidade e frizz.
+                                    </p>
+                                </div>
+                                <div 
+                                    class="relative"
+                                >
+                                    <div 
+                                        class="absolute -left-[25px] top-1 w-2 h-2 bg-gray-300 dark:bg-white rounded-full"
+                                    ></div>
+                                    <h5 
+                                        class="text-[11px] md:text-xs text-gray-900 dark:text-white uppercase tracking-widest font-bold mb-0.5"
+                                    >
+                                        2. Preparação
+                                    </h5>
+                                    <p 
+                                        class="text-[10px] text-gray-700 dark:text-gray-400 tracking-wider font-normal leading-relaxed"
+                                    >
+                                        Desobstrução sem dilatação agressiva.
+                                    </p>
+                                </div>
+                                <div 
+                                    class="relative"
+                                >
+                                    <div 
+                                        class="absolute -left-[25px] top-1 w-2 h-2 bg-gray-300 dark:bg-white rounded-full"
+                                    ></div>
+                                    <h5 
+                                        class="text-[11px] md:text-xs text-gray-900 dark:text-white uppercase tracking-widest font-bold mb-0.5"
+                                    >
+                                        3. Infusão Ativa
+                                    </h5>
+                                    <p 
+                                        class="text-[10px] text-gray-700 dark:text-gray-400 tracking-wider font-normal leading-relaxed"
+                                    >
+                                        Aplicação do Ácido Molecular.
+                                    </p>
+                                </div>
+                                <div 
+                                    class="relative"
+                                >
+                                    <div 
+                                        class="absolute -left-[25px] top-1 w-2 h-2 bg-[#8A6D3B]/50 dark:bg-brand-gold/50 rounded-full animate-pulse"
+                                    ></div>
+                                    <h5 
+                                        class="text-[11px] md:text-xs text-[#8A6D3B] dark:text-brand-gold uppercase tracking-widest font-bold mb-0.5"
+                                    >
+                                        4. Cristalização
+                                    </h5>
+                                    <p 
+                                        class="text-[10px] text-gray-900 dark:text-gray-200 tracking-wider font-bold leading-relaxed"
+                                    >
+                                        Pausa expressa de 15 a 20 minutos.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Coluna Direita (Passos 5-8) -->
+                            <div 
+                                class="relative border-l border-gray-300 dark:border-brand-gold/30 pl-5 space-y-6"
+                            >
+                                <div 
+                                    class="relative"
+                                >
+                                    <div 
+                                        class="absolute -left-[25px] top-1 w-2 h-2 bg-gray-300 dark:bg-white rounded-full"
+                                    ></div>
+                                    <h5 
+                                        class="text-[11px] md:text-xs text-gray-900 dark:text-white uppercase tracking-widest font-bold mb-0.5"
+                                    >
+                                        5. Enxágue
+                                    </h5>
+                                    <p 
+                                        class="text-[10px] text-gray-700 dark:text-gray-400 tracking-wider font-normal leading-relaxed"
+                                    >
+                                        Remoção 100% a frio.
+                                    </p>
+                                </div>
+                                <div 
+                                    class="relative"
+                                >
+                                    <div 
+                                        class="absolute -left-[25px] top-1 w-2 h-2 bg-gray-300 dark:bg-white rounded-full"
+                                    ></div>
+                                    <h5 
+                                        class="text-[11px] md:text-xs text-gray-900 dark:text-white uppercase tracking-widest font-bold mb-0.5"
+                                    >
+                                        6. Proteção Térmica
+                                    </h5>
+                                    <p 
+                                        class="text-[10px] text-gray-700 dark:text-gray-400 tracking-wider font-normal leading-relaxed"
+                                    >
+                                        Blindagem pré-calor do secador.
+                                    </p>
+                                </div>
+                                <div 
+                                    class="relative"
+                                >
+                                    <div 
+                                        class="absolute -left-[25px] top-1 w-2 h-2 bg-gray-300 dark:bg-white rounded-full"
+                                    ></div>
+                                    <h5 
+                                        class="text-[11px] md:text-xs text-gray-900 dark:text-white uppercase tracking-widest font-bold mb-0.5"
+                                    >
+                                        7. Alinhamento
+                                    </h5>
+                                    <p 
+                                        class="text-[10px] text-gray-700 dark:text-gray-400 tracking-wider font-normal leading-relaxed"
+                                    >
+                                        Secagem para ativar memória.
+                                    </p>
+                                </div>
+                                <div 
+                                    class="relative"
+                                >
+                                    <div 
+                                        class="absolute -left-[25px] top-1 w-2 h-2 bg-[#8A6D3B] dark:bg-brand-gold rounded-full shadow-[0_0_8px_rgba(212,175,55,0.8)]"
+                                    ></div>
+                                    <h5 
+                                        class="text-[11px] md:text-xs text-[#8A6D3B] dark:text-brand-gold uppercase tracking-widest font-black mb-0.5"
+                                    >
+                                        8. Polimento Glass
+                                    </h5>
+                                    <p 
+                                        class="text-[10px] text-gray-900 dark:text-gray-200 tracking-wider font-bold leading-relaxed"
+                                    >
+                                        Finalização com escova (sem chapinha).
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- ============================================================================
+                     COLUNA DIREITA (GLASS): TEXTO EDITORIAL -> SELOS -> MACRO -> CTAs
+                     ============================================================================ -->
+                <div 
+                    class="flex flex-col gap-8 w-full order-1 lg:order-2"
                 >
                     <h3 
-                        class="font-serif text-3xl md:text-5xl mb-8 uppercase italic text-black dark:text-white leading-tight"
+                        class="font-serif text-3xl md:text-5xl mb-2 italic text-gray-900 dark:text-white leading-tight font-bold"
                     >
-                        Brilho <br><span class="text-brand-gold">Espelhado</span>
+                        Brilho <br><span class="text-[#8A6D3B] dark:text-brand-gold">Espelhado</span>
                     </h3>
+
+                    <p 
+                        class="text-sm md:text-base text-gray-800 dark:text-gray-300 leading-relaxed text-justify tracking-wide font-normal"
+                    >
+                        Terapia de cristalização cuticular focada na eliminação total do frizz e no polimento extremo. A diferença crucial? O Glass Molecular sela a cutícula sem alterar a forma natural (curvatura) do seu cabelo.
+                    </p>
 
                     <!-- SELOS DE AUTORIDADE E SEGURANÇA CLÍNICA -->
                     <div 
-                        class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10"
+                        class="grid grid-cols-1 sm:grid-cols-3 gap-4"
                     >
                         <div 
-                            class="flex items-center gap-3 p-4 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-sm shadow-sm"
+                            class="flex items-center gap-3 p-4 bg-gray-100 dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-sm shadow-sm"
                         >
-                            <i class="fas fa-leaf text-brand-gold text-2xl" aria-hidden="true"></i>
-                            <div class="flex flex-col">
-                                <span class="text-[10px] uppercase font-bold text-black dark:text-white tracking-widest">Orgânico</span>
-                                <span class="text-[8px] text-gray-500 dark:text-gray-400 uppercase tracking-widest">100% Sem Formol</span>
-                            </div>
-                        </div>
-                        <div 
-                            class="flex items-center gap-3 p-4 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-sm shadow-sm"
-                        >
-                            <i class="fas fa-wind text-brand-gold text-2xl" aria-hidden="true"></i>
-                            <div class="flex flex-col">
-                                <span class="text-[10px] uppercase font-bold text-black dark:text-white tracking-widest">Conforto</span>
-                                <span class="text-[8px] text-gray-500 dark:text-gray-400 uppercase tracking-widest">Sem Cheiro Forte</span>
-                            </div>
-                        </div>
-                        <div 
-                            class="flex items-center gap-3 p-4 bg-gray-50 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-sm shadow-sm"
-                        >
-                            <i class="fas fa-shield-alt text-brand-gold text-2xl" aria-hidden="true"></i>
-                            <div class="flex flex-col">
-                                <span class="text-[10px] uppercase font-bold text-black dark:text-white tracking-widest">Anvisa</span>
-                                <span class="text-[8px] text-gray-500 dark:text-gray-400 uppercase tracking-widest">Registro Oficial</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <p 
-                        class="text-[11px] text-gray-700 dark:text-gray-400 leading-relaxed font-light mb-10 text-justify tracking-wider"
-                    >O QUE É E PARA QUE SERVE:
-Terapia de cristalização cuticular de ação expressa (15 a 20 minutos), focada na eliminação total do frizz e no polimento espelhado extremo. Atua como uma escova de memória prolongada, selando a cutícula exclusivamente com a tração e o calor do secador, sem a necessidade de prancha. A diferença crucial? O Glass Molecular blinda a fibra e entrega o autêntico efeito Glass Hair com bloqueio absoluto de umidade, sem alterar a curvatura natural do cabelo.Terapia de cristalização cuticular focada na eliminação total do frizz e no polimento extremo. A diferença crucial? O Glass Molecular sela a cutícula sem alterar a forma natural (curvatura) do seu cabelo.
-                    </p>
-
-                    <!-- MÓDULO DO PRODUTO UTILIZADO (TRANSPARÊNCIA) -->
-                    <div 
-                        class="bg-gray-100 dark:bg-[#0a0202] p-8 rounded-sm border border-brand-gold/20 mb-12 shadow-inner"
-                    >
-                        <div 
-                            class="flex flex-col md:flex-row items-center gap-8 mb-8 border-b border-gray-300 dark:border-white/10 pb-8"
-                        >
-                            <div 
-                                class="w-24 h-32 flex-shrink-0 relative overflow-hidden rounded-sm border border-brand-gold/30 bg-black"
-                            >
-                                <img 
-                                    src="https://testeessencia.carrd.co/assets/images/image50.jpg?v=b7e964c1" 
-                                    class="w-full h-full object-contain p-2" 
-                                    alt="Ácido Molecular Híbrido 1L"
-                                    loading="lazy"
-                                >
-                            </div>
+                            <i 
+                                class="fas fa-leaf text-[#8A6D3B] dark:text-brand-gold text-2xl" 
+                                aria-hidden="true"
+                            ></i>
                             <div 
                                 class="flex flex-col"
                             >
                                 <span 
-                                    class="text-brand-gold text-[8px] uppercase tracking-widest mb-2 font-serif font-black"
+                                    class="text-[11px] uppercase font-bold text-gray-900 dark:text-white tracking-widest"
                                 >
-                                    A Base Tecnológica
+                                    Orgânico
                                 </span>
-                                <h4 
-                                    class="text-black dark:text-white font-serif text-xl italic mb-3"
+                                <span 
+                                    class="text-[10px] text-gray-700 dark:text-gray-400 uppercase tracking-widest font-normal"
                                 >
-                                    COMPLEXO MOLECULAR HÍBRIDO
-                                </h4>
-                                <p 
-                                    class="text-[9px] text-gray-700 dark:text-gray-400 tracking-wider leading-relaxed font-light"
-                                >
-                                    nossa matriz premium. Atua externamente na cutícula para bloquear a umidade, utilizando a força lipídica para garantir a ancoragem estrutural e o efeito memória da escova.
-                                </p>
+                                    100% Sem Formol
+                                </span>
                             </div>
                         </div>
-
                         <div 
-                            class="grid grid-cols-1 sm:grid-cols-2 gap-6"
+                            class="flex items-center gap-3 p-4 bg-gray-100 dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-sm shadow-sm"
                         >
+                            <i 
+                                class="fas fa-wind text-[#8A6D3B] dark:text-brand-gold text-2xl" 
+                                aria-hidden="true"
+                            ></i>
                             <div 
                                 class="flex flex-col"
                             >
                                 <span 
-                                    class="text-brand-gold text-[10px] uppercase font-bold mb-2 tracking-widest"
+                                    class="text-[11px] uppercase font-bold text-gray-900 dark:text-white tracking-widest"
                                 >
-                                    <i class="fas fa-flask mr-2" aria-hidden="true"></i> Ativos
+                                    Conforto
                                 </span>
-                                <ul class="text-[9px] text-gray-700 dark:text-gray-400 space-y-2 tracking-wider">
-                                    <li>• Ácido Hialurônico Reticulado:</li>
-                                    <li>• Óleo de Semente de Uvae</li>
-                                    <li>• Proteína do Trigo Biomimética)</li>
-                                </ul>
+                                <span 
+                                    class="text-[10px] text-gray-700 dark:text-gray-400 uppercase tracking-widest font-normal"
+                                >
+                                    Sem Cheiro Forte
+                                </span>
                             </div>
+                        </div>
+                        <div 
+                            class="flex items-center gap-3 p-4 bg-gray-100 dark:bg-white/5 border border-gray-300 dark:border-white/10 rounded-sm shadow-sm"
+                        >
+                            <i 
+                                class="fas fa-shield-alt text-[#8A6D3B] dark:text-brand-gold text-2xl" 
+                                aria-hidden="true"
+                            ></i>
                             <div 
                                 class="flex flex-col"
                             >
                                 <span 
-                                    class="text-brand-gold text-[10px] uppercase font-bold mb-2 tracking-widest"
+                                    class="text-[11px] uppercase font-bold text-gray-900 dark:text-white tracking-widest"
                                 >
-                                    <i class="fas fa-star mr-2" aria-hidden="true"></i> Benefícios
+                                    Anvisa
                                 </span>
-                                <ul class="text-[9px] text-gray-700 dark:text-gray-400 space-y-2 tracking-wider">
-                                    <li>• Efeito Espelhado Extremo</li>
-                                    <li>• Alinhamento Cuticular</li>
-                                    <li>• Secagem Otimizada</li> 
-                    <li>• Termoproteção de Precisão</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- MÓDULO SINTÉTICO: O PROTOCOLO PASSO A PASSO -->
-                    <div 
-                        class="p-8 border border-gray-200 dark:border-white/10 rounded-sm relative overflow-hidden mb-12"
-                    >
-                        <div 
-                            class="absolute top-0 right-0 bg-brand-gold text-black px-4 py-1 text-[8px] uppercase tracking-widest font-black"
-                        >
-                            O Processo
-                        </div>
-                        <h4 
-                            class="font-serif text-2xl text-black dark:text-white italic mb-8"
-                        >
-                            Protocolo de <span class="text-brand-gold">Aplicação</span>
-                        </h4>
-                        
-                        <div 
-                            class="relative border-l border-brand-gold/60 dark:border-brand-gold/30 pl-6 space-y-8"
-                        >
-                            <div class="relative">
-                                <div class="absolute -left-[31px] top-1 w-3 h-3 bg-brand-gold rounded-full shadow-[0_0_10px_rgba(212,175,55,0.8)]"></div>
-                                <h5 class="text-black dark:text-white text-[11px] uppercase tracking-widest font-bold mb-1">1. Identificação do Fio</h5>
-                                <p class="text-[9px] text-gray-700 dark:text-gray-400 tracking-wider">Mapeamento do grau de porosidade e frizz.</p>
-                            </div>
-                            <div class="relative">
-                                <div class="absolute -left-[31px] top-1 w-3 h-3 bg-black dark:bg-white border border-brand-gold rounded-full"></div>
-                                <h5 class="text-black dark:text-white text-[11px] uppercase tracking-widest font-bold mb-1">2. Higienização Correta</h5>
-                                <p class="text-[9px] text-gray-700 dark:text-gray-400 tracking-wider">Preparo suave sem agressão para não danificar a forma.</p>
-                            </div>
-                            <div class="relative">
-                                <div class="absolute -left-[31px] top-1 w-3 h-3 bg-black dark:bg-white border border-brand-gold rounded-full"></div>
-                                <h5 class="text-black dark:text-white text-[11px] uppercase tracking-widest font-bold mb-1">3. Aplicação Glass Molecular</h5>
-                                <p class="text-[9px] text-gray-700 dark:text-gray-400 tracking-wider">Infusão do Ácido Molecular em toda a extensão da fibra.</p>
-                            </div>
-                            <div class="relative">
-                                <div class="absolute -left-[31px] top-1 w-3 h-3 bg-brand-gold/50 border border-brand-gold rounded-full animate-pulse"></div>
-                                <h5 class="text-[#8A6D3B] dark:text-brand-gold text-[11px] uppercase tracking-widest font-bold mb-1">4. Tempo de Ação</h5>
-                                <p class="text-[9px] text-gray-700 dark:text-gray-400 tracking-wider font-bold">Pausa necessária de 15 a 20 minutos para cristalização.</p>
-                            </div>
-                            <div class="relative">
-                                <div class="absolute -left-[31px] top-1 w-3 h-3 bg-black dark:bg-white border border-brand-gold rounded-full"></div>
-                                <h5 class="text-black dark:text-white text-[11px] uppercase tracking-widest font-bold mb-1">5. Lavatório (Enxágue)</h5>
-                                <p class="text-[9px] text-gray-700 dark:text-gray-400 tracking-wider">Remoção cirúrgica do excesso de lipídios.</p>
-                            </div>
-                            <div class="relative">
-                                <div class="absolute -left-[31px] top-1 w-3 h-3 bg-black dark:bg-white border border-brand-gold rounded-full"></div>
-                                <h5 class="text-black dark:text-white text-[11px] uppercase tracking-widest font-bold mb-1">6. Aplicação de Sérum</h5>
-                                <p class="text-[9px] text-gray-700 dark:text-gray-400 tracking-wider">Sérum fortalecedor para brilho imediato.</p>
-                            </div>
-                            <div class="relative">
-                                <div class="absolute -left-[31px] top-1 w-3 h-3 bg-black dark:bg-white border border-brand-gold rounded-full"></div>
-                                <h5 class="text-black dark:text-white text-[11px] uppercase tracking-widest font-bold mb-1">7. Secagem</h5>
-                                <p class="text-[9px] text-gray-700 dark:text-gray-400 tracking-wider">Alinhamento direcional do fio.</p>
-                            </div>
-                            <div class="relative">
-                                <div class="absolute -left-[31px] top-1 w-3 h-3 bg-brand-gold rounded-full shadow-[0_0_10px_rgba(212,175,55,0.8)]"></div>
-                                <h5 class="text-[#8A6D3B] dark:text-brand-gold text-[11px] uppercase tracking-widest font-black mb-1">8. Finalização com Escova</h5>
-                                <p class="text-[9px] text-gray-700 dark:text-gray-400 tracking-wider font-bold">Finalização térmica feita apenas com Escova modeladora.</p>
+                                <span 
+                                    class="text-[10px] text-gray-700 dark:text-gray-400 uppercase tracking-widest font-normal"
+                                >
+                                    Registro Oficial
+                                </span>
                             </div>
                         </div>
                     </div>
 
                     <!-- MÓDULO MACRO (BOLHAS ANTES/DEPOIS) -->
                     <div 
-                        class="flex items-center justify-center gap-6 sm:gap-10 mb-16 p-8 border border-gray-200 dark:border-white/5 rounded-sm bg-gray-50 dark:bg-black/20"
+                        class="flex items-center justify-center gap-6 sm:gap-10 p-8 border border-gray-300 dark:border-white/5 rounded-sm bg-white dark:bg-black/20" 
                         aria-label="Comparação Macro da Fibra Capilar"
+                        data-testid="macro-comparison-glass"
+                        role="region"
                     >
-                        <div class="flex flex-col items-center gap-4">
-                            <div class="w-20 h-20 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-gray-300 dark:border-gray-600 shadow-md">
-                                <img src="https://testeessencia.carrd.co/assets/images/image26.jpg" class="w-full h-full object-cover filter grayscale opacity-80" alt="Fio Poroso Antes" loading="lazy">
+                        <div 
+                            class="flex flex-col items-center gap-4"
+                        >
+                            <div 
+                                class="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 border-gray-300 dark:border-gray-600 shadow-md"
+                            >
+                                <img 
+                                    src="https://testeessencia.carrd.co/assets/images/image26.jpg" 
+                                    class="w-full h-full object-cover filter grayscale opacity-80" 
+                                    alt="Fio Poroso Antes" 
+                                    loading="lazy" 
+                                    decoding="async"
+                                    data-state="before"
+                                >
                             </div>
-                            <span class="text-[9px] uppercase tracking-widest text-gray-600 dark:text-gray-500 font-bold">Fibra Porosa</span>
+                            <span 
+                                class="text-[11px] md:text-xs uppercase tracking-widest text-gray-700 dark:text-gray-400 font-bold"
+                            >
+                                Fibra Porosa
+                            </span>
                         </div>
-                        <i class="fas fa-arrow-right text-brand-gold text-xl sm:text-3xl opacity-50 animate-pulse" aria-hidden="true"></i>
-                        <div class="flex flex-col items-center gap-4">
-                            <div class="w-20 h-20 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-brand-gold shadow-[0_0_25px_rgba(212,175,55,0.5)]">
-                                <img src="https://testeessencia.carrd.co/assets/images/image27.jpg" class="w-full h-full object-cover" alt="Fibra Selada Depois" loading="lazy">
+                        
+                        <i 
+                            class="fas fa-arrow-right text-[#8A6D3B] dark:text-brand-gold text-2xl sm:text-4xl opacity-50 animate-pulse" 
+                            aria-hidden="true"
+                        ></i>
+                        
+                        <div 
+                            class="flex flex-col items-center gap-4"
+                        >
+                            <div 
+                                class="w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-2 border-[#8A6D3B] dark:border-brand-gold shadow-[0_0_25px_rgba(138,109,59,0.3)] dark:shadow-[0_0_25px_rgba(212,175,55,0.5)]"
+                            >
+                                <img 
+                                    src="https://testeessencia.carrd.co/assets/images/image27.jpg" 
+                                    class="w-full h-full object-cover" 
+                                    alt="Fibra Selada Depois" 
+                                    loading="lazy" 
+                                    decoding="async"
+                                    data-state="after"
+                                >
                             </div>
-                            <span class="text-[9px] uppercase tracking-widest text-[#8A6D3B] dark:text-brand-gold font-bold">Cutícula Selada</span>
+                            <span 
+                                class="text-[11px] md:text-xs uppercase tracking-widest text-[#8A6D3B] dark:text-brand-gold font-bold"
+                            >
+                                Cutícula Selada
+                            </span>
                         </div>
                     </div>
 
                     <!-- BOTÕES DUPLOS DE RESERVA -->
                     <div 
-                        class="flex flex-col sm:flex-row gap-4 mb-16"
+                        class="flex flex-col sm:flex-row gap-4 w-full mt-4"
                     >
                         <button 
                             onclick="gtag_report_conversion('https://wa.me/5549999954052?text=Desejo agendar a Terapia Glass Molecular em Chapecó.');" 
-                            class="btn-luxury-cta py-5 px-6 text-[10px] font-bold active:scale-95 font-serif w-full hover:text-black"
+                            class="btn-luxury-cta py-5 px-6 text-xs md:text-sm font-bold active:scale-95 font-serif w-full hover:text-black uppercase"
                         >
-                            <i class="fab fa-whatsapp text-lg mr-2" aria-hidden="true"></i> Agendar em Chapecó
+                            <i 
+                                class="fab fa-whatsapp text-lg mr-2" 
+                                aria-hidden="true"
+                            ></i> 
+                            Agendar em Chapecó
                         </button>
                         <button 
                             onclick="gtag_report_conversion('https://wa.me/5549000000000?text=Desejo agendar a Terapia Glass Molecular no Studio T em Seara.');" 
-                            class="btn-editorial py-5 px-6 text-[10px] font-bold active:scale-95 font-serif w-full border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black"
+                            class="btn-editorial py-5 px-6 text-xs md:text-sm font-bold active:scale-95 font-serif w-full border-gray-900 dark:border-brand-gold text-gray-900 dark:text-brand-gold hover:bg-[#8A6D3B] dark:hover:bg-brand-gold hover:text-white dark:hover:text-black uppercase"
                         >
-                            <i class="fab fa-whatsapp text-lg mr-2" aria-hidden="true"></i> Agendar em Seara
-                        </button>
-                    </div>
-                </div>
-                
-                <div 
-                    class="flex flex-col gap-6 w-full max-w-md mx-auto order-1 lg:order-2"
-                >
-                    <div 
-                        id="glass-main-stage-final" 
-                        class="relative w-full aspect-[4/5] rounded-sm shadow-2xl overflow-hidden atelier-frame"
-                    >
-                        <img 
-                            src="https://testeessencia.carrd.co/assets/images/image28.jpg" 
-                            class="absolute inset-0 w-full h-full object-cover animate-fade-in-up" 
-                            alt="Cabelo após Glass"
-                            loading="lazy"
-                        >
-                    </div>
-                    
-                    <div 
-                        class="mini-carousel-x"
-                    >
-                        <button 
-                            class="mini-thumb active" 
-                            onclick="MaisonApp.ui.switchGlassMedia('https://testeessencia.carrd.co/assets/images/image28.jpg', this, 'glass-main-stage-final')"
-                        >
-                            <img src="https://testeessencia.carrd.co/assets/images/image28.jpg" class="w-full h-full object-cover" loading="lazy">
-                        </button>
-                        <button 
-                            class="mini-thumb" 
-                            onclick="MaisonApp.ui.switchGlassMedia('https://testeessencia.carrd.co/assets/images/image24.jpg', this, 'glass-main-stage-final')"
-                        >
-                            <img src="https://testeessencia.carrd.co/assets/images/image24.jpg" class="w-full h-full object-cover" loading="lazy">
-                        </button>
-                        <button 
-                            class="mini-thumb" 
-                            onclick="MaisonApp.ui.switchGlassMedia('https://testeessencia.carrd.co/assets/images/image26.jpg', this, 'glass-main-stage-final')"
-                        >
-                            <img src="https://testeessencia.carrd.co/assets/images/image26.jpg" class="w-full h-full object-cover" loading="lazy">
+                            <i 
+                                class="fab fa-whatsapp text-lg mr-2" 
+                                aria-hidden="true"
+                            ></i> 
+                            Agendar em Seara
                         </button>
                     </div>
                 </div>
@@ -5639,7 +5871,12 @@ Terapia de cristalização cuticular de ação expressa (15 a 20 minutos), focad
                     const title = document.getElementById('location-title');
                     const btn = document.getElementById('location-btn');
                     
-                    if(!m || !title || !btn) return;
+                    // Se o modal de localização não existir, abre o mapa diretamente (Fallback B2B)
+                    if(!m || !title || !btn) {
+                        if(city === 'chapeco') window.open('https://maps.google.com/?q=Chapecó,SC', '_blank');
+                        if(city === 'seara') window.open('https://maps.google.com/?q=Seara,SC', '_blank');
+                        return;
+                    }
 
                     if(city === 'chapeco') {
                         title.innerText = 'Maison Chapecó';
@@ -5651,32 +5888,20 @@ Terapia de cristalização cuticular de ação expressa (15 a 20 minutos), focad
                     
                     m.classList.remove('hidden');
                     m.classList.add('flex');
-                    m.setAttribute('aria-hidden', 'false');
-                    document.body.style.overflow = 'hidden';
                 },
-                
-                closeLocation: function() {
-                    const m = document.getElementById('location-modal-overlay');
-                    if (m) {
-                        m.classList.add('hidden');
-                        m.classList.remove('flex');
-                        m.setAttribute('aria-hidden', 'true');
-                        document.body.style.overflow = '';
-                    }
-                },
-                
+
                 openLegal: function() {
                     const m = document.getElementById('erh-legal-modal-overlay');
                     const content = document.getElementById('content-privacy');
-                    if (m && content) {
+                    if (m) {
                         m.classList.remove('hidden');
                         m.classList.add('flex');
                         m.setAttribute('aria-hidden', 'false');
-                        content.style.display = 'block';
+                        if(content) content.style.display = 'block';
                         document.body.style.overflow = 'hidden';
                     }
                 },
-                
+
                 closeModal: function() {
                     const m = document.getElementById('erh-legal-modal-overlay');
                     const content = document.getElementById('content-privacy');
@@ -5688,23 +5913,79 @@ Terapia de cristalização cuticular de ação expressa (15 a 20 minutos), focad
                         document.body.style.overflow = '';
                     }
                 },
+
+                closeLightbox: function(event) {
+                    if(event) event.stopPropagation();
+                    const lb = document.getElementById('lightbox');
+                    if (lb) {
+                        lb.style.display = 'none';
+                        lb.setAttribute('aria-hidden', 'true');
+                        document.body.style.overflow = '';
+                    }
+                },
                 
-                switchGlassMedia: function(src, element, stageId) {
-                    const stage = document.getElementById(stageId || 'glass-main-stage');
+                switchGlassMedia: function(type, src, element, stageId) {
+                    const stage = document.getElementById(stageId || 'glass-main-stage-final');
                     if (!stage || !element) return;
                     
                     const thumbs = element.parentNode.querySelectorAll('.mini-thumb');
                     thumbs.forEach(t => t.classList.remove('active', 'border-brand-gold', 'border-2'));
                     element.classList.add('active', 'border-brand-gold', 'border-2');
                     
-                    stage.innerHTML = `
-                        <img 
-                            src="${src}" 
-                            class="absolute inset-0 w-full h-full object-cover animate-fade-slow" 
-                            alt="Detalhe Glass Molecular"
-                            loading="lazy"
-                        >
-                    `;
+                    if (type === 'slider') {
+                        const newClipId = stageId + '-clip-' + Math.floor(Math.random()*1000);
+                        const newLineId = stageId + '-line-' + Math.floor(Math.random()*1000);
+                        
+                        stage.innerHTML = `
+                            <div 
+                                class="w-full h-full relative animate-fade-slow"
+                            >
+                                <img 
+                                    src="https://testeessencia.carrd.co/assets/images/image28.jpg?v=5278beb3" 
+                                    class="absolute inset-0 w-full h-full object-cover z-10" 
+                                    alt="Depois" 
+                                    loading="lazy"
+                                >
+                                <img 
+                                    src="https://testeessencia.carrd.co/assets/images/image24.jpg?v=5278beb3" 
+                                    class="absolute inset-0 w-full h-full object-cover z-10" 
+                                    style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);" 
+                                    id="${newClipId}" 
+                                    alt="Antes" 
+                                    loading="lazy"
+                                >
+                                <input 
+                                    type="range" 
+                                    min="0" 
+                                    max="100" 
+                                    value="50" 
+                                    class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20" 
+                                    oninput="MaisonApp.ui.updateSlider(this, '${newClipId}', '${newLineId}')"
+                                >
+                                <div 
+                                    class="absolute top-0 bottom-0 left-[50%] w-0.5 bg-brand-gold pointer-events-none z-10" 
+                                    id="${newLineId}"
+                                >
+                                    <div 
+                                        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white border-2 border-brand-gold rounded-full flex items-center justify-center shadow-lg"
+                                    >
+                                        <i 
+                                            class="fas fa-arrows-alt-h text-[#8A6D3B] dark:text-brand-gold-dark text-sm"
+                                        ></i>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    } else if (type === 'image') {
+                        stage.innerHTML = `
+                            <img 
+                                src="${src}" 
+                                class="absolute inset-0 w-full h-full object-cover animate-fade-slow" 
+                                alt="Detalhe Glass Molecular"
+                                loading="lazy"
+                            >
+                        `;
+                    }
                 },
 
                 switchMedia: function(stageId, type, src, el, isSilver) {
@@ -5712,8 +5993,14 @@ Terapia de cristalização cuticular de ação expressa (15 a 20 minutos), focad
                     if (!stage || !el) return;
                     
                     const thumbs = el.parentNode.querySelectorAll('.mini-thumb');
-                    thumbs.forEach(t => t.classList.remove('active', 'border-brand-gold', 'border-2'));
-                    el.classList.add('active', 'border-brand-gold', 'border-2');
+                    thumbs.forEach(t => {
+                        t.classList.remove('active', 'border-brand-gold', 'border-[#8A6D3B]', 'border-2');
+                        t.setAttribute('aria-selected', 'false');
+                    });
+                    
+                    const activeBorderClass = isSilver ? 'border-[#8A6D3B]' : 'border-brand-gold';
+                    el.classList.add('active', activeBorderClass, 'border-2');
+                    el.setAttribute('aria-selected', 'true');
                     
                     if (type === 'image') {
                         let cls = "w-full h-full object-cover animate-fade-slow";
@@ -5723,20 +6010,39 @@ Terapia de cristalização cuticular de ação expressa (15 a 20 minutos), focad
                         }
                         
                         if (src.includes('image52.jpg') || src.includes('image73.jpg')) {
-                            cls = "w-full h-full object-contain p-4 animate-fade-slow";
+                            cls = "w-full h-full object-contain p-2 scale-110 md:scale-125 animate-fade-slow transition-transform duration-1000 hover:scale-150";
                             if (isSilver) {
-                                cls += " filter grayscale brightness-110 drop-shadow-[0_20px_40px_rgba(255,255,255,0.2)]";
+                                cls += " filter grayscale brightness-110 drop-shadow-[0_20px_40px_rgba(200,200,200,0.5)] dark:drop-shadow-[0_20px_40px_rgba(255,255,255,0.2)]";
                             } else {
-                                cls += " drop-shadow-[0_20px_40px_rgba(212,175,55,0.4)]";
+                                cls += " drop-shadow-[0_20px_40px_rgba(138,109,59,0.4)] dark:drop-shadow-[0_20px_40px_rgba(212,175,55,0.4)]";
                             }
                         }
 
-                        stage.innerHTML = `<img src="${src}" class="${cls}" loading="lazy">`;
+                        stage.innerHTML = `
+                            <img 
+                                src="${src}" 
+                                class="${cls}" 
+                                loading="lazy" 
+                                decoding="async"
+                            >
+                        `;
                         
                         if (isSilver && src.includes('image73.jpg')) {
-                            stage.innerHTML += `<div class="absolute top-4 right-4 bg-gray-300 dark:bg-gray-200 text-gray-900 dark:text-black text-[10px] md:text-xs font-black px-4 py-2 uppercase tracking-widest rounded-sm">[ V.43 PURITY CONTROL ]</div>`;
+                            stage.innerHTML += `
+                                <div 
+                                    class="absolute top-4 right-4 bg-gray-300 dark:bg-gray-200 text-gray-900 dark:text-black text-[10px] md:text-xs font-black px-4 py-2 uppercase tracking-widest rounded-sm"
+                                >
+                                    [ V.43 PURITY CONTROL ]
+                                </div>
+                            `;
                         } else if (!isSilver && src.includes('image52.jpg') && stageId.includes('premium')) {
-                            stage.innerHTML += `<div class="absolute top-4 right-4 bg-[#8A6D3B] dark:bg-brand-gold text-white dark:text-black text-[10px] md:text-xs font-black px-4 py-2 uppercase tracking-widest rounded-sm">Premium Gold</div>`;
+                            stage.innerHTML += `
+                                <div 
+                                    class="absolute top-4 right-4 bg-[#8A6D3B] dark:bg-brand-gold text-white dark:text-black text-[10px] md:text-xs font-black px-4 py-2 uppercase tracking-widest rounded-sm"
+                                >
+                                    Premium Gold
+                                </div>
+                            `;
                         }
                     }
                 },
@@ -5755,8 +6061,8 @@ Terapia de cristalização cuticular de ação expressa (15 a 20 minutos), focad
                         
                         stage.innerHTML = `
                             <div class="w-full h-full relative animate-fade-slow">
-                                <img src="https://testeessencia.carrd.co/assets/images/image22.jpg?v=820a894a" class="absolute inset-0 w-full h-full object-cover" alt="Depois" loading="lazy">
-                                <img src="https://testeessencia.carrd.co/assets/images/image21.jpg?v=820a894a" class="absolute inset-0 w-full h-full object-cover" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);" id="${newClipId}" alt="Antes" loading="lazy">
+                                <img src="https://testeessencia.carrd.co/assets/images/image22.jpg?v=820a894a" class="absolute inset-0 w-full h-full object-cover z-10" alt="Depois" loading="lazy">
+                                <img src="https://testeessencia.carrd.co/assets/images/image21.jpg?v=820a894a" class="absolute inset-0 w-full h-full object-cover z-10" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);" id="${newClipId}" alt="Antes" loading="lazy">
                                 <input type="range" min="0" max="100" value="50" class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-20" oninput="MaisonApp.ui.updateSlider(this, '${newClipId}', '${newLineId}')">
                                 <div class="absolute top-0 bottom-0 left-[50%] w-0.5 bg-brand-gold pointer-events-none z-10" id="${newLineId}">
                                     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-white border-2 border-brand-gold rounded-full flex items-center justify-center shadow-lg">
@@ -5766,9 +6072,9 @@ Terapia de cristalização cuticular de ação expressa (15 a 20 minutos), focad
                             </div>
                         `;
                     } else if (type === 'image') {
-                        stage.innerHTML = `<img src="${src}" class="w-full h-full object-cover animate-fade-slow" alt="Detail" loading="lazy">`;
+                        stage.innerHTML = `<img src="${src}" class="w-full h-full object-cover animate-fade-slow z-10 relative" alt="Detail" loading="lazy">`;
                     } else if (type === 'video') {
-                        stage.innerHTML = `<video class="w-full h-full object-cover animate-fade-slow" autoplay loop controls playsinline><source src="${src}" type="video/mp4"></video>`;
+                        stage.innerHTML = `<video class="w-full h-full object-cover animate-fade-slow z-10 relative" autoplay loop controls playsinline><source src="${src}" type="video/mp4"></video>`;
                     }
                 },
                 
@@ -5790,16 +6096,6 @@ Terapia de cristalização cuticular de ação expressa (15 a 20 minutos), focad
                     lb.style.display = 'flex'; 
                     lb.setAttribute('aria-hidden', 'false');
                     document.body.style.overflow = 'hidden'; 
-                },
-
-                closeLightbox: function(e) { 
-                    if(e && e.target && e.target.tagName === 'IMG') return; 
-                    const lb = document.getElementById('lightbox');
-                    if (lb) { 
-                        lb.style.display = 'none'; 
-                        lb.setAttribute('aria-hidden', 'true');
-                        document.body.style.overflow = ''; 
-                    }
                 }
             }
         };
