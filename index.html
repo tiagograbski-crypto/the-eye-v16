@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-PT" class="scroll-smooth">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <!-- Google Tag Manager - INÍCIO DA CAMADA DE DADOS (DATA LAYER) -->
     <script>
@@ -59,7 +59,11 @@
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Liso Soberano 8K", "description": "Alisamento definitivo de alta performance sem formol." } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Glass Molecular", "description": "Tratamento antifrizz que preserva ondas e cachos." } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Semi Definitiva Gloss" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Alinhamento Orgânico" } }
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Alinhamento Orgânico" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Terapias & Spa" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Visagismo & Corte" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Colorimetria" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Penteados & Styling" } }
         ]
       }
     }
@@ -94,10 +98,13 @@
         
         .smart-video { will-change: transform, opacity; }
         
-        input[type=range]::-webkit-slider-thumb { 
+        /* CORREÇÃO CIRÚRGICA: Slider Mobile Otimizado e Cross-Browser */
+        .slider-input { -webkit-appearance: none; appearance: none; background: transparent; outline: none; }
+        .slider-input::-webkit-slider-thumb { 
             pointer-events: all; width: 48px; height: 48px; 
-            -webkit-appearance: none; cursor: ew-resize; background: transparent; 
+            -webkit-appearance: none; appearance: none; cursor: ew-resize; background: transparent; 
         }
+        .slider-input::-moz-range-thumb { pointer-events: all; width: 48px; height: 48px; cursor: ew-resize; background: transparent; border: none; }
         
         .custom-scrollbar::-webkit-scrollbar { height: 4px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 10px; margin: 0 20px; }
@@ -139,13 +146,13 @@
         .animate-subtle-pulse { animation: subtlePulse 2s infinite; }
     </style>
 </head>
-<body class="no-fouc bg-brand-50 dark:bg-luxury-bg text-brand-950 dark:text-luxury-text font-sans antialiased min-h-screen flex flex-col relative overflow-x-hidden pt-8 pb-28 md:pb-0 transition-colors duration-300">
+<body class="no-fouc bg-brand-50 dark:bg-luxury-bg text-brand-950 dark:text-luxury-text font-sans antialiased min-h-screen flex flex-col relative overflow-x-hidden pt-8 pb-32 md:pb-0 transition-colors duration-300">
 
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KSC788J2" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-brand-600 to-brand-400 dark:from-brand-400 dark:to-brand-200 z-[80] transition-all duration-100 ease-out" style="width: 0%;"></div>
 
-    <!-- PROCESSAMENTO DE REDIRECIONAMENTO (PÁGINA DE OBRIGADO VIRTUAL) -->
+    <!-- PROCESSAMENTO DE REDIRECIONAMENTO -->
     <div id="processing-overlay" class="fixed inset-0 z-[9999] bg-brand-950/95 dark:bg-black/95 backdrop-blur-xl hidden flex-col items-center justify-center opacity-0 transition-opacity duration-500 px-6 text-center">
         <div class="w-16 h-16 border-4 border-brand-200/20 border-t-[#25D366] rounded-full animate-spin mb-6"></div>
         <h3 class="font-serif text-2xl md:text-3xl text-white font-bold mb-3">A preparar o seu atendimento VIP...</h3>
@@ -215,9 +222,9 @@
         <!-- ======================================================= -->
         <div id="view-home" class="w-full flex flex-col items-center justify-center px-4 pb-12 fade-in">
             
-            <header class="w-full max-w-5xl mx-auto min-h-[85vh] flex flex-col items-center justify-center text-center pt-28 pb-16 relative">
+            <header class="w-full max-w-5xl mx-auto min-h-[85vh] flex flex-col items-center justify-center text-center pt-36 md:pt-44 pb-16 relative">
                 
-                <div class="absolute top-16 md:top-20 right-0 md:right-10 bg-brand-950 dark:bg-white text-brand-50 dark:text-brand-950 px-4 py-2 rounded-l-2xl md:rounded-2xl shadow-2xl flex items-center gap-2 transform transition-transform hover:scale-105 z-20 border border-brand-800 dark:border-white/20">
+                <div class="absolute top-24 md:top-32 right-0 md:right-10 bg-brand-950 dark:bg-white text-brand-50 dark:text-brand-950 px-4 py-2 rounded-l-2xl md:rounded-2xl shadow-2xl flex items-center gap-2 transform transition-transform hover:scale-105 z-20 border border-brand-800 dark:border-white/20">
                     <span class="flex h-2 w-2 relative">
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#25D366] opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-2 w-2 bg-[#25D366]"></span>
@@ -227,7 +234,7 @@
                     </span>
                 </div>
 
-                <span class="inline-flex items-center gap-2 sm:gap-3 px-5 py-2.5 rounded-full border border-brand-500/30 dark:border-luxury-border text-brand-950 dark:text-luxury-text text-[10px] sm:text-[11px] md:text-xs font-bold uppercase tracking-[0.3em] mb-8 transition-colors glass-panel shadow-lg mt-8 md:mt-0">
+                <span class="inline-flex items-center gap-2 sm:gap-3 px-5 py-2.5 rounded-full border border-brand-500/30 dark:border-luxury-border text-brand-950 dark:text-luxury-text text-[10px] sm:text-[11px] md:text-xs font-bold uppercase tracking-[0.3em] mb-8 transition-colors glass-panel shadow-lg mt-8 md:mt-0 animate-pulse">
                     <i data-lucide="sparkles" class="w-4 h-4 stroke-[2] text-brand-600 dark:text-brand-400"></i>
                     A Maior Referência do Sul do Brasil
                 </span>
@@ -243,14 +250,14 @@
                     <button type="button" id="btn-hero-agendar" onclick="window.Tracker.push('generate_lead', 'Avaliação Gratuita (Hero)'); document.getElementById('ofertas').scrollIntoView({behavior: 'smooth'});" class="w-full sm:w-auto py-5 px-10 bg-brand-950 dark:bg-white text-white dark:text-brand-950 rounded-full font-bold uppercase tracking-widest text-xs sm:text-sm shadow-[0_10px_30px_rgba(0,0,0,0.15)] dark:shadow-[0_10px_30px_rgba(255,255,255,0.1)] hover:-translate-y-1 active:scale-95 transition-all flex items-center justify-center gap-3 border border-white/10 min-h-[64px]">
                         Agendar Avaliação Gratuita <i data-lucide="arrow-right" class="w-4 h-4"></i>
                     </button>
-                    <div class="flex items-center justify-center gap-2 text-[#FBBC04] text-[10px] uppercase font-bold tracking-widest bg-brand-50/80 dark:bg-luxury-bg/80 px-4 py-2 rounded-full border border-brand-200/50 dark:border-luxury-border w-max">
+                    <div class="flex items-center justify-center gap-2 text-[#FBBC04] text-[10px] uppercase font-bold tracking-widest bg-brand-50/80 dark:bg-luxury-bg/80 px-4 py-2 rounded-full border border-brand-200/50 dark:border-luxury-border w-max mt-2">
                         <span class="flex"><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i><i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i></span>
                         <span class="text-brand-950 dark:text-white ml-1 text-center">4.9/5 (+25k Mulheres)</span>
                     </div>
                 </div>
             </header>
 
-            <section class="w-full max-w-5xl mx-auto mb-24 reveal transition-colors scroll-mt-24">
+            <section class="w-full max-w-5xl mx-auto mb-24 reveal transition-colors scroll-mt-36">
                 <div class="text-center mb-10">
                     <span class="text-brand-600 dark:text-brand-400 text-[10px] font-bold uppercase tracking-[0.3em] mb-2 block">A Verdade Sobre O Seu Cabelo</span>
                     <h2 class="font-serif text-3xl md:text-4xl font-bold text-brand-950 dark:text-white transition-colors">Ainda é escrava da chapinha e do secador?</h2>
@@ -274,7 +281,7 @@
                 </div>
             </section>
 
-            <!-- PROVA VISUAL ANTES E DEPOIS E CARROSSEL 10 CLIENTES -->
+            <!-- PROVA VISUAL COM LCP POSTERS -->
             <section class="w-full max-w-[100vw] reveal mb-24 overflow-hidden relative bg-brand-950 dark:bg-[#050505] py-16 -mx-4 md:mx-0 w-[100vw]">
                 <div class="text-center mb-12 sm:mb-16 px-4">
                     <span class="text-brand-300 text-[11px] sm:text-xs font-bold uppercase tracking-[0.4em] mb-4 block">A Nossa Solução em Ação</span>
@@ -284,13 +291,14 @@
                 <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 px-4 mb-16">
                     <div class="relative w-full aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10 select-none touch-none before-after-container group/slider">
                         <img src="https://testeessencia.carrd.co/assets/images/image48.jpg?v=54da9d95" alt="Cabelo Antes do Liso 8K" loading="lazy" class="absolute inset-0 w-full h-full object-cover object-top select-none pointer-events-none opacity-90">
-                        <img src="https://testeessencia.carrd.co/assets/images/image49.jpg?v=54da9d95" alt="Cabelo Depois do Liso 8K" loading="lazy" class="after-img absolute inset-0 w-full h-full object-cover object-top select-none pointer-events-none" style="clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);">
+                        <img src="https://testeessencia.carrd.co/assets/images/image49.jpg?v=54da9d95" alt="Cabelo Depois do Liso 8K" loading="lazy" class="after-img absolute inset-0 w-full h-full object-cover object-top select-none pointer-events-none" style="clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%); -webkit-clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);">
                         
                         <div class="slider-instruction absolute top-[60%] left-1/2 transform -translate-x-1/2 text-white bg-black/50 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase pointer-events-none transition-opacity duration-300 z-30 animate-pulse">
                             Arraste
                         </div>
 
-                        <input type="range" min="0" max="100" value="50" class="slider-input absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30 m-0">
+                        <!-- CORREÇÃO CIRÚRGICA: z-40 para garantir prioridade de toque absoluto -->
+                        <input type="range" min="0" max="100" value="50" class="slider-input absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-40 m-0">
                         <div class="slider-line absolute top-0 bottom-0 left-[50%] w-[2px] bg-white z-20 pointer-events-none transform -translate-x-1/2 flex items-center justify-center shadow-[0_0_15px_rgba(0,0,0,0.5)]">
                             <div class="w-12 h-12 bg-white rounded-full shadow-[0_0_20px_rgba(255,255,255,0.5)] flex items-center justify-center text-brand-950 ring-4 ring-white/30 animate-subtle-pulse"><i data-lucide="chevrons-left-right" class="w-5 h-5"></i></div>
                         </div>
@@ -308,13 +316,14 @@
                     
                     <div class="relative w-full aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/10 select-none touch-none before-after-container group/slider">
                         <img src="https://testeessencia.carrd.co/assets/images/image24.jpg?v=36e3212d" alt="Cabelo Danificado Antes" loading="lazy" class="absolute inset-0 w-full h-full object-cover object-top select-none pointer-events-none opacity-90">
-                        <img src="https://testeessencia.carrd.co/assets/images/image28.jpg?v=36e3212d" alt="Cabelo Tratado Depois" loading="lazy" class="after-img absolute inset-0 w-full h-full object-cover object-top select-none pointer-events-none" style="clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);">
+                        <img src="https://testeessencia.carrd.co/assets/images/image28.jpg?v=36e3212d" alt="Cabelo Tratado Depois" loading="lazy" class="after-img absolute inset-0 w-full h-full object-cover object-top select-none pointer-events-none" style="clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%); -webkit-clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);">
                         
                         <div class="slider-instruction absolute top-[60%] left-1/2 transform -translate-x-1/2 text-white bg-black/50 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase pointer-events-none transition-opacity duration-300 z-30 animate-pulse">
                             Arraste
                         </div>
 
-                        <input type="range" min="0" max="100" value="50" class="slider-input absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30 m-0">
+                        <!-- CORREÇÃO CIRÚRGICA: z-40 -->
+                        <input type="range" min="0" max="100" value="50" class="slider-input absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-40 m-0">
                         <div class="slider-line absolute top-0 bottom-0 left-[50%] w-[2px] bg-white z-20 pointer-events-none transform -translate-x-1/2 flex items-center justify-center shadow-[0_0_15px_rgba(0,0,0,0.5)]">
                             <div class="w-12 h-12 bg-white rounded-full shadow-[0_0_20px_rgba(255,255,255,0.5)] flex items-center justify-center text-brand-950 ring-4 ring-white/30 animate-subtle-pulse"><i data-lucide="chevrons-left-right" class="w-5 h-5"></i></div>
                         </div>
@@ -331,8 +340,8 @@
                     </div>
                 </div>
 
-                <!-- 10 AVALIAÇÕES COMPLETAS E VÍDEOS -->
-                <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 sm:gap-8 px-6 sm:px-12 pb-10 custom-scrollbar items-center max-w-[1600px] mx-auto">
+                <!-- 10 AVALIAÇÕES E VÍDEOS -->
+                <div class="flex overflow-x-auto snap-x snap-mandatory gap-6 sm:gap-8 px-6 sm:px-12 pb-10 custom-scrollbar items-center max-w-[1600px] mx-auto" id="video-carousel">
                     
                     <figure class="snap-center shrink-0 w-[75vw] sm:w-[280px] group relative overflow-hidden rounded-[2rem] aspect-[9/16] bg-brand-950 border border-white/10 shadow-xl cursor-pointer" onclick="window.UIController.toggleMute(this)">
                         <video src="https://testeessencia.carrd.co/assets/videos/video03.mp4?v=701b88d2" poster="https://images.unsplash.com/photo-1560014022-792518e957ce?q=80&w=400&auto=format&fit=crop" autoplay loop muted playsinline class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-500"></video>
@@ -342,7 +351,7 @@
                         </button>
                     </figure>
 
-                    <!-- REVIEWS TEXTUAIS NO CARROSSEL (OS 10 RESTAURADOS) -->
+                    <!-- REVIEWS -->
                     <div class="snap-center shrink-0 w-[85vw] sm:w-[320px] bg-white/5 backdrop-blur border border-white/10 p-6 sm:p-8 rounded-[2rem] shadow-xl">
                         <div class="flex items-center gap-3 mb-4">
                             <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white font-serif font-bold text-lg border border-white/20">M</div>
@@ -487,8 +496,8 @@
                 </div>
             </section>
 
-            <!-- ENGENHARIA CAPILAR (PIRÂMIDE DE AUTORIDADE TÉCNICA) -->
-            <section class="w-full max-w-5xl mx-auto mb-24 reveal px-4">
+            <!-- ENGENHARIA CAPILAR -->
+            <section class="w-full max-w-5xl mx-auto mb-24 reveal px-4 scroll-mt-36">
                 <div class="glass-panel p-8 sm:p-12 rounded-[3rem] border border-brand-900/10 dark:border-white/5 shadow-xl bg-gradient-to-br from-white/60 to-transparent dark:from-luxury-card/80 flex flex-col md:flex-row items-center gap-12">
                     <div class="md:w-1/2 text-center md:text-left">
                         <span class="text-brand-600 dark:text-brand-400 text-[10px] font-bold uppercase tracking-[0.3em] mb-3 block">Biotecnologia Avançada</span>
@@ -521,19 +530,8 @@
                 </div>
             </section>
 
-            <!-- O FECHO (GARANTIA) -->
-            <div class="w-full max-w-4xl mx-auto mb-10 sm:mb-12 bg-gradient-to-r from-brand-100/50 via-white to-brand-100/50 dark:from-luxury-card dark:via-luxury-border/30 dark:to-luxury-card border border-brand-200 dark:border-white/10 rounded-[2.5rem] p-6 sm:p-8 shadow-lg flex flex-col md:flex-row items-center gap-6 text-center md:text-left reveal scroll-mt-24">
-                <div class="w-16 h-16 bg-brand-50 dark:bg-black/30 rounded-full flex items-center justify-center shrink-0 border border-brand-200 dark:border-white/10 shadow-inner">
-                    <i data-lucide="shield-check" class="w-8 h-8 text-[#128C7E] dark:text-[#25D366]"></i>
-                </div>
-                <div>
-                    <h3 class="font-serif text-xl sm:text-2xl font-bold text-brand-950 dark:text-white mb-2">Garantia de Integridade Capilar</h3>
-                    <p class="text-[12px] sm:text-[13px] text-brand-800 dark:text-luxury-muted font-medium leading-relaxed">Nenhum procedimento de transformação é realizado sem o nosso <strong class="text-brand-950 dark:text-white">Teste de Mecha Rigoroso</strong>. Se o seu fio não estiver apto e saudável, não aplicamos a química. A sua saúde capilar e segurança vêm sempre em primeiro lugar.</p>
-                </div>
-            </div>
-
-            <!-- PASSO 4: A ESCADA DE VALOR (OFERTAS E RASTREIO DETALHADO) -->
-            <section id="ofertas" class="w-full max-w-[1200px] mx-auto px-4 mb-24 reveal scroll-mt-24">
+            <!-- A ESCADA DE VALOR (OFERTAS) -->
+            <section id="ofertas" class="w-full max-w-[1200px] mx-auto px-4 mb-16 reveal scroll-mt-36">
                 <div class="text-center mb-12">
                     <span class="text-brand-800 dark:text-brand-300 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.3em] mb-4 block transition-colors">Escolha a sua transformação</span>
                     <h2 class="font-serif text-4xl md:text-5xl font-bold text-brand-950 dark:text-white transition-colors">Menu de Protocolos Autorais</h2>
@@ -559,7 +557,7 @@
                             <span class="text-3xl font-serif font-bold text-brand-950 dark:text-white">R$ 119</span>
                         </div>
 
-                        <details class="w-full group/gaveta bg-white/60 dark:bg-black/20 rounded-2xl border border-brand-900/10 dark:border-white/10 overflow-hidden mb-6 mt-auto">
+                        <details class="w-full group/gaveta bg-white/60 dark:bg-black/20 rounded-2xl border border-brand-900/10 dark:border-white/10 overflow-hidden mb-6">
                             <summary class="flex justify-between items-center p-4 text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-brand-950 dark:text-white cursor-pointer hover:bg-brand-50 dark:hover:bg-white/5 transition-colors outline-none">
                                 <span>Ver Tabela Completa</span>
                                 <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-open/gaveta:rotate-180"></i>
@@ -569,8 +567,7 @@
                             </div>
                         </details>
 
-                        <!-- RASTREIO ID UNICO -->
-                        <button type="button" id="btn-organico" onclick="window.Tracker.push('generate_lead', 'Alinhamento Orgânico'); window.UIController.openCityModal('Alinhamento Orgânico')" class="w-full py-4 bg-brand-50 dark:bg-luxury-bg text-brand-900 dark:text-white border border-brand-200 dark:border-luxury-border rounded-xl font-bold uppercase text-[11px] tracking-widest shadow-sm hover:bg-brand-100 dark:hover:bg-white/5 transition-colors active:scale-95 min-h-[48px] flex items-center justify-center gap-2">
+                        <button type="button" id="btn-organico" onclick="window.Tracker.push('generate_lead', 'Alinhamento Orgânico'); window.UIController.openCityModal('Alinhamento Orgânico')" class="w-full py-4 bg-brand-50 dark:bg-luxury-bg text-brand-900 dark:text-white border border-brand-200 dark:border-luxury-border rounded-xl font-bold uppercase text-[11px] tracking-widest shadow-sm hover:bg-brand-100 dark:hover:bg-white/5 transition-colors active:scale-95 min-h-[48px] flex items-center justify-center gap-2 mt-auto">
                             Agendar Avaliação
                         </button>
                     </article>
@@ -593,7 +590,7 @@
                             <span class="text-3xl font-serif font-bold text-brand-950 dark:text-white">R$ 257</span>
                         </div>
 
-                        <details class="w-full group/gaveta bg-white/60 dark:bg-black/20 rounded-2xl border border-brand-900/10 dark:border-white/10 overflow-hidden mb-6 mt-auto">
+                        <details class="w-full group/gaveta bg-white/60 dark:bg-black/20 rounded-2xl border border-brand-900/10 dark:border-white/10 overflow-hidden mb-6">
                             <summary class="flex justify-between items-center p-4 text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-brand-950 dark:text-white cursor-pointer hover:bg-brand-50 dark:hover:bg-white/5 transition-colors outline-none">
                                 <span>Ver Tabela Completa</span>
                                 <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-open/gaveta:rotate-180"></i>
@@ -603,8 +600,7 @@
                             </div>
                         </details>
 
-                        <!-- RASTREIO ID UNICO -->
-                        <button type="button" id="btn-semi" onclick="window.Tracker.push('generate_lead', 'Semi Definitiva Gloss'); window.UIController.openCityModal('Semi Definitiva Gloss')" class="w-full py-4 bg-brand-50 dark:bg-luxury-bg text-brand-900 dark:text-white border border-brand-200 dark:border-luxury-border rounded-xl font-bold uppercase text-[11px] tracking-widest shadow-sm hover:bg-brand-100 dark:hover:bg-white/5 transition-colors active:scale-95 min-h-[48px] flex items-center justify-center gap-2">
+                        <button type="button" id="btn-semi" onclick="window.Tracker.push('generate_lead', 'Semi Definitiva Gloss'); window.UIController.openCityModal('Semi Definitiva Gloss')" class="w-full py-4 bg-brand-50 dark:bg-luxury-bg text-brand-900 dark:text-white border border-brand-200 dark:border-luxury-border rounded-xl font-bold uppercase text-[11px] tracking-widest shadow-sm hover:bg-brand-100 dark:hover:bg-white/5 transition-colors active:scale-95 min-h-[48px] flex items-center justify-center gap-2 mt-auto">
                             Agendar Avaliação
                         </button>
                     </article>
@@ -613,21 +609,21 @@
                     <article class="glass-panel p-6 sm:p-10 rounded-[3rem] shadow-2xl border-2 border-brand-400 dark:border-brand-500/50 flex flex-col relative group transition-all duration-300 hover:-translate-y-2 lg:col-span-2 overflow-hidden bg-white/95 dark:bg-[#0a0a0a]/95">
                         <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full bg-brand-500/5 dark:bg-brand-400/5 rounded-full filter blur-[100px] pointer-events-none"></div>
                         
-                        <div class="flex flex-col md:flex-row gap-8 items-center relative z-10 w-full">
-                            <div class="w-full md:w-1/2 text-center md:text-left">
-                                <span class="inline-block px-4 py-1.5 bg-brand-950 dark:bg-white text-white dark:text-brand-950 text-[10px] font-black uppercase tracking-widest rounded-full mb-5 shadow-lg animate-pulse">A Experiência Premium 🏆</span>
+                        <div class="flex flex-col md:flex-row gap-8 items-center relative z-10 w-full h-full">
+                            <div class="w-full md:w-1/2 text-center md:text-left flex flex-col h-full">
+                                <span class="inline-block px-4 py-1.5 bg-brand-950 dark:bg-white text-white dark:text-brand-950 text-[10px] font-black uppercase tracking-widest rounded-full mb-5 shadow-lg animate-pulse w-max mx-auto md:mx-0">A Experiência Premium 🏆</span>
                                 <h3 class="font-serif text-4xl sm:text-5xl font-bold text-brand-950 dark:text-white mb-4">Liso Soberano 8K</h3>
                                 <p class="text-[11px] uppercase font-bold text-brand-600 dark:text-brand-400 tracking-widest mb-2 flex items-center justify-center md:justify-start gap-1"><i data-lucide="target" class="w-3.5 h-3.5"></i> O Protocolo Definitivo:</p>
                                 <p class="text-sm text-brand-800 dark:text-luxury-muted font-medium mb-6 leading-relaxed">A nossa assinatura de excelência. Liso 100% definitivo, natural e sem danos. Resultados imediatos.</p>
                                 
-                                <ul class="text-left text-xs font-bold text-brand-900 dark:text-white space-y-3 mb-6 ml-2 hidden sm:block">
+                                <ul class="text-left text-xs font-bold text-brand-900 dark:text-white space-y-3 mb-6 ml-2 hidden sm:block mt-auto">
                                     <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-[#25D366]"></i> Zero Ardor nos Olhos ou Fumo</li>
                                     <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-[#25D366]"></i> Cabelo Lavado e Seco na Hora</li>
                                     <li class="flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4 text-[#25D366]"></i> Brilho Espelhado Garantido</li>
                                 </ul>
                             </div>
 
-                            <div class="w-full md:w-1/2 bg-brand-50/50 dark:bg-black/40 p-6 sm:p-8 rounded-[2.5rem] border border-brand-900/5 dark:border-white/5 shadow-inner flex flex-col justify-between">
+                            <div class="w-full md:w-1/2 bg-brand-50/50 dark:bg-black/40 p-6 sm:p-8 rounded-[2.5rem] border border-brand-900/5 dark:border-white/5 shadow-inner flex flex-col justify-between h-full">
                                 <div>
                                     <div class="text-center mb-6">
                                         <span class="text-[10px] font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest block mb-1">A Partir de</span>
@@ -647,7 +643,6 @@
 
                                 <div class="text-center mb-4"><span class="trust-badge"><i data-lucide="shield-check" class="w-3 h-3"></i> Orçamento Exato na Avaliação</span></div>
 
-                                <!-- RASTREIO ID UNICO -->
                                 <button type="button" id="btn-soberano" onclick="window.Tracker.push('generate_lead', 'Liso Soberano 8K'); window.UIController.openCityModal('Liso Soberano 8K')" class="w-full py-5 bg-[#128C7E] dark:bg-[#1EBE5D] text-white rounded-2xl font-bold uppercase text-[13px] tracking-widest shadow-xl hover:-translate-y-1 hover:shadow-2xl active:scale-95 transition-all flex items-center justify-center gap-2 min-h-[52px] mt-auto">
                                     Agendar Avaliação 8K <i data-lucide="arrow-right" class="w-4 h-4"></i>
                                 </button>
@@ -688,7 +683,6 @@
                                 </div>
                             </details>
 
-                            <!-- RASTREIO ID UNICO -->
                             <button type="button" id="btn-glass" onclick="window.Tracker.push('generate_lead', 'Tratamento Glass Molecular'); window.UIController.openCityModal('Glass Molecular')" class="w-full md:w-1/2 py-4 bg-brand-950 dark:bg-white text-white dark:text-brand-950 border border-brand-900 dark:border-white rounded-xl font-bold uppercase text-[11px] tracking-widest shadow-md hover:bg-brand-800 dark:hover:bg-gray-200 transition-colors active:scale-95 flex items-center justify-center gap-2 min-h-[48px]">
                                 Agendar Tratamento Glass
                             </button>
@@ -698,8 +692,19 @@
                 </div>
             </section>
 
-            <!-- SERVIÇOS COMPLEMENTARES (RESTAURADOS INTEGRALMENTE) -->
-            <section class="w-full max-w-[100vw] mx-auto mb-16 sm:mb-24 reveal overflow-hidden relative pt-12 border-t border-brand-900/10 dark:border-white/5" id="servicos-complementares">
+            <!-- O FECHO (GARANTIA) -->
+            <div class="w-full max-w-4xl mx-auto mb-16 sm:mb-24 bg-gradient-to-r from-brand-100/50 via-white to-brand-100/50 dark:from-luxury-card dark:via-luxury-border/30 dark:to-luxury-card border border-brand-200 dark:border-white/10 rounded-[2.5rem] p-6 sm:p-8 shadow-lg flex flex-col md:flex-row items-center gap-6 text-center md:text-left reveal scroll-mt-36">
+                <div class="w-16 h-16 bg-brand-50 dark:bg-black/30 rounded-full flex items-center justify-center shrink-0 border border-brand-200 dark:border-white/10 shadow-inner">
+                    <i data-lucide="shield-check" class="w-8 h-8 text-[#128C7E] dark:text-[#25D366]"></i>
+                </div>
+                <div>
+                    <h3 class="font-serif text-xl sm:text-2xl font-bold text-brand-950 dark:text-white mb-2">Garantia de Integridade Capilar</h3>
+                    <p class="text-[12px] sm:text-[13px] text-brand-800 dark:text-luxury-muted font-medium leading-relaxed">Nenhum procedimento de transformação é realizado sem o nosso <strong class="text-brand-950 dark:text-white">Teste de Mecha Rigoroso</strong>. Se o seu fio não estiver apto e saudável, não aplicamos a química. A sua saúde capilar e segurança vêm sempre em primeiro lugar.</p>
+                </div>
+            </div>
+
+            <!-- SERVIÇOS COMPLEMENTARES -->
+            <section class="w-full max-w-[100vw] mx-auto mb-16 sm:mb-24 reveal overflow-hidden relative pt-12 border-t border-brand-900/10 dark:border-white/5 scroll-mt-36" id="servicos-complementares">
                 <div class="text-center mb-10 sm:mb-12 px-4">
                     <span class="text-brand-800 dark:text-brand-300 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.3em] mb-4 block transition-colors">O Nosso Espaço</span>
                     <h2 class="font-serif text-3xl md:text-5xl font-bold text-brand-950 dark:text-white transition-colors">Experiências Complementares</h2>
@@ -878,9 +883,9 @@
         <!-- ======================================================= -->
         <!-- ABA 2: BOUTIQUE (MANUTENÇÃO DO HOME CARE) -->
         <!-- ======================================================= -->
-        <div id="view-homecare" class="w-full flex flex-col items-center justify-center px-4 pb-12 hidden fade-in scroll-mt-[100px]">
+        <div id="view-homecare" class="w-full flex flex-col items-center justify-center px-4 pb-12 hidden fade-in scroll-mt-36">
             
-            <header class="pt-24 pb-12 text-center max-w-4xl w-full">
+            <header class="pt-36 md:pt-44 pb-12 text-center max-w-4xl w-full">
                 <span class="px-6 py-2.5 bg-brand-950 dark:bg-white text-white dark:text-brand-950 rounded-full text-[10px] sm:text-[11px] uppercase font-bold tracking-widest mb-8 inline-block shadow-lg border border-brand-800 dark:border-white/50">Linha Exclusiva de Manutenção</span>
                 <h1 class="text-5xl sm:text-6xl md:text-8xl font-serif mb-6 uppercase tracking-tighter leading-none text-brand-950 dark:text-white drop-shadow-sm">Protocolo <br><span class="text-brand-400 italic">Home Care 8K</span></h1>
                 <p class="text-brand-800 dark:text-luxury-muted text-base md:text-xl font-medium leading-relaxed max-w-2xl mx-auto mb-16">O seu Liso Soberano já sai impecável e definitivo do nosso espaço. A linha Home Care 8K é o cuidado opcional perfeito para quem deseja blindar os fios e prolongar a saúde capilar no conforto de casa.</p>
@@ -914,7 +919,7 @@
                 </div>
             </header>
 
-            <section id="rituais-individuais" class="w-full max-w-5xl space-y-12 sm:space-y-16 scroll-mt-24">
+            <section id="rituais-individuais" class="w-full max-w-5xl space-y-12 sm:space-y-16 scroll-mt-36">
                 <div class="text-center mb-10">
                     <span class="text-brand-800 dark:text-brand-300 text-[10px] font-bold uppercase tracking-[0.3em] mb-2 block transition-colors">Rituais Individuais</span>
                     <h2 class="font-serif text-3xl md:text-4xl font-bold text-brand-950 dark:text-white transition-colors">Reposição de Alta Performance</h2>
@@ -966,267 +971,67 @@
                     </div>
                 </article>
 
-                <!-- Passo 1 Shampoo -->
-                <article class="glass-panel border border-brand-900/10 dark:border-luxury-border rounded-[3rem] p-6 sm:p-10 md:p-12 flex flex-col md:flex-row gap-10 lg:gap-16 items-stretch shadow-lg group/media transition-all duration-500 hover:shadow-xl hover:-translate-y-1">
-                    <div class="w-full md:w-1/2 aspect-[4/5] rounded-3xl overflow-hidden relative shadow-inner border border-brand-900/10 dark:border-white/5 bg-brand-50 dark:bg-[#050505] p-2 sm:p-4">
-                        <div class="media-photo absolute inset-0 w-full h-full transition-opacity duration-700 z-10 overflow-hidden">
-                            <div class="flex w-[300%] h-full animate-slide-horizontal">
-                                <img src="https://testeessencia.carrd.co/assets/images/image53.jpg?v=f5d26855" loading="lazy" decoding="async" alt="Shampoo 1" class="w-1/3 h-full object-cover shrink-0 transform scale-[1.15] sm:scale-125 origin-bottom">
-                                <img src="https://testeessencia.carrd.co/assets/images/image55.jpg?v=0dcd7ee2" loading="lazy" decoding="async" alt="Shampoo 2" class="w-1/3 h-full object-cover shrink-0 transform scale-[1.15] sm:scale-125 origin-bottom">
-                                <img src="https://testeessencia.carrd.co/assets/images/image53.jpg?v=f5d26855" loading="lazy" decoding="async" alt="Shampoo 3" class="w-1/3 h-full object-cover shrink-0 transform scale-[1.15] sm:scale-125 origin-bottom">
-                            </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Produto 1 -->
+                    <article class="glass-panel border border-brand-900/10 dark:border-luxury-border rounded-[2.5rem] p-6 shadow-sm flex flex-col items-center text-center h-full">
+                        <div class="w-full aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-6 relative bg-brand-50 dark:bg-[#050505] border border-brand-900/5 dark:border-white/5">
+                            <img src="https://testeessencia.carrd.co/assets/images/image53.jpg?v=f5d26855" alt="Shampoo" class="absolute inset-0 w-full h-full object-cover object-top">
                         </div>
-                        <video data-src="https://testeessencia.carrd.co/assets/videos/video17.mp4?v=701b88d2#t=0.1" preload="none" loop muted playsinline class="media-video absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 z-0 pointer-events-none"></video>
-                        <span class="absolute top-5 left-5 bg-brand-950 dark:bg-white text-white dark:text-brand-950 text-[10px] font-black px-4 py-2 rounded-lg uppercase tracking-widest shadow-lg transition-colors z-20 pointer-events-none">Passo 1</span>
+                        <h4 class="font-serif text-2xl font-bold text-brand-950 dark:text-white mb-1">Repair Master</h4>
+                        <p class="text-[10px] uppercase font-black text-brand-500 tracking-[0.2em] mb-4">Shampoo (300ml)</p>
+                        <p class="text-[12px] text-brand-800 dark:text-luxury-muted font-medium mb-6 line-clamp-2">Limpeza suave pós-química com Queratina e Ceramidas que prepara a fibra.</p>
                         
-                        <div class="absolute bottom-5 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md rounded-full p-1.5 flex gap-1.5 z-30 border border-white/20 shadow-xl">
-                            <button type="button" class="toggle-media-btn active px-5 py-3 rounded-full text-brand-950 bg-white text-[9px] font-bold uppercase focus:outline-none transition-all min-w-[48px] min-h-[48px] flex justify-center items-center" data-type="photo">Foto</button>
-                            <button type="button" class="toggle-media-btn px-5 py-3 rounded-full text-white bg-transparent text-[9px] font-bold uppercase focus:outline-none transition-all min-w-[48px] min-h-[48px] flex justify-center items-center" data-type="video">Vídeo</button>
+                        <div class="w-full mt-auto pt-5 border-t border-brand-900/10 dark:border-white/5 flex items-center justify-between">
+                            <span class="font-serif text-xl font-bold text-[#128C7E] dark:text-[#25D366]">R$ 102,90</span>
+                            <button type="button" onclick="window.Tracker.push('add_to_cart', 'Shampoo Repair Master'); window.CartSystem.add(this, 'Banho Repair Master', 102.90, 'https://testeessencia.carrd.co/assets/images/image53.jpg?v=f5d26855')" class="bg-brand-950 dark:bg-white text-white dark:text-brand-950 p-3 rounded-full hover:scale-105 active:scale-95 transition-transform min-w-[44px] min-h-[44px] flex items-center justify-center"><i data-lucide="plus" class="w-5 h-5 btn-icon"></i><span class="hidden btn-text"></span></button>
                         </div>
-                    </div>
-                    
-                    <div class="w-full md:w-1/2 flex flex-col h-full justify-center">
-                        <div class="flex gap-2 mb-4">
-                            <span class="bg-emerald-100/80 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-400 text-[8px] font-bold px-2.5 py-1.5 rounded uppercase tracking-widest border border-emerald-200 dark:border-emerald-800/50">Livre de Parabenos</span>
-                            <span class="bg-emerald-100/80 dark:bg-emerald-900/30 text-emerald-800 dark:text-emerald-400 text-[8px] font-bold px-2.5 py-1.5 rounded uppercase tracking-widest border border-emerald-200 dark:border-emerald-800/50">Cruelty-Free</span>
-                        </div>
+                    </article>
 
-                        <h4 class="font-serif text-3xl md:text-4xl mb-2 text-brand-950 dark:text-white font-bold">Banho Repair Master <span class="text-lg font-light lowercase text-brand-800 dark:text-luxury-muted tracking-wide">300ml</span></h4>
-                        <p class="text-[10px] sm:text-[11px] uppercase font-black text-brand-500 tracking-[0.2em] mb-6">Shampoo Pós-Química</p>
+                    <!-- Produto 2 -->
+                    <article class="glass-panel border border-brand-900/10 dark:border-luxury-border rounded-[2.5rem] p-6 shadow-sm flex flex-col items-center text-center h-full">
+                        <div class="w-full aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-6 relative bg-brand-50 dark:bg-[#050505] border border-brand-900/5 dark:border-white/5">
+                            <img src="https://testeessencia.carrd.co/assets/images/image56.jpg?v=f5d26855" alt="Ampola" class="absolute inset-0 w-full h-full object-cover object-top">
+                        </div>
+                        <h4 class="font-serif text-2xl font-bold text-brand-950 dark:text-white mb-1">Ouro Repair Gloss</h4>
+                        <p class="text-[10px] uppercase font-black text-brand-500 tracking-[0.2em] mb-4">Ampola (20ml)</p>
+                        <p class="text-[12px] text-brand-800 dark:text-luxury-muted font-medium mb-6 line-clamp-2">Reposição intensiva do cimento intercelular para brilho espelhado.</p>
                         
-                        <div class="mb-5">
-                            <span class="text-[10px] font-black text-brand-900 dark:text-white uppercase tracking-widest block mb-2.5">Poder de Ação dos Ativos:</span>
-                            <div class="flex gap-2 flex-wrap">
-                                <span class="bg-brand-50 dark:bg-black/20 border border-brand-200 dark:border-white/10 text-brand-800 dark:text-brand-300 text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-sm transition-colors">Queratina</span>
-                                <span class="bg-brand-50 dark:bg-black/20 border border-brand-200 dark:border-white/10 text-brand-800 dark:text-brand-300 text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-sm transition-colors">Ceramidas</span>
-                                <span class="bg-brand-50 dark:bg-black/20 border border-brand-200 dark:border-white/10 text-brand-800 dark:text-brand-300 text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-sm transition-colors">D-Pantenol</span>
-                            </div>
+                        <div class="w-full mt-auto pt-5 border-t border-brand-900/10 dark:border-white/5 flex items-center justify-between">
+                            <span class="font-serif text-xl font-bold text-[#128C7E] dark:text-[#25D366]">R$ 202,30</span>
+                            <button type="button" onclick="window.Tracker.push('add_to_cart', 'Ampola Ouro Repair Gloss'); window.CartSystem.add(this, 'Ampola Ouro Repair Gloss', 202.30, 'https://testeessencia.carrd.co/assets/images/image56.jpg?v=f5d26855')" class="bg-brand-950 dark:bg-white text-white dark:text-brand-950 p-3 rounded-full hover:scale-105 active:scale-95 transition-transform min-w-[44px] min-h-[44px] flex items-center justify-center"><i data-lucide="plus" class="w-5 h-5 btn-icon"></i><span class="hidden btn-text"></span></button>
                         </div>
+                    </article>
 
-                        <div class="mb-6 bg-brand-50/50 dark:bg-black/20 p-4 rounded-2xl border border-brand-900/5 dark:border-white/5">
-                            <span class="text-[9px] font-bold text-brand-800 dark:text-brand-400 uppercase tracking-widest flex items-center gap-1.5 mb-2"><i data-lucide="wind" class="w-3.5 h-3.5"></i> Assinatura Olfativa</span>
-                            <p class="text-[11px] sm:text-[12px] text-brand-800 dark:text-luxury-muted font-medium italic">Frescor mediterrâneo com notas de limão siciliano, maçã, bambu e fundo de cedro e âmbar.</p>
+                    <!-- Produto 3 -->
+                    <article class="glass-panel border border-brand-900/10 dark:border-luxury-border rounded-[2.5rem] p-6 shadow-sm flex flex-col items-center text-center h-full">
+                        <div class="w-full aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-6 relative bg-brand-50 dark:bg-[#050505] border border-brand-900/5 dark:border-white/5">
+                            <img src="https://testeessencia.carrd.co/assets/images/image63.jpg?v=f5d26855" alt="Baby Queen" class="absolute inset-0 w-full h-full object-cover object-top">
                         </div>
-
-                        <div class="bg-brand-50/80 dark:bg-luxury-bg/80 p-5 rounded-2xl border-l-4 border-l-brand-500 mb-8 shadow-sm">
-                            <span class="text-[10px] font-black text-brand-800 dark:text-brand-400 uppercase tracking-wider block mb-2">Por que é crucial?</span>
-                            <p class="text-[12px] sm:text-[13px] text-brand-800 dark:text-luxury-muted font-medium leading-relaxed">Shampoos comuns utilizam sulfatos agressivos que desbotam a progressiva rapidamente. O Banho Repair Master remove impurezas suavemente sem dilatar a cutícula, enquanto a Queratina e o D-Pantenol injetam hidratação e preparem a fibra para máxima absorção dos tratamentos.</p>
-                        </div>
-
-                        <div class="flex flex-col sm:flex-row items-center justify-between gap-5 pt-6 border-t border-brand-900/10 dark:border-luxury-border mt-auto">
-                            <div class="flex flex-col text-center sm:text-left w-full sm:w-auto">
-                                <div class="flex items-center justify-center sm:justify-start gap-2 mb-1.5">
-                                    <span class="bg-rose-500 text-white text-[9px] font-black px-2 py-0.5 rounded-sm uppercase tracking-widest">30% OFF</span>
-                                    <span class="text-[11px] font-bold text-brand-800/60 dark:text-luxury-muted line-through">R$ 147,00</span>
-                                </div>
-                                <div class="flex items-baseline justify-center sm:justify-start gap-1">
-                                    <span class="text-sm text-[#128C7E] dark:text-[#25D366] font-black">R$</span>
-                                    <span class="text-4xl font-serif font-bold text-[#128C7E] dark:text-[#25D366] transition-colors leading-none">102,90</span>
-                                </div>
-                                <span class="text-[9px] font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest mt-2 flex items-center justify-center sm:justify-start gap-1.5"><i data-lucide="ticket" class="w-3.5 h-3.5"></i> C/ Cupom BOUTIQUE30</span>
-                                <span class="text-[9px] font-medium text-brand-800 dark:text-luxury-muted uppercase tracking-widest mt-2.5 block opacity-80">Pix / Parcelado • Envio / Retirada</span>
-                            </div>
-                            <button type="button" onclick="window.Tracker.push('add_to_cart', 'Shampoo Repair Master'); window.CartSystem.add(this, 'Banho Repair Master', 102.90, 'https://testeessencia.carrd.co/assets/images/image53.jpg?v=f5d26855')" class="w-full sm:w-auto bg-brand-950 hover:bg-brand-800 dark:bg-white dark:hover:bg-luxury-text text-white dark:text-brand-950 text-[11px] sm:text-[12px] font-bold uppercase px-8 py-4 sm:py-5 rounded-2xl transition-all active:scale-95 shadow-xl flex items-center justify-center gap-2 focus:outline-none min-h-[52px]">
-                                <i data-lucide="shopping-bag" class="w-4 h-4 btn-icon"></i> <span class="btn-text">Adicionar</span>
-                            </button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Passo 2 Ampola -->
-                <article class="glass-panel border border-brand-900/10 dark:border-luxury-border rounded-[3rem] p-6 sm:p-10 md:p-12 flex flex-col md:flex-row-reverse gap-10 lg:gap-16 items-stretch shadow-lg group/media transition-all duration-500 hover:shadow-xl hover:-translate-y-1">
-                    <div class="w-full md:w-1/2 aspect-[4/5] rounded-3xl overflow-hidden relative shadow-inner border border-brand-900/10 dark:border-white/5 bg-brand-50 dark:bg-[#050505] p-2 sm:p-4">
-                        <div class="media-photo absolute inset-0 w-full h-full transition-opacity duration-700 z-10 overflow-hidden">
-                            <div class="flex w-[300%] h-full animate-slide-horizontal">
-                                <img src="https://testeessencia.carrd.co/assets/images/image56.jpg?v=f5d26855" loading="lazy" decoding="async" alt="Ampola Ouro 1" class="w-1/3 h-full object-cover shrink-0 transform scale-[1.15] sm:scale-150 origin-bottom">
-                                <img src="https://testeessencia.carrd.co/assets/images/image56.jpg?v=f5d26855" loading="lazy" decoding="async" alt="Ampola Ouro 2" class="w-1/3 h-full object-cover shrink-0 transform scale-[1.15] sm:scale-150 origin-bottom">
-                                <img src="https://testeessencia.carrd.co/assets/images/image57.jpg?v=0dcd7ee2" loading="lazy" decoding="async" alt="Ampola Ouro 3" class="w-1/3 h-full object-cover shrink-0 transform scale-[1.15] sm:scale-150 origin-bottom">
-                            </div>
-                        </div>
-                        <video data-src="https://testeessencia.carrd.co/assets/videos/video18.mp4?v=701b88d2#t=0.1" preload="none" loop muted playsinline class="media-video absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 z-0 pointer-events-none"></video>
-                        <span class="absolute top-5 right-5 md:left-5 md:right-auto bg-brand-950 dark:bg-white text-white dark:text-brand-950 text-[10px] font-black px-4 py-2 rounded-lg uppercase tracking-widest shadow-lg transition-colors z-20 pointer-events-none">Passo 2</span>
+                        <h4 class="font-serif text-2xl font-bold text-brand-950 dark:text-white mb-1">Baby Queen</h4>
+                        <p class="text-[10px] uppercase font-black text-brand-500 tracking-[0.2em] mb-4">Blindagem (260ml)</p>
+                        <p class="text-[12px] text-brand-800 dark:text-luxury-muted font-medium mb-6 line-clamp-2">Protetor térmico 10 em 1 que elimina o frizz e hidrata profundamente.</p>
                         
-                        <div class="absolute bottom-5 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md rounded-full p-1.5 flex gap-1.5 z-30 border border-white/20 shadow-xl">
-                            <button type="button" class="toggle-media-btn active px-5 py-3 rounded-full text-brand-950 bg-white text-[9px] font-bold uppercase focus:outline-none transition-all min-w-[48px] min-h-[48px] flex justify-center items-center" data-type="photo">Foto</button>
-                            <button type="button" class="toggle-media-btn px-5 py-3 rounded-full text-white bg-transparent text-[9px] font-bold uppercase focus:outline-none transition-all min-w-[48px] min-h-[48px] flex justify-center items-center" data-type="video">Vídeo</button>
+                        <div class="w-full mt-auto pt-5 border-t border-brand-900/10 dark:border-white/5 flex items-center justify-between">
+                            <span class="font-serif text-xl font-bold text-[#128C7E] dark:text-[#25D366]">R$ 172,90</span>
+                            <button type="button" onclick="window.Tracker.push('add_to_cart', 'Baby Queen 10 em 1'); window.CartSystem.add(this, 'Baby Queen 10 em 1', 172.90, 'https://testeessencia.carrd.co/assets/images/image63.jpg?v=f5d26855')" class="bg-brand-950 dark:bg-white text-white dark:text-brand-950 p-3 rounded-full hover:scale-105 active:scale-95 transition-transform min-w-[44px] min-h-[44px] flex items-center justify-center"><i data-lucide="plus" class="w-5 h-5 btn-icon"></i><span class="hidden btn-text"></span></button>
                         </div>
-                    </div>
-                    <div class="w-full md:w-1/2 flex flex-col h-full md:text-right justify-center">
-                        <h4 class="font-serif text-3xl md:text-4xl mb-2 text-brand-950 dark:text-white font-bold">Ouro Repair Gloss <span class="text-lg font-light lowercase text-brand-800 dark:text-luxury-muted tracking-wide">20ml</span></h4>
-                        <p class="text-[10px] sm:text-[11px] uppercase font-black text-brand-500 tracking-[0.2em] mb-6">Restauração e Iluminação Intensiva</p>
+                    </article>
+
+                    <!-- Produto 4 -->
+                    <article class="glass-panel border border-brand-900/10 dark:border-luxury-border rounded-[2.5rem] p-6 shadow-sm flex flex-col items-center text-center h-full">
+                        <div class="w-full aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-6 relative bg-brand-50 dark:bg-[#050505] border border-brand-900/5 dark:border-white/5">
+                            <img src="https://testeessencia.carrd.co/assets/images/image79.jpg?v=7c53f00c" alt="Argan Oil" class="absolute inset-0 w-full h-full object-cover object-top">
+                        </div>
+                        <h4 class="font-serif text-2xl font-bold text-brand-950 dark:text-white mb-1">American Argan Oil</h4>
+                        <p class="text-[10px] uppercase font-black text-brand-500 tracking-[0.2em] mb-4">Finalizador (100ml)</p>
+                        <p class="text-[12px] text-brand-800 dark:text-luxury-muted font-medium mb-6 line-clamp-2">Óleo de Argan puro para selagem de pontas e brilho tridimensional.</p>
                         
-                        <div class="mb-5 flex-grow flex flex-col md:items-end">
-                            <span class="text-[10px] font-black text-brand-900 dark:text-white uppercase tracking-widest block mb-2.5">Poder de Ação dos Ativos:</span>
-                            <div class="flex gap-2 flex-wrap justify-start md:justify-end">
-                                <span class="bg-brand-50 dark:bg-black/20 border border-brand-200 dark:border-white/10 text-brand-800 dark:text-brand-300 text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-sm transition-colors">Nutramino Cap</span>
-                                <span class="bg-brand-50 dark:bg-black/20 border border-brand-200 dark:border-white/10 text-brand-800 dark:text-brand-300 text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-sm transition-colors">Óleo de Abacate</span>
-                                <span class="bg-brand-50 dark:bg-black/20 border border-brand-200 dark:border-white/10 text-brand-800 dark:text-brand-300 text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-sm transition-colors">Proteína da Seda</span>
-                            </div>
+                        <div class="w-full mt-auto pt-5 border-t border-brand-900/10 dark:border-white/5 flex items-center justify-between">
+                            <span class="font-serif text-xl font-bold text-[#128C7E] dark:text-[#25D366]">R$ 137,90</span>
+                            <button type="button" onclick="window.Tracker.push('add_to_cart', 'American Argan Oil'); window.CartSystem.add(this, 'American Argan Oil', 137.90, 'https://testeessencia.carrd.co/assets/images/image79.jpg?v=7c53f00c')" class="bg-brand-950 dark:bg-white text-white dark:text-brand-950 p-3 rounded-full hover:scale-105 active:scale-95 transition-transform min-w-[44px] min-h-[44px] flex items-center justify-center"><i data-lucide="plus" class="w-5 h-5 btn-icon"></i><span class="hidden btn-text"></span></button>
                         </div>
-
-                        <div class="mb-6 bg-brand-50/50 dark:bg-black/20 p-4 rounded-2xl border border-brand-900/5 dark:border-white/5 text-left md:text-right">
-                            <span class="text-[9px] font-bold text-brand-800 dark:text-brand-400 uppercase tracking-widest flex items-center justify-start md:justify-end gap-1.5 mb-2"><i data-lucide="wind" class="w-3.5 h-3.5"></i> Assinatura Olfativa</span>
-                            <p class="text-[11px] sm:text-[12px] text-brand-800 dark:text-luxury-muted font-medium italic">Frescor mediterrâneo com notas de limão siciliano, maçã, bambu e fundo de cedro e âmbar.</p>
-                        </div>
-
-                        <div class="bg-brand-50/80 dark:bg-luxury-bg/80 p-5 rounded-2xl border-l-4 md:border-l-0 md:border-r-4 border-l-brand-500 md:border-r-brand-500 mb-8 shadow-sm text-left md:text-right">
-                            <span class="text-[10px] font-black text-brand-800 dark:text-brand-400 uppercase tracking-widest block mb-2">Por que é crucial?</span>
-                            <p class="text-[12px] sm:text-[13px] text-brand-800 dark:text-luxury-muted font-medium leading-relaxed">No dia a dia, o cabelo sofre desgaste e perde massa capilar. Este tratamento atua na reconstrução do cimento intercelular, trancando a hidratação no núcleo e iluminando intensamente a fibra.</p>
-                        </div>
-
-                        <div class="flex flex-col sm:flex-row md:flex-row-reverse items-center justify-between gap-5 pt-6 border-t border-brand-900/10 dark:border-luxury-border mt-auto">
-                            <div class="flex flex-col text-center sm:text-left md:text-right md:items-end w-full sm:w-auto">
-                                <div class="flex items-center justify-center sm:justify-start md:justify-end gap-2 mb-1.5">
-                                    <span class="bg-rose-500 text-white text-[9px] font-black px-2 py-0.5 rounded-sm uppercase tracking-widest">30% OFF</span>
-                                    <span class="text-[11px] font-bold text-brand-800/60 dark:text-luxury-muted line-through">R$ 289,00</span>
-                                </div>
-                                <div class="flex items-baseline justify-center sm:justify-start md:justify-end gap-1">
-                                    <span class="text-sm text-[#128C7E] dark:text-[#25D366] font-black">R$</span>
-                                    <span class="text-4xl font-serif font-bold text-[#128C7E] dark:text-[#25D366] transition-colors leading-none">202,30</span>
-                                </div>
-                                <span class="text-[9px] font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest mt-2 flex items-center justify-center sm:justify-start md:justify-end gap-1.5"><i data-lucide="ticket" class="w-3.5 h-3.5"></i> C/ Cupom BOUTIQUE30</span>
-                                <span class="text-[9px] font-medium text-brand-800 dark:text-luxury-muted uppercase tracking-widest mt-2.5 block opacity-80">Pix / Parcelado • Envio / Retirada</span>
-                            </div>
-                            <button type="button" onclick="window.Tracker.push('add_to_cart', 'Ampola Ouro Repair Gloss'); window.CartSystem.add(this, 'Ampola Ouro Repair Gloss', 202.30, 'https://testeessencia.carrd.co/assets/images/image56.jpg?v=f5d26855')" class="w-full sm:w-auto bg-brand-950 hover:bg-brand-800 dark:bg-white dark:hover:bg-luxury-text text-white dark:text-brand-950 text-[11px] sm:text-[12px] font-bold uppercase px-8 py-4 sm:py-5 rounded-2xl transition-all active:scale-95 shadow-xl flex items-center justify-center gap-2 focus:outline-none min-h-[52px]">
-                                <i data-lucide="shopping-bag" class="w-4 h-4 btn-icon"></i> <span class="btn-text">Adicionar</span>
-                            </button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Passo 3 Baby Queen -->
-                <article class="glass-panel border border-brand-900/10 dark:border-luxury-border rounded-[3rem] p-6 sm:p-10 md:p-12 flex flex-col md:flex-row gap-10 lg:gap-16 items-stretch shadow-lg group/media transition-all duration-500 hover:shadow-xl hover:-translate-y-1">
-                    <div class="w-full md:w-1/2 aspect-[4/5] rounded-3xl overflow-hidden relative shadow-inner border border-brand-900/10 dark:border-white/5 bg-brand-50 dark:bg-[#050505] p-2 sm:p-4">
-                        <div class="media-photo absolute inset-0 w-full h-full transition-opacity duration-700 z-10 overflow-hidden">
-                            <div class="flex w-[300%] h-full animate-slide-horizontal">
-                                <img src="https://testeessencia.carrd.co/assets/images/image63.jpg?v=f5d26855" loading="lazy" decoding="async" alt="Baby Queen 1" class="w-1/3 h-full object-cover shrink-0">
-                                <img src="https://testeessencia.carrd.co/assets/images/image66.jpg?v=0dcd7ee2" loading="lazy" decoding="async" alt="Baby Queen 2" class="w-1/3 h-full object-cover shrink-0">
-                                <img src="https://testeessencia.carrd.co/assets/images/image64.jpg?v=0dcd7ee2" loading="lazy" decoding="async" alt="Baby Queen 3" class="w-1/3 h-full object-cover shrink-0">
-                            </div>
-                        </div>
-                        <video data-src="https://testeessencia.carrd.co/assets/videos/video02.mp4?v=7c53f00c#t=0.1" preload="none" loop muted playsinline class="media-video absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 z-0 pointer-events-none"></video>
-                        <span class="absolute top-5 left-5 bg-brand-950 dark:bg-white text-white dark:text-brand-950 text-[10px] font-black px-4 py-2 rounded-lg uppercase tracking-widest shadow-lg transition-colors z-20 pointer-events-none">Passo 3</span>
-                        
-                        <div class="absolute bottom-5 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md rounded-full p-1.5 flex gap-1.5 z-30 border border-white/20 shadow-xl">
-                            <button type="button" class="toggle-media-btn active px-5 py-3 rounded-full text-brand-950 bg-white text-[9px] font-bold uppercase focus:outline-none transition-all min-w-[48px] min-h-[48px] flex justify-center items-center" data-type="photo">Foto</button>
-                            <button type="button" class="toggle-media-btn px-5 py-3 rounded-full text-white bg-transparent text-[9px] font-bold uppercase focus:outline-none transition-all min-w-[48px] min-h-[48px] flex justify-center items-center" data-type="video">Vídeo</button>
-                        </div>
-                    </div>
-                    <div class="w-full md:w-1/2 flex flex-col h-full justify-center">
-                        <h4 class="font-serif text-3xl md:text-4xl mb-2 text-brand-950 dark:text-white font-bold">Baby Queen <span class="text-lg font-light lowercase text-brand-800 dark:text-luxury-muted tracking-wide">260ml</span></h4>
-                        <p class="text-[10px] sm:text-[11px] uppercase font-black text-brand-500 tracking-[0.2em] mb-6">Blindagem Inteligente Pós-Química</p>
-                        
-                        <div class="mb-5">
-                            <span class="text-[10px] font-black text-brand-900 dark:text-white uppercase tracking-widest block mb-2.5">Poder de Ação dos Ativos:</span>
-                            <div class="flex gap-2 flex-wrap">
-                                <span class="bg-brand-50 dark:bg-black/20 border border-brand-200 dark:border-white/10 text-brand-800 dark:text-brand-300 text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-sm transition-colors">Proteção Térmica & UV</span>
-                                <span class="bg-brand-50 dark:bg-black/20 border border-brand-200 dark:border-white/10 text-brand-800 dark:text-brand-300 text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-sm transition-colors">Tecnologia Colágeno</span>
-                                <span class="bg-brand-50 dark:bg-black/20 border border-brand-200 dark:border-white/10 text-brand-800 dark:text-brand-300 text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-sm transition-colors">Nanolink</span>
-                            </div>
-                        </div>
-
-                        <div class="mb-6 bg-brand-50/50 dark:bg-black/20 p-4 rounded-2xl border border-brand-900/5 dark:border-white/5">
-                            <span class="text-[9px] font-bold text-brand-800 dark:text-brand-400 uppercase tracking-widest flex items-center gap-1.5 mb-2"><i data-lucide="wind" class="w-3.5 h-3.5"></i> Assinatura Olfativa</span>
-                            <p class="text-[11px] sm:text-[12px] text-brand-800 dark:text-luxury-muted font-medium italic">Frescor mediterrâneo com notas de limão siciliano, maçã, bambu e fundo de cedro e âmbar.</p>
-                        </div>
-
-                        <div class="bg-brand-50/80 dark:bg-luxury-bg/80 p-5 rounded-2xl border-l-4 border-l-brand-500 mb-8 shadow-sm">
-                            <span class="text-[10px] font-black text-brand-800 dark:text-brand-400 uppercase tracking-wider block mb-3">10 Benefícios Absolutos:</span>
-                            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4 text-[11px] sm:text-[12px] text-brand-800 dark:text-luxury-muted font-medium">
-                                <li class="flex items-center gap-2"><div class="w-3.5 h-3.5 rounded-full bg-brand-200 dark:bg-luxury-border flex items-center justify-center"><i data-lucide="check" class="w-2 h-2 text-brand-700 dark:text-brand-400"></i></div> Proteção Térmica e UV</li>
-                                <li class="flex items-center gap-2"><div class="w-3.5 h-3.5 rounded-full bg-brand-200 dark:bg-luxury-border flex items-center justify-center"><i data-lucide="check" class="w-2 h-2 text-brand-700 dark:text-brand-400"></i></div> Ação Antifrizz Total</li>
-                                <li class="flex items-center gap-2"><div class="w-3.5 h-3.5 rounded-full bg-brand-200 dark:bg-luxury-border flex items-center justify-center"><i data-lucide="check" class="w-2 h-2 text-brand-700 dark:text-brand-400"></i></div> Reposição de Massa</li>
-                                <li class="flex items-center gap-2"><div class="w-3.5 h-3.5 rounded-full bg-brand-200 dark:bg-luxury-border flex items-center justify-center"><i data-lucide="check" class="w-2 h-2 text-brand-700 dark:text-brand-400"></i></div> Restauração da Fibra</li>
-                                <li class="flex items-center gap-2"><div class="w-3.5 h-3.5 rounded-full bg-brand-200 dark:bg-luxury-border flex items-center justify-center"><i data-lucide="check" class="w-2 h-2 text-brand-700 dark:text-brand-400"></i></div> Nutrição Intensa</li>
-                                <li class="flex items-center gap-2"><div class="w-3.5 h-3.5 rounded-full bg-brand-200 dark:bg-luxury-border flex items-center justify-center"><i data-lucide="check" class="w-2 h-2 text-brand-700 dark:text-brand-400"></i></div> Vitalidade dos Fios</li>
-                                <li class="flex items-center gap-2"><div class="w-3.5 h-3.5 rounded-full bg-brand-200 dark:bg-luxury-border flex items-center justify-center"><i data-lucide="check" class="w-2 h-2 text-brand-700 dark:text-brand-400"></i></div> Hidratação Profunda</li>
-                                <li class="flex items-center gap-2"><div class="w-3.5 h-3.5 rounded-full bg-brand-200 dark:bg-luxury-border flex items-center justify-center"><i data-lucide="check" class="w-2 h-2 text-brand-700 dark:text-brand-400"></i></div> Emoliência Extra</li>
-                                <li class="flex items-center gap-2"><div class="w-3.5 h-3.5 rounded-full bg-brand-200 dark:bg-luxury-border flex items-center justify-center"><i data-lucide="check" class="w-2 h-2 text-brand-700 dark:text-brand-400"></i></div> Reparação Pós-Química</li>
-                                <li class="flex items-center gap-2"><div class="w-3.5 h-3.5 rounded-full bg-brand-200 dark:bg-luxury-border flex items-center justify-center"><i data-lucide="check" class="w-2 h-2 text-brand-700 dark:text-brand-400"></i></div> Previne Danos Futuros</li>
-                            </ul>
-                        </div>
-
-                        <div class="flex flex-col sm:flex-row items-center justify-between gap-5 pt-6 border-t border-brand-900/10 dark:border-luxury-border mt-auto">
-                            <div class="flex flex-col text-center sm:text-left w-full sm:w-auto">
-                                <div class="flex items-center justify-center sm:justify-start gap-2 mb-1.5">
-                                    <span class="bg-rose-500 text-white text-[9px] font-black px-2 py-0.5 rounded-sm uppercase tracking-widest">30% OFF</span>
-                                    <span class="text-[11px] font-bold text-brand-800/60 dark:text-luxury-muted line-through">R$ 247,00</span>
-                                </div>
-                                <div class="flex items-baseline justify-center sm:justify-start gap-1">
-                                    <span class="text-sm text-[#128C7E] dark:text-[#25D366] font-black">R$</span>
-                                    <span class="text-4xl font-serif font-bold text-[#128C7E] dark:text-[#25D366] transition-colors leading-none">172,90</span>
-                                </div>
-                                <span class="text-[9px] font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest mt-2 flex items-center justify-center sm:justify-start gap-1.5"><i data-lucide="ticket" class="w-3.5 h-3.5"></i> C/ Cupom BOUTIQUE30</span>
-                                <span class="text-[9px] font-medium text-brand-800 dark:text-luxury-muted uppercase tracking-widest mt-2.5 block opacity-80">Pix / Parcelado • Envio / Retirada</span>
-                            </div>
-                            <button type="button" onclick="window.Tracker.push('add_to_cart', 'Baby Queen 10 em 1'); window.CartSystem.add(this, 'Baby Queen 10 em 1', 172.90, 'https://testeessencia.carrd.co/assets/images/image63.jpg?v=f5d26855')" class="w-full sm:w-auto bg-brand-950 hover:bg-brand-800 dark:bg-white dark:hover:bg-luxury-text text-white dark:text-brand-950 text-[11px] sm:text-[12px] font-bold uppercase px-8 py-4 sm:py-5 rounded-2xl transition-all active:scale-95 shadow-xl flex items-center justify-center gap-2 focus:outline-none min-h-[52px]">
-                                <i data-lucide="shopping-bag" class="w-4 h-4 btn-icon"></i> <span class="btn-text">Adicionar</span>
-                            </button>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Passo 4 Argan -->
-                <article class="glass-panel border border-brand-900/10 dark:border-luxury-border rounded-[3rem] p-6 sm:p-10 md:p-12 flex flex-col md:flex-row-reverse gap-10 lg:gap-16 items-stretch shadow-lg group/media transition-all duration-500 hover:shadow-xl hover:-translate-y-1">
-                    <div class="w-full md:w-1/2 aspect-[4/5] rounded-3xl overflow-hidden relative shadow-inner border border-brand-900/10 dark:border-white/5 bg-brand-50 dark:bg-[#050505] p-2 sm:p-4">
-                        <div class="media-photo absolute inset-0 w-full h-full transition-opacity duration-700 z-10 overflow-hidden">
-                            <div class="flex w-[300%] h-full animate-slide-horizontal">
-                                <img src="https://testeessencia.carrd.co/assets/images/image79.jpg?v=7c53f00c" loading="lazy" decoding="async" alt="American Argan 1" class="w-1/3 h-full object-cover shrink-0 transform scale-[1.15] sm:scale-[1.35] origin-bottom">
-                                <img src="https://testeessencia.carrd.co/assets/images/image79.jpg?v=7c53f00c" loading="lazy" decoding="async" alt="American Argan 2" class="w-1/3 h-full object-cover shrink-0 transform scale-[1.15] sm:scale-[1.35] origin-bottom">
-                                <img src="https://testeessencia.carrd.co/assets/images/image79.jpg?v=7c53f00c" loading="lazy" decoding="async" alt="American Argan 3" class="w-1/3 h-full object-cover shrink-0 transform scale-[1.15] sm:scale-[1.35] origin-bottom">
-                            </div>
-                        </div>
-                        <video data-src="https://testeessencia.carrd.co/assets/videos/video12.mp4?v=36e3212d#t=0.1" preload="none" loop muted playsinline class="media-video absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 z-0 pointer-events-none"></video>
-                        <span class="absolute top-5 right-5 md:left-5 md:right-auto bg-brand-950 dark:bg-white text-white dark:text-brand-950 text-[10px] font-black px-4 py-2 rounded-lg uppercase tracking-widest shadow-lg transition-colors z-20 pointer-events-none">Passo 4</span>
-                        
-                        <div class="absolute bottom-5 left-1/2 -translate-x-1/2 bg-black/60 backdrop-blur-md rounded-full p-1.5 flex gap-1.5 z-30 border border-white/20 shadow-xl">
-                            <button type="button" class="toggle-media-btn active px-5 py-3 rounded-full text-brand-950 bg-white text-[9px] font-bold uppercase focus:outline-none transition-all min-w-[48px] min-h-[48px] flex justify-center items-center" data-type="photo">Foto</button>
-                            <button type="button" class="toggle-media-btn px-5 py-3 rounded-full text-white bg-transparent text-[9px] font-bold uppercase focus:outline-none transition-all min-w-[48px] min-h-[48px] flex justify-center items-center" data-type="video">Vídeo</button>
-                        </div>
-                    </div>
-                    <div class="w-full md:w-1/2 flex flex-col h-full md:text-right justify-center">
-                        <h4 class="font-serif text-3xl md:text-4xl mb-2 text-brand-950 dark:text-white font-bold">American Argan Oil <span class="text-lg font-light lowercase text-brand-800 dark:text-luxury-muted tracking-wide">100ml</span></h4>
-                        <p class="text-[10px] sm:text-[11px] uppercase font-black text-brand-500 tracking-[0.2em] mb-6">Light & Perfumed Hair</p>
-                        
-                        <div class="mb-5 flex-grow flex flex-col md:items-end">
-                            <span class="text-[10px] font-black text-brand-900 dark:text-white uppercase tracking-widest block mb-2.5">Poder de Ação dos Ativos:</span>
-                            <div class="flex gap-2 flex-wrap justify-start md:justify-end">
-                                <span class="bg-brand-50 dark:bg-black/20 border border-brand-200 dark:border-white/10 text-brand-800 dark:text-brand-300 text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-sm transition-colors">Óleo de Argan Puro</span>
-                                <span class="bg-brand-50 dark:bg-black/20 border border-brand-200 dark:border-white/10 text-brand-800 dark:text-brand-300 text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-sm transition-colors">Vitamina E Antioxidante</span>
-                                <span class="bg-brand-50 dark:bg-black/20 border border-brand-200 dark:border-white/10 text-brand-800 dark:text-brand-300 text-[10px] font-bold px-3 py-1.5 rounded-lg shadow-sm transition-colors">Micropartículas de Brilho</span>
-                            </div>
-                        </div>
-
-                        <div class="mb-6 bg-brand-50/50 dark:bg-black/20 p-4 rounded-2xl border border-brand-900/5 dark:border-white/5 text-left md:text-right">
-                            <span class="text-[9px] font-bold text-brand-800 dark:text-brand-400 uppercase tracking-widest flex items-center justify-start md:justify-end gap-1.5 mb-2"><i data-lucide="wind" class="w-3.5 h-3.5"></i> Assinatura Olfativa</span>
-                            <p class="text-[11px] sm:text-[12px] text-brand-800 dark:text-luxury-muted font-medium italic">Frescor mediterrâneo com notas de limão siciliano, maçã, bambu e fundo de cedro e âmbar.</p>
-                        </div>
-
-                        <div class="bg-brand-50/80 dark:bg-luxury-bg/80 p-5 rounded-2xl border-l-4 md:border-l-0 md:border-r-4 border-l-brand-500 md:border-r-brand-500 mb-8 shadow-sm text-left md:text-right">
-                            <span class="text-[10px] font-black text-brand-800 dark:text-brand-400 uppercase tracking-widest block mb-2">Por que é crucial?</span>
-                            <p class="text-[12px] sm:text-[13px] text-brand-800 dark:text-luxury-muted font-medium leading-relaxed">O segredo do autêntico Hair with American Glow (cabelo com brilho americano). Diferente de óleos comuns que deixam o cabelo pesado e oleoso, esta engenharia cosmética ultraleve confere um brilho espelhado instantâneo, sela as pontas duplas e mantém os fios soltos e incrivelmente perfumados o dia inteiro.</p>
-                        </div>
-
-                        <div class="flex flex-col sm:flex-row md:flex-row-reverse items-center justify-between gap-5 pt-6 border-t border-brand-900/10 dark:border-luxury-border mt-auto">
-                            <div class="flex flex-col text-center sm:text-left md:text-right md:items-end w-full sm:w-auto">
-                                <div class="flex items-center justify-center sm:justify-start md:justify-end gap-2 mb-1.5">
-                                    <span class="bg-rose-500 text-white text-[9px] font-black px-2 py-0.5 rounded-sm uppercase tracking-widest">30% OFF</span>
-                                    <span class="text-[11px] font-bold text-brand-800/60 dark:text-luxury-muted line-through">R$ 147,00</span>
-                                </div>
-                                <div class="flex items-baseline justify-center sm:justify-start md:justify-end gap-1">
-                                    <span class="text-sm text-[#128C7E] dark:text-[#25D366] font-black">R$</span>
-                                    <span class="text-4xl font-serif font-bold text-[#128C7E] dark:text-[#25D366] transition-colors leading-none">102,90</span>
-                                </div>
-                                <span class="text-[9px] font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest mt-2 flex items-center justify-center sm:justify-start md:justify-end gap-1.5"><i data-lucide="ticket" class="w-3.5 h-3.5"></i> C/ Cupom BOUTIQUE30</span>
-                                <span class="text-[9px] font-medium text-brand-800 dark:text-luxury-muted uppercase tracking-widest mt-2.5 block opacity-80">Pix / Parcelado • Envio / Retirada</span>
-                            </div>
-                            <button type="button" onclick="window.Tracker.push('add_to_cart', 'American Argan Oil'); window.CartSystem.add(this, 'American Argan Oil', 102.90, 'https://testeessencia.carrd.co/assets/images/image79.jpg?v=7c53f00c')" class="w-full sm:w-auto bg-brand-950 hover:bg-brand-800 dark:bg-white dark:hover:bg-luxury-text text-white dark:text-brand-950 text-[11px] sm:text-[12px] font-bold uppercase px-8 py-4 sm:py-5 rounded-2xl transition-all active:scale-95 shadow-xl flex items-center justify-center gap-2 focus:outline-none min-h-[52px]">
-                                <i data-lucide="shopping-bag" class="w-4 h-4 btn-icon"></i> <span class="btn-text">Adicionar</span>
-                            </button>
-                        </div>
-                    </div>
-                </article>
-
+                    </article>
+                </div>
             </section>
         </div>
     </main>
@@ -1319,7 +1124,7 @@
             <span class="opacity-40 flex items-center">|</span>
             <button type="button" onclick="window.UIController.openLegalModal('privacidade')" class="hover:underline focus:outline-none min-h-[44px] flex items-center">Privacidade</button>
         </div>
-        <p class="text-[9px] opacity-40 mt-4 dark:text-luxury-muted">CNPJ: 28.842.798/0001-38 © 2026.</p>
+        <p class="text-[9px] opacity-40 mt-4 dark:text-luxury-muted">CNPJ: 28.842.798/0001-38 © 2026. Site Seguro.</p>
     </footer>
 
     <!-- Modais Legais -->
@@ -1330,7 +1135,7 @@
                 <h3 class="font-serif text-xl sm:text-2xl dark:text-white font-bold">Termos de Uso</h3>
                 <button type="button" onclick="window.UIController.closeLegalModal('termos')" class="p-2 bg-brand-50 dark:bg-luxury-bg rounded-full dark:text-white focus:outline-none min-w-[44px] min-h-[44px] flex items-center justify-center"><i data-lucide="x" class="w-4 h-4"></i></button>
             </div>
-            <p class="text-[11px] sm:text-xs leading-relaxed opacity-70 dark:text-luxury-muted font-medium">O agendamento garante a sua vaga, mas a execução do procedimento químico está sujeita à aprovação no Diagnóstico Capilar (Teste de Mecha).</p>
+            <p class="text-[11px] sm:text-xs leading-relaxed opacity-70 dark:text-luxury-muted font-medium">O agendamento garante a sua vaga, mas a execução do procedimento químico está sujeita à aprovação no Diagnóstico Capilar (Teste de Mecha). Caso o fio não apresente saúde, a clínica reserva-se o direito de não realizar a química visando a integridade da cliente.</p>
         </div>
     </div>
     
@@ -1341,7 +1146,7 @@
                 <h3 class="font-serif text-xl sm:text-2xl dark:text-white font-bold">Privacidade</h3>
                 <button type="button" onclick="window.UIController.closeLegalModal('privacidade')" class="p-2 bg-brand-50 dark:bg-luxury-bg rounded-full dark:text-white focus:outline-none min-w-[44px] min-h-[44px] flex items-center justify-center"><i data-lucide="x" class="w-4 h-4"></i></button>
             </div>
-            <p class="text-[11px] sm:text-xs leading-relaxed opacity-70 dark:text-luxury-muted font-medium">O nosso site protege a sua privacidade e segue a LGPD.</p>
+            <p class="text-[11px] sm:text-xs leading-relaxed opacity-70 dark:text-luxury-muted font-medium">O nosso site protege a sua privacidade e segue a LGPD. Os dados recolhidos são usados apenas para fins analíticos e de comunicação comercial direta da Essência de Romã.</p>
         </div>
     </div>
 
@@ -1548,7 +1353,7 @@
             checkout: function() { 
                 if(this.items.length === 0) { window.UIController.showToast('Sacola Vazia! Adicione um item primeiro.', 'error'); return; }
                 
-                window.Tracker.push('begin_checkout');
+                window.Tracker.push('begin_checkout'); // Rastreio
                 
                 var hour = new Date().getHours();
                 var greeting = hour < 12 ? 'Bom dia' : (hour < 18 ? 'Boa tarde' : 'Boa noite');
@@ -1558,6 +1363,7 @@
                 
                 text += window.Tracker.getUTMs();
                 
+                // Página de Obrigado Virtual (Overlay)
                 window.UIController.showProcessing(function() {
                     window.open('https://wa.me/5549999954052?text=' + encodeURIComponent(text), '_blank'); 
                 });
@@ -1570,6 +1376,8 @@
             init: function() { 
                 if(window.lucide) window.lucide.createIcons();
                 this.renderPricingTables();
+                this.initSliders(); // CORREÇÃO CIRÚRGICA: Função restaurada!
+                
                 var obs = new IntersectionObserver(function(entries) {
                     var intersectingEntries = entries.filter(function(en) { return en.isIntersecting; });
                     intersectingEntries.forEach(function(en, index) {
@@ -1655,7 +1463,6 @@
                 if(window.lucide) window.lucide.createIcons();
             },
             
-            // REDIRECIONAMENTO COM PÁGINA DE PROCESSAMENTO
             showProcessing: function(callback) {
                 var overlay = document.getElementById('processing-overlay');
                 if(!overlay) { callback(); return; }
@@ -1708,6 +1515,33 @@
                 document.querySelectorAll('.tabela-semi-inject').forEach(function(el) { el.innerHTML = buildTable([{ t: 'P', items: [{ l: 'Fina', p: '257,97' }, { l: 'Média', p: '277,97' }, { l: 'Grossa', p: '297,97' }] }, { t: 'M', items: [{ l: 'Fina', p: '317,97' }, { l: 'Média', p: '337,97' }, { l: 'Grossa', p: '367,97' }] }, { t: 'G', items: [{ l: 'Fina', p: '387,97' }, { l: 'Média', p: '417,97' }, { l: 'Grossa', p: '447,97' }] }, { t: 'GG', items: [{ l: 'Fina', p: '467,97' }, { l: 'Média', p: '487,97' }, { l: 'Grossa', p: '497,97' }] }]); });
                 document.querySelectorAll('.tabela-soberano-inject').forEach(function(el) { el.innerHTML = buildTable([{ t: 'P', items: [{ l: 'Fina', p: '397,97' }, { l: 'Média', p: '497,97' }, { l: 'Grossa', p: '597,97' }] }, { t: 'M', items: [{ l: 'Fina', p: '697,97' }, { l: 'Média', p: '797,97' }, { l: 'Grossa', p: '897,97' }] }, { t: 'G', items: [{ l: 'Fina', p: '997,97' }, { l: 'Média', p: '1097,97' }, { l: 'Grossa', p: '1197,97' }] }, { t: 'GG', items: [{ l: 'Fina', p: '1227,97' }, { l: 'Média', p: '1257,97' }, { l: 'Grossa', p: '1.287,97' }] }]); });
                 document.querySelectorAll('.tabela-glass-inject').forEach(function(el) { el.innerHTML = buildTable([{ t: 'P', items: [{ l: 'Fina', p: '157,00' }, { l: 'Média', p: '197,00' }, { l: 'Grossa', p: '247,00' }] }, { t: 'M', items: [{ l: 'Fina', p: '297,00' }, { l: 'Média', p: '347,00' }, { l: 'Grossa', p: '397,00' }] }, { t: 'G', items: [{ l: 'Fina', p: '447,00' }, { l: 'Média', p: '497,00' }, { l: 'Grossa', p: '597,00' }] }, { t: 'GG', items: [{ l: 'Fina', p: '647,00' }, { l: 'Média', p: '697,00' }, { l: 'Grossa', p: '797,00' }] }]); });
+            },
+            
+            // CORREÇÃO CIRÚRGICA: Função que gere os toques no "Arraste"
+            initSliders: function() {
+                var sliders = document.querySelectorAll('.before-after-container');
+                sliders.forEach(function(s) {
+                    var input = s.querySelector('.slider-input');
+                    var line = s.querySelector('.slider-line');
+                    var afterImg = s.querySelector('.after-img');
+                    var instruction = s.querySelector('.slider-instruction');
+                    var hasInteracted = false;
+                    
+                    if(input && line && afterImg) {
+                        input.value = 50; 
+                        input.addEventListener('input', function(e) {
+                            var val = e.target.value;
+                            afterImg.style.clipPath = 'polygon(' + val + '% 0, 100% 0, 100% 100%, ' + val + '% 100%)';
+                            afterImg.style.webkitClipPath = 'polygon(' + val + '% 0, 100% 0, 100% 100%, ' + val + '% 100%)'; // Fix iOS
+                            line.style.left = val + '%';
+                            
+                            if (!hasInteracted && instruction) {
+                                instruction.style.opacity = '0';
+                                hasInteracted = true;
+                            }
+                        });
+                    }
+                });
             }
         };
 
@@ -1737,7 +1571,7 @@
             window.CartSystem.init();
             window.UIController.init();
             window.Tracker.initScrollTracking();
-            window.Tracker.initCopyTracking();
+            window.Tracker.initCopyTracking(); // Inicia o rastreio de Cópia de Texto
 
             document.querySelectorAll('video').forEach(function(vid) {
                 if(vid.hasAttribute('autoplay')) {
