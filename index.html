@@ -443,7 +443,7 @@
                 <article class="service-banner glass-fume group" data-product-type="gold">
                     <div class="w-full h-[250px] sm:h-[300px] shrink-0 overflow-hidden relative rounded-t-md skeleton-bg before-after-container z-10">
                         <img src="https://testeessencia.carrd.co/assets/images/image24.jpg?v=36e3212d" alt="Glass Molecular Antes" class="absolute inset-0 w-full h-full object-cover object-top opacity-100 z-10" onload="this.parentElement.classList.remove('skeleton-bg')">
-                        <img src="https://testeessencia.carrd.co/assets/images/image28.jpg?v=36e3212d" alt="Glass Molecular Depois" class="after-img absolute inset-0 w-full h-full object-cover object-top opacity-100 z-10" style="clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);">
+                        <img src="https://testeessencia.carrd.co/assets/images/image28.jpg?v=36e3212d" alt="Glass Molecular Depois" class="after-img absolute inset-0 w-full h-full object-cover object-top opacity-100 z-10" style="clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%); -webkit-clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);">
                         
                         <input type="range" min="0" max="100" value="50" oninput="window.Tracker.push('interaction_before_after', 'Glass Molecular')" class="slider-input absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-40 m-0">
                         <div class="slider-line absolute top-0 bottom-0 left-[50%] w-[2px] bg-pearl z-20 pointer-events-none transform -translate-x-1/2 shadow-[0_0_20px_rgba(227,168,87,0.8)]">
@@ -454,13 +454,13 @@
                     </div>
                     <div class="p-6 sm:p-8 flex flex-col flex-1 bg-transparent rounded-b-md z-10 relative">
                         <div class="mb-4">
-                            <h3 class="font-sans text-2xl sm:text-3xl font-bold text-amber uppercase tracking-tighter line-clamp-2 min-h-[3rem] sm:min-h-[4rem]">Glass Molecular: Blindagem</h3>
+                            <h3 class="font-sans text-2xl sm:text-3xl font-bold text-amber uppercase tracking-tighter line-clamp-2 min-h-[3rem] sm:min-h-[4rem]">Glass Molecular: Anti-Frizz</h3>
                         </div>
                         <div class="bg-amber/5 rounded-md p-4 mb-4 border border-amber/10 flex-1 flex flex-col justify-center">
                             <ul class="text-left text-[10px] sm:text-[11px] font-medium text-pearl space-y-3 font-sans">
-                                <li class="flex items-center gap-3"><i data-lucide="clock" class="w-4 h-4 text-amber shrink-0"></i> <span><strong>Tempo de Sessão:</strong> 15 a 30 minutos (Express).</span></li>
-                                <li class="flex items-center gap-3"><i data-lucide="shield-check" class="w-4 h-4 text-amber shrink-0"></i> <span><strong>Estrutura:</strong> Não alisa, apenas sela o frizz.</span></li>
-                                <li class="flex items-center gap-3"><i data-lucide="sparkles" class="w-4 h-4 text-amber shrink-0"></i> <span><strong>Finalização:</strong> Escova Boutique Inclusa.</span></li>
+                                <li class="flex items-start gap-3"><i data-lucide="shield-check" class="w-4 h-4 text-amber shrink-0 mt-0.5"></i> <span><strong>Objetivo:</strong> Eliminação absoluta do frizz e porosidade.</span></li>
+                                <li class="flex items-start gap-3"><i data-lucide="alert-circle" class="w-4 h-4 text-amber shrink-0 mt-0.5"></i> <span><strong>NÃO ALISA:</strong> A estrutura natural (ondas/cachos) fica 100% preservada.</span></li>
+                                <li class="flex items-start gap-3"><i data-lucide="sparkles" class="w-4 h-4 text-amber shrink-0 mt-0.5"></i> <span><strong>Finalização:</strong> Efeito escova de luxo ultra-duradoura.</span></li>
                             </ul>
                         </div>
                         <div class="mt-auto pt-4 border-t border-amber/10">
@@ -585,7 +585,7 @@
             </div>
         </section>
 
-        <!-- COMPONENT: BOUTIQUE HOME CARE (REPOSIÇÃO ALTA PERFORMANCE) -->
+        <!-- COMPONENT: BOUTIQUE HOME CARE (E-COMMERCE HIGH-TICKET) -->
         <section class="w-full py-24 reveal scroll-mt-10 bg-obsidian relative border-y border-amber/10 mb-32" data-section="home_care">
             <!-- Background Spotlight for Home Care -->
             <div class="absolute inset-0 bg-gradient-to-b from-obsidian via-amber/5 to-obsidian pointer-events-none"></div>
@@ -601,195 +601,181 @@
             <div class="horizontal-luxury-slider custom-scrollbar max-w-7xl mx-auto items-stretch px-6 sm:px-12 pb-16 relative z-10">
                 
                 <!-- Passo 1: Banho Repair Master -->
-                <article class="service-banner glass-fume flex flex-col justify-between group">
-                    <div class="w-full h-[220px] relative overflow-hidden rounded-t-md">
+                <article class="service-banner glass-fume flex flex-col justify-between group border border-amber/20 hover:border-amber/50 transition-colors duration-500">
+                    <div class="w-full h-[240px] relative overflow-hidden rounded-t-md">
                         <video src="https://testeessencia.carrd.co/assets/videos/video17.mp4?v=701b88d2" autoplay loop muted playsinline class="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-700"></video>
-                        <div class="absolute top-4 right-4 bg-amber text-graphite px-3 py-1 rounded-sm text-[9px] font-bold uppercase tracking-widest shadow-[0_0_15px_var(--cta-glow)]">30% OFF</div>
-                        <div class="absolute top-4 left-4 bg-obsidian/80 backdrop-blur-md text-pearl px-3 py-1 rounded-sm text-[9px] font-bold uppercase tracking-widest border border-amber/30">Passo 1</div>
+                        <!-- Efeito Vignette (Sombra nas bordas para dramatismo) -->
+                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(8,8,8,0.95)_100%)] pointer-events-none z-10"></div>
+                        
+                        <div class="absolute top-4 right-4 bg-gradient-to-r from-amber to-champagne text-obsidian px-3 py-1 rounded-sm text-[10px] font-black uppercase tracking-widest shadow-[0_0_20px_rgba(227,168,87,0.6)] z-20 animate-pulse">30% OFF</div>
+                        <div class="absolute top-4 left-4 bg-obsidian/90 backdrop-blur-md text-pearl px-3 py-1 rounded-sm text-[9px] font-bold uppercase tracking-widest border border-amber/30 z-20">Passo 1</div>
                     </div>
                     <div class="p-6 sm:p-8 flex flex-col flex-1 relative z-10">
-                        <h3 class="font-serif text-2xl font-bold text-amber mb-1">Banho Repair Master</h3>
-                        <p class="text-[10px] uppercase tracking-widest text-silky font-bold mb-4">300ml • Shampoo Pós-Química</p>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-pearl mb-1 group-hover:text-amber transition-colors">Banho Repair Master</h3>
+                        <p class="text-[10px] uppercase tracking-widest text-amber font-bold mb-5">300ml • Shampoo Pós-Química</p>
                         
-                        <div class="bg-obsidian/50 rounded-md p-4 mb-4 border border-amber/10">
-                            <span class="text-[9px] uppercase tracking-widest text-amber block mb-2 font-bold">Poder de Ação:</span>
-                            <ul class="text-[10px] sm:text-[11px] font-medium text-pearl space-y-2">
-                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-amber"></i> Queratina & Ceramidas</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-amber"></i> D-Pantenol</li>
-                                <li class="flex items-center gap-2 text-silky"><i data-lucide="leaf" class="w-3 h-3"></i> Livre de Parabenos • Cruelty-Free</li>
+                        <div class="bg-obsidian/80 rounded-md p-4 mb-5 border border-white/5 shadow-inner">
+                            <span class="text-[9px] uppercase tracking-widest text-silky block mb-3 font-bold">Poder de Ação:</span>
+                            <ul class="text-[11px] font-medium text-pearl space-y-2.5">
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-amber"></i> Queratina & Ceramidas</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-amber"></i> D-Pantenol</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-amber"></i> Livre de Parabenos</li>
                             </ul>
                         </div>
 
-                        <details class="group/gaveta w-full mb-6 border-b border-amber/10 pb-4">
-                            <summary class="flex justify-between items-center text-[10px] font-bold uppercase tracking-widest text-amber cursor-pointer outline-none btn-haptic">
-                                A Engenharia <i data-lucide="chevron-down" class="w-3 h-3 transition-transform group-open/gaveta:rotate-180"></i>
-                            </summary>
-                            <div class="mt-3 text-[11px] text-silky leading-relaxed">
-                                <p class="mb-2"><strong>Por que é crucial?</strong> Shampoos comuns dilatam a cutícula e desbotam a química. Este banho remove impurezas suavemente e injeta hidratação, preparando a fibra sem estragar o liso.</p>
-                                <p class="italic text-[10px] opacity-80">Assinatura Olfativa: Limão siciliano, maçã, bambu, cedro e âmbar.</p>
-                            </div>
-                        </details>
-
-                        <div class="mt-auto">
-                            <div class="flex justify-between items-end mb-4">
+                        <!-- E-commerce Action Box (Contraste Máximo) -->
+                        <div class="mt-auto bg-amber/5 border border-amber/20 rounded-md p-5 flex flex-col gap-4 relative overflow-hidden">
+                            <div class="absolute top-0 right-0 w-20 h-20 bg-amber/10 blur-2xl rounded-full pointer-events-none"></div>
+                            <div class="flex justify-between items-end relative z-10">
                                 <div>
-                                    <span class="text-[10px] line-through text-silky block mb-0.5">R$ 147,00</span>
-                                    <span class="font-serif text-3xl font-bold text-pearl">R$ 102<span class="text-xl">,90</span></span>
+                                    <span class="text-[10px] line-through text-silky block mb-1">De R$ 147,00</span>
+                                    <div class="flex items-start gap-1 text-amber">
+                                        <span class="text-sm font-bold mt-1">R$</span>
+                                        <span class="font-serif text-4xl font-bold leading-none tracking-tight">102<span class="text-xl">,90</span></span>
+                                    </div>
                                 </div>
                                 <div class="text-right">
-                                    <span class="text-[8px] uppercase tracking-widest text-amber block font-bold">C/ Cupom BOUTIQUE30</span>
-                                    <span class="text-[9px] text-silky">Pix / Parcelado</span>
+                                    <span class="inline-block px-2 py-1 bg-amber/20 text-amber text-[8px] font-bold uppercase tracking-widest rounded-sm border border-amber/30 mb-1">Cupom Aplicado</span>
+                                    <span class="text-[9px] text-silky block">Pix / Parcelado</span>
                                 </div>
                             </div>
-                            <button onclick="window.UIController.handleBoutiqueOrder('Banho Repair Master')" class="w-full py-4 bg-amber text-graphite rounded-md font-bold uppercase tracking-widest text-[10px] btn-haptic glow-luminance flex justify-center items-center gap-2">
-                                Reservar Lote <i data-lucide="shopping-bag" class="w-3 h-3"></i>
+                            <button onclick="window.UIController.handleBoutiqueOrder('Banho Repair Master')" class="w-full py-4 bg-amber text-graphite rounded-md font-bold uppercase tracking-widest text-[11px] btn-haptic glow-luminance flex justify-center items-center gap-2 relative z-10">
+                                Garantir Banho de Queratina <i data-lucide="shopping-bag" class="w-4 h-4"></i>
                             </button>
                         </div>
                     </div>
                 </article>
 
                 <!-- Passo 2: Ampola Ouro Repair Gloss -->
-                <article class="service-banner glass-fume flex flex-col justify-between group">
-                    <div class="w-full h-[220px] relative overflow-hidden rounded-t-md">
+                <article class="service-banner glass-fume flex flex-col justify-between group border border-amber/20 hover:border-amber/50 transition-colors duration-500">
+                    <div class="w-full h-[240px] relative overflow-hidden rounded-t-md">
                         <video src="https://testeessencia.carrd.co/assets/videos/video18.mp4?v=701b88d2" autoplay loop muted playsinline class="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-700"></video>
-                        <div class="absolute top-4 right-4 bg-amber text-graphite px-3 py-1 rounded-sm text-[9px] font-bold uppercase tracking-widest shadow-[0_0_15px_var(--cta-glow)]">30% OFF</div>
-                        <div class="absolute top-4 left-4 bg-obsidian/80 backdrop-blur-md text-pearl px-3 py-1 rounded-sm text-[9px] font-bold uppercase tracking-widest border border-amber/30">Passo 2</div>
+                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(8,8,8,0.95)_100%)] pointer-events-none z-10"></div>
+                        
+                        <div class="absolute top-4 right-4 bg-gradient-to-r from-amber to-champagne text-obsidian px-3 py-1 rounded-sm text-[10px] font-black uppercase tracking-widest shadow-[0_0_20px_rgba(227,168,87,0.6)] z-20 animate-pulse">30% OFF</div>
+                        <div class="absolute top-4 left-4 bg-obsidian/90 backdrop-blur-md text-pearl px-3 py-1 rounded-sm text-[9px] font-bold uppercase tracking-widest border border-amber/30 z-20">Passo 2</div>
                     </div>
                     <div class="p-6 sm:p-8 flex flex-col flex-1 relative z-10">
-                        <h3 class="font-serif text-2xl font-bold text-amber mb-1">Ampola Ouro Gloss</h3>
-                        <p class="text-[10px] uppercase tracking-widest text-silky font-bold mb-4">20ml • Restauração Intensiva</p>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-pearl mb-1 group-hover:text-amber transition-colors">Ampola Ouro Gloss</h3>
+                        <p class="text-[10px] uppercase tracking-widest text-amber font-bold mb-5">20ml • Restauração Intensiva</p>
                         
-                        <div class="bg-obsidian/50 rounded-md p-4 mb-4 border border-amber/10">
-                            <span class="text-[9px] uppercase tracking-widest text-amber block mb-2 font-bold">Poder de Ação:</span>
-                            <ul class="text-[10px] sm:text-[11px] font-medium text-pearl space-y-2">
-                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-amber"></i> Nutramino Cap</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-amber"></i> Óleo de Abacate</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-amber"></i> Proteína da Seda</li>
+                        <div class="bg-obsidian/80 rounded-md p-4 mb-5 border border-white/5 shadow-inner">
+                            <span class="text-[9px] uppercase tracking-widest text-silky block mb-3 font-bold">Poder de Ação:</span>
+                            <ul class="text-[11px] font-medium text-pearl space-y-2.5">
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-amber"></i> Nutramino Cap</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-amber"></i> Óleo de Abacate</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-amber"></i> Proteína da Seda</li>
                             </ul>
                         </div>
 
-                        <details class="group/gaveta w-full mb-6 border-b border-amber/10 pb-4">
-                            <summary class="flex justify-between items-center text-[10px] font-bold uppercase tracking-widest text-amber cursor-pointer outline-none btn-haptic">
-                                A Engenharia <i data-lucide="chevron-down" class="w-3 h-3 transition-transform group-open/gaveta:rotate-180"></i>
-                            </summary>
-                            <div class="mt-3 text-[11px] text-silky leading-relaxed">
-                                <p class="mb-2"><strong>Por que é crucial?</strong> Reconstrói o cimento intercelular perdido no dia a dia. Tranca a hidratação no núcleo do fio e impede a quebra, gerando uma iluminação imediata.</p>
-                                <p class="italic text-[10px] opacity-80">Assinatura Olfativa: Limão siciliano, maçã, bambu, cedro e âmbar.</p>
-                            </div>
-                        </details>
-
-                        <div class="mt-auto">
-                            <div class="flex justify-between items-end mb-4">
+                        <!-- E-commerce Action Box -->
+                        <div class="mt-auto bg-amber/5 border border-amber/20 rounded-md p-5 flex flex-col gap-4 relative overflow-hidden">
+                            <div class="absolute top-0 right-0 w-20 h-20 bg-amber/10 blur-2xl rounded-full pointer-events-none"></div>
+                            <div class="flex justify-between items-end relative z-10">
                                 <div>
-                                    <span class="text-[10px] line-through text-silky block mb-0.5">R$ 289,00</span>
-                                    <span class="font-serif text-3xl font-bold text-pearl">R$ 202<span class="text-xl">,30</span></span>
+                                    <span class="text-[10px] line-through text-silky block mb-1">De R$ 289,00</span>
+                                    <div class="flex items-start gap-1 text-amber">
+                                        <span class="text-sm font-bold mt-1">R$</span>
+                                        <span class="font-serif text-4xl font-bold leading-none tracking-tight">202<span class="text-xl">,30</span></span>
+                                    </div>
                                 </div>
                                 <div class="text-right">
-                                    <span class="text-[8px] uppercase tracking-widest text-amber block font-bold">C/ Cupom BOUTIQUE30</span>
-                                    <span class="text-[9px] text-silky">Pix / Parcelado</span>
+                                    <span class="inline-block px-2 py-1 bg-amber/20 text-amber text-[8px] font-bold uppercase tracking-widest rounded-sm border border-amber/30 mb-1">Cupom Aplicado</span>
+                                    <span class="text-[9px] text-silky block">Pix / Parcelado</span>
                                 </div>
                             </div>
-                            <button onclick="window.UIController.handleBoutiqueOrder('Ampola Ouro Repair Gloss')" class="w-full py-4 bg-amber text-graphite rounded-md font-bold uppercase tracking-widest text-[10px] btn-haptic glow-luminance flex justify-center items-center gap-2">
-                                Reservar Lote <i data-lucide="shopping-bag" class="w-3 h-3"></i>
+                            <button onclick="window.UIController.handleBoutiqueOrder('Ampola Ouro Repair Gloss')" class="w-full py-4 bg-amber text-graphite rounded-md font-bold uppercase tracking-widest text-[11px] btn-haptic glow-luminance flex justify-center items-center gap-2 relative z-10">
+                                Ativar Toque de Seda <i data-lucide="shopping-bag" class="w-4 h-4"></i>
                             </button>
                         </div>
                     </div>
                 </article>
 
                 <!-- Passo 3: Baby Queen -->
-                <article class="service-banner glass-fume flex flex-col justify-between group">
-                    <div class="w-full h-[220px] relative overflow-hidden rounded-t-md">
+                <article class="service-banner glass-fume flex flex-col justify-between group border border-amber/20 hover:border-amber/50 transition-colors duration-500">
+                    <div class="w-full h-[240px] relative overflow-hidden rounded-t-md">
                         <video src="https://testeessencia.carrd.co/assets/videos/video12.mp4?v=36e3212d" autoplay loop muted playsinline class="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-700"></video>
-                        <div class="absolute top-4 right-4 bg-amber text-graphite px-3 py-1 rounded-sm text-[9px] font-bold uppercase tracking-widest shadow-[0_0_15px_var(--cta-glow)]">30% OFF</div>
-                        <div class="absolute top-4 left-4 bg-obsidian/80 backdrop-blur-md text-pearl px-3 py-1 rounded-sm text-[9px] font-bold uppercase tracking-widest border border-amber/30">Passo 3</div>
+                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(8,8,8,0.95)_100%)] pointer-events-none z-10"></div>
+                        
+                        <div class="absolute top-4 right-4 bg-gradient-to-r from-amber to-champagne text-obsidian px-3 py-1 rounded-sm text-[10px] font-black uppercase tracking-widest shadow-[0_0_20px_rgba(227,168,87,0.6)] z-20 animate-pulse">30% OFF</div>
+                        <div class="absolute top-4 left-4 bg-obsidian/90 backdrop-blur-md text-pearl px-3 py-1 rounded-sm text-[9px] font-bold uppercase tracking-widest border border-amber/30 z-20">Passo 3</div>
                     </div>
                     <div class="p-6 sm:p-8 flex flex-col flex-1 relative z-10">
-                        <h3 class="font-serif text-2xl font-bold text-amber mb-1">Baby Queen</h3>
-                        <p class="text-[10px] uppercase tracking-widest text-silky font-bold mb-4">260ml • Blindagem Pós-Química</p>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-pearl mb-1 group-hover:text-amber transition-colors">Baby Queen</h3>
+                        <p class="text-[10px] uppercase tracking-widest text-amber font-bold mb-5">260ml • Blindagem Pós-Química</p>
                         
-                        <div class="bg-obsidian/50 rounded-md p-4 mb-4 border border-amber/10">
-                            <span class="text-[9px] uppercase tracking-widest text-amber block mb-2 font-bold">Poder de Ação:</span>
-                            <ul class="text-[10px] sm:text-[11px] font-medium text-pearl space-y-2">
-                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-amber"></i> Proteção Térmica & UV</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-amber"></i> Tecnologia Colágeno</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-amber"></i> Nanolink</li>
+                        <div class="bg-obsidian/80 rounded-md p-4 mb-5 border border-white/5 shadow-inner">
+                            <span class="text-[9px] uppercase tracking-widest text-silky block mb-3 font-bold">Poder de Ação:</span>
+                            <ul class="text-[11px] font-medium text-pearl space-y-2.5">
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-amber"></i> Proteção Térmica & UV</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-amber"></i> Tecnologia Colágeno</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-amber"></i> Complexo Nanolink</li>
                             </ul>
                         </div>
 
-                        <details class="group/gaveta w-full mb-6 border-b border-amber/10 pb-4">
-                            <summary class="flex justify-between items-center text-[10px] font-bold uppercase tracking-widest text-amber cursor-pointer outline-none btn-haptic">
-                                10 Benefícios <i data-lucide="chevron-down" class="w-3 h-3 transition-transform group-open/gaveta:rotate-180"></i>
-                            </summary>
-                            <div class="mt-3 text-[11px] text-silky leading-relaxed grid grid-cols-2 gap-2">
-                                <span>• Antifrizz Total</span>
-                                <span>• Reposição de Massa</span>
-                                <span>• Nutrição Intensa</span>
-                                <span>• Previne Danos Futuros</span>
-                                <span>• Emoliência Extra</span>
-                                <span>• Restauração</span>
-                            </div>
-                        </details>
-
-                        <div class="mt-auto">
-                            <div class="flex justify-between items-end mb-4">
+                        <!-- E-commerce Action Box -->
+                        <div class="mt-auto bg-amber/5 border border-amber/20 rounded-md p-5 flex flex-col gap-4 relative overflow-hidden">
+                            <div class="absolute top-0 right-0 w-20 h-20 bg-amber/10 blur-2xl rounded-full pointer-events-none"></div>
+                            <div class="flex justify-between items-end relative z-10">
                                 <div>
-                                    <span class="text-[10px] line-through text-silky block mb-0.5">R$ 247,00</span>
-                                    <span class="font-serif text-3xl font-bold text-pearl">R$ 172<span class="text-xl">,90</span></span>
+                                    <span class="text-[10px] line-through text-silky block mb-1">De R$ 247,00</span>
+                                    <div class="flex items-start gap-1 text-amber">
+                                        <span class="text-sm font-bold mt-1">R$</span>
+                                        <span class="font-serif text-4xl font-bold leading-none tracking-tight">172<span class="text-xl">,90</span></span>
+                                    </div>
                                 </div>
                                 <div class="text-right">
-                                    <span class="text-[8px] uppercase tracking-widest text-amber block font-bold">C/ Cupom BOUTIQUE30</span>
-                                    <span class="text-[9px] text-silky">Pix / Parcelado</span>
+                                    <span class="inline-block px-2 py-1 bg-amber/20 text-amber text-[8px] font-bold uppercase tracking-widest rounded-sm border border-amber/30 mb-1">Cupom Aplicado</span>
+                                    <span class="text-[9px] text-silky block">Pix / Parcelado</span>
                                 </div>
                             </div>
-                            <button onclick="window.UIController.handleBoutiqueOrder('Baby Queen Blindagem')" class="w-full py-4 bg-amber text-graphite rounded-md font-bold uppercase tracking-widest text-[10px] btn-haptic glow-luminance flex justify-center items-center gap-2">
-                                Reservar Lote <i data-lucide="shopping-bag" class="w-3 h-3"></i>
+                            <button onclick="window.UIController.handleBoutiqueOrder('Baby Queen Blindagem')" class="w-full py-4 bg-amber text-graphite rounded-md font-bold uppercase tracking-widest text-[11px] btn-haptic glow-luminance flex justify-center items-center gap-2 relative z-10">
+                                Ativar Blindagem de Colágeno <i data-lucide="shopping-bag" class="w-4 h-4"></i>
                             </button>
                         </div>
                     </div>
                 </article>
 
                 <!-- Passo 4: American Argan Oil -->
-                <article class="service-banner glass-fume flex flex-col justify-between group">
-                    <div class="w-full h-[220px] relative overflow-hidden rounded-t-md">
+                <article class="service-banner glass-fume flex flex-col justify-between group border border-amber/20 hover:border-amber/50 transition-colors duration-500">
+                    <div class="w-full h-[240px] relative overflow-hidden rounded-t-md">
                         <video src="https://testeessencia.carrd.co/assets/videos/video03.mp4?v=701b88d2" autoplay loop muted playsinline class="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-700"></video>
-                        <div class="absolute top-4 right-4 bg-amber text-graphite px-3 py-1 rounded-sm text-[9px] font-bold uppercase tracking-widest shadow-[0_0_15px_var(--cta-glow)]">30% OFF</div>
-                        <div class="absolute top-4 left-4 bg-obsidian/80 backdrop-blur-md text-pearl px-3 py-1 rounded-sm text-[9px] font-bold uppercase tracking-widest border border-amber/30">Passo 4</div>
+                        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_20%,rgba(8,8,8,0.95)_100%)] pointer-events-none z-10"></div>
+                        
+                        <div class="absolute top-4 right-4 bg-gradient-to-r from-amber to-champagne text-obsidian px-3 py-1 rounded-sm text-[10px] font-black uppercase tracking-widest shadow-[0_0_20px_rgba(227,168,87,0.6)] z-20 animate-pulse">30% OFF</div>
+                        <div class="absolute top-4 left-4 bg-obsidian/90 backdrop-blur-md text-pearl px-3 py-1 rounded-sm text-[9px] font-bold uppercase tracking-widest border border-amber/30 z-20">Passo 4</div>
                     </div>
                     <div class="p-6 sm:p-8 flex flex-col flex-1 relative z-10">
-                        <h3 class="font-serif text-2xl font-bold text-amber mb-1">American Argan Oil</h3>
-                        <p class="text-[10px] uppercase tracking-widest text-silky font-bold mb-4">100ml • Light & Perfumed Hair</p>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-pearl mb-1 group-hover:text-amber transition-colors">American Argan Oil</h3>
+                        <p class="text-[10px] uppercase tracking-widest text-amber font-bold mb-5">100ml • Light & Perfumed Hair</p>
                         
-                        <div class="bg-obsidian/50 rounded-md p-4 mb-4 border border-amber/10">
-                            <span class="text-[9px] uppercase tracking-widest text-amber block mb-2 font-bold">Poder de Ação:</span>
-                            <ul class="text-[10px] sm:text-[11px] font-medium text-pearl space-y-2">
-                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-amber"></i> Óleo de Argan Puro</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-amber"></i> Vitamina E Antioxidante</li>
-                                <li class="flex items-center gap-2"><i data-lucide="check" class="w-3 h-3 text-amber"></i> Micropartículas de Brilho</li>
+                        <div class="bg-obsidian/80 rounded-md p-4 mb-5 border border-white/5 shadow-inner">
+                            <span class="text-[9px] uppercase tracking-widest text-silky block mb-3 font-bold">Poder de Ação:</span>
+                            <ul class="text-[11px] font-medium text-pearl space-y-2.5">
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-amber"></i> Óleo de Argan Puro</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-amber"></i> Vitamina E Antioxidante</li>
+                                <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-3.5 h-3.5 text-amber"></i> Brilho Espelhado</li>
                             </ul>
                         </div>
 
-                        <details class="group/gaveta w-full mb-6 border-b border-amber/10 pb-4">
-                            <summary class="flex justify-between items-center text-[10px] font-bold uppercase tracking-widest text-amber cursor-pointer outline-none btn-haptic">
-                                A Engenharia <i data-lucide="chevron-down" class="w-3 h-3 transition-transform group-open/gaveta:rotate-180"></i>
-                            </summary>
-                            <div class="mt-3 text-[11px] text-silky leading-relaxed">
-                                <p class="mb-2"><strong>Por que é crucial?</strong> O segredo do <em>American Glow</em>. Diferente de óleos comuns, esta fórmula ultraleve confere brilho espelhado instantâneo sem pesar, mantendo os fios soltos e perfumados.</p>
-                            </div>
-                        </details>
-
-                        <div class="mt-auto">
-                            <div class="flex justify-between items-end mb-4">
+                        <!-- E-commerce Action Box -->
+                        <div class="mt-auto bg-amber/5 border border-amber/20 rounded-md p-5 flex flex-col gap-4 relative overflow-hidden">
+                            <div class="absolute top-0 right-0 w-20 h-20 bg-amber/10 blur-2xl rounded-full pointer-events-none"></div>
+                            <div class="flex justify-between items-end relative z-10">
                                 <div>
-                                    <span class="text-[10px] line-through text-silky block mb-0.5">R$ 147,00</span>
-                                    <span class="font-serif text-3xl font-bold text-pearl">R$ 102<span class="text-xl">,90</span></span>
+                                    <span class="text-[10px] line-through text-silky block mb-1">De R$ 147,00</span>
+                                    <div class="flex items-start gap-1 text-amber">
+                                        <span class="text-sm font-bold mt-1">R$</span>
+                                        <span class="font-serif text-4xl font-bold leading-none tracking-tight">102<span class="text-xl">,90</span></span>
+                                    </div>
                                 </div>
                                 <div class="text-right">
-                                    <span class="text-[8px] uppercase tracking-widest text-amber block font-bold">C/ Cupom BOUTIQUE30</span>
-                                    <span class="text-[9px] text-silky">Pix / Parcelado</span>
+                                    <span class="inline-block px-2 py-1 bg-amber/20 text-amber text-[8px] font-bold uppercase tracking-widest rounded-sm border border-amber/30 mb-1">Cupom Aplicado</span>
+                                    <span class="text-[9px] text-silky block">Pix / Parcelado</span>
                                 </div>
                             </div>
-                            <button onclick="window.UIController.handleBoutiqueOrder('American Argan Oil')" class="w-full py-4 bg-amber text-graphite rounded-md font-bold uppercase tracking-widest text-[10px] btn-haptic glow-luminance flex justify-center items-center gap-2">
-                                Reservar Lote <i data-lucide="shopping-bag" class="w-3 h-3"></i>
+                            <button onclick="window.UIController.handleBoutiqueOrder('American Argan Oil')" class="w-full py-4 bg-amber text-graphite rounded-md font-bold uppercase tracking-widest text-[11px] btn-haptic glow-luminance flex justify-center items-center gap-2 relative z-10">
+                                Garantir Brilho Espelhado <i data-lucide="shopping-bag" class="w-4 h-4"></i>
                             </button>
                         </div>
                     </div>
@@ -817,11 +803,13 @@
                 </details>
                 <details class="group/faq glass-fume overflow-hidden">
                     <summary class="flex justify-between items-center p-6 text-[11px] sm:text-[13px] font-bold uppercase tracking-widest text-amber cursor-pointer outline-none btn-haptic select-none relative z-10">
-                        <span>Qual a diferença entre o Liso 8K e o Glass Molecular?</span>
+                        <span>Qual a diferença do Glass para o Liso Soberano e Gata Lambeu?</span>
                         <i data-lucide="chevron-down" class="w-4 h-4 transition-transform duration-300 group-open/faq:rotate-180 flex-shrink-0 ml-4"></i>
                     </summary>
                     <div class="p-6 pt-0 border-t border-amber/10 text-silky text-[13px] leading-relaxed relative z-10">
-                        <p class="mt-4">O <strong>Liso Soberano 8K</strong> é uma reestruturação térmica que altera a curvatura do fio, entregando um liso espelhado definitivo por 4 a 6 meses. O <strong>Glass Molecular</strong> é uma blindagem express (15 min) que apenas injeta massa e elimina o frizz, <em>sem alisar</em> ou alterar a estrutura original do cabelo (perfeito para quem quer manter ondas/cachos mas remover o volume rebelde).</p>
+                        <p class="mt-4">O segredo está na nossa <strong>Engenharia Térmica de Ativação</strong>. Utilizamos a mesma matéria-prima de excelência, mas a ferramenta de finalização muda completamente o resultado.</p>
+                        <p class="mt-3">No <strong>Liso Soberano 8K</strong> e na <strong>Gata Lambeu</strong>, a finalização é feita com <em>piastra (chapinha)</em> de precisão, o que realinha a estrutura do fio e entrega o liso definitivo.</p>
+                        <p class="mt-3">Já o <strong>Glass Molecular</strong> é a solução definitiva para a maior queixa das mulheres: <strong>O Frizz</strong>. Ele é ativado exclusivamente no calor da <em>escova</em>. Atua como uma "Escova Ultra-Duradoura": sela as cutículas e injeta uma sedosidade e um brilho vitrificado absurdos, mas <strong>NÃO ALISA E NÃO MEXE NA ESTRUTURA ORIGINAL</strong> do seu cabelo. É o tratamento perfeito para quem deseja manter as suas ondas ou cachos intactos, mas quer eliminar o volume rebelde e o aspecto poroso.</p>
                     </div>
                 </details>
                 <details class="group/faq glass-fume overflow-hidden">
